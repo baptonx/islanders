@@ -1,6 +1,7 @@
 package game.resource;
 
 import io.swagger.annotations.Api;
+
 import javax.inject.Singleton;
 import javax.ws.rs.Path;
 
@@ -8,8 +9,8 @@ import javax.ws.rs.Path;
 @Path("game")
 @Api(value = "game")
 public class GameResource {
-	public GameResource() {
-		super();
-	}
+    public GameResource() {
+        super();
+    }
 
 }
