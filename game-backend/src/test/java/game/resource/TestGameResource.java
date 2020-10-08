@@ -60,7 +60,7 @@ public class TestGameResource {
     }
 
     @Test
-    void testPutMapsId(final Client client, final URI baseUri) {
+    void testPutMap(final Client client, final URI baseUri) {
         //MapResource map = new MapResource("Map 1", );
         MapResource m = new MapResource("CarteBG", 1);
         final Response res = client
@@ -69,8 +69,10 @@ public class TestGameResource {
                 .request()
                 .post(Entity.json(m));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-
         MapResource mapResponse = res.readEntity(MapResource.class);
         assertEquals("CarteBG", mapResponse.getName());
+        assertEquals(1, mapResponse.getId());
     }
+
+    
 }
