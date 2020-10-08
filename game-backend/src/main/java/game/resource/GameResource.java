@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
-
+import javax.ws.rs.client.Entity;
 import javax.inject.Singleton;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -38,7 +38,7 @@ public class GameResource {
         this.storage.getListMap()
                 .stream()
                 .forEach(elt -> ids.add(elt.getId()));
-        return Response.status(Response.Status.OK).entity(ids).build();
+        return Response.status(Response.Status.OK).entity(Entity.json(ids)).build();
     }
 
     @POST

@@ -62,6 +62,7 @@ public class TestGameResource {
     // To edit
     @Test
     void testGetMapsId(final Client client, final URI baseUri) {
+        testPostMap(client, baseUri);
 		final Response res = client
 			.target(baseUri)
 			.path("game/api/v1/maps")
