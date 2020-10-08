@@ -10,7 +10,6 @@ import java.util.Map;
 @Path("map")
 @Api(value = "map")
 public class MapResource {
-
     private String name;
     private int id;
     private Map<Integer, Integer> topScore;
