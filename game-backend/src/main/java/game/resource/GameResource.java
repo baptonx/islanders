@@ -22,7 +22,7 @@ public class GameResource {
 
     public GameResource() {
         super();
-        this.listMaps = new ArrayList<MapResource>();
+        this.storage = new Storage();
     }
 
     @GET

@@ -15,8 +15,8 @@
 
 # Back-end : 
 
-# Route pour obtenir les noms des cartes disponibles (et leur id)
- * GET api/v1/maps => {"names" : [{"name" : map_name, "id" : map_id}, ...]}
+# Route pour obtenir les id (attribut primitif) des cartes disponibles
+ * GET api/v1/maps => {"ids" : [{"id" : map_id}, ...]}
 
 # Route pour obtenir une map depuis l'id
  * GET api/v1/maps/{map_id}  => {"map": {"id" : id,...}}
