@@ -3,13 +3,18 @@ package game.resource;
 import com.github.hanleyt.JerseyExtension;
 
 import java.net.URI;
+import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestGameResource {
     static {
@@ -41,27 +46,13 @@ public class TestGameResource {
     // To edit
     @Test
     void testGetNames(final Client client, final URI baseUri) {
-//		final Response res = client
-//			.target(baseUri)
-//			.path("game/maps/names")
-//			.request()
-//			.get();
-
-//		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-//		final List<String> names = res.readEntity(new GenericType<>() {});
-        // add other assertions to check 'names'
-    }
-
-    @Test
-    void testGetNames(final Client client, final URI baseUri) {
-//		final Response res = client
-//			.target(baseUri)
-//			.path("game/maps/names")
-//			.request()
-//			.get();
-
-//		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-//		final List<String> names = res.readEntity(new GenericType<>() {});
+		final Response res = client
+			.target(baseUri)
+			.path("api/v1/maps")
+			.request()
+			.get();
+		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+		final List<String> names = res.readEntity(new GenericType<>() {});
         // add other assertions to check 'names'
     }
 }
