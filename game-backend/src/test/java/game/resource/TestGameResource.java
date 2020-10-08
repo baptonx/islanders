@@ -45,7 +45,8 @@ public class TestGameResource {
     // Example of a route test. The one for getting a list of available maps
     // To edit
     @Test
-    void testGetNames(final Client client, final URI baseUri) {
+    void testGetMaps(final Client client, final URI baseUri) {
+        MapResource map = new MapResource("Map 1", );
 		final Response res = client
 			.target(baseUri)
 			.path("api/v1/maps")
@@ -53,6 +54,7 @@ public class TestGameResource {
 			.get();
 		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 		final List<String> names = res.readEntity(new GenericType<>() {});
+
         // add other assertions to check 'names'
     }
 }

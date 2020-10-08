@@ -5,6 +5,7 @@ import org.checkerframework.checker.signature.qual.Identifier;
 
 import javax.inject.Singleton;
 import javax.ws.rs.Path;
+import java.util.HashMap;
 import java.util.Map;
 
 @Path("map")
@@ -17,6 +18,13 @@ public class MapResource {
 
     public MapResource() {
         tabTiles = new Tile[100];
+    }
+
+    public MapResource(String name, int id) {
+        this.name = name;
+        this.id = id;
+        this.topScore = new HashMap<>();
+        this.tabTiles = new Tile[100];
     }
 
     public Tile getTile(int position) {
