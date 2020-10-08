@@ -29,7 +29,7 @@ public class GameResource {
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMapsId(){
-        final List<String> ids;
+        final List<Integer> ids = new ArrayList<Integer>();
         Arrays
                 .stream(this.storage.getListMap().toArray())
                 .forEach(elt -> ids.add(elt.getId()));

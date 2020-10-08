@@ -1,18 +1,19 @@
 package game.resource;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
 
-    private List<MapResource> listMap;
+    private ArrayList<MapResource> listMap;
 
     public Storage(){
         super();
         this.listMap = new ArrayList<MapResource>();
     }
 
-    public List<MapResource> getListMap(){
+    public ArrayList<MapResource> getListMap(){
         return this.listMap;
     }
 
