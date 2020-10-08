@@ -38,12 +38,13 @@ public class GameResource {
         Arrays
                 .stream((MapResource[])this.storage.getListMap().toArray())
                 .forEach(elt -> ids.add(elt.getId()));
-        return null;
+        return Response.status(Response.Status.OK).entity(ids).build();
     }
 
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response setMaps(MapResource m){
         final MapResource map = m;
         storage.addMap(map);
