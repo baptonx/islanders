@@ -46,6 +46,7 @@ public class GameResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response setMaps(MapResource m){
+        System.out.println(m);
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).entity(map).build();
