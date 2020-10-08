@@ -46,7 +46,7 @@ public class TestGameResource {
     // To edit
     @Test
     void testGetMaps(final Client client, final URI baseUri) {
-        //MapResource map = new MapResource("Map 1", );
+        MapResource map = new MapResource("Map 1", 42);
 		final Response res = client
 			.target(baseUri)
 			.path("api/v1/maps")
@@ -54,7 +54,7 @@ public class TestGameResource {
 			.get();
 		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 		final List<String> names = res.readEntity(new GenericType<>() {});
-
+        assertEquals(names.get(0), "Map 1");
         // add other assertions to check 'names'
     }
 }
