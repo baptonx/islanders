@@ -28,8 +28,8 @@ public class GameResource {
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMaps(){
-        final List<String> names;
+    public Response getMapsId(){
+        final List<String> ids;
         Arrays
                 .stream(new ArrayList[]{listMaps})
                 .
