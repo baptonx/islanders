@@ -1,7 +1,6 @@
 package game.resource;
 
-import com.google.common.net.MediaType;
-import com.sun.research.ws.wadl.Response;
+import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
 
 import javax.inject.Singleton;
@@ -9,23 +8,33 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 @Singleton
 @Path("game")
 @Api(value = "game")
 public class GameResource {
-    private MapResource maps;
+
+    private List<MapResource> maps;
 
     public GameResource() {
         super();
-        maps = new MapResource();
+        maps = new ArrayList<MapResource>();
     }
 
     @GET
     @Path("api/v1/maps")
-    @Produces(MediaType.JSON_UTF_8)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getMaps(){
+        final List<String> names;
+        Arrays
+            .stream()
+                .
 
     }
 

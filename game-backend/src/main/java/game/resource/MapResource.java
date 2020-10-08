@@ -7,13 +7,11 @@ import javax.inject.Singleton;
 import javax.ws.rs.Path;
 import java.util.Map;
 
-@Entity
 @Path("map")
 @Api(value = "map")
 public class MapResource {
+
     private String name;
-    @Id
-    @GeneratedValue
     private int id;
     private Map<Integer, Integer> topScore;
     private Tile[] tabTiles;
