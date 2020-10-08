@@ -12,5 +12,4 @@ public class GameResource {
     public GameResource() {
         super();
     }
-
 }
