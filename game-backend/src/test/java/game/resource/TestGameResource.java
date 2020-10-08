@@ -45,7 +45,7 @@ public class TestGameResource {
     // Example of a route test. The one for getting a list of available maps
     // To edit
     @Test
-    void testGetIds(final Client client, final URI baseUri) {
+    void testGetMapsId(final Client client, final URI baseUri) {
         //MapResource map = new MapResource("Map 1", );
 		final Response res = client
 			.target(baseUri)
