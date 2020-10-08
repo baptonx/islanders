@@ -17,4 +17,8 @@ public class Storage {
         return this.listMap;
     }
 
+    public void addMap(MapResource m) {
+        listMap.add(m);
+    }
+
 }

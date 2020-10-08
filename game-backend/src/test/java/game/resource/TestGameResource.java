@@ -46,7 +46,7 @@ public class TestGameResource {
     // To edit
     @Test
     void testGetMaps(final Client client, final URI baseUri) {
-        MapResource map = new MapResource("Map 1", );
+        //MapResource map = new MapResource("Map 1", );
 		final Response res = client
 			.target(baseUri)
 			.path("api/v1/maps")

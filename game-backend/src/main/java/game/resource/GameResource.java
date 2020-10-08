@@ -1,6 +1,11 @@
 package game.resource;
 
-import javax.ws.rs.*;
+//import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
 
@@ -29,12 +34,11 @@ public class GameResource {
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMapsId(){
-        final List<Integer> ids = new ArrayList<Integer>();
-        Arrays
-                .stream(this.storage.getListMap().toArray())
-                .forEach(elt -> ids.add())
-
-
+        //final List<Integer> ids = new ArrayList<Integer>();
+        //Arrays
+                //.stream(this.storage.getListMap().toArray())
+                //.forEach(elt -> ids.add(elt.getId()));
+        return null;
     }
 
     @POST
