@@ -69,8 +69,8 @@ public class TestGameResource {
                 .request()
                 .post(Entity.json(m));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-        //final List<Integer> ids = res.readEntity(new GenericType<>() {});
 
-        // add other assertions to check 'names'
+        MapResource mapResponse = res.readEntity(MapResource.class);
+        assertEquals("CarteBG", mapResponse.getName());
     }
 }
