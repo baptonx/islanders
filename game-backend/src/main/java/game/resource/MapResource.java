@@ -5,8 +5,10 @@ import org.checkerframework.checker.signature.qual.Identifier;
 
 import javax.inject.Singleton;
 import javax.ws.rs.Path;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 //@Path("map")
 //@Api(value = "map")
@@ -63,5 +65,19 @@ public class MapResource {
         return tabTiles;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MapResource that = (MapResource) o;
+        return id == that.id &&
+                name.equals(that.name) &&
+                Objects.equals(topScore, that.topScore) &&
+                Arrays.equals(tabTiles, that.tabTiles);
+    }
 
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

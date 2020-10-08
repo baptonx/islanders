@@ -35,8 +35,8 @@ public class GameResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMapsId(){
         final List<Integer> ids = new ArrayList<Integer>();
-        Arrays
-                .stream((MapResource[])this.storage.getListMap().toArray())
+        this.storage.getListMap()
+                .stream()
                 .forEach(elt -> ids.add(elt.getId()));
         return Response.status(Response.Status.OK).entity(ids).build();
     }
@@ -44,7 +44,6 @@ public class GameResource {
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response setMaps(MapResource m){
         final MapResource map = m;
         storage.addMap(map);
