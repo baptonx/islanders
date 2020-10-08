@@ -38,7 +38,7 @@ public class GameResource {
         this.storage.getListMap()
                 .stream()
                 .forEach(elt -> ids.add(elt.getId()));
-        return Response.status(Response.Status.OK).entity(Entity.json(ids)).build();
+        return Response.status(Response.Status.OK).entity(ids).build();
     }
 
     @POST
