@@ -34,17 +34,19 @@ public class GameResource {
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMapsId(){
-        //final List<Integer> ids = new ArrayList<Integer>();
-        //Arrays
-                //.stream(this.storage.getListMap().toArray())
-                //.forEach(elt -> ids.add(elt.getId()));
-        return null;
+        final List<Integer> ids = new ArrayList<Integer>();
+        Arrays
+                .stream((MapResource[])this.storage.getListMap().toArray())
+                .forEach(elt -> ids.add(elt.getId()));
+        return Response.status(Response.Status.OK).entity(ids).build();
     }
 
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response setMaps(MapResource m){
+        System.out.println(m);
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).entity(map).build();

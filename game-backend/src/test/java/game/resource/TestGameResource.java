@@ -45,15 +45,15 @@ public class TestGameResource {
     // Example of a route test. The one for getting a list of available maps
     // To edit
     @Test
-    void testGetMaps(final Client client, final URI baseUri) {
-        MapResource map = new MapResource("Map 1", 42);
+    void testGetMapsId(final Client client, final URI baseUri) {
+        //MapResource map = new MapResource("Map 1", );
 		final Response res = client
 			.target(baseUri)
 			.path("api/v1/maps")
 			.request()
 			.get();
 		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-		final List<String> names = res.readEntity(new GenericType<>() {});
+		final List<Integer> ids = res.readEntity(new GenericType<>() {});
         assertEquals(names.get(0), "Map 1");
         // add other assertions to check 'names'
     }
