@@ -1,4 +1,4 @@
 package game.resource;
 
-public class Tree {
+public class Tree implements Tile{
 }

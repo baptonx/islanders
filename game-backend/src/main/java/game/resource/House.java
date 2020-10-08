@@ -1,4 +1,4 @@
 package game.resource;
 
-public class House {
+public class House extends CityBlock{
 }

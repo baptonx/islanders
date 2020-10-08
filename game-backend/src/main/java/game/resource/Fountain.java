@@ -1,4 +1,4 @@
 package game.resource;
 
-public class Fountain {
+public class Fountain extends CityBlock{
 }

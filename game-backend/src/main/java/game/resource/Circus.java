@@ -1,4 +1,4 @@
 package game.resource;
 
-public class Circus {
+public class Circus extends CityBlock{
 }

@@ -1,4 +1,4 @@
 package game.resource;
 
-public class WindTurbine {
+public class WindTurbine extends CityBlock{
 }
