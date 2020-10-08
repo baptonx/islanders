@@ -32,7 +32,8 @@ public class GameResource {
         final List<Integer> ids = new ArrayList<Integer>();
         Arrays
                 .stream(this.storage.getListMap().toArray())
-                .forEach(elt -> ids.add(elt.getId()));
+                .forEach(elt -> ids.add())
+
 
     }
 
