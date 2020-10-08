@@ -3,10 +3,12 @@ package game.resource;
 import com.github.hanleyt.JerseyExtension;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
@@ -69,7 +71,8 @@ public class TestGameResource {
 			.request()
 			.get();
 		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-		final List<Integer> ids = res.readEntity(new GenericType<>() {});
+		System.out.println(res);
+		final List<Integer> ids = res.readEntity(new GenericType<>(){});
         assertEquals(ids.get(0), "Map 1");
         // add other assertions to check 'names'
     }

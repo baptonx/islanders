@@ -6,8 +6,11 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
+import io.swagger.models.auth.In;
+
 import javax.ws.rs.client.Entity;
 import javax.inject.Singleton;
 import javax.ws.rs.core.GenericType;
@@ -38,13 +41,18 @@ public class GameResource {
         this.storage.getListMap()
                 .stream()
                 .forEach(elt -> ids.add(elt.getId()));
-        return Response.status(Response.Status.OK).entity(ids).build();
+        for(int id : ids){
+            System.out.println(id);
+        }
+        System.out.println("ZEUUUUUUUUUUUUUUUUUUUUUUUUUUUBI");
+        return Response.status(Response.Status.OK).entity(new GenericEntity<List<Integer>>(ids) {}).build();
     }
+
 
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response postMap(MapResource m){
+    public Response postMap(final MapResource m){
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).entity(map).build();
