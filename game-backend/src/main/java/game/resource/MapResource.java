@@ -31,6 +31,34 @@ public class MapResource {
         return tabTiles[position];
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Map<Integer, Integer> getTopScore() {
+        return topScore;
+    }
+
+    public void setTopScore(Map<Integer, Integer> topScore) {
+        this.topScore = topScore;
+    }
+
+    public void setTabTiles(Tile[] tabTiles) {
+        this.tabTiles = tabTiles;
+    }
+
     public Tile[] getTabTiles() {
         return tabTiles;
     }
