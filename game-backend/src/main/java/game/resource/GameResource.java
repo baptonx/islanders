@@ -39,8 +39,10 @@ public class GameResource {
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response setMaps(){
-        
+    public Response setMaps(MapResource m){
+        final MapResource map = m;
+        storage.getListMap().add(map);
+        return Response.status(Response.Status.OK).entity(map).build();
     }
 
 }
