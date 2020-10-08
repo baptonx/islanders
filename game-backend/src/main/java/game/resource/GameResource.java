@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import java.util.Map;
 
 @Singleton
@@ -23,7 +24,7 @@ public class GameResource {
 
     @GET
     @Path("api/v1/maps")
-    @Consumes({MediaType.APPLICATION_XML_UTF_8})
+    @Produces(MediaType.JSON_UTF_8)
     public Response getMaps(){
 
     }
