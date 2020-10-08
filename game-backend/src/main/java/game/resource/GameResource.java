@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,11 +21,11 @@ import java.util.Map;
 @Api(value = "game")
 public class GameResource {
 
-    private List<MapResource> maps;
+    private ArrayList<MapResource> listMaps;
 
     public GameResource() {
         super();
-        maps = new ArrayList<MapResource>();
+        this.listMaps = new ArrayList<MapResource>();
     }
 
     @GET
@@ -33,9 +34,8 @@ public class GameResource {
     public Response getMaps(){
         final List<String> names;
         Arrays
-            .stream()
+                .stream(new ArrayList[]{listMaps})
                 .
-
     }
 
 }
