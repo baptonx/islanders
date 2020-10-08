@@ -34,10 +34,10 @@ public class GameResource {
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMapsId(){
-        //final List<Integer> ids = new ArrayList<Integer>();
-        //Arrays
-                //.stream(this.storage.getListMap().toArray())
-                //.forEach(elt -> ids.add(elt.getId()));
+        final List<Integer> ids = new ArrayList<Integer>();
+        Arrays
+                .stream((MapResource[])this.storage.getListMap().toArray())
+                .forEach(elt -> ids.add(elt.getId()));
         return null;
     }
 
