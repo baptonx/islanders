@@ -5,6 +5,7 @@ import com.github.hanleyt.JerseyExtension;
 import java.net.URI;
 import java.util.List;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
@@ -54,6 +55,21 @@ public class TestGameResource {
 			.get();
 		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 		final List<Integer> ids = res.readEntity(new GenericType<>() {});
+
+        // add other assertions to check 'names'
+    }
+
+    @Test
+    void testPutMapsId(final Client client, final URI baseUri) {
+        //MapResource map = new MapResource("Map 1", );
+        MapResource m = new MapResource("CarteBG", 1);
+        final Response res = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(m));
+        assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+        //final List<Integer> ids = res.readEntity(new GenericType<>() {});
 
         // add other assertions to check 'names'
     }
