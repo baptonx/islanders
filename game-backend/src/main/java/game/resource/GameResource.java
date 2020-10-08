@@ -18,7 +18,7 @@ import java.util.Map;
 @Api(value = "game")
 public class GameResource {
 
-    private ArrayList<MapResource> listMaps;
+    private Storage storage;
 
     public GameResource() {
         super();
