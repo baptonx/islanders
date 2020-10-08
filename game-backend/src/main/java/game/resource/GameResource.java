@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 @Path("game")
 @Api(value = "game")
 public class GameResource {
+
     public GameResource() {
         super();
     }

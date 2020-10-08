@@ -51,4 +51,17 @@ public class TestGameResource {
 //		final List<String> names = res.readEntity(new GenericType<>() {});
         // add other assertions to check 'names'
     }
+
+    @Test
+    void testGetNames(final Client client, final URI baseUri) {
+//		final Response res = client
+//			.target(baseUri)
+//			.path("game/maps/names")
+//			.request()
+//			.get();
+
+//		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+//		final List<String> names = res.readEntity(new GenericType<>() {});
+        // add other assertions to check 'names'
+    }
 }
