@@ -31,8 +31,9 @@ public class GameResource {
     public Response getMapsId(){
         final List<String> ids;
         Arrays
-                .stream(new ArrayList[]{listMaps})
-                .
+                .stream(this.storage.getListMap().toArray())
+                .forEach(elt -> ids.add(elt.getId()));
+
     }
 
     @POST
