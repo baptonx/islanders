@@ -43,22 +43,6 @@ public class TestGameResource {
 //		return obj;
 //	}
 
-    // Example of a route test. The one for getting a list of available maps
-    // To edit
-    @Test
-    void testGetMapsId(final Client client, final URI baseUri) {
-        //MapResource map = new MapResource("Map 1", );
-		final Response res = client
-			.target(baseUri)
-			.path("api/v1/maps")
-			.request()
-			.get();
-		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-		final List<Integer> ids = res.readEntity(new GenericType<>() {});
-
-        // add other assertions to check 'names'
-    }
-
     @Test
     void testPutMap(final Client client, final URI baseUri) {
         //MapResource map = new MapResource("Map 1", );
@@ -73,6 +57,24 @@ public class TestGameResource {
         assertEquals("CarteBG", mapResponse.getName());
         assertEquals(1, mapResponse.getId());
     }
+
+    // Example of a route test. The one for getting a list of available maps
+    // To edit
+    @Test
+    void testGetMapsId(final Client client, final URI baseUri) {
+        //MapResource map = new MapResource("Map 1", );
+		final Response res = client
+			.target(baseUri)
+			.path("game/api/v1/maps")
+			.request()
+			.get();
+		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+		final List<Integer> ids = res.readEntity(new GenericType<>() {});
+
+        // add other assertions to check 'names'
+    }
+
+
 
     
 }
