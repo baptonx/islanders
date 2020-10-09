@@ -1,4 +1,4 @@
 package game.resource;
 
-public class Water implements Tile{
+public class Water extends Tile{
 }

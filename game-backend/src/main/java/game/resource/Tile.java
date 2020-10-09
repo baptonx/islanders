@@ -1,4 +1,6 @@
 package game.resource;
 
-public interface Tile {
+public abstract class Tile {
+    public Tile() {
+    }
 }

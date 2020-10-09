@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.net.URI;
 import javax.ws.rs.client.ClientBuilder;
 
+import game.resource.Storage;
 import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -33,7 +35,13 @@ public final class Main {
                 .register(MyExceptionMapper.class)
                 .register(MoxyJsonFeature.class)
                 .register(io.swagger.jaxrs.listing.ApiListingResource.class)
-                .register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+                .register(io.swagger.jaxrs.listing.SwaggerSerializers.class)
+                .register(new AbstractBinder() {
+                    @Override
+                    protected void configure() {
+                        bind(Storage.class).to(Storage.class);
+                    }
+                }); ;
 
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(HTTP_ADDRESS), rc);
     }

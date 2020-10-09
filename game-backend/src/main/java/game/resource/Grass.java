@@ -1,6 +1,6 @@
 package game.resource;
 
-public class Grass implements Tile{
+public class Grass extends Tile{
     CityBlock block;
 
     public CityBlock getCityBlock() {

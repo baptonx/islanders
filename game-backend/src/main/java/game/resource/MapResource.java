@@ -27,7 +27,7 @@ public class MapResource {
         this.name = name;
         this.id = id;
         this.topScore = new HashMap<>();
-        this.tabTiles = generateRandomMap();
+       // this.tabTiles = generateRandomMap();
     }
     private Tile[] generateRandomMap(){
         Tile[] tab = new Tile[100];

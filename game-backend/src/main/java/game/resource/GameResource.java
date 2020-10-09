@@ -1,6 +1,7 @@
 package game.resource;
 
 //import javax.ws.rs.*;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -28,9 +29,10 @@ public class GameResource {
 
     private Storage storage;
 
-    public GameResource() {
+    @Inject
+    public GameResource(final Storage storage) {
         super();
-        this.storage = new Storage();
+        this.storage = storage;
     }
 
     @GET

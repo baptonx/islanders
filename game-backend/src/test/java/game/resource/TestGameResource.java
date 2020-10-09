@@ -2,6 +2,7 @@ package game.resource;
 
 import com.github.hanleyt.JerseyExtension;
 
+import java.io.StringReader;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,16 +65,24 @@ public class TestGameResource {
     // To edit
     @Test
     void testGetMapsId(final Client client, final URI baseUri) {
-        testPostMap(client, baseUri);
-		final Response res = client
+        // ajout d'une carte
+        MapResource m = new MapResource("CarteBG", 1);
+        final Response resPost = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(m));
+        System.out.println(resPost);
+        // récupération de la carte
+		final Response resGet = client
 			.target(baseUri)
 			.path("game/api/v1/maps")
 			.request()
 			.get();
-		assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-		System.out.println(res);
-		final List<Integer> ids = res.readEntity(new GenericType<>(){});
-        assertEquals(ids.get(0), "Map 1");
+		assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
+		System.out.println(resGet);
+		final List<Integer> ids = resGet.readEntity(ListReader.class).getValues();
+        assertEquals(ids.get(0), "1");
         // add other assertions to check 'names'
     }
 
