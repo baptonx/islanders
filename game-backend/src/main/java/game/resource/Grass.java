@@ -3,6 +3,11 @@ package game.resource;
 public class Grass extends Tile{
     CityBlock block;
 
+    public Grass() {
+        super();
+        this.block = null;
+    }
+
     public CityBlock getCityBlock() {
         return block;
     }

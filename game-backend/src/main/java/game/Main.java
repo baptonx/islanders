@@ -41,7 +41,7 @@ public final class Main {
                     protected void configure() {
                         bind(Storage.class).to(Storage.class);
                     }
-                }); ;
+                });
 
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(HTTP_ADDRESS), rc);
     }

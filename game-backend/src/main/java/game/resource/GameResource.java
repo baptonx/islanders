@@ -27,7 +27,7 @@ import java.util.Map;
 @Api(value = "game")
 public class GameResource {
 
-    private Storage storage;
+    private final Storage storage;
 
     @Inject
     public GameResource(final Storage storage) {
