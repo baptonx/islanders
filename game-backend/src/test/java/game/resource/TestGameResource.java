@@ -64,17 +64,19 @@ public class TestGameResource {
         assertNull(m.getName());
         assertEquals(0, m.getId());
         assertTrue(m.getScore().isEmpty());
-        assertEquals(new Grass[100], m.getTabTiles());
+        assertTrue(m.getTabTiles().equals(new Grass [100]));
         m = new MapResource("Test", 85472);
         assertEquals("Test", m.getName());
         assertEquals(85472, m.getId());
-        assertEquals(new Grass[100], m.getTabTiles());
+        assertTrue(m.getTabTiles().equals(new Grass [100]));
         assertTrue(m.getScore().isEmpty());
     }
 
     @Test
-    void testSetScoreMapResource{
+    void testSetScoreMapResource(){
         MapResource m = new MapResource();
+        List<Score> score = new ArrayList<Score>();
+
     }
     @Test
     void testPostMap(final Client client, final URI baseUri) {
