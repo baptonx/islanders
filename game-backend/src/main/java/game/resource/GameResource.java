@@ -38,7 +38,7 @@ public class GameResource {
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMapsId(){
+    public List<Integer> getMapsId(){
         final List<Integer> ids = new ArrayList<Integer>();
         this.storage.getListMap()
                 .stream()
@@ -46,8 +46,8 @@ public class GameResource {
         for(int id : ids){
             System.out.println(id);
         }
-        System.out.println("ZEUUUUUUUUUUUUUUUUUUUUUUUUUUUBI");
-        return Response.status(Response.Status.OK).entity(new GenericEntity<List<Integer>>(ids) {}).build();
+        //System.out.println("ZEUUUUUUUUUUUUUUUUUUUUUUUUUUUBI");
+        return ids;
     }
 
 

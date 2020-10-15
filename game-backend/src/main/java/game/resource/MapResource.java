@@ -22,13 +22,14 @@ public class MapResource {
     public MapResource() {
 
         tabTiles = generateRandomMap();
+        this.tabTiles = new Grass[100];
     }
 
     public MapResource(String name, int id) {
         this.name = name;
         this.id = id;
         this.scores = new ArrayList<Score>();
-       // this.tabTiles = generateRandomMap();
+        this.tabTiles = new Grass[100];
     }
     private Tile[] generateRandomMap(){
         Tile[] tab = new Tile[100];
@@ -69,12 +70,11 @@ public class MapResource {
     }
 
     public List<Score> getScore() {
-
         return scores;
     }
 
     public void setScore(List<Score> newScore) {
-        this.scores = scores;
+        this.scores = newScore;
     }
 
     public void setTabTiles(Tile[] tabTiles) {
@@ -93,7 +93,7 @@ public class MapResource {
         if (o == null || getClass() != o.getClass()) return false;
         MapResource that = (MapResource) o;
         return id == that.id &&
-                name.equals(that.name) &&
+                Objects.equals(name, that.name) &&
                 Objects.equals(scores, that.scores) &&
                 Arrays.equals(tabTiles, that.tabTiles);
     }
