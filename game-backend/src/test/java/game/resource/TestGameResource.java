@@ -62,7 +62,7 @@ public class TestGameResource {
     void testConstructorMapResource(){
         MapResource m = new MapResource();
         assertNull(m.getName());
-        assertNull(m.getId());
+        assertEquals(0, m.getId());
         assertTrue(m.getScore().isEmpty());
         assertEquals(new Grass[100], m.getTabTiles());
         m = new MapResource("Test", 85472);
@@ -72,6 +72,10 @@ public class TestGameResource {
         assertTrue(m.getScore().isEmpty());
     }
 
+    @Test
+    void testSetScoreMapResource{
+        MapResource m = new MapResource();
+    }
     @Test
     void testPostMap(final Client client, final URI baseUri) {
         //MapResource map = new MapResource("Map 1", );
