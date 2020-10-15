@@ -14,11 +14,15 @@ public class Storage {
     }
 
     public List<MapResource> getListMap(){
+
         return this.listMap;
+
     }
 
     public void addMap(MapResource m) {
+
         listMap.add(m);
+
     }
 
 }
