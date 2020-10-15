@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class TestGameResource {
     Storage data;
@@ -57,6 +57,20 @@ public class TestGameResource {
 //		res.close();
 //		return obj;
 //	}
+
+    @Test
+    void testConstructorMapResource(){
+        MapResource m = new MapResource();
+        assertNull(m.getName());
+        assertNull(m.getId());
+        assertTrue(m.getScore().isEmpty());
+        assertEquals(new Grass[100], m.getTabTiles());
+        m = new MapResource("Test", 85472);
+        assertEquals("Test", m.getName());
+        assertEquals(85472, m.getId());
+        assertEquals(new Grass[100], m.getTabTiles());
+        assertTrue(m.getScore().isEmpty());
+    }
 
     @Test
     void testPostMap(final Client client, final URI baseUri) {
