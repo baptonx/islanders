@@ -18,6 +18,7 @@ import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
@@ -35,6 +36,8 @@ public class TestGameResource {
 
     Application configureJersey() {
         data = new Storage();
+        // data = Mockito.mock(Storage.class);
+
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
                 .register(MoxyJsonFeature.class)
