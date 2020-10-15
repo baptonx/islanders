@@ -46,7 +46,7 @@ public class GameResource {
         for(int id : ids){
             System.out.println(id);
         }
-        //System.out.println("ZEUUUUUUUUUUUUUUUUUUUUUUUUUUUBI");
+        // System.out.println("ZEUUUUUUUUUUUUUUUUUUUUUUUUUUUBI");
         return ids;
     }
 
