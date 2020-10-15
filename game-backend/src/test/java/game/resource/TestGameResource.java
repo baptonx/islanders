@@ -13,6 +13,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
+import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import static org.junit.Assert.assertEquals;
 
 public class TestGameResource {
+    Storage data;
     static {
         System.setProperty("jersey.config.test.container.port", "0");
     }
@@ -32,9 +34,16 @@ public class TestGameResource {
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
 
     Application configureJersey() {
+        data = new Storage();
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
-                .register(MoxyJsonFeature.class);
+                .register(MoxyJsonFeature.class)
+                .register(new AbstractBinder() {
+                    @Override
+                    protected void configure() {
+                        bind(data).to(Storage.class);
+                    }
+                });
     }
 
 //	<T> T LogJSONAndUnmarshallValue(final Response res, final Class<T> classToRead) {

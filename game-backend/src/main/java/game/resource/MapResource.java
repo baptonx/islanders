@@ -29,7 +29,7 @@ public class MapResource {
         this.name = name;
         this.id = id;
         this.scores = new ArrayList<Score>();
-        this.tabTiles = new Grass[100];
+        //this.tabTiles = new Grass[100];
     }
     private Tile[] generateRandomMap(){
         Tile[] tab = new Tile[100];
