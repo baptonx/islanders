@@ -21,7 +21,7 @@ public class MapResource {
 
     public MapResource() {
 
-        tabTiles = generateRandomMap();
+        //tabTiles = generateRandomMap();
         this.tabTiles = new Grass[100];
     }
 
