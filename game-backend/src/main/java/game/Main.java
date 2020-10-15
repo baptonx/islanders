@@ -12,7 +12,7 @@ import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
-import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 public final class Main {
@@ -33,7 +33,7 @@ public final class Main {
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
-                .register(MoxyJsonFeature.class)
+                .register(JacksonFeature.class)
                 .register(io.swagger.jaxrs.listing.ApiListingResource.class)
                 .register(io.swagger.jaxrs.listing.SwaggerSerializers.class)
                 .register(new AbstractBinder() {

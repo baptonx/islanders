@@ -14,7 +14,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.internal.inject.AbstractBinder;
-import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -40,7 +40,7 @@ public class TestGameResource {
 
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
-                .register(MoxyJsonFeature.class)
+                .register(JacksonFeature.class)
                 .register(new AbstractBinder() {
                     @Override
                     protected void configure() {
@@ -114,9 +114,9 @@ public class TestGameResource {
 			.get();
 		assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
 		System.out.println(resGet);
-		final List<Integer> ids = resGet.readEntity(new GenericType<>(){});
-        System.out.println(ids.get(0));
-        assertEquals(ids.get(0), "1");
+		final List<String> names = resGet.readEntity(new GenericType<>(){});
+        System.out.println(names.get(0));
+        assertEquals(names.get(0), "CarteBG");
         // add other assertions to check 'names'
     }
 

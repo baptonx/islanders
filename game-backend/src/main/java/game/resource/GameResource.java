@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.GenericEntity;
@@ -18,8 +17,10 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -38,27 +39,10 @@ public class GameResource {
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Integer> getMapsId(){
+    public List<String> getMapsId(){
         return this.storage.getListMap()
-                .stream()
-                .map(m -> m.getId())
+                .stream().map(m -> m.getName())
                 .collect(Collectors.toList());
-    }
-
-    @GET
-    @Path("api/v1/maps/{maps_id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getMapsId(@PathParam("maps_id") final String idString){
-        int id = Integer.parseInt(idString);
-        MapResource map = null;
-        Optional<MapResource> mapOptional = this.storage.getListMap()
-                .stream()
-                .filter(m -> m.getId()==id)
-                .findFirst();
-        if(mapOptional.isPresent()) {
-            map = mapOptional.get();
-        }
-        return Response.status(Response.Status.OK).entity(map).build();
     }
 
     @POST
