@@ -1,6 +1,6 @@
 package game.resource;
 
-public class Water extends Tile{
+public class Water implements Tile{
     public Water() {
         super();
     }

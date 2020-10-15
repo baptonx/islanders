@@ -81,7 +81,7 @@ public class TestGameResource {
 			.get();
 		assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
 		System.out.println(resGet);
-		final List<Integer> ids = resGet.readEntity(ListReader.class).getValues();
+		final List<Integer> ids = resGet.readEntity(new GenericType<>(){});
         assertEquals(ids.get(0), "1");
         // add other assertions to check 'names'
     }
