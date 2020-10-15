@@ -97,6 +97,7 @@ public class MapResource {
 
     @Override
     public int hashCode() {
+
         return 0;
     }
 }
