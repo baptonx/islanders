@@ -17,6 +17,7 @@ public class MapResource {
     private Tile[] tabTiles;
 
     public MapResource() {
+
         tabTiles = generateRandomMap();
     }
 
@@ -90,7 +91,7 @@ public class MapResource {
         MapResource that = (MapResource) o;
         return id == that.id &&
                 name.equals(that.name) &&
-                Objects.equals(topScore, that.topScore) &&
+                Objects.equals(scores, that.scores) &&
                 Arrays.equals(tabTiles, that.tabTiles);
     }
 
