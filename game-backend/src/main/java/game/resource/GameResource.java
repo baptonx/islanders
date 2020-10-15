@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Singleton
 @Path("game")
@@ -39,17 +40,10 @@ public class GameResource {
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Integer> getMapsId(){
-        final List<Integer> ids = new ArrayList<Integer>();
-        this.storage.getListMap()
-                .stream()
-                .forEach(elt -> ids.add(elt.getId()));
-        for(int id : ids){
-            System.out.println(id);
-        }
-        // System.out.println("ZEUUUUUUUUUUUUUUUUUUUUUUUUUUUBI");
-        return ids;
+        return this.storage.getListMap()
+                .stream().map(m -> m.getId())
+                .collect(Collectors.toList());
     }
-
 
     @POST
     @Path("api/v1/maps")
