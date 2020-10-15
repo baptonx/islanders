@@ -20,9 +20,9 @@ public class MapResource {
     private Tile[] tabTiles;
 
     public MapResource() {
+
         //tabTiles = generateRandomMap();
         this.tabTiles = new Grass[100];
-        this.scores = new ArrayList<Score>();
     }
 
     public MapResource(String name, int id) {
@@ -32,7 +32,18 @@ public class MapResource {
         this.tabTiles = new Grass[100];
     }
     private Tile[] generateRandomMap(){
-        return null;    }
+        Tile[] tab = new Tile[100];
+        for( int i=0; i<100; i++){
+            int randomType = (int) Math.round(Math.random()*3);
+            switch (randomType){
+                case 0: tab[i] = new Grass();
+                case 1: tab[i] = new Tree();
+                case 2: tab[i] = new Water();
+            }
+
+        }
+        return tab;
+    }
 
     public Tile getTile(int position) {
 

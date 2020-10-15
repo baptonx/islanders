@@ -73,9 +73,10 @@ public class TestGameResource {
     }
 
     @Test
-    void testSetScoreMapResource{
+    void testSetScoreMapResource(){
         MapResource m = new MapResource();
     }
+
     @Test
     void testPostMap(final Client client, final URI baseUri) {
         //MapResource map = new MapResource("Map 1", );
@@ -103,7 +104,7 @@ public class TestGameResource {
                 .request()
                 .post(Entity.json(m));
         System.out.println(resPost);
-        // récupération de la carte
+        // récupération des id des Maps
 		final Response resGet = client
 			.target(baseUri)
 			.path("game/api/v1/maps")
@@ -115,6 +116,30 @@ public class TestGameResource {
         System.out.println(ids.get(0));
         assertEquals(ids.get(0), "1");
         // add other assertions to check 'names'
+    }
+
+    @Test
+    void testGetMapWithId(final Client client, final URI baseUri) {
+        // ajout d'une carte
+        MapResource m = new MapResource("CarteBG", 1);
+        final Response resPost = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(m));
+        System.out.println(resPost);
+
+        // récupération de la carte
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/maps/1")
+                .request()
+                .get();
+        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
+        System.out.println(resGet);
+        MapResource mapResponse = resGet.readEntity(MapResource.class);
+        assertEquals("CarteBG", mapResponse.getName());
+        assertEquals(1, mapResponse.getId());
     }
 
 
