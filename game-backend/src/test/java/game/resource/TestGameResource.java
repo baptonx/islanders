@@ -130,8 +130,9 @@ public class TestGameResource {
                 .get();
         System.out.println(resGet);
 
+
         MapResource resMap = resGet.readEntity(MapResource.class);
-        assertEquals(map, map);
+        assertEquals(map, resMap);
     }
 
 
