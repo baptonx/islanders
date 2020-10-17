@@ -1,18 +1,14 @@
 package game.resource;
 
-import io.swagger.annotations.Api;
-import org.checkerframework.checker.signature.qual.Identifier;
-
-import javax.inject.Singleton;
-import javax.ws.rs.Path;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 
-//@Path("map")
-//@Api(value = "map")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MapResource {
     private String name;
     private int id;

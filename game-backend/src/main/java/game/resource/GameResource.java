@@ -3,24 +3,20 @@ package game.resource;
 //import javax.ws.rs.*;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
-import io.swagger.models.auth.In;
 
-import javax.ws.rs.client.Entity;
 import javax.inject.Singleton;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.StreamCorruptedException;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -36,6 +32,7 @@ public class GameResource {
         this.storage = storage;
     }
 
+    // récupérer les noms des maps existantes
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +42,23 @@ public class GameResource {
                 .collect(Collectors.toList());
     }
 
+    // récupérer la map du nom {name}
+    @GET
+    @Path("api/v1/maps/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Optional<MapResource> getMapFromName(@PathParam("name") final String name) throws StreamCorruptedException {
+        Optional<MapResource> map = this.storage
+                .getListMap()
+                .stream()
+                .filter(m -> m.getName().equals(name))
+                .findFirst();
+        if(map.isEmpty()){
+            throw new StreamCorruptedException("There ain't no map with this name");
+        }
+        return map;
+    }
+
+    // poster une nouvelle map
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)

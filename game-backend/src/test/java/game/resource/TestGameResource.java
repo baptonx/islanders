@@ -6,6 +6,8 @@ import java.io.StringReader;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
@@ -24,6 +26,7 @@ import static org.junit.Assert.*;
 
 public class TestGameResource {
     Storage data;
+    MapResource map = new MapResource("CarteBG", 1);
     static {
         System.setProperty("jersey.config.test.container.port", "0");
     }
@@ -81,17 +84,15 @@ public class TestGameResource {
 
     @Test
     void testPostMap(final Client client, final URI baseUri) {
-        //MapResource map = new MapResource("Map 1", );
-        MapResource m = new MapResource("CarteBG", 1);
         final Response res = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
                 .request()
-                .post(Entity.json(m));
+                .post(Entity.json(map));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
         MapResource mapResponse = res.readEntity(MapResource.class);
-        assertEquals("CarteBG", mapResponse.getName());
-        assertEquals(1, mapResponse.getId());
+        assertEquals(map.getName(), mapResponse.getName());
+        assertEquals(map.getId(), mapResponse.getId());
     }
 
     // Example of a route test. The one for getting a list of available maps
@@ -99,12 +100,11 @@ public class TestGameResource {
     @Test
     void testGetMapsId(final Client client, final URI baseUri) {
         // ajout d'une carte
-        MapResource m = new MapResource("CarteBG", 1);
         final Response resPost = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
                 .request()
-                .post(Entity.json(m));
+                .post(Entity.json(map));
         System.out.println(resPost);
         // récupération des id des Maps
 		final Response resGet = client
@@ -116,32 +116,22 @@ public class TestGameResource {
 		System.out.println(resGet);
 		final List<String> names = resGet.readEntity(new GenericType<>(){});
         System.out.println(names.get(0));
-        assertEquals(names.get(0), "CarteBG");
+        assertEquals(names.get(0), map.getName());
         // add other assertions to check 'names'
     }
 
     @Test
     void testGetMapWithId(final Client client, final URI baseUri) {
-        // ajout d'une carte
-        MapResource m = new MapResource("CarteBG", 1);
-        final Response resPost = client
-                .target(baseUri)
-                .path("game/api/v1/maps")
-                .request()
-                .post(Entity.json(m));
-        System.out.println(resPost);
-
         // récupération de la carte
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/maps/1")
+                .path("game/api/v1/maps/CarteBG")
                 .request()
                 .get();
-        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
         System.out.println(resGet);
-        MapResource mapResponse = resGet.readEntity(MapResource.class);
-        assertEquals("CarteBG", mapResponse.getName());
-        assertEquals(1, mapResponse.getId());
+
+        MapResource resMap = resGet.readEntity(MapResource.class);
+        assertEquals(map, map);
     }
 
 
