@@ -28,7 +28,6 @@ public class TestGameResource {
     @SuppressWarnings("unused")
     @RegisterExtension
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
-
     Application configureJersey() {
         data = new Storage();
         // data = Mockito.mock(Storage.class);
