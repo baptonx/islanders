@@ -9,13 +9,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-
 import static org.junit.Assert.*;
 
 public class TestGameResource {
@@ -128,8 +126,4 @@ public class TestGameResource {
         MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(map, resMap);
     }
-
-
-
-    
 }

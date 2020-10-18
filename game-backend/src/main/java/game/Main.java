@@ -16,9 +16,11 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 public final class Main {
+
     // Base URI the Grizzly HTTP server will listen on
     // When building docker images, replace the address with http://0.0.0.0:4444/
     // http://localhost:4444/ is for testing purpose only.
+
     public static final String HTTP_ADDRESS = "http://localhost:4444/";
 
     private Main() {
@@ -42,9 +44,6 @@ public final class Main {
                         bind(Storage.class).to(Storage.class);
                     }
                 });
-
-
-
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(HTTP_ADDRESS), rc);
     }
 
@@ -55,7 +54,6 @@ public final class Main {
         final ClassLoader loader = Main.class.getClassLoader();
         final CLStaticHttpHandler docsHandler = new CLStaticHttpHandler(loader, "swag/");
         docsHandler.setFileCacheEnabled(false);
-
         server.getServerConfiguration().addHttpHandler(docsHandler, "/swag/");
         ClientBuilder.newClient().target(HTTP_ADDRESS);
         System.in.read();
