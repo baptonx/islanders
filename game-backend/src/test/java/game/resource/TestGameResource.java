@@ -31,7 +31,6 @@ public class TestGameResource {
     Application configureJersey() {
         data = new Storage();
         // data = Mockito.mock(Storage.class);
-
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
                 .register(JacksonFeature.class)
@@ -69,8 +68,7 @@ public class TestGameResource {
     @Test
     void testSetScoreMapResource(){
         MapResource m = new MapResource();
-        List<Score> score = new ArrayList<Score>();
-
+        List<Score> score = new ArrayList<>();
     }
 
     @Test
@@ -120,8 +118,6 @@ public class TestGameResource {
                 .request()
                 .get();
         System.out.println(resGet);
-
-
         MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(map, resMap);
     }
