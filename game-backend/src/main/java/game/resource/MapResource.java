@@ -18,7 +18,7 @@ public class MapResource {
 
     public MapResource() {
         //tabTiles = generateRandomMap();
-        this.tabTiles = new Grass[100];
+        this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
     }
 
@@ -26,7 +26,7 @@ public class MapResource {
         this.name = name;
         this.id = id;
         this.scores = new ArrayList<Score>();
-        this.tabTiles = new Grass[100];
+        this.tabTiles = new Tile[100];
     }
     public MapResource generateRandomMap() {
         List<Tile> tileArray = new ArrayList<>(100);
