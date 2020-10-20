@@ -68,6 +68,6 @@ class MapResourceTest {
     }
     @Test
     void generateRandomMap(){
-
+        map_test.generateRandomMap();
     }
 }

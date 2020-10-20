@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -27,9 +29,17 @@ public class MapResource {
         this.scores = new ArrayList<Score>();
         this.tabTiles = new Grass[100];
     }
-    private Tile[] generateRandomMap() {
-        Tile[] tileArray = new Tile[100];
-        Arrays.setAll(tileArray, (index) -> );
+    public List<Tile> generateRandomMap() {
+        List<Tile> tileArray = new ArrayList<>(100);
+        int[] indexArray = new Random().ints(100, 0,2).toArray();
+        Arrays.stream(indexArray).forEach(index -> {
+            switch (index){
+                case 0: tileArray.add(new Grass());
+                case 1: tileArray.add(new Tree());
+                case 2: tileArray.add(new Water());
+            }
+        });
+        System.out.println(tileArray.toString());
         return tileArray;
     }
 
@@ -83,4 +93,10 @@ public class MapResource {
                 Arrays.equals(tabTiles, that.tabTiles);
     }
 
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, id, scores);
+        result = 31 * result + Arrays.hashCode(tabTiles);
+        return result;
+    }
 }
