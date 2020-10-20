@@ -1,6 +1,7 @@
 package game.resource;
 
 //import javax.ws.rs.*;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,7 +10,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
+
 import io.swagger.annotations.Api;
+
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import java.io.StreamCorruptedException;
@@ -34,7 +37,7 @@ public class GameResource {
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<String> getMapsId(){
+    public List<String> getMapsId() {
         return this.storage.getListMap()
                 .stream().map(m -> m.getName())
                 .collect(Collectors.toList());
@@ -50,7 +53,7 @@ public class GameResource {
                 .stream()
                 .filter(m -> m.getName().equals(name))
                 .findFirst();
-        if(map.isEmpty()){
+        if (map.isEmpty()) {
             throw new StreamCorruptedException("There ain't no map with this name");
         }
         return map;
@@ -60,7 +63,7 @@ public class GameResource {
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response postMap(final MapResource m){
+    public Response postMap(final MapResource m) {
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).entity(map).build();
@@ -89,8 +92,10 @@ public class GameResource {
     @GET
     @Path("api/v1/maps/random")
     @Produces(MediaType.APPLICATION_JSON)
-    public void getRandomMap() {
-
+    public MapResource getRandomMap() {
+        MapResource m = MapResource.generateRandomMap();
+        this.storage.addMap(m);
+        return m;
     }
 
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
@@ -117,7 +122,6 @@ public class GameResource {
     public void getCommandsFromReplay() {
 
     }
-
 
 
 }

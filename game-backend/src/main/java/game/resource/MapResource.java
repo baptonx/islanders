@@ -28,25 +28,29 @@ public class MapResource {
         this.scores = new ArrayList<Score>();
         this.tabTiles = new Tile[100];
     }
-    public MapResource generateRandomMap() {
+
+    public static MapResource generateRandomMap() {
         List<Tile> tileArray = new ArrayList<>(100);
-        int[] indexArray = new Random().ints(100, 0,2).toArray();
-        Arrays.stream(indexArray).forEach( index -> {
-            switch (index){
-                case 0: tileArray.add(new Grass());
-                case 1: tileArray.add(new Tree());
-                case 2: tileArray.add(new Water());
+        int[] indexArray = new Random().ints(100, 0, 2).toArray();
+        Arrays.stream(indexArray).forEach(index -> {
+            switch (index) {
+                case 0:
+                    tileArray.add(new Grass());
+                case 1:
+                    tileArray.add(new Tree());
+                case 2:
+                    tileArray.add(new Water());
             }
         });
         System.out.println(tileArray.toString());
         NameGenerator name = new NameGenerator();
-        MapResource newMap= new MapResource(name.generateName(6), (int) (Math.random()*1000));
-        tileArray.toArray(tabTiles);
+        MapResource newMap = new MapResource(name.generateName(6), (int) (Math.random() * 1000));
+        tileArray.toArray(newMap.tabTiles);
         return newMap;
     }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
-        if(position<100 && position >0)
+        if (position < 100 && position > 0)
             return tabTiles[position];
         else
             throw new ArrayIndexOutOfBoundsException("Tile position must be between 0 and 100");
@@ -54,6 +58,16 @@ public class MapResource {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "MapResource{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", scores=" + scores +
+                ", tabTiles=" + Arrays.toString(tabTiles) +
+                '}';
     }
 
     public void setName(String name) {

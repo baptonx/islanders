@@ -1,6 +1,7 @@
 package game.resource;
 
 import com.github.hanleyt.JerseyExtension;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +10,19 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+
 import static org.junit.Assert.*;
 
 public class TestGameResource {
-    Storage data;
+    Storage storage;
     MapResource map = new MapResource("CarteBG", 1);
+
     static {
         System.setProperty("jersey.config.test.container.port", "0");
     }
@@ -28,8 +32,9 @@ public class TestGameResource {
     @SuppressWarnings("unused")
     @RegisterExtension
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
+
     Application configureJersey() {
-        data = new Storage();
+        storage = new Storage();
         // data = Mockito.mock(Storage.class);
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
@@ -37,7 +42,7 @@ public class TestGameResource {
                 .register(new AbstractBinder() {
                     @Override
                     protected void configure() {
-                        bind(data).to(Storage.class);
+                        bind(storage).to(Storage.class);
                     }
                 });
     }
@@ -50,7 +55,6 @@ public class TestGameResource {
 //		res.close();
 //		return obj;
 //	}
-
 
 
     @Test
@@ -78,14 +82,15 @@ public class TestGameResource {
                 .post(Entity.json(map));
         System.out.println(resPost);
         // récupération des id des Maps
-		final Response resGet = client
-			.target(baseUri)
-			.path("game/api/v1/maps")
-			.request()
-			.get();
-		assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-		System.out.println(resGet);
-		final List<String> names = resGet.readEntity(new GenericType<>(){});
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .get();
+        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
+        System.out.println(resGet);
+        final List<String> names = resGet.readEntity(new GenericType<>() {
+        });
         System.out.println(names.get(0));
         assertEquals(names.get(0), map.getName());
         // add other assertions to check 'names'
@@ -97,6 +102,20 @@ public class TestGameResource {
         final Response resGet = client
                 .target(baseUri)
                 .path("game/api/v1/maps/CarteBG")
+                .request()
+                .get();
+        System.out.println(resGet);
+        MapResource resMap = resGet.readEntity(MapResource.class);
+        assertEquals(map, resMap);
+    }
+
+    @Test
+    void testGetRandomMap(final Client client, final URI baseUri) {
+        MapResource map = MapResource.generateRandomMap();
+        this.storage.addMap(map);
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/maps/random")
                 .request()
                 .get();
         System.out.println(resGet);

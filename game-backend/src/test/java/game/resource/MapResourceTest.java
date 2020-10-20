@@ -66,8 +66,9 @@ class MapResourceTest {
         map_test.setName(newname);
         assertEquals(newname, map_test.getName());
     }
+
     @Test
-    void generateRandomMap(){
+    void generateRandomMap() {
         map_test.generateRandomMap();
     }
 }
