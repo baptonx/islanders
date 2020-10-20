@@ -18,7 +18,7 @@ public class MapResource {
     public MapResource() {
         //tabTiles = generateRandomMap();
         this.tabTiles = new Grass[100];
-        this.scores = new ArrayList<Score>();
+        this.scores = new ArrayList<>();
     }
 
     public MapResource(String name, int id) {
