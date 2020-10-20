@@ -32,7 +32,7 @@ class MapResourceTest {
     }
 
     @Test
-    void constructorMapResourceNoParam() {
+    void constructorMapResourceWithoutParam() {
         MapResource m = new MapResource();
         assertNull(m.getName());
         assertEquals(0, m.getId());

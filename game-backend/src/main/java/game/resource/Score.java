@@ -7,6 +7,16 @@ public class Score {
     private String player;
     private int score;
 
+    public Score(){
+        player = "";
+        score = 0;
+    }
+
+    public Score(String player, int score){
+        this.player = player;
+        this.score = score;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -21,15 +31,7 @@ public class Score {
         return Objects.hash(player, score);
     }
 
-    public Score(){
-        player = "";
-        score = 0;
-    }
 
-    public Score(String player, int score){
-        this.player = player;
-        this.score = score;
-    }
 
 
     public String getPlayer() {
