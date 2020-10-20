@@ -30,9 +30,11 @@ public class MapResource {
     private Tile[] generateRandomMap(){
         return null;    }
 
-    public Tile getTile(int position) {
-
-        return tabTiles[position];
+    public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
+        if(position<100)
+            return tabTiles[position];
+        else
+            throw new ArrayIndexOutOfBoundsException("Position must be between 0 and 100");
     }
 
     public String getName() {

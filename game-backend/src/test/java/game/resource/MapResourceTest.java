@@ -3,6 +3,8 @@ package game.resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Executable;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapResourceTest {
@@ -10,26 +12,26 @@ class MapResourceTest {
 
     @BeforeEach
     void setUp() {
-    }
-
-    @Test
-    void getTile() {
+        map_test = new MapResource();
     }
 
     @Test
     void getName() {
+        assertEquals("CarteBG", map_test.getName());
     }
+
+    @Test
+    void getTileException() throws Exception {
+        int position1 = 150;
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> map_test.getTile(position1));
+    }
+
 
     @Test
     void setName() {
-    }
-
-    @Test
-    void getId() {
-    }
-
-    @Test
-    void setId() {
+        String newname = "Nouvelle Map";
+        map_test.setName(newname);
+        assertEquals(newname, map_test.getName());
     }
 
     @Test
@@ -39,12 +41,3 @@ class MapResourceTest {
     @Test
     void setScore() {
     }
-
-    @Test
-    void setTabTiles() {
-    }
-
-    @Test
-    void getTabTiles() {
-    }
-}
