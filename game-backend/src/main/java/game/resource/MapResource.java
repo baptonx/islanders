@@ -27,23 +27,24 @@ public class MapResource {
         this.scores = new ArrayList<Score>();
         this.tabTiles = new Grass[100];
     }
-    private Tile[] generateRandomMap(){
-        return null;    }
+    private Tile[] generateRandomMap() {
+        Tile[] tileArray = new Tile[100];
+        Arrays.setAll(tileArray, (index) -> );
+        return tileArray;
+    }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
-        if(position<100)
+        if(position<100 && position >0)
             return tabTiles[position];
         else
-            throw new ArrayIndexOutOfBoundsException("Position must be between 0 and 100");
+            throw new ArrayIndexOutOfBoundsException("Tile position must be between 0 and 100");
     }
 
     public String getName() {
-
         return name;
     }
 
     public void setName(String name) {
-
         this.name = name;
     }
 
@@ -52,7 +53,6 @@ public class MapResource {
     }
 
     public void setId(int id) {
-
         this.id = id;
     }
 
@@ -65,12 +65,10 @@ public class MapResource {
     }
 
     public void setTabTiles(Tile[] tabTiles) {
-
         this.tabTiles = tabTiles;
     }
 
     public Tile[] getTabTiles() {
-
         return tabTiles;
     }
 
@@ -85,9 +83,4 @@ public class MapResource {
                 Arrays.equals(tabTiles, that.tabTiles);
     }
 
-    @Override
-    public int hashCode() {
-
-        return 0;
-    }
 }
