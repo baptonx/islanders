@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,10 +28,10 @@ public class MapResource {
         this.scores = new ArrayList<Score>();
         this.tabTiles = new Grass[100];
     }
-    public List<Tile> generateRandomMap() {
+    public MapResource generateRandomMap() {
         List<Tile> tileArray = new ArrayList<>(100);
         int[] indexArray = new Random().ints(100, 0,2).toArray();
-        Arrays.stream(indexArray).forEach(index -> {
+        Arrays.stream(indexArray).forEach( index -> {
             switch (index){
                 case 0: tileArray.add(new Grass());
                 case 1: tileArray.add(new Tree());
@@ -40,7 +39,10 @@ public class MapResource {
             }
         });
         System.out.println(tileArray.toString());
-        return tileArray;
+        NameGenerator name = new NameGenerator();
+        MapResource newMap= new MapResource(name.generateName(6), (int) (Math.random()*1000));
+        tileArray.toArray(tabTiles);
+        return newMap;
     }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
