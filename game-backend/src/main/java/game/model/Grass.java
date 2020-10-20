@@ -1,11 +1,11 @@
-package game.resource;
+package game.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Tree implements Tile{
+public class Grass implements Tile {
 
-    public Tree(){
+    public Grass() {
         super();
     }
 }

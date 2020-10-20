@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URI;
 import javax.ws.rs.client.ClientBuilder;
 
-import game.resource.Storage;
+import game.model.Storage;
 import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;

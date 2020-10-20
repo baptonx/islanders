@@ -1,5 +1,12 @@
 package game.resource;
 
+import game.model.Grass;
+import game.model.NameGenerator;
+import game.model.Score;
+import game.model.Tile;
+import game.model.Tree;
+import game.model.Water;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.ArrayList;

@@ -1,4 +1,6 @@
-package game.resource;
+package game.model;
+
+import game.resource.MapResource;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

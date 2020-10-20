@@ -1,9 +1,10 @@
 package game.resource;
 
+import game.model.Grass;
+import game.model.Score;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.List;
 

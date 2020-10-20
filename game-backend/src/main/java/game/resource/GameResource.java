@@ -11,6 +11,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import game.model.Storage;
 import io.swagger.annotations.Api;
 
 import javax.inject.Singleton;
@@ -71,7 +72,7 @@ public class GameResource {
 
     // Route pour obtenir les topScores d'une map depuis l'id (il prend les cinq premiers scores de l'attribut scores)
     // GET api/v1/maps/topScores/{map_id} => {"topScores": [0,0,0,0,0]}
-    @GET
+    /*@GET
     @Path("api/v1/maps/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
     public void getTopScores() {
@@ -85,7 +86,7 @@ public class GameResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void postScore() {
 
-    }
+    }*/
 
     // Route pour obtenir une map générée aléatoirement par le back-end
     // GET api/v1/maps/random => {"map": {"id" : 45123, "name":"random", "scores" : [5,4,3,3,3,.....], "tabTiles":[...]}}
@@ -100,7 +101,7 @@ public class GameResource {
 
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
     // Body : {"player_name" : "Paul", "map_id" : 741, "undos" : [{"putCityBlock" : { "position" : 74, "typeCityBlock" : 1}},...]}
-    @POST
+   /* @POST
     @Path("api/v1/replays")
     @Consumes(MediaType.APPLICATION_JSON)
     public void postReplay() {
@@ -122,6 +123,6 @@ public class GameResource {
     public void getCommandsFromReplay() {
 
     }
-
+*/
 
 }

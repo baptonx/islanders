@@ -1,4 +1,4 @@
-package game.resource;
+package game.model;
 
 import java.util.Random;
 
