@@ -56,11 +56,11 @@ public class MapResource {
         this.id = id;
     }
 
-    public List<Score> getScore() {
+    public List<Score> getScores() {
         return scores;
     }
 
-    public void setScore(List<Score> newScore) {
+    public void setScores(List<Score> newScore) {
         this.scores = newScore;
     }
 

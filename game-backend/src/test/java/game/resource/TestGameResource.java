@@ -51,25 +51,7 @@ public class TestGameResource {
 //		return obj;
 //	}
 
-    @Test
-    void testConstructorMapResource(){
-        MapResource m = new MapResource();
-        assertNull(m.getName());
-        assertEquals(0, m.getId());
-        assertTrue(m.getScore().isEmpty());
-        assertTrue(m.getTabTiles().equals(new Grass [100]));
-        m = new MapResource("Test", 85472);
-        assertEquals("Test", m.getName());
-        assertEquals(85472, m.getId());
-        assertTrue(m.getTabTiles().equals(new Grass [100]));
-        assertTrue(m.getScore().isEmpty());
-    }
 
-    @Test
-    void testSetScoreMapResource(){
-        MapResource m = new MapResource();
-        List<Score> score = new ArrayList<>();
-    }
 
     @Test
     void testPostMap(final Client client, final URI baseUri) {
