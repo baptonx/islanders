@@ -36,7 +36,7 @@ public class MapResource {
         this.tabTiles = new Tile[100];
     }
 
-    public static MapResource generateRandomMap() {
+    public void generateRandomMap() {
         List<Tile> tileArray = new ArrayList<>(100);
         int[] indexArray = new Random().ints(100, 0, 2).toArray();
         Arrays.stream(indexArray).forEach(index -> {
@@ -49,11 +49,7 @@ public class MapResource {
                     tileArray.add(new Water());
             }
         });
-        System.out.println(tileArray.toString());
-        NameGenerator name = new NameGenerator();
-        MapResource newMap = new MapResource(name.generateName(6), (int) (Math.random() * 1000));
-        tileArray.toArray(newMap.tabTiles);
-        return newMap;
+        tileArray.toArray(this.tabTiles);
     }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
