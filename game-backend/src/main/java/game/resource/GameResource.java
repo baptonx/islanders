@@ -52,7 +52,7 @@ public class GameResource {
     @GET
     @Path("api/v1/maps/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Optional<MapResource> getMapFromName(@PathParam("name") final String name) throws StreamCorruptedException {
+    public MapResource getMapFromName(@PathParam("name") final String name) throws StreamCorruptedException {
         Optional<MapResource> map = this.storage
                 .getListMap()
                 .stream()
@@ -61,7 +61,7 @@ public class GameResource {
         if (map.isEmpty()) {
             throw new StreamCorruptedException("There ain't no map with this name");
         }
-        return map;
+        return map.get();
     }
 
     // Route pour ajouter une nouvelle map

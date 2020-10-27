@@ -8,6 +8,6 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlRootElement
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
 @XmlSeeAlso({Grass.class, Tree.class, Water.class})
-public interface Tile {
+public abstract class Tile {
 
 }

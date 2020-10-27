@@ -5,7 +5,7 @@ import game.model.Tile;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Water implements Tile {
+public class Water extends Tile {
     public Water() {
         super();
     }

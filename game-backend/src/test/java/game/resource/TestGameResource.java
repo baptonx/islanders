@@ -64,6 +64,7 @@ public class TestGameResource {
     void setUp(){
         mf = new MapFactory();
         map = mf.newMap("CarteBG", 1);
+        this.storage.addMap(map);
     }
 
     @Test
@@ -84,7 +85,7 @@ public class TestGameResource {
     // Example of a route test. The one for getting a list of available maps
     // To edit
     @Test
-    void testGetMapsId(final Client client, final URI baseUri) {
+    void testGetMapsIds(final Client client, final URI baseUri) {
         // ajout d'une carte
         final Response resPost = client
                 .target(baseUri)
@@ -108,7 +109,14 @@ public class TestGameResource {
     }
 
     @Test
-    void testGetMapWithId(final Client client, final URI baseUri) {
+    void testGetMapFromName(final Client client, final URI baseUri) {
+        final Response resPost = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(this.map));
+        System.out.println(resPost);
+        System.out.println(this.map);
         // récupération de la carte
         final Response resGet = client
                 .target(baseUri)
@@ -116,8 +124,9 @@ public class TestGameResource {
                 .request()
                 .get();
         System.out.println(resGet);
+        System.out.println(this.map);
         MapResource resMap = resGet.readEntity(MapResource.class);
-        assertEquals(map, resMap);
+        assertEquals(this.map, resMap);
     }
 
     @Test
@@ -131,6 +140,10 @@ public class TestGameResource {
                 .get();
         System.out.println(resGet);
         MapResource resMap = resGet.readEntity(MapResource.class);
-        assertEquals(map, resMap);
+        System.out.println(resMap);
+        assertEquals(map.getTabTiles(), resMap.getTabTiles());
+        assertTrue(map.getId()<1000);
+        assertTrue(map.getId()>0);
+        assertEquals(map, this.storage.getMapFromName(map.getName()));
     }
 }

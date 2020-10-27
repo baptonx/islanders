@@ -17,8 +17,8 @@ public class Storage {
         return this.listMap;
     }
 
-    public Optional<MapResource> getMapFromName(String name) {
-        return this.listMap.stream().filter(map -> map.getName() == name).findFirst();
+    public MapResource getMapFromName(String name) {
+        return this.listMap.stream().filter(map -> map.getName() == name).findFirst().get();
     }
 
     public void addMap(MapResource m) {
