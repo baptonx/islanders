@@ -1,6 +1,7 @@
 package game.resource;
 
 import game.model.Grass;
+import game.model.MapResource;
 import game.model.Score;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

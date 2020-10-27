@@ -11,6 +11,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import game.model.MapFactory;
+import game.model.MapResource;
 import game.model.Storage;
 import io.swagger.annotations.Api;
 
@@ -27,11 +29,13 @@ import java.util.stream.Collectors;
 public class GameResource {
 
     private final Storage storage;
+    private final MapFactory mf;
 
     @Inject
     public GameResource(final Storage storage) {
         super();
         this.storage = storage;
+        this.mf = new MapFactory();
     }
 
     // Route pour obtenir les noms (attribut primitif) des cartes disponibles
@@ -94,7 +98,7 @@ public class GameResource {
     @Path("api/v1/maps/random")
     @Produces(MediaType.APPLICATION_JSON)
     public MapResource getRandomMap() {
-        MapResource m = MapResource.generateRandomMap();
+        MapResource m = mf.newRandomMap();
         this.storage.addMap(m);
         return m;
     }

@@ -8,5 +8,6 @@ class MapFactoryTest {
 
     @Test
     void randomMap() {
+
     }
 }

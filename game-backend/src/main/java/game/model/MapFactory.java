@@ -1,18 +1,16 @@
 package game.model;
 
-import game.resource.MapResource;
-
 public class MapFactory {
 
-    public MapResource map(){
+    public MapResource newMap(){
         return new MapResource();
     }
 
-    public MapResource map(String name, int id){
+    public MapResource newMap(String name, int id){
         return new MapResource(name, id);
     }
 
-    public MapResource randomMap(){
+    public MapResource newRandomMap(){
         NameGenerator name = new NameGenerator();
         MapResource m = new MapResource(name.generateName(6), (int) (Math.random() * 1000));
         m.generateRandomMap();

@@ -1,3 +1,4 @@
+
 package game.resource;
 
 import com.github.hanleyt.JerseyExtension;
@@ -10,10 +11,13 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
+import game.model.MapFactory;
+import game.model.MapResource;
 import game.model.Storage;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
@@ -21,7 +25,8 @@ import static org.junit.Assert.*;
 
 public class TestGameResource {
     Storage storage;
-    MapResource map = new MapResource("CarteBG", 1);
+    MapFactory mf;
+    MapResource map;
 
     static {
         System.setProperty("jersey.config.test.container.port", "0");
@@ -55,10 +60,16 @@ public class TestGameResource {
 //		res.close();
 //		return obj;
 //	}
-
+    @BeforeEach
+    void setUp(){
+        mf = new MapFactory();
+        map = mf.newMap("CarteBG", 1);
+    }
 
     @Test
     void testPostMap(final Client client, final URI baseUri) {
+        MapResource map = mf.newRandomMap();
+        map.toString();
         final Response res = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
@@ -111,7 +122,7 @@ public class TestGameResource {
 
     @Test
     void testGetRandomMap(final Client client, final URI baseUri) {
-        MapResource map = MapResource.generateRandomMap();
+        MapResource map = mf.newRandomMap();
         this.storage.addMap(map);
         final Response resGet = client
                 .target(baseUri)
