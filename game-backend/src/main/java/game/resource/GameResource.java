@@ -11,8 +11,11 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import game.model.Command;
 import game.model.MapFactory;
 import game.model.MapResource;
+import game.model.Score;
+import game.model.ScoreComparator;
 import game.model.Storage;
 import io.swagger.annotations.Api;
 
@@ -76,11 +79,19 @@ public class GameResource {
 
     // Route pour obtenir les topScores d'une map depuis l'id (il prend les cinq premiers scores de l'attribut scores)
     // GET api/v1/maps/topScores/{map_id} => {"topScores": [0,0,0,0,0]}
-    /*@GET
+    @GET
     @Path("api/v1/maps/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void getTopScores() {
-
+    public List<Score> getTopScores(@PathParam("name") final String name) throws StreamCorruptedException {
+        Optional<MapResource> map = storage.getListMap()
+                .stream()
+                .filter(mapResource -> mapResource.getName() == name)
+                .findFirst();
+        if (map.isEmpty()) {
+            throw new StreamCorruptedException("There ain't no map with this name");
+        }
+        map.get().getScores().sort(new ScoreComparator());
+        return map.get().getScores();
     }
 
     // Route pour ajouter le score d'un joueur sur une map
@@ -90,7 +101,7 @@ public class GameResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void postScore() {
 
-    }*/
+    }
 
     // Route pour obtenir une map générée aléatoirement par le back-end
     // GET api/v1/maps/random => {"map": {"id" : 45123, "name":"random", "scores" : [5,4,3,3,3,.....], "tabTiles":[...]}}
@@ -108,7 +119,7 @@ public class GameResource {
     @POST
     @Path("api/v1/replays")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postReplay() {
+    public void postReplay(final List<Command> commands) {
 
     }
 
