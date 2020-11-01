@@ -105,7 +105,7 @@ public class GameResource {
 
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
     // Body : {"player_name" : "Paul", "map_id" : 741, "undos" : [{"putCityBlock" : { "position" : 74, "typeCityBlock" : 1}},...]}
-   /* @POST
+    @POST
     @Path("api/v1/replays")
     @Consumes(MediaType.APPLICATION_JSON)
     public void postReplay() {
@@ -127,6 +127,6 @@ public class GameResource {
     public void getCommandsFromReplay() {
 
     }
-*/
+
 
 }
