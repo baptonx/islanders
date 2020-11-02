@@ -3,7 +3,6 @@ package game.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +19,8 @@ public class MapResource {
     private Tile[] tabTiles;
 
     public MapResource() {
-        //tabTiles = generateRandomMap();
+        NameGenerator ng = new NameGenerator();
+        this.name = ng.generateName(6);
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
     }
