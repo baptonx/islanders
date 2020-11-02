@@ -17,6 +17,7 @@ class MapFactoryTest {
     void testNewMapWithoutConstructor(){
         MapResource map = mf.newMap();
         assertNotNull(map.getName());
+        assertArrayEquals(map.getTabTiles(), );
     }
 
     @Test
