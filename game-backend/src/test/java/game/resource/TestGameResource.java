@@ -63,7 +63,7 @@ public class TestGameResource {
     @BeforeEach
     void setUp(){
         mf = new MapFactory();
-        map = mf.newMap("CarteBG", 1);
+        map = mf.newMap("CarteBG");
         this.storage.addMap(map);
     }
 
@@ -79,7 +79,6 @@ public class TestGameResource {
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
         MapResource mapResponse = res.readEntity(MapResource.class);
         assertEquals(map.getName(), mapResponse.getName());
-        assertEquals(map.getId(), mapResponse.getId());
     }
 
     // Example of a route test. The one for getting a list of available maps
