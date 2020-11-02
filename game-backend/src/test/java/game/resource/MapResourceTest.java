@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,7 +74,7 @@ class MapResourceTest {
         map_test.generateRandomMap();
         System.out.println(map_test);
         Arrays.stream(map_test.getTabTiles()).forEach(object ->
-        assertNotNull(object)
+                assertThat(object, instanceOf(Tile.class))
         );
     }
 }

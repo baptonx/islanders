@@ -32,7 +32,7 @@ public class MapResource {
 
     public void generateRandomMap() {
         List<Tile> tileArray = new ArrayList<>(100);
-        int[] indexArray = new Random().ints(100, 0, 2).toArray();
+        int[] indexArray = new Random().ints(100, 0, 3).toArray();
         Arrays.stream(indexArray).forEach(index -> {
             switch (index) {
                 case 0:
@@ -43,7 +43,8 @@ public class MapResource {
                     tileArray.add(new Water());
             }
         });
-        tileArray.toArray(this.tabTiles);
+
+       this.tabTiles = tileArray.toArray(new Tile[100]);
     }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
