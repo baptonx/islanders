@@ -15,7 +15,6 @@ import java.util.Random;
 @XmlRootElement
 public class MapResource {
     private String name;
-    private int id;
     private List<Score> scores;
     private Tile[] tabTiles;
 
@@ -25,9 +24,8 @@ public class MapResource {
         this.scores = new ArrayList<>();
     }
 
-    public MapResource(String name, int id) {
+    public MapResource(String name) {
         this.name = name;
-        this.id = id;
         this.scores = new ArrayList<Score>();
         this.tabTiles = new Tile[100];
     }
@@ -63,7 +61,6 @@ public class MapResource {
     public String toString() {
         return "MapResource{" +
                 "name='" + name + '\'' +
-                ", id=" + id +
                 ", scores=" + scores +
                 ", tabTiles=" + Arrays.toString(tabTiles) +
                 '}';
@@ -71,14 +68,6 @@ public class MapResource {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public List<Score> getScores() {
@@ -102,15 +91,14 @@ public class MapResource {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MapResource that = (MapResource) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
+        return  Objects.equals(name, that.name) &&
                 Objects.equals(scores, that.scores) &&
                 Arrays.equals(tabTiles, that.tabTiles);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, id, scores);
+        int result = Objects.hash(name, scores);
         result = 31 * result + Arrays.hashCode(tabTiles);
         return result;
     }
