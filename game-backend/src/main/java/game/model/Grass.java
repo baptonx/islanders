@@ -8,4 +8,8 @@ public class Grass extends Tile {
     public Grass() {
         super();
     }
+
+    public boolean equals(Object o) {
+        return o instanceof Grass;
+    }
 }

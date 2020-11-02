@@ -9,11 +9,4 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
 @XmlSeeAlso({Grass.class, Tree.class, Water.class})
 public abstract class Tile {
-    public boolean equals(Object o) {
-        System.out.println(this.getClass());
-        if (this.getClass() == o.getClass()) {
-            return true;
-        }
-        return false;
-    }
 }

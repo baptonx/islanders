@@ -43,23 +43,6 @@ public class MapResource {
                 tabTiles[i] = new Water();
             }
         });
-
-        /*
-        List<Tile> tileArray = new ArrayList<>(100);
-        int[] indexArray = new Random().ints(100, 0, 3).toArray();
-        Arrays.stream(indexArray).forEach(index -> {
-            switch (index) {
-                case 0:
-                    tileArray.add(new Grass());
-                case 1:
-                    tileArray.add(new Tree());
-                case 2:
-                    tileArray.add(new Water());
-            }
-        });
-
-        this.tabTiles = tileArray.toArray(new Tile[100]);
-        */
     }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {

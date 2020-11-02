@@ -8,9 +8,9 @@ public class Tree extends Tile {
     public Tree(){
         super();
     }
-    public static void main(String args[]){
-        Tree t = new Tree();
-        System.out.println(t);
+
+    public boolean equals(Object o) {
+        return o instanceof Tree;
     }
 }
 
