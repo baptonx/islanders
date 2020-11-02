@@ -32,7 +32,7 @@ public class Storage {
     }
 
     public MapResource getMapFromName(String name) {
-        return this.listMap.stream().filter(map -> map.getName() == name).findFirst().get();
+        return this.listMap.stream().filter(map -> map.getName().equals(name)).findFirst().get();
     }
 
     public void addMap(MapResource m) {

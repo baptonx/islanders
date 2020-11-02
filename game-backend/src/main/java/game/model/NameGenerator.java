@@ -20,15 +20,7 @@ public class NameGenerator {
                 sb.append(CONS.charAt(rnd.nextInt(CONS.length())));
             else sb.append(VOWELS.charAt(rnd.nextInt(VOWELS.length())));
         }
-        System.out.println(sb);
         return sb.toString();
-    }
-
-    public static void main(String args[])// mains function
-    {
-        NameGenerator namegen = new NameGenerator();// create an object of above class
-        System.out.println("name with length 4: " + namegen.generateName(4));
-        System.out.println("name with length 6: " + namegen.generateName(6));
     }
 
 }
