@@ -50,7 +50,9 @@ class StorageTest {
         storage.addMap(m);
         try {
             List<MapResource> newStorage = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
-            assertEquals(newStorage.stream().filter(map -> map.getName().equals(m.getName())).findFirst().get().getName(), m.getName());
+            MapResource mm = newStorage.stream().filter(map -> map.getName().equals(m.getName())).findFirst().get();
+            assertEquals(mm.getName(), m.getName());
+            assertArrayEquals(mm.getTabTiles(), m.getTabTiles());
             assertEquals(lastStorageLen+1, newStorage.size());
         } catch (IOException e) {
             e.printStackTrace();
