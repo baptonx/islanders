@@ -68,7 +68,7 @@ public class GameResourceTest {
     }
 
     @Test
-    void testPostMap(final Client client, final URI baseUri) {
+    void PostMap(final Client client, final URI baseUri) {
         MapResource map = mf.newRandomMap();
         map.toString();
         final Response res = client
@@ -84,7 +84,7 @@ public class GameResourceTest {
     // Example of a route test. The one for getting a list of available maps
     // To edit
     @Test
-    void testGetMapsIds(final Client client, final URI baseUri) {
+    void GetMapsNames(final Client client, final URI baseUri) {
         // ajout d'une carte
         final Response resPost = client
                 .target(baseUri)
@@ -108,7 +108,7 @@ public class GameResourceTest {
     }
 
     @Test
-    void testGetMapFromName(final Client client, final URI baseUri) {
+    void GetMapFromName(final Client client, final URI baseUri) {
         final Response resPost = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
@@ -129,7 +129,7 @@ public class GameResourceTest {
     }
 
     @Test
-    void testGetRandomMap(final Client client, final URI baseUri) {
+    void GetRandomMap(final Client client, final URI baseUri) {
         MapResource map = mf.newRandomMap();
         this.storage.addMap(map);
         final Response resGet = client

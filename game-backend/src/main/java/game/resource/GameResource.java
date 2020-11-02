@@ -42,7 +42,7 @@ public class GameResource {
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<String> getMapsId() {
+    public List<String> getMapsNames() {
         return this.storage.getListMap()
                 .stream().map(m -> m.getName())
                 .collect(Collectors.toList());
