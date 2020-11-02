@@ -144,9 +144,10 @@ public class GameResourceTest {
                 .path("game/api/v1/maps/random")
                 .request()
                 .get();
-        System.out.println(resGet);
+        //System.out.println(resGet);
         MapResource resMap = resGet.readEntity(MapResource.class);
-        System.out.println(resMap);
+        System.out.println(maptest.getTile(0));
+        System.out.println(resMap.getTile(0));
         assertArrayEquals(maptest.getTabTiles(), resMap.getTabTiles());
         assertEquals(maptest, this.storage.getMapFromName(maptest.getName()));
     }

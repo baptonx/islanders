@@ -10,6 +10,12 @@ public class Water extends Tile {
         super();
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public boolean equals(Object o) {
         return o instanceof Water;
     }
