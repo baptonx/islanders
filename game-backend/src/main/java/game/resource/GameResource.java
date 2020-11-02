@@ -77,7 +77,7 @@ public class GameResource {
     // Route pour obtenir les topScores d'une map depuis l'id (il prend les cinq premiers scores de l'attribut scores)
     // GET api/v1/maps/topScores/{map_id} => {"topScores": [0,0,0,0,0]}
     @GET
-    @Path("api/v1/maps/{map_name}")
+    @Path("api/v1/topScores/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Score> getTopScores(@PathParam("name") final String name) throws StreamCorruptedException {
         Optional<MapResource> map = storage.getListMap()

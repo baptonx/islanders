@@ -4,7 +4,9 @@ package game.resource;
 import com.github.hanleyt.JerseyExtension;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
@@ -13,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import game.model.MapFactory;
 import game.model.MapResource;
+import game.model.Score;
 import game.model.Storage;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -21,6 +24,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
+import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
 public class GameResourceTest {
@@ -130,8 +134,8 @@ public class GameResourceTest {
 
     @Test
     void GetRandomMap(final Client client, final URI baseUri) {
-        MapResource map = mf.newRandomMap();
-        this.storage.addMap(map);
+        MapResource maptest = mf.newRandomMap();
+        this.storage.addMap(maptest);
         final Response resGet = client
                 .target(baseUri)
                 .path("game/api/v1/maps/random")
@@ -140,8 +144,18 @@ public class GameResourceTest {
         System.out.println(resGet);
         MapResource resMap = resGet.readEntity(MapResource.class);
         System.out.println(resMap);
-        assertArrayEquals(map.getTabTiles(), resMap.getTabTiles());
-        assertEquals(map, this.storage.getMapFromName(map.getName()));
+        assertArrayEquals(maptest.getTabTiles(), resMap.getTabTiles());
+        assertEquals(maptest, this.storage.getMapFromName(maptest.getName()));
+    }
+    @Test
+    void GetTopScores(final Client client, final URI baseUri){
+        List<Score> scores = new ArrayList<>();
+        map.setScores(scores);
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/topScores/CarteBG")
+                .request()
+                .get();
     }
 
 }
