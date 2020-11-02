@@ -26,7 +26,7 @@ public class MapResource {
 
     public MapResource(String name) {
         this.name = name;
-        this.scores = new ArrayList<Score>();
+        this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
     }
 
