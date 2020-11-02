@@ -33,27 +33,29 @@ public class Storage {
 
     //Lancer une exception si pas le bon nom
     public MapResource getMapFromName(String name) {
-        return this.listMap.stream().filter(map -> map.getName().equals(name)).findFirst().get();
+        return listMap.stream().filter(map -> map.getName().equals(name)).findFirst().get();
     }
 
     public void addMap(MapResource m) {
         listMap.add(m);
+        this.refreshMap();
+    }
+
+    public void addScore(String mapName, Score s){
+
+    }
+
+    public void refreshMap(){
         try {
             mapper.writeValue(file, listMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void resetMap(){
         listMap = new ArrayList<>();
-        try {
-            mapper.writeValue(file, listMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        this.refreshMap();
     }
 
 }

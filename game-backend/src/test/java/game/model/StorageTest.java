@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +32,20 @@ class StorageTest {
 
     @Test
     void getListMap() {
+        List<MapResource> listMap = storage.getListMap();
+        try {
+            assertEquals(listMap, mapper.readValue(file, new TypeReference<List<MapResource>>() {}));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void getMapFromName() {
-
+        MapResource m = new MapFactory().newRandomMap();
+        storage.addMap(m);
+        MapResource mm = storage.getMapFromName(m.getName());
+        assertEquals(m,mm);
     }
 
     @Test
@@ -49,11 +59,8 @@ class StorageTest {
         }
         storage.addMap(m);
         try {
-            List<MapResource> newStorage = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
-            MapResource mm = newStorage.stream().filter(map -> map.getName().equals(m.getName())).findFirst().get();
-            assertEquals(mm.getName(), m.getName());
-            assertArrayEquals(mm.getTabTiles(), m.getTabTiles());
-            assertEquals(lastStorageLen+1, newStorage.size());
+
+            assertEquals(lastStorageLen+1, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
         } catch (IOException e) {
             e.printStackTrace();
         }
