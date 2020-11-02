@@ -1,6 +1,5 @@
 package game.resource;
 
-import game.model.Grass;
 import game.model.MapResource;
 import game.model.Score;
 import game.model.Tile;

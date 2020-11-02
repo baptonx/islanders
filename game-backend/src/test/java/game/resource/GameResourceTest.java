@@ -23,7 +23,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.junit.Assert.*;
 
-public class TestGameResource {
+public class GameResourceTest {
     Storage storage;
     MapFactory mf;
     MapResource map;
