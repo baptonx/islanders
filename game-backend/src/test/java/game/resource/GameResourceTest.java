@@ -178,7 +178,7 @@ public class GameResourceTest {
                 .path("game/api/v1/maps")
                 .request()
                 .post(Entity.json(maptest));
-        //get this map
+        //get the score of the mapTest
         final Response resGet = client
                 .target(baseUri)
                 .path("game/api/v1/topScores/"+maptest.getName())
