@@ -1,6 +1,5 @@
 package game.resource;
 
-//import javax.ws.rs.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -10,7 +9,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
-
 import game.model.Command;
 import game.model.MapFactory;
 import game.model.MapResource;
@@ -18,7 +16,6 @@ import game.model.Score;
 import game.model.ScoreComparator;
 import game.model.Storage;
 import io.swagger.annotations.Api;
-
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import java.io.StreamCorruptedException;

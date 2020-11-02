@@ -71,8 +71,9 @@ class MapResourceTest {
     @Test
     void generateRandomMap() {
         map_test.generateRandomMap();
+        System.out.println(map_test);
         Arrays.stream(map_test.getTabTiles()).forEach(object ->
-            assertNotNull(object)
+        assertNotNull(object)
         );
     }
 }
