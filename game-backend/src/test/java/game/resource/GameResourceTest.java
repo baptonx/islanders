@@ -6,7 +6,9 @@ import com.github.hanleyt.JerseyExtension;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
@@ -16,6 +18,7 @@ import javax.ws.rs.core.Response;
 import game.model.MapFactory;
 import game.model.MapResource;
 import game.model.Score;
+import game.model.ScoreComparator;
 import game.model.Storage;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -72,23 +75,23 @@ public class GameResourceTest {
     }
 
     @Test
-    void PostMap(final Client client, final URI baseUri) {
-        MapResource map = mf.newRandomMap();
-        map.toString();
+    void postMap(final Client client, final URI baseUri) {
+        MapResource maptest = mf.newRandomMap();
+        maptest.toString();
         final Response res = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
                 .request()
-                .post(Entity.json(map));
+                .post(Entity.json(maptest));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
         MapResource mapResponse = res.readEntity(MapResource.class);
-        assertEquals(map.getName(), mapResponse.getName());
+        assertEquals(maptest.getName(), mapResponse.getName());
     }
 
     // Example of a route test. The one for getting a list of available maps
     // To edit
     @Test
-    void GetMapsNames(final Client client, final URI baseUri) {
+    void getMapsNames(final Client client, final URI baseUri) {
         // ajout d'une carte
         final Response resPost = client
                 .target(baseUri)
@@ -112,7 +115,7 @@ public class GameResourceTest {
     }
 
     @Test
-    void GetMapFromName(final Client client, final URI baseUri) {
+    void getMapFromName(final Client client, final URI baseUri) {
         final Response resPost = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
@@ -133,7 +136,7 @@ public class GameResourceTest {
     }
 
     @Test
-    void GetRandomMap(final Client client, final URI baseUri) {
+    void getRandomMap(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
         this.storage.addMap(maptest);
         final Response resGet = client
@@ -148,14 +151,23 @@ public class GameResourceTest {
         assertEquals(maptest, this.storage.getMapFromName(maptest.getName()));
     }
     @Test
-    void GetTopScores(final Client client, final URI baseUri){
-        List<Score> scores = new ArrayList<>();
-        map.setScores(scores);
+    void getTopScores(final Client client, final URI baseUri){
+        List<Score> scores = Stream.generate(Score::new).limit(10).collect(toList());
+        this.map.setScores(scores);
+        final Response resPost = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(this.map));
         final Response resGet = client
                 .target(baseUri)
                 .path("game/api/v1/topScores/CarteBG")
                 .request()
                 .get();
+        final List<Score> resScore = resGet.readEntity(new GenericType<>() {});
+        scores.sort(new ScoreComparator());
+        List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
+        System.out.println(topScores);
+        assertEquals(resScore, topScores);
     }
-
 }
