@@ -96,13 +96,13 @@ public class GameResource {
 
     // Route pour ajouter le score d'un joueur sur une map
     // POST api/v1/maps/{map_id}/{player_name}/{score} => 200 OK
-    @POST
+   /* @POST
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void postScore() {
 
     }
-
+*/
     // Route pour obtenir une map générée aléatoirement par le back-end
     // GET api/v1/maps/random => {"map": {"id" : 45123, "name":"random", "scores" : [5,4,3,3,3,.....], "tabTiles":[...]}}
     @GET
@@ -116,7 +116,7 @@ public class GameResource {
 
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
     // Body : {"player_name" : "Paul", "map_id" : 741, "undos" : [{"putCityBlock" : { "position" : 74, "typeCityBlock" : 1}},...]}
-    @POST
+   /* @POST
     @Path("api/v1/replays")
     @Consumes(MediaType.APPLICATION_JSON)
     public void postReplay(final List<Command> commands) {
@@ -138,6 +138,6 @@ public class GameResource {
     public void getCommandsFromReplay() {
 
     }
-
+*/
 
 }

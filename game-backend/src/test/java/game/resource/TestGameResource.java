@@ -140,9 +140,7 @@ public class TestGameResource {
         System.out.println(resGet);
         MapResource resMap = resGet.readEntity(MapResource.class);
         System.out.println(resMap);
-        assertEquals(map.getTabTiles(), resMap.getTabTiles());
-        assertTrue(map.getId()<1000);
-        assertTrue(map.getId()>0);
+        assertArrayEquals(map.getTabTiles(), resMap.getTabTiles());
         assertEquals(map, this.storage.getMapFromName(map.getName()));
     }
 }
