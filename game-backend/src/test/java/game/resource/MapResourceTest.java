@@ -3,10 +3,12 @@ package game.resource;
 import game.model.Grass;
 import game.model.MapResource;
 import game.model.Score;
+import game.model.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -69,5 +71,8 @@ class MapResourceTest {
     @Test
     void generateRandomMap() {
         map_test.generateRandomMap();
+        Arrays.stream(map_test.getTabTiles()).forEach(object ->
+            assertTrue(object != null)
+        );
     }
 }
