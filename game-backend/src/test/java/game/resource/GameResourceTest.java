@@ -7,11 +7,11 @@ import com.github.hanleyt.JerseyExtension;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -27,6 +27,7 @@ import game.model.Storage;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -129,6 +130,18 @@ public class GameResourceTest {
                 .get();
         MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(maptest, resMap);
+    }
+    @Test
+    void getMapFromNameException(final Client client, final URI baseUri) {
+        MapResource maptest = mf.newRandomMap();
+        Assertions.assertThrows(StreamCorruptedException.class, () -> {
+         final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/maps/" + maptest.getName())
+                .request()
+                .get();
+        });
+
     }
 
     //Test get Random Map
