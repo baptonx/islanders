@@ -1,8 +1,12 @@
 
 package game.resource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.hanleyt.JerseyExtension;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +35,9 @@ import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
 public class GameResourceTest {
-    Storage storage;
+    GameResource g;
     MapFactory mf;
-    MapResource map;
+    MapResource mapRandom;
 
     static {
         System.setProperty("jersey.config.test.container.port", "0");
@@ -46,7 +50,17 @@ public class GameResourceTest {
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
 
     Application configureJersey() {
-        storage = new Storage("src/main/java/game/data/storageTest.txt");
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            File f = new File("src/main/java/game/data/storageTest.txt");
+            mapper.writeValue(f, new int[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Storage storage = new Storage("src/main/java/game/data/storageTest.txt");
+        g = new GameResource(storage);
         // data = Mockito.mock(Storage.class);
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
@@ -70,14 +84,14 @@ public class GameResourceTest {
     @BeforeEach
     void setUp(){
         mf = new MapFactory();
-        map = mf.newMap("CarteBG");
-        this.storage.addMap(map);
+        //mapRandom = mf.newRandomMap();
+        //this.g.getStorage().addMap(mapRandom);
     }
 
+    //Test add map to back-end
     @Test
     void postMap(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
-        maptest.toString();
         final Response res = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
@@ -85,90 +99,105 @@ public class GameResourceTest {
                 .post(Entity.json(maptest));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
         MapResource mapResponse = res.readEntity(MapResource.class);
-        assertEquals(maptest.getName(), mapResponse.getName());
+        assertEquals(maptest, mapResponse);
     }
 
-    // Example of a route test. The one for getting a list of available maps
-    // To edit
+    // Getting a list of available maps
     @Test
     void getMapsNames(final Client client, final URI baseUri) {
-        // ajout d'une carte
+        MapResource maptest = mf.newRandomMap();
+        // add map
         final Response resPost = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
                 .request()
-                .post(Entity.json(map));
-        System.out.println(resPost);
-        // récupération des id des Maps
+                .post(Entity.json(maptest));
+        // get id of maps
         final Response resGet = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
                 .request()
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-        System.out.println(resGet);
-        final List<String> names = resGet.readEntity(new GenericType<>() {
-        });
-        System.out.println(names.get(0));
-        assertEquals(names.get(0), map.getName());
+        final List<String> names = resGet.readEntity(new GenericType<>() {});
+        assertEquals(maptest.getName(), names.get(0));
         // add other assertions to check 'names'
     }
 
+    //Test get map from name
     @Test
     void getMapFromName(final Client client, final URI baseUri) {
+        MapResource maptest = mf.newRandomMap();
         final Response resPost = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
                 .request()
-                .post(Entity.json(this.map));
-        System.out.println(resPost);
-        System.out.println(this.map);
-        // récupération de la carte
+                .post(Entity.json(maptest));
+        // get map
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/maps/CarteBG")
+                .path("game/api/v1/maps/"+maptest.getName())
                 .request()
                 .get();
-        System.out.println(resGet);
-        System.out.println(this.map);
         MapResource resMap = resGet.readEntity(MapResource.class);
-        assertEquals(this.map, resMap);
+        assertEquals(maptest, resMap);
     }
 
+    //Test get Random map to back-end
+    @Test
+    void postRandomMap(final Client client, final URI baseUri) {
+        MapResource maptest = mf.newRandomMap();
+        final Response res = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+        MapResource mapResponse = res.readEntity(MapResource.class);
+        assertEquals(maptest, mapResponse);
+    }
+
+    //Test get Random Map
     @Test
     void getRandomMap(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
-        this.storage.addMap(maptest);
+        final Response res = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/maps/random")
+                .path("game/api/v1/maps/"+maptest.getName())
                 .request()
                 .get();
-        //System.out.println(resGet);
         MapResource resMap = resGet.readEntity(MapResource.class);
-        System.out.println(maptest.getTile(0));
-        System.out.println(resMap.getTile(0));
+        assertEquals(maptest, resMap);
         assertArrayEquals(maptest.getTabTiles(), resMap.getTabTiles());
-        assertEquals(maptest, this.storage.getMapFromName(maptest.getName()));
     }
     @Test
     void getTopScores(final Client client, final URI baseUri){
+        //add map with a list of score
         List<Score> scores = Stream.generate(Score::new).limit(10).collect(toList());
-        this.map.setScores(scores);
+        MapResource maptest = mf.newRandomMap();
+        maptest.setScores(scores);
         final Response resPost = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
                 .request()
-                .post(Entity.json(this.map));
+                .post(Entity.json(maptest));
+        //get this map
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/topScores/CarteBG")
+                .path("game/api/v1/topScores/"+maptest.getName())
                 .request()
                 .get();
         final List<Score> resScore = resGet.readEntity(new GenericType<>() {});
-        scores.sort(new ScoreComparator());
-        List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
-        System.out.println(topScores);
-        assertEquals(resScore, topScores);
+        assertEquals(scores, resScore);
+
+        //scores.sort(new ScoreComparator());
+        //List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
+        //System.out.println(topScores);
+        //assertEquals(resScore, topScores);
     }
 }

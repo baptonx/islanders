@@ -38,6 +38,10 @@ public class GameResource {
         this.mf = new MapFactory();
     }
 
+    public Storage getStorage() {
+        return storage;
+    }
+
     // Route pour obtenir les noms (attribut primitif) des cartes disponibles
     @GET
     @Path("api/v1/maps")
