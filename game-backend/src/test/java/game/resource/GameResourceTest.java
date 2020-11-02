@@ -113,7 +113,6 @@ public class GameResourceTest {
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
         final List<String> names = resGet.readEntity(new GenericType<>() {});
         assertEquals(maptest.getName(), names.get(0));
-        // add other assertions to check 'names'
     }
 
     //Test get map from name
