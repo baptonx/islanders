@@ -40,13 +40,13 @@ class MapResourceTest {
     void constructorMapResourceWithoutParam() {
         MapResource m = new MapResource();
         assertTrue(m.getScores().isEmpty());
-        assertArrayEquals(m.getTabTiles(), new Grass[100]);
+        assertArrayEquals(m.getTabTiles(), new Tile[100]);
     }
 
     @Test
     void constructorMapResourceWithParam() {
         assertEquals("CarteBG", map_test.getName());
-        assertArrayEquals(map_test.getTabTiles(), new Grass[100]);
+        assertArrayEquals(map_test.getTabTiles(), new Tile[100]);
         assertTrue(map_test.getScores().isEmpty());
     }
 
@@ -72,7 +72,6 @@ class MapResourceTest {
     @Test
     void generateRandomMap() {
         map_test.generateRandomMap();
-        System.out.println(map_test);
         Arrays.stream(map_test.getTabTiles()).forEach(object ->
                 assertThat(object, instanceOf(Tile.class))
         );
