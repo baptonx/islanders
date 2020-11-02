@@ -82,6 +82,10 @@ public class MapResource {
         this.scores = newScore;
     }
 
+    public void addScore(Score s){
+        this.scores.add(s);
+    }
+
     public void setTabTiles(Tile[] tabTiles) {
         this.tabTiles = tabTiles;
     }

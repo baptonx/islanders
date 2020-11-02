@@ -1,4 +1,4 @@
-package game.resource;
+package game.model;
 
 import game.model.MapResource;
 import game.model.Score;
@@ -53,6 +53,11 @@ class MapResourceTest {
     void setScoreMapResource() {
         map_test.setScores(scores);
         assertEquals(scores, map_test.getScores());
+    }
+    @Test
+    void addScoreMapResource() {
+        map_test.addScore(scores.get(1));
+        assertTrue(map_test.getScores().contains(scores.get(1)));
     }
 
     @Test

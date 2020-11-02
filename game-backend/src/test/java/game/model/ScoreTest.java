@@ -1,4 +1,4 @@
-package game.resource;
+package game.model;
 
 import game.model.Score;
 import org.junit.jupiter.api.BeforeEach;
