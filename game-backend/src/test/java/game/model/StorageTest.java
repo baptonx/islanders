@@ -20,7 +20,7 @@ class StorageTest {
 
     @BeforeEach
     void setUp(){
-        storage = new Storage("test");
+        storage = new Storage("src/main/java/game/data/storageTest.txt");
         file = new File("src/main/java/game/data/storageTest.txt");
     }
 

@@ -17,20 +17,9 @@ public class Storage {
     private ObjectMapper mapper = new ObjectMapper();
     private File file;
 
-    public Storage() {
+    public Storage(String path) {
         super();
-        ObjectMapper mapper = new ObjectMapper();
-        file = new File("src/main/java/game/data/storage.txt");
-        try {
-            this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Storage(String test) {
-        super();
-        file = new File("src/main/java/game/data/storageTest.txt");
+        file = new File(path);
         try {
             this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
         } catch (IOException e) {

@@ -46,7 +46,7 @@ public class GameResourceTest {
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
 
     Application configureJersey() {
-        storage = new Storage();
+        storage = new Storage("test");
         // data = Mockito.mock(Storage.class);
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
