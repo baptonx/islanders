@@ -2,6 +2,8 @@ package game.model;
 
 import java.util.Random;
 
+import static javassist.util.proxy.ProxyFactory.nameGenerator;
+
 public class NameGenerator {
 
     static Random rnd = new Random();// random is used for randomly select consonance and vowels from given list
@@ -21,12 +23,12 @@ public class NameGenerator {
         System.out.println(sb);
         return sb.toString();
     }
-    /*
+
     public static void main(String args[])// mains function
     {
-        nameGenerator name = new nameGenerator();// create an object of above class
-        System.out.println("name with length 4: " + name.generateName(4));
-        System.out.println("name with length 6: " + name.generateName(6));
+        NameGenerator namegen = new NameGenerator();// create an object of above class
+        System.out.println("name with length 4: " + namegen.generateName(4));
+        System.out.println("name with length 6: " + namegen.generateName(6));
     }
-     */
+
 }

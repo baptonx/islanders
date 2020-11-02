@@ -3,7 +3,6 @@ package game.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +19,6 @@ public class MapResource {
     private Tile[] tabTiles;
 
     public MapResource() {
-        //tabTiles = generateRandomMap();
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
     }
@@ -28,7 +26,7 @@ public class MapResource {
     public MapResource(String name, int id) {
         this.name = name;
         this.id = id;
-        this.scores = new ArrayList<Score>();
+        this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
     }
 
