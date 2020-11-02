@@ -6,13 +6,13 @@ public class MapFactory {
         return new MapResource();
     }
 
-    public MapResource newMap(String name, int id){
-        return new MapResource(name, id);
+    public MapResource newMap(String name){
+        return new MapResource(name);
     }
 
     public MapResource newRandomMap(){
         NameGenerator name = new NameGenerator();
-        MapResource m = new MapResource(name.generateName(6), (int) (Math.random() * 1000));
+        MapResource m = new MapResource(name.generateName(6));
         m.generateRandomMap();
         return m;
     }

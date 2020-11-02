@@ -20,7 +20,7 @@ class MapResourceTest {
 
     @BeforeEach
     void setUp() {
-        map_test = new MapResource("CarteBG", 1);
+        map_test = new MapResource("CarteBG");
         scores = new ArrayList<>();
         Score scoreB = new Score("bapt", 10000);
         Score scoreP = new Score("paul", 5000);
