@@ -167,6 +167,8 @@ public class GameResourceTest {
         assertEquals(maptest, resMap);
         assertArrayEquals(maptest.getTabTiles(), resMap.getTabTiles());
     }
+
+    //Test get Top scores of a map. Warning just the 5 best scores are returned !!!
     @Test
     void getTopScores(final Client client, final URI baseUri){
         //add map with a list of score
@@ -185,11 +187,11 @@ public class GameResourceTest {
                 .request()
                 .get();
         final List<Score> resScore = resGet.readEntity(new GenericType<>() {});
-        assertEquals(scores, resScore);
 
-        //scores.sort(new ScoreComparator());
-        //List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
-        //System.out.println(topScores);
-        //assertEquals(resScore, topScores);
+        //Get just the 5 best scores
+        scores.sort(new ScoreComparator());
+        List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
+
+        assertEquals(topScores, resScore);
     }
 }

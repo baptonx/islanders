@@ -83,10 +83,10 @@ public class GameResource {
     @GET
     @Path("api/v1/topScores/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Score> getTopScores(@PathParam("name") final String name) throws StreamCorruptedException {
+    public List<Score> getTopScores(@PathParam("map_name") final String map_name) throws StreamCorruptedException {
         Optional<MapResource> map = storage.getListMap()
                 .stream()
-                .filter(mapResource -> mapResource.getName() == name)
+                .filter(mapResource -> mapResource.getName().equals(map_name))
                 .findFirst();
         if (map.isEmpty()) {
             throw new StreamCorruptedException("There ain't no map with this name");
