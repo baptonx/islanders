@@ -61,10 +61,31 @@ class MapResourceTest {
     }
 
     @Test
+    void getTile(){
+        MapFactory mf = new MapFactory();
+        Tile t = mf.newRandomMap().getTile(12);
+        assertThat(t, instanceOf(Tile.class));
+    }
+
+    @Test
+    void toStringTest(){
+        map_test.toString();
+        assertEquals(map_test.toString(), "MapResource{name='CarteBG', scores=[], tabTiles=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]}");
+    }
+    @Test
+    void hashCodeTest(){
+        System.out.println(map_test.hashCode());
+        assertEquals(map_test.hashCode(), -580015703);
+    }
+
+    @Test
     void getTileException() throws Exception {
         int position1 = 150;
+        int position2 = -12;
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> map_test.getTile(position1));
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> map_test.getTile(position2));
     }
+
 
     @Test
     void setName() {
@@ -94,4 +115,5 @@ class MapResourceTest {
         scores.remove(0);
         assertEquals(map_test.getTopScores(), scores);
     }
+
 }

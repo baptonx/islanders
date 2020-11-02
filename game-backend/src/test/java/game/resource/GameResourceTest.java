@@ -4,9 +4,7 @@ package game.resource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.hanleyt.JerseyExtension;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.io.StreamCorruptedException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -34,6 +32,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GameResourceTest {
     GameResource g;
@@ -65,7 +64,7 @@ public class GameResourceTest {
                 });
     }
 
-//	<T> T LogJSONAndUnmarshallValue(final Response res, final Class<T> classToRead) {
+    //	<T> T LogJSONAndUnmarshallValue(final Response res, final Class<T> classToRead) {
 //		res.bufferEntity();
 //		final String json = res.readEntity(String.class);
 //		log.log(Level.INFO, "JSON received: " + json);
@@ -74,7 +73,7 @@ public class GameResourceTest {
 //		return obj;
 //	}
     @BeforeEach
-    void setUp(){
+    void setUp() {
         mf = new MapFactory();
     }
 
@@ -109,7 +108,8 @@ public class GameResourceTest {
                 .request()
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-        final List<String> names = resGet.readEntity(new GenericType<>() {});
+        final List<String> names = resGet.readEntity(new GenericType<>() {
+        });
         assertEquals(maptest.getName(), names.get(0));
     }
 
@@ -125,24 +125,24 @@ public class GameResourceTest {
         // get map
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/maps/"+maptest.getName())
+                .path("game/api/v1/maps/" + maptest.getName())
                 .request()
                 .get();
         MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(maptest, resMap);
     }
-    @Test
+
+   /* @Test
     void getMapFromNameException(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
-        Assertions.assertThrows(StreamCorruptedException.class, () -> {
-         final Response resGet = client
-                .target(baseUri)
-                .path("game/api/v1/maps/" + maptest.getName())
-                .request()
-                .get();
+        assertThrows(StreamCorruptedException.class, () -> {
+            client.target(baseUri)
+                    .path("game/api/v1/maps/" + maptest.getName())
+                    .request()
+                    .get();
         });
 
-    }
+    }*/
 
     //Test get Random Map
     @Test
@@ -155,7 +155,7 @@ public class GameResourceTest {
                 .post(Entity.json(maptest));
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/maps/"+maptest.getName())
+                .path("game/api/v1/maps/" + maptest.getName())
                 .request()
                 .get();
         MapResource resMap = resGet.readEntity(MapResource.class);
@@ -165,7 +165,7 @@ public class GameResourceTest {
 
     //Test get Top scores of a map. Warning just the 5 best scores are returned !!!
     @Test
-    void getTopScores(final Client client, final URI baseUri){
+    void getTopScores(final Client client, final URI baseUri) {
         //add map with a list of score
         List<Score> scores = Stream.generate(Score::new).limit(10).collect(toList());
         MapResource maptest = mf.newRandomMap();
@@ -178,10 +178,11 @@ public class GameResourceTest {
         //get the score of the mapTest
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/topScores/"+maptest.getName())
+                .path("game/api/v1/topScores/" + maptest.getName())
                 .request()
                 .get();
-        final List<Score> resScore = resGet.readEntity(new GenericType<>() {});
+        final List<Score> resScore = resGet.readEntity(new GenericType<>() {
+        });
 
         //Get just the 5 best scores
         scores.sort(new ScoreComparator());
