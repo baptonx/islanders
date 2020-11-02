@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -32,6 +33,18 @@ public class MapResource {
     }
 
     public void generateRandomMap() {
+        int[] indexArray = new Random().ints(100, 0, 3).toArray();
+        IntStream.range(0,indexArray.length).forEach(i -> {
+            if (indexArray[i] == 0) {
+                tabTiles[i] = new Grass();
+            } else if (indexArray[i] == 1) {
+                tabTiles[i] = new Tree();
+            } else if (indexArray[i] == 2) {
+                tabTiles[i] = new Water();
+            }
+        });
+
+        /*
         List<Tile> tileArray = new ArrayList<>(100);
         int[] indexArray = new Random().ints(100, 0, 3).toArray();
         Arrays.stream(indexArray).forEach(index -> {
@@ -46,6 +59,7 @@ public class MapResource {
         });
 
         this.tabTiles = tileArray.toArray(new Tile[100]);
+        */
     }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {

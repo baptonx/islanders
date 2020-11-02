@@ -74,6 +74,7 @@ class MapResourceTest {
         Arrays.stream(map_test.getTabTiles()).forEach(object ->
                 assertThat(object, instanceOf(Tile.class))
         );
+        assertEquals(100,map_test.getTabTiles().length);
     }
     @Test
     void getTopScores() {

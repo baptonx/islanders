@@ -31,6 +31,7 @@ public class Storage {
         return this.listMap;
     }
 
+    //Lancer une exception si pas le bon nom
     public MapResource getMapFromName(String name) {
         return this.listMap.stream().filter(map -> map.getName() == name).findFirst().get();
     }
