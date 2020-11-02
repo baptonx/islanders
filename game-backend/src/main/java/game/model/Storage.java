@@ -14,11 +14,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Storage {
 
     private List<MapResource> listMap;
+    private ObjectMapper mapper = new ObjectMapper();
+    private File file;
 
     public Storage() {
         super();
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File("src/main/java/game/data/storage.txt");
+        file = new File("src/main/java/game/data/storage.txt");
+        try {
+            this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Storage(String test) {
+        super();
+        file = new File("src/main/java/game/data/storageTest.txt");
         try {
             this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
         } catch (IOException e) {
@@ -36,6 +48,22 @@ public class Storage {
 
     public void addMap(MapResource m) {
         listMap.add(m);
+        try {
+            mapper.writeValue(file, listMap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void resetMap(){
+        listMap = new ArrayList<>();
+        try {
+            mapper.writeValue(file, listMap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
