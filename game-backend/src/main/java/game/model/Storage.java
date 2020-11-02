@@ -1,8 +1,15 @@
 package game.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class Storage {
 
@@ -10,7 +17,13 @@ public class Storage {
 
     public Storage() {
         super();
-        this.listMap = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("../data/maps.txt");
+        try {
+            this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<MapResource> getListMap() {
