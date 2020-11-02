@@ -50,16 +50,8 @@ public class GameResourceTest {
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
 
     Application configureJersey() {
-
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            File f = new File("src/main/java/game/data/storageTest.txt");
-            mapper.writeValue(f, new int[0]);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         Storage storage = new Storage("src/main/java/game/data/storageTest.txt");
+        storage.resetMap();
         g = new GameResource(storage);
         // data = Mockito.mock(Storage.class);
         return new ResourceConfig(GameResource.class)
