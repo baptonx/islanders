@@ -39,14 +39,14 @@ class MapResourceTest {
         assertNull(m.getName());
         assertEquals(0, m.getId());
         assertTrue(m.getScores().isEmpty());
-        assertEquals(m.getTabTiles(), new Grass[100]);
+        assertArrayEquals(m.getTabTiles(), new Grass[100]);
     }
 
     @Test
     void constructorMapResourceWithParam() {
         assertEquals("CarteBG", map_test.getName());
         assertEquals(1, map_test.getId());
-        assertEquals(map_test.getTabTiles(), new Grass[100]);
+        assertArrayEquals(map_test.getTabTiles(), new Grass[100]);
         assertTrue(map_test.getScores().isEmpty());
     }
 
