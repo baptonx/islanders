@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -44,7 +45,7 @@ public class MapResource {
             }
         });
 
-       this.tabTiles = tileArray.toArray(new Tile[100]);
+        this.tabTiles = tileArray.toArray(new Tile[100]);
     }
 
     public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
@@ -75,6 +76,11 @@ public class MapResource {
         return scores;
     }
 
+    public List<Score> getTopScores() {
+        this.scores.sort(new ScoreComparator());
+        return this.scores.stream().limit(5).collect(Collectors.toList());
+    }
+
     public void setScores(List<Score> newScore) {
         this.scores = newScore;
     }
@@ -92,7 +98,7 @@ public class MapResource {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MapResource that = (MapResource) o;
-        return  Objects.equals(name, that.name) &&
+        return Objects.equals(name, that.name) &&
                 Objects.equals(scores, that.scores) &&
                 Arrays.equals(tabTiles, that.tabTiles);
     }

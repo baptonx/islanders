@@ -87,8 +87,7 @@ public class GameResource {
         if (map.isEmpty()) {
             throw new StreamCorruptedException("There ain't no map with this name");
         }
-        map.get().getScores().sort(new ScoreComparator());
-        return map.get().getScores();
+        return map.get().getTopScores();
     }
 
     // Route pour ajouter le score d'un joueur sur une map

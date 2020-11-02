@@ -143,4 +143,5 @@ public class GameResourceTest {
         assertArrayEquals(map.getTabTiles(), resMap.getTabTiles());
         assertEquals(map, this.storage.getMapFromName(map.getName()));
     }
+
 }

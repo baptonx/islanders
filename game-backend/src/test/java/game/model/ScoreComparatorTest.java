@@ -13,10 +13,11 @@ class ScoreComparatorTest {
     void setUp() {
         s1 = new Score("hugz", 54);
         s2 = new Score("bapt", 69);
+        ScoreComparator sc = new ScoreComparator();
     }
 
     @Test
     void compare() {
-        assertEquals();
+
     }
 }

@@ -75,4 +75,17 @@ class MapResourceTest {
                 assertThat(object, instanceOf(Tile.class))
         );
     }
+    @Test
+    void getTopScores() {
+        List<Score> scores = new ArrayList<>();
+        scores.add(new Score("bapt", 42));
+        scores.add(new Score("bapt", 52));
+        scores.add(new Score("bapt", 62));
+        scores.add(new Score("bapt", 72));
+        scores.add(new Score("bapt", 82));
+        scores.add(new Score("bapt", 92));
+        map_test.setScores(scores);
+        scores.remove(0);
+        assertEquals(map_test.getTopScores(), scores);
+    }
 }
