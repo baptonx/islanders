@@ -72,7 +72,7 @@ class MapResourceTest {
     void generateRandomMap() {
         map_test.generateRandomMap();
         Arrays.stream(map_test.getTabTiles()).forEach(object ->
-            assertTrue(object != null)
+            assertNotNull(object)
         );
     }
 }
