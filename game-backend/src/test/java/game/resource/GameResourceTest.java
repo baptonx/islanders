@@ -131,20 +131,6 @@ public class GameResourceTest {
         assertEquals(maptest, resMap);
     }
 
-    //Test get Random map to back-end
-    @Test
-    void postRandomMap(final Client client, final URI baseUri) {
-        MapResource maptest = mf.newRandomMap();
-        final Response res = client
-                .target(baseUri)
-                .path("game/api/v1/maps")
-                .request()
-                .post(Entity.json(maptest));
-        assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-        MapResource mapResponse = res.readEntity(MapResource.class);
-        assertEquals(maptest, mapResponse);
-    }
-
     //Test get Random Map
     @Test
     void getRandomMap(final Client client, final URI baseUri) {
