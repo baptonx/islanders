@@ -96,13 +96,29 @@ public class GameResource {
 
     // Route pour ajouter le score d'un joueur sur une map
     // POST api/v1/maps/{map_id}/{player_name}/{score} => 200 OK
-   /* @POST
+    @POST
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void postScore() {
-
+    public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final String score) throws StreamCorruptedException {
+        Score s = new Score(player_name, Integer.parseInt(score));
+        Optional<MapResource> map = storage.getListMap()
+                .stream()
+                .filter(mapResource -> mapResource.getName().equals(map_name))
+                .findFirst();
+        if (map.isEmpty()) {
+            throw new StreamCorruptedException("There ain't no map with this name");
+        }
+        List<Score> scores = map.get().getTopScores();
+        Optional<Score> scorePlayer = scores.stream()
+                .filter(sc -> sc.getPlayer().equals(player_name))
+                .findFirst();
+        //Si le joueur n'a aucun score dans la map
+        if (scorePlayer.isEmpty()) {
+            scores.add(s);
+        }
+        //Si le joueur a deja un score dans la map
+        scorePlayer.get().setScore(Integer.parseInt(score));
     }
-*/
+
     // Route pour obtenir une map générée aléatoirement par le back-end
     // GET api/v1/maps/random => {"map": {"id" : 45123, "name":"random", "scores" : [5,4,3,3,3,.....], "tabTiles":[...]}}
     @GET
