@@ -31,7 +31,6 @@ class StorageTest {
 
     @Test
     void getListMap() {
-        System.out.println(storage.getListMap());
     }
 
     @Test
@@ -42,9 +41,17 @@ class StorageTest {
     @Test
     void addMap() {
         MapResource m = new MapFactory().newRandomMap();
+        int lastStorageLen = -2;
+        try {
+            lastStorageLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         storage.addMap(m);
         try {
-            assertEquals(mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName() == m.getName()).findFirst().get(), m);
+            List<MapResource> newStorage = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
+            assertEquals(newStorage.stream().filter(map -> map.getName().equals(m.getName())).findFirst().get().getName(), m.getName());
+            assertEquals(lastStorageLen+1, newStorage.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
