@@ -37,7 +37,6 @@ import static org.junit.Assert.*;
 public class GameResourceTest {
     GameResource g;
     MapFactory mf;
-    MapResource mapRandom;
 
     static {
         System.setProperty("jersey.config.test.container.port", "0");
@@ -76,8 +75,6 @@ public class GameResourceTest {
     @BeforeEach
     void setUp(){
         mf = new MapFactory();
-        //mapRandom = mf.newRandomMap();
-        //this.g.getStorage().addMap(mapRandom);
     }
 
     //Test add map to back-end
