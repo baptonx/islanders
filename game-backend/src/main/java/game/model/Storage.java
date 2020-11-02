@@ -18,7 +18,7 @@ public class Storage {
     public Storage() {
         super();
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File("../data/maps.txt");
+        File file = new File("../data/storage.txt");
         try {
             this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
         } catch (IOException e) {
