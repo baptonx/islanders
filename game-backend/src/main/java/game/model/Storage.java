@@ -49,7 +49,6 @@ public class Storage {
         else{
             throw new Error("Map avec un même nom déjà existant");
         }
-
     }
 
     public void addScore(String mapName, Score s){
