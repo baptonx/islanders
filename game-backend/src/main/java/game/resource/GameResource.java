@@ -44,9 +44,7 @@ public class GameResource {
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
     public List<String> getMapsNames() {
-        return this.storage.getMaps()
-                .stream().map(m -> m.getName())
-                .collect(Collectors.toList());
+        return this.storage.getMapsName();
     }
 
     // Route pour obtenir une map depuis le nom
