@@ -1,6 +1,6 @@
 package game.model;
 
-public class MoveCityBlock {
+public class MoveCityBlock implements Command {
     private int posBefore;
     private int posAfter;
 
