@@ -1,6 +1,6 @@
 package game.model;
 
-public class PutCityBlock {
+public class PutCityBlock implements Command {
     private int position;
     private int typeCityBlock;
 

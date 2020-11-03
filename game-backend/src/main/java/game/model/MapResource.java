@@ -5,7 +5,6 @@ import com.github.javafaker.Faker;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.OptionalDataException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,19 +22,21 @@ public class MapResource {
     private String name;
     private List<Score> scores;
     private Tile[] tabTiles;
-    private List<CommandCollector> commandCollector;
+    private List<CommandCollector> commands;
 
     public MapResource() {
         final Faker faker = new Faker();
         this.name = faker.dragonBall().character();
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
+        this.commands = new ArrayList<>();
     }
 
     public MapResource(final String name) {
         this.name = name;
         this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
+        this.commands = new ArrayList<>();
     }
 
     public void generateRandomMap() {
@@ -90,47 +91,49 @@ public class MapResource {
     }
 
     public void addScore(final Score s) {
-        ScoreComparator comp = new ScoreComparator();
-            //Si le joueur n'a aucun score dans la map
-            if (scores.stream()
-                    .noneMatch(sc -> sc.getPlayer().equals(s.getPlayer()))) {
-                scores.add(s);
-            } else {
-                Score existingscore = scores.stream()
-                        .filter(sc -> sc.getPlayer().equals(s.getPlayer()))
-                        .findFirst().get();
-                if(comp.compare(existingscore, s)<0){
-                    scores.
-                }
-            }
-        }
-
-        public void setTabTiles ( final Tile[] tabTiles){
-            this.tabTiles = tabTiles.clone();
-        }
-
-        public Tile[] getTabTiles () {
-            return tabTiles.clone();
-        }
-
-        @Override
-        public boolean equals ( final Object o){
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            final MapResource that = (MapResource) o;
-            return Objects.equals(name, that.name) &&
-                    Objects.equals(scores, that.scores) &&
-                    Arrays.equals(tabTiles, that.tabTiles);
-        }
-
-        @Override
-        public int hashCode () {
-            int result = Objects.hash(name, scores);
-            result = 31 * result + Arrays.hashCode(tabTiles);
-            return result;
+        this.scores.add(s);
+        final Optional<Score> existingScore = scores.stream()
+                .filter(sc -> sc.getPlayer().equals(s.getPlayer()))
+                .findFirst();
+        //Si le joueur n'a aucun score dans la map
+        if (existingScore.isEmpty()) {
+            scores.add(s);
+        } else {
+            existingScore.get().setScore(s.getScore());
         }
     }
+
+    public void setTabTiles(final Tile[] tabTiles) {
+        this.tabTiles = tabTiles.clone();
+    }
+
+    public Tile[] getTabTiles() {
+        return tabTiles.clone();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final MapResource that = (MapResource) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(scores, that.scores) &&
+                Arrays.equals(tabTiles, that.tabTiles);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, scores);
+        result = 31 * result + Arrays.hashCode(tabTiles);
+        return result;
+    }
+
+    public void addCommand(CommandCollector c) {
+        //Checker si deja commandCollector d'un joueur
+        commands.add(c);
+    }
+}
