@@ -2,6 +2,7 @@ package game.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import game.exception.StorageException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +37,7 @@ class StorageTest {
     }
 
     @Test
-    void addScore(){
+    void addScore() throws StorageException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         int lastMapsFileLen = -2;
@@ -51,7 +52,7 @@ class StorageTest {
             assertEquals(lastMapsFileLen, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
             assertEquals(lastMapsFileLen,storage.listMapSize());
             assertEquals(m,mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
-            assertEquals(m,storage.getMapFromName(m.getName()));
+            assertEquals(m,storage.getMap(m.getName()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,10 +60,10 @@ class StorageTest {
     }
 
     @Test
-    void getMapFromName() {
+    void getMapFromName() throws StorageException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
-        MapResource mm = storage.getMapFromName(m.getName());
+        MapResource mm = storage.getMap(m.getName());
         assertEquals(m,mm);
         try {
             assertEquals(mm,mapper.readValue(file, new TypeReference<List<MapResource>>(){}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
@@ -72,7 +73,7 @@ class StorageTest {
     }
 
     @Test
-    void addMap() {
+    void addMap() throws StorageException {
         MapResource m = new MapFactory().newRandomMap();
         int lastMapsFileLen = -2;
         try {
@@ -90,9 +91,17 @@ class StorageTest {
     }
 
     @Test
+    void addMapAlreadyNamed() throws StorageException {
+        MapResource m = new MapFactory().newRandomMap();
+        storage.addMap(m);
+        assertThrows(StorageException.class,() -> storage.addMap(m));
+    }
+
+    @Test
     void resetMap(){
         storage.resetMap();
         try {
+            assertTrue(storage.getListMap().isEmpty());
             assertTrue(mapper.readValue(file, new TypeReference<List<MapResource>>() {}).isEmpty());
         } catch (IOException e) {
             e.printStackTrace();

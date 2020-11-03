@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import game.exception.StorageException;
 
 
 public class Storage {
@@ -37,21 +38,21 @@ public class Storage {
     }
 
     //Lancer une exception si pas le bon nom
-    public MapResource getMapFromName(String name) {
+    public MapResource getMap(String name) {
         return listMap.stream().filter(map -> map.getName().equals(name)).findFirst().get();
     }
 
-    public void addMap(MapResource m) {
+    public void addMap(MapResource m) throws StorageException {
         if(listMap.stream().noneMatch(maps -> maps.getName().equals(m.getName()))){
             listMap.add(m);
             this.refreshMap();
         }
         else{
-            throw new Error("Map avec un même nom déjà existant");
+            throw new StorageException("Map avec nom similaire déjà existant");
         }
     }
 
-    public void addScore(String mapName, Score s){
+    public void addScore(String mapName, Score s) throws StorageException {
         MapResource m = listMap.stream().filter(map -> map.getName().equals(mapName)).findFirst().get();
         listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
         m.addScore(s);

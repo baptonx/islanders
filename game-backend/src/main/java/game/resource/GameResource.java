@@ -9,6 +9,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
+
+import game.exception.StorageException;
 import game.model.Command;
 import game.model.MapFactory;
 import game.model.MapResource;
@@ -72,7 +74,7 @@ public class GameResource {
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response postMap(final MapResource m) {
+    public Response postMap(final MapResource m) throws StorageException {
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).entity(map).build();
@@ -124,7 +126,7 @@ public class GameResource {
     @GET
     @Path("api/v1/maps/random")
     @Produces(MediaType.APPLICATION_JSON)
-    public MapResource getRandomMap() {
+    public MapResource getRandomMap() throws StorageException {
         MapResource m = mf.newRandomMap();
         this.storage.addMap(m);
         return m;
