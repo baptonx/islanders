@@ -91,15 +91,13 @@ public class MapResource {
     }
 
     public void addScore(final Score s) {
-        this.scores.add(s);
-        final Optional<Score> existingScore = scores.stream()
-                .filter(sc -> sc.getPlayer().equals(s.getPlayer()))
-                .findFirst();
         //Si le joueur n'a aucun score dans la map
-        if (existingScore.isEmpty()) {
+        if (scores.stream().noneMatch(sc -> sc.getPlayer().equals(s.getPlayer()))) {
             scores.add(s);
         } else {
-            existingScore.get().setScore(s.getScore());
+            scores.stream()
+                    .filter(sc -> sc.getPlayer().equals(s.getPlayer()))
+                    .findFirst().get().setScore(s.getScore());
         }
     }
 
