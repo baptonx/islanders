@@ -8,4 +8,12 @@ public class PutCityBlock {
         this.position = position;
         this.typeCityBlock = typeCityBlock;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public int getTypeCityBlock() {
+        return typeCityBlock;
+    }
 }
