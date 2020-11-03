@@ -2,7 +2,6 @@ package game.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import game.exception.StorageException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +36,7 @@ class StorageTest {
     }
 
     @Test
-    void addScore() throws StorageException {
+    void addScore(){
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         int lastMapsFileLen = -2;
@@ -60,7 +59,7 @@ class StorageTest {
     }
 
     @Test
-    void getMapFromName() throws StorageException {
+    void getMapFromName(){
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         MapResource mm = storage.getMap(m.getName());
@@ -73,7 +72,7 @@ class StorageTest {
     }
 
     @Test
-    void addMap() throws StorageException {
+    void addMap(){
         MapResource m = new MapFactory().newRandomMap();
         int lastMapsFileLen = -2;
         try {
@@ -91,7 +90,7 @@ class StorageTest {
     }
 
     @Test
-    void addRandomMap() throws StorageException{
+    void addRandomMap(){
         int lastMapsFileLen = -2;
         try {
             lastMapsFileLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
@@ -109,10 +108,10 @@ class StorageTest {
     }
 
     @Test
-    void addMapAlreadyNamed() throws StorageException {
+    void addMapAlreadyNamed(){
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
-        assertThrows(StorageException.class,() -> storage.addMap(m));
+        assertThrows(IllegalArgumentException.class,() -> storage.addMap(m));
     }
 
 
