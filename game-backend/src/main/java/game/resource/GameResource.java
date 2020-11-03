@@ -49,7 +49,7 @@ public class GameResource {
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
     public List<String> getMapsNames() {
-        return this.storage.getListMap()
+        return this.storage.getMaps()
                 .stream().map(m -> m.getName())
                 .collect(Collectors.toList());
     }
@@ -88,7 +88,7 @@ public class GameResource {
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
     public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final String score) throws StreamCorruptedException {
         final Score s = new Score(player_name, Integer.parseInt(score));
-        final Optional<MapResource> map = storage.getListMap()
+        final Optional<MapResource> map = storage.getMaps()
                 .stream()
                 .filter(mapResource -> mapResource.getName().equals(map_name))
                 .findFirst();
