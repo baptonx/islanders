@@ -38,4 +38,20 @@ class CommandCollectorTest {
     void setCommands() {
 
     }
+
+    @Test
+    void testGetPlayerName() {
+    }
+
+    @Test
+    void testSetPlayerName() {
+    }
+
+    @Test
+    void testGetCommands() {
+    }
+
+    @Test
+    void testSetCommands() {
+    }
 }
