@@ -29,7 +29,7 @@ public class Storage {
         }
     }
 
-    public List<MapResource> getListMap() {
+    public List<MapResource> getMaps() {
         return this.listMap;
     }
 
