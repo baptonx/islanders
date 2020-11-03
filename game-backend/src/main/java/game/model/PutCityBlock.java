@@ -1,5 +1,8 @@
 package game.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class PutCityBlock implements Command {
     private int position;
     private int typeCityBlock;

@@ -80,7 +80,7 @@ public class GameResource {
     @POST
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
     public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score) throws StreamCorruptedException {
-        this.storage.getMap(map_name).addScore(new Score(player_name, score));
+        this.storage.addScore(map_name, new Score(player_name,score));
     }
 
     // Route pour obtenir une map générée aléatoirement par le back-end
@@ -103,7 +103,7 @@ public class GameResource {
 
     }
 
-    // Route pour récupérer l'ensemble des id et le score des replays d'un joueur sur une map donnée par son nom
+    // Route pour récupérer l'ensemble des replays des joueurs sur une map donnée (retourne le nom des joueurs)
     @GET
     @Path("api/v1/replays/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)

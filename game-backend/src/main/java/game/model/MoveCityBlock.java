@@ -1,5 +1,8 @@
 package game.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class MoveCityBlock implements Command {
     private int posBefore;
     private int posAfter;

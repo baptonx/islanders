@@ -18,11 +18,17 @@ class StorageTest {
     Storage storage;
     private ObjectMapper mapper = new ObjectMapper();
     private File file;
+    private CommandCollector collector;
 
     @BeforeEach
     void setUp(){
         storage = new Storage("src/main/java/game/data/mapsTest.txt");
         file = new File("src/main/java/game/data/mapsTest.txt");
+        List<Command> commands = new ArrayList<>();
+        commands.add(new MoveCityBlock(0,1));
+        commands.add(new PutCityBlock(1,2));
+        commands.add(new MoveCityBlock(2,3));
+        collector = new CommandCollector("Paul", commands);
     }
     
     @Test
@@ -55,6 +61,7 @@ class StorageTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        storage.resetMap();
 
     }
 
@@ -69,6 +76,7 @@ class StorageTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        storage.resetMap();
     }
 
     @Test
@@ -87,6 +95,29 @@ class StorageTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        storage.resetMap();
+    }
+
+    @Test
+    void addCommand(){
+        MapResource m = new MapFactory().newRandomMap();
+        storage.addMap(m);
+        int lastMapsFileLen = -2;
+        try {
+            lastMapsFileLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        storage.addCommand(m.getName(),collector);
+        try {
+            assertEquals(lastMapsFileLen, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
+            assertEquals(lastMapsFileLen,storage.listMapSize());
+            assertEquals(m,mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+            assertEquals(m,storage.getMap(m.getName()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        storage.resetMap();
     }
 
     @Test
@@ -104,6 +135,7 @@ class StorageTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        storage.resetMap();
 
     }
 
@@ -112,6 +144,7 @@ class StorageTest {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         assertThrows(IllegalArgumentException.class,() -> storage.addMap(m));
+        storage.resetMap();
     }
 
 
