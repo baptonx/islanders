@@ -134,8 +134,6 @@ public class MapResource {
 
     public void addCommand(CommandCollector c) {
         //Checker si deja commandCollector d'un joueur
-
         commands.add(c);
-
     }
 }
