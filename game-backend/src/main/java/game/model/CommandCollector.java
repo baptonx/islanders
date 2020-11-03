@@ -10,7 +10,7 @@ public class CommandCollector {
     public CommandCollector(String p, List<Command> c) {
         this.playerName = p;
 
-        this.commands
+        this.commands.
 
         this.commands = new ArrayList<>(c);
     }

@@ -22,19 +22,21 @@ public class MapResource {
     private String name;
     private List<Score> scores;
     private Tile[] tabTiles;
-    private List<CommandCollector> commandCollector;
+    private List<CommandCollector> commands;
 
     public MapResource() {
         final Faker faker = new Faker();
         this.name = faker.dragonBall().character();
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
+        this.commands = new ArrayList<>();
     }
 
     public MapResource(final String name) {
         this.name = name;
         this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
+        this.commands = new ArrayList<>();
     }
 
     public void generateRandomMap() {
@@ -128,5 +130,12 @@ public class MapResource {
         int result = Objects.hash(name, scores);
         result = 31 * result + Arrays.hashCode(tabTiles);
         return result;
+    }
+
+    public void addCommand(CommandCollector c) {
+        //Checker si deja commandCollector d'un joueur
+
+        commands.add(c);
+
     }
 }
