@@ -48,10 +48,8 @@ public class GameResource {
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<String> getMapsNames() {
-        return this.storage.getMaps()
-                .stream().map(m -> m.getName())
-                .collect(Collectors.toList());
+    public List<String> getMapsName() {
+        return this.storage.getMapsName();
     }
 
     // Route pour obtenir une map depuis le nom
@@ -67,9 +65,8 @@ public class GameResource {
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postMap(final MapResource m) throws IllegalArgumentException {
-        final MapResource map = m;
-        storage.addMap(map);
-        return Response.status(Response.Status.OK).entity(map).build();
+        storage.addMap(m);
+        return Response.status(Response.Status.OK).entity(m).build();
     }
 
     // Route pour obtenir les topScores d'une map depuis l'id (il prend les cinq premiers scores de l'attribut scores)
