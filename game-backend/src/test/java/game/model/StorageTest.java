@@ -91,11 +91,30 @@ class StorageTest {
     }
 
     @Test
+    void addRandomMap() throws StorageException{
+        int lastMapsFileLen = -2;
+        try {
+            lastMapsFileLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        storage.addRandomMap();
+        try {
+            assertEquals(lastMapsFileLen+1, storage.listMapSize());
+            assertEquals(lastMapsFileLen+1, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
     void addMapAlreadyNamed() throws StorageException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         assertThrows(StorageException.class,() -> storage.addMap(m));
     }
+
 
     @Test
     void resetMap(){

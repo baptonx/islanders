@@ -52,6 +52,11 @@ public class Storage {
         }
     }
 
+    public void addRandomMap() throws StorageException {
+        MapResource m = new MapFactory().newRandomMap();
+        this.addMap(m);
+    }
+
     public void addScore(String mapName, Score s) throws StorageException {
         MapResource m = listMap.stream().filter(map -> map.getName().equals(mapName)).findFirst().get();
         listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
