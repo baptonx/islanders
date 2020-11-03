@@ -22,6 +22,7 @@ public class MapResource {
     private String name;
     private List<Score> scores;
     private Tile[] tabTiles;
+    private List<CommandCollector> commandCollector;
 
     public MapResource() {
         final Faker faker = new Faker();
