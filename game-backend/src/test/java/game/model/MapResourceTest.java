@@ -19,15 +19,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class MapResourceTest {
     private MapResource map_test;
     private List<Score> scores;
+    private CommandCollector collector;
 
     @BeforeEach
     void setUp() {
         map_test = new MapResource("CarteBG");
+
         scores = new ArrayList<>();
         Score scoreB = new Score("bapt", 10000);
         Score scoreP = new Score("paul", 5000);
         scores.add(scoreB);
         scores.add(scoreP);
+
+        List<Command> commands = new ArrayList<>();
+        commands.add(new MoveCityBlock(0,1));
+        commands.add(new PutCityBlock(1,2));
+        commands.add(new MoveCityBlock(2,3));
+        collector = new CommandCollector("Paul", commands);
     }
 
     @Test
@@ -114,6 +122,26 @@ class MapResourceTest {
         map_test.setScores(scores);
         scores.remove(0);
         assertEquals(map_test.getTopScores(), scores);
+    }
+
+    @Test
+    void addScore() {
+        Score score1 = new Score("bapt", 10000);
+        map_test.addScore(score1);
+        assertTrue(map_test.getScores().contains(score1));
+        Score score2 = new Score("hugo", 5000);
+        map_test.addScore(score2);
+        assertTrue(map_test.getScores().contains(score2));
+        Score score3 = new Score("hugo", 8000);
+        map_test.addScore(score3);
+        assertEquals(2,map_test.getScores().size());
+        assertEquals(8000,map_test.getScores().get(1).getScore());
+    }
+
+    @Test
+    void addCommand() {
+        map_test.addCommand(collector);
+        assertTrue(map_test.getCommands().contains(collector));
     }
 
 }

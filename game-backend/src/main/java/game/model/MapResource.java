@@ -22,21 +22,21 @@ public class MapResource {
     private String name;
     private List<Score> scores;
     private Tile[] tabTiles;
-    private List<CommandCollector> commands;
+    private List<CommandCollector> commandsCollector;
 
     public MapResource() {
         final Faker faker = new Faker();
         this.name = faker.dragonBall().character();
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
-        this.commands = new ArrayList<>();
+        this.commandsCollector = new ArrayList<>();
     }
 
     public MapResource(final String name) {
         this.name = name;
         this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
-        this.commands = new ArrayList<>();
+        this.commandsCollector = new ArrayList<>();
     }
 
     public void generateRandomMap() {
@@ -134,11 +134,22 @@ public class MapResource {
     }
 
     public void addCommand(CommandCollector c) {
-        //Checker si deja commandCollector d'un joueur
-        commands.add(c);
+        if (commandsCollector.stream().noneMatch(com -> com.getPlayerName().equals(c.getPlayerName()))) {
+            commandsCollector.add(c);
+        } else {
+            final Optional<CommandCollector> existingCommandCollector = commandsCollector.stream()
+                    .filter(com -> com.getPlayerName().equals(c.getPlayerName()))
+                    .findFirst();
+            existingCommandCollector.get().setPlayerName(c.getPlayerName());
+            existingCommandCollector.get().setCommands(c.getCommands());
+        }
     }
 
     public List<CommandCollector> getCommands() {
-        return commands;
+        return commandsCollector;
+    }
+
+    public void setCommandsCollector(List<CommandCollector> commandsCollector) {
+        this.commandsCollector = commandsCollector;
     }
 }
