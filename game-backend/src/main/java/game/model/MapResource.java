@@ -95,9 +95,12 @@ public class MapResource {
         if (scores.stream().noneMatch(sc -> sc.getPlayer().equals(s.getPlayer()))) {
             scores.add(s);
         } else {
-            scores.stream()
+            final Optional<Score> existingScore = scores.stream()
                     .filter(sc -> sc.getPlayer().equals(s.getPlayer()))
-                    .findFirst().get().setScore(s.getScore());
+                    .findFirst();
+            if (s.getScore()>existingScore.get().getScore()) {
+                existingScore.get().setScore(s.getScore());
+            }
         }
     }
 
