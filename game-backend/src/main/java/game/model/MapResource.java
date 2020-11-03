@@ -1,5 +1,7 @@
 package game.model;
 
+import com.github.javafaker.Faker;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -20,8 +22,8 @@ public class MapResource {
     private Tile[] tabTiles;
 
     public MapResource() {
-        final NameGenerator ng = new NameGenerator();
-        this.name = ng.generateName(6);
+        final Faker faker = new Faker();
+        this.name = faker.dragonBall().character();
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
     }

@@ -1,5 +1,7 @@
 package game.model;
 
+import com.github.javafaker.Faker;
+
 public class MapFactory {
 
     public MapResource newMap() {
@@ -11,8 +13,8 @@ public class MapFactory {
     }
 
     public MapResource newRandomMap() {
-        final NameGenerator name = new NameGenerator();
-        final MapResource m = new MapResource(name.generateName(6));
+        final Faker faker = new Faker();
+        final MapResource m = new MapResource(faker.dragonBall().character());
         m.generateRandomMap();
         return m;
     }
