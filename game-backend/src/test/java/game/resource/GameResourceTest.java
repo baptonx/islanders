@@ -183,7 +183,6 @@ public class GameResourceTest {
         //Get just the 5 best scores
         scores.sort(new ScoreComparator());
         List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
-
         assertEquals(topScores, resScore);
     }
 }

@@ -5,10 +5,12 @@ import com.github.javafaker.Faker;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -87,6 +89,15 @@ public class MapResource {
 
     public void addScore(final Score s) {
         this.scores.add(s);
+        final Optional<Score> existingScore = scores.stream()
+                .filter(sc -> sc.getPlayer().equals(s.getPlayer()))
+                .findFirst();
+        //Si le joueur n'a aucun score dans la map
+        if (existingScore.isEmpty()) {
+            scores.add(s);
+        } else {
+            existingScore.get().setScore(s.getScore());
+        }
     }
 
     public void setTabTiles(final Tile[] tabTiles) {

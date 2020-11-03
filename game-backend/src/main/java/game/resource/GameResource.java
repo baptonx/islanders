@@ -9,21 +9,16 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
-
-
 import game.model.MapFactory;
 import game.model.MapResource;
 import game.model.Score;
-
 import game.model.Storage;
 import io.swagger.annotations.Api;
-
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import java.io.StreamCorruptedException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Singleton
 @Path("game")
@@ -83,25 +78,8 @@ public class GameResource {
     // POST api/v1/maps/{map_id}/{player_name}/{score} => 200 OK
     @POST
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
-    public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final String score) throws StreamCorruptedException {
-        final Score s = new Score(player_name, Integer.parseInt(score));
-        final Optional<MapResource> map = storage.getMaps()
-                .stream()
-                .filter(mapResource -> mapResource.getName().equals(map_name))
-                .findFirst();
-        if (map.isEmpty()) {
-            throw new StreamCorruptedException("There ain't no map with this name");
-        }
-        final List<Score> scores = map.get().getTopScores();
-        final Optional<Score> scorePlayer = scores.stream()
-                .filter(sc -> sc.getPlayer().equals(player_name))
-                .findFirst();
-        //Si le joueur n'a aucun score dans la map
-        if (scorePlayer.isEmpty()) {
-            scores.add(s);
-        }
-        //Si le joueur a deja un score dans la map
-        scorePlayer.get().setScore(Integer.parseInt(score));
+    public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score) throws StreamCorruptedException {
+        this.storage.getMap(map_name).addScore(new Score(player_name, score));
     }
 
     // Route pour obtenir une map générée aléatoirement par le back-end
