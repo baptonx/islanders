@@ -90,11 +90,11 @@ public class MapResource {
     }
 
     public void setTabTiles(final Tile[] tabTiles) {
-        this.tabTiles = tabTiles;
+        this.tabTiles = tabTiles.clone();
     }
 
     public Tile[] getTabTiles() {
-        return tabTiles;
+        return tabTiles.clone();
     }
 
     @Override
