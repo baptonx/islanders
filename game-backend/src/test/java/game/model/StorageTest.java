@@ -21,15 +21,10 @@ class StorageTest {
 
     @BeforeEach
     void setUp(){
-        storage = new Storage("src/main/java/game/data/storageTest.txt");
-        file = new File("src/main/java/game/data/storageTest.txt");
+        storage = new Storage("src/main/java/game/data/mapsTest.txt");
+        file = new File("src/main/java/game/data/mapsTest.txt");
     }
-
-    @Test
-    void storageConstructor(){
-
-    }
-
+    
     @Test
     void getListMap() {
         List<MapResource> listMap = storage.getListMap();
@@ -38,6 +33,28 @@ class StorageTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    void addScore(){
+        MapResource m = new MapFactory().newRandomMap();
+        storage.addMap(m);
+        int lastMapsFileLen = -2;
+        try {
+            lastMapsFileLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Score s = new Score("Paul", 150);
+        storage.addScore(m.getName(), s);
+        try {
+            assertEquals(lastMapsFileLen, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
+            assertEquals(lastMapsFileLen,storage.listMapSize());
+            assertEquals(m,mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test

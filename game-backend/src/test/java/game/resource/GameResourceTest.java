@@ -49,7 +49,7 @@ public class GameResourceTest {
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
 
     Application configureJersey() {
-        Storage storage = new Storage("src/main/java/game/data/storageTest.txt");
+        Storage storage = new Storage("src/main/java/game/data/mapsTest.txt");
         storage.resetMap();
         g = new GameResource(storage);
         // data = Mockito.mock(Storage.class);
