@@ -27,7 +27,7 @@ class StorageTest {
     
     @Test
     void getListMap() {
-        List<MapResource> listMap = storage.getListMap();
+        List<MapResource> listMap = storage.getMaps();
         try {
             assertEquals(listMap, mapper.readValue(file, new TypeReference<List<MapResource>>() {}));
         } catch (IOException e) {
@@ -119,7 +119,7 @@ class StorageTest {
     void resetMap(){
         storage.resetMap();
         try {
-            assertTrue(storage.getListMap().isEmpty());
+            assertTrue(storage.getMaps().isEmpty());
             assertTrue(mapper.readValue(file, new TypeReference<List<MapResource>>() {}).isEmpty());
         } catch (IOException e) {
             e.printStackTrace();
