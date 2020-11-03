@@ -33,7 +33,7 @@ public class Storage {
         return this.listMap;
     }
 
-    public List<String> getMapName(){
+    public List<String> getMapName() {
         return listMap.stream().map(m -> m.getName()).collect(Collectors.toList());
     }
 
