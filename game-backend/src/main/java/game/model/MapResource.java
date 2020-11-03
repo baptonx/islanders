@@ -98,7 +98,7 @@ public class MapResource {
             final Optional<Score> existingScore = scores.stream()
                     .filter(sc -> sc.getPlayer().equals(s.getPlayer()))
                     .findFirst();
-            if (s.getScore()>=existingScore.get().getScore()) {
+            if (s.getScore() >= existingScore.get().getScore()) {
                 existingScore.get().setScore(s.getScore());
             }
         }
