@@ -84,14 +84,8 @@ public class GameResource {
     @Path("api/v1/topScores/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Score> getTopScores(@PathParam("map_name") final String map_name) throws StreamCorruptedException {
-        Optional<MapResource> map = storage.getListMap()
-                .stream()
-                .filter(mapResource -> mapResource.getName().equals(map_name))
-                .findFirst();
-        if (map.isEmpty()) {
-            throw new StreamCorruptedException("There ain't no map with this name");
-        }
-        return map.get().getTopScores();
+        MapResource map = storage.getMap(map_name);
+        return map.getTopScores();
     }
 
     // Route pour ajouter le score d'un joueur sur une map

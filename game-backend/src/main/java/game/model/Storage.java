@@ -37,7 +37,7 @@ public class Storage {
     }
 
     //Lancer une exception si pas le bon nom
-    public MapResource getMapFromName(String name) {
+    public MapResource getMap(String name) {
         return listMap.stream().filter(map -> map.getName().equals(name)).findFirst().get();
     }
 
