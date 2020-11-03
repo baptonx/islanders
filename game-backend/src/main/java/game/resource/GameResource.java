@@ -10,14 +10,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-import game.exception.StorageException;
-import game.model.Command;
+
 import game.model.MapFactory;
 import game.model.MapResource;
 import game.model.Score;
-import game.model.ScoreComparator;
+
 import game.model.Storage;
 import io.swagger.annotations.Api;
+
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import java.io.StreamCorruptedException;
@@ -58,23 +58,15 @@ public class GameResource {
     @GET
     @Path("api/v1/maps/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public MapResource getMapFromName(@PathParam("name") final String name) throws StreamCorruptedException {
-        Optional<MapResource> map = this.storage
-                .getListMap()
-                .stream()
-                .filter(m -> m.getName().equals(name))
-                .findFirst();
-        if (map.isEmpty()) {
-            throw new StreamCorruptedException("There ain't no map with this name");
-        }
-        return map.get();
+    public MapResource getMapFromName(@PathParam("name") final String name) {
+        return this.storage.getMap(name);
     }
 
     // Route pour ajouter une nouvelle map
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response postMap(final MapResource m) throws StorageException {
+    public Response postMap(final MapResource m) throws IllegalArgumentException {
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).entity(map).build();
@@ -85,8 +77,8 @@ public class GameResource {
     @GET
     @Path("api/v1/topScores/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Score> getTopScores(@PathParam("map_name") final String map_name) throws StreamCorruptedException {
-        MapResource map = storage.getMap(map_name);
+    public List<Score> getTopScores(@PathParam("map_name") final String map_name) {
+        final MapResource map = storage.getMap(map_name);
         return map.getTopScores();
     }
 
@@ -95,16 +87,16 @@ public class GameResource {
     @POST
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
     public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final String score) throws StreamCorruptedException {
-        Score s = new Score(player_name, Integer.parseInt(score));
-        Optional<MapResource> map = storage.getListMap()
+        final Score s = new Score(player_name, Integer.parseInt(score));
+        final Optional<MapResource> map = storage.getListMap()
                 .stream()
                 .filter(mapResource -> mapResource.getName().equals(map_name))
                 .findFirst();
         if (map.isEmpty()) {
             throw new StreamCorruptedException("There ain't no map with this name");
         }
-        List<Score> scores = map.get().getTopScores();
-        Optional<Score> scorePlayer = scores.stream()
+        final List<Score> scores = map.get().getTopScores();
+        final Optional<Score> scorePlayer = scores.stream()
                 .filter(sc -> sc.getPlayer().equals(player_name))
                 .findFirst();
         //Si le joueur n'a aucun score dans la map
@@ -120,8 +112,8 @@ public class GameResource {
     @GET
     @Path("api/v1/maps/random")
     @Produces(MediaType.APPLICATION_JSON)
-    public MapResource getRandomMap() throws StorageException {
-        MapResource m = mf.newRandomMap();
+    public MapResource getRandomMap() throws IllegalArgumentException {
+        final MapResource m = mf.newRandomMap();
         this.storage.addMap(m);
         return m;
     }

@@ -1,7 +1,5 @@
 package game.model;
 
-import game.model.Tile;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -16,7 +14,7 @@ public class Water extends Tile {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         return o instanceof Water;
     }
 

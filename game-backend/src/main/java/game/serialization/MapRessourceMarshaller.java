@@ -20,27 +20,27 @@ import java.lang.reflect.Type;
 @Produces(MediaType.APPLICATION_JSON)
 public class MapRessourceMarshaller implements MessageBodyWriter<MapResource> {
 
-        @Override
-        public long getSize(MapResource map, Class<?> clazz, Type type, Annotation[] annotations, MediaType mediaType) {
-            return -1;
-        }
-
-        @Override
-        public boolean isWriteable(Class<?> clazz, Type type, Annotation[] annotations, MediaType mediaType) {
-            return clazz == MapResource.class;
-        }
-
-        @Override
-        public void writeTo(MapResource map, Class<?> clazz, Type type, Annotation[] annotations, MediaType mediaType,
-                            MultivaluedMap<String, Object> valueMap, OutputStream stream) throws IOException, WebApplicationException {
-
-            JsonObject jsonObject = Json.createObjectBuilder()
-                    .add("title", map.getName()).build();
-                    //.add("scores", map.getScores()
-                    //.add("tiles", map.getTabTiles())).build();
-
-            DataOutputStream outputStream = new DataOutputStream(stream);
-            outputStream.writeBytes(jsonObject.toString());
-        }
+    @Override
+    public long getSize(final MapResource map, final Class<?> clazz, final Type type, final Annotation[] annotations, final MediaType mediaType) {
+        return -1;
     }
+
+    @Override
+    public boolean isWriteable(final Class<?> clazz, final Type type, final Annotation[] annotations, final MediaType mediaType) {
+        return clazz == MapResource.class;
+    }
+
+    @Override
+    public void writeTo(final MapResource map, final Class<?> clazz, final Type type, final Annotation[] annotations, final MediaType mediaType,
+                        final MultivaluedMap<String, Object> valueMap, final OutputStream stream) throws IOException, WebApplicationException {
+
+        final JsonObject jsonObject = Json.createObjectBuilder()
+                .add("title", map.getName()).build();
+        //.add("scores", map.getScores()
+        //.add("tiles", map.getTabTiles())).build();
+
+        final DataOutputStream outputStream = new DataOutputStream(stream);
+        outputStream.writeBytes(jsonObject.toString());
+    }
+}
 

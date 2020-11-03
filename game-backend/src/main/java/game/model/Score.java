@@ -12,16 +12,20 @@ public class Score {
         score = 0;
     }
 
-    public Score(String player, int score) {
+    public Score(final String player, final int score) {
         this.player = player;
         this.score = score;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Score score1 = (Score) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Score score1 = (Score) o;
         return score == score1.score &&
                 Objects.equals(player, score1.player);
     }
@@ -36,7 +40,7 @@ public class Score {
         return player;
     }
 
-    public void setPlayer(String player) {
+    public void setPlayer(final String player) {
         this.player = player;
     }
 
@@ -44,7 +48,7 @@ public class Score {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(final int score) {
         this.score = score;
     }
 }
