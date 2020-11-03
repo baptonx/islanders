@@ -51,6 +51,7 @@ class StorageTest {
             assertEquals(lastMapsFileLen, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
             assertEquals(lastMapsFileLen,storage.listMapSize());
             assertEquals(m,mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+            assertEquals(m,storage.getMapFromName(m.getName()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,21 +64,26 @@ class StorageTest {
         storage.addMap(m);
         MapResource mm = storage.getMapFromName(m.getName());
         assertEquals(m,mm);
+        try {
+            assertEquals(mm,mapper.readValue(file, new TypeReference<List<MapResource>>(){}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void addMap() {
         MapResource m = new MapFactory().newRandomMap();
-        int lastStorageLen = -2;
+        int lastMapsFileLen = -2;
         try {
-            lastStorageLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
+            lastMapsFileLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
         } catch (IOException e) {
             e.printStackTrace();
         }
         storage.addMap(m);
         try {
-
-            assertEquals(lastStorageLen+1, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
+            assertEquals(lastMapsFileLen+1, storage.listMapSize());
+            assertEquals(lastMapsFileLen+1, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
         } catch (IOException e) {
             e.printStackTrace();
         }
