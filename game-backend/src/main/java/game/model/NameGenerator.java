@@ -22,5 +22,4 @@ public class NameGenerator {
         }
         return sb.toString();
     }
-
 }
