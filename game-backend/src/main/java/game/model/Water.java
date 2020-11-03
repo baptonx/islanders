@@ -20,5 +20,4 @@ public class Water extends Tile {
         return o instanceof Water;
     }
 
-
 }

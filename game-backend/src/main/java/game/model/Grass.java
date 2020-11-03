@@ -15,7 +15,7 @@ public class Grass extends Tile {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         return o instanceof Grass;
     }
 }

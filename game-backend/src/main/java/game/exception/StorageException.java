@@ -2,7 +2,7 @@ package game.exception;
 
 public class StorageException extends Exception {
 
-    public StorageException(String msg){
+    public StorageException(final String msg) {
         super(msg);
     }
 }

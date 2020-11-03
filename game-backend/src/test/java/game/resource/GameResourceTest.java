@@ -16,7 +16,6 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-
 import game.model.MapFactory;
 import game.model.MapResource;
 import game.model.Score;
@@ -25,14 +24,11 @@ import game.model.Storage;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GameResourceTest {
     GameResource g;

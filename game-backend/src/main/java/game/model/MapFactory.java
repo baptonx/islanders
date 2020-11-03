@@ -2,17 +2,17 @@ package game.model;
 
 public class MapFactory {
 
-    public MapResource newMap(){
+    public MapResource newMap() {
         return new MapResource();
     }
 
-    public MapResource newMap(String name){
+    public MapResource newMap(final String name) {
         return new MapResource(name);
     }
 
-    public MapResource newRandomMap(){
-        NameGenerator name = new NameGenerator();
-        MapResource m = new MapResource(name.generateName(6));
+    public MapResource newRandomMap() {
+        final NameGenerator name = new NameGenerator();
+        final MapResource m = new MapResource(name.generateName(6));
         m.generateRandomMap();
         return m;
     }

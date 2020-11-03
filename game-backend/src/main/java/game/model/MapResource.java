@@ -20,21 +20,21 @@ public class MapResource {
     private Tile[] tabTiles;
 
     public MapResource() {
-        NameGenerator ng = new NameGenerator();
+        final NameGenerator ng = new NameGenerator();
         this.name = ng.generateName(6);
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
     }
 
-    public MapResource(String name) {
+    public MapResource(final String name) {
         this.name = name;
         this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
     }
 
     public void generateRandomMap() {
-        int[] indexArray = new Random().ints(100, 0, 3).toArray();
-        IntStream.range(0,indexArray.length).forEach(i -> {
+        final int[] indexArray = new Random().ints(100, 0, 3).toArray();
+        IntStream.range(0, indexArray.length).forEach(i -> {
             if (indexArray[i] == 0) {
                 tabTiles[i] = new Grass();
             } else if (indexArray[i] == 1) {
@@ -45,11 +45,12 @@ public class MapResource {
         });
     }
 
-    public Tile getTile(int position) throws ArrayIndexOutOfBoundsException {
-        if (position < 100 && position > 0)
+    public Tile getTile(final int position) throws ArrayIndexOutOfBoundsException {
+        if (position < 100 && position > 0) {
             return tabTiles[position];
-        else
+        } else {
             throw new ArrayIndexOutOfBoundsException("Tile position must be between 0 and 100");
+        }
     }
 
     public String getName() {
@@ -65,7 +66,7 @@ public class MapResource {
                 '}';
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -78,15 +79,15 @@ public class MapResource {
         return this.scores.stream().limit(5).collect(Collectors.toList());
     }
 
-    public void setScores(List<Score> newScore) {
+    public void setScores(final List<Score> newScore) {
         this.scores = newScore;
     }
 
-    public void addScore(Score s){
+    public void addScore(final Score s) {
         this.scores.add(s);
     }
 
-    public void setTabTiles(Tile[] tabTiles) {
+    public void setTabTiles(final Tile[] tabTiles) {
         this.tabTiles = tabTiles;
     }
 
@@ -95,10 +96,14 @@ public class MapResource {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MapResource that = (MapResource) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final MapResource that = (MapResource) o;
         return Objects.equals(name, that.name) &&
                 Objects.equals(scores, that.scores) &&
                 Arrays.equals(tabTiles, that.tabTiles);

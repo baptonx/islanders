@@ -2,23 +2,23 @@ package game.model;
 
 import java.util.Random;
 
-import static javassist.util.proxy.ProxyFactory.nameGenerator;
-
 public class NameGenerator {
 
     static Random rnd = new Random();// random is used for randomly select consonance and vowels from given list
 
-    static final String CONS = "zxcvbnmlkjhgfdsqwrtyp"; //String which store the consonances
+    static final String CONS = "zxcvbnmlkjhgfdsqwrtyp";  //String which store the consonances
 
-    static final String VOWELS = "aeiou";//String which store vowels
+    static final String VOWELS = "aeiou";  //String which store vowels
 
-    public String generateName(int len) //len define length of names
+    public String generateName(final int len)  //len define length of names
     {
-        StringBuilder sb = new StringBuilder(len);
+        final StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < len; i++) {
-            if (i % 2 == 0)
+            if (i % 2 == 0) {
                 sb.append(CONS.charAt(rnd.nextInt(CONS.length())));
-            else sb.append(VOWELS.charAt(rnd.nextInt(VOWELS.length())));
+            } else {
+                sb.append(VOWELS.charAt(rnd.nextInt(VOWELS.length())));
+            }
         }
         return sb.toString();
     }
