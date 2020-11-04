@@ -30,6 +30,7 @@ public class CommandCollector {
     @Override
     public int hashCode() {
         return Objects.hash(playerName, commands);
+
     }
 
     public CommandCollector(String p, List<Command> c) {
