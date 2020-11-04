@@ -3,6 +3,7 @@ package game.model;
 import game.model.MapResource;
 import game.model.Score;
 import game.model.Tile;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MapResourceTest {
     private MapResource map_test;
+    private MapResource m1;
+    private MapResource m2;
     private List<Score> scores;
     private CommandCollector collector;
     List<Command> commands;
@@ -27,6 +30,8 @@ class MapResourceTest {
     @BeforeEach
     void setUp() {
         map_test = new MapResource("CarteBG");
+        m1 = new MapResource("map1");
+        m2 = new MapResource("map1");
 
         scores = new ArrayList<>();
         Score scoreB = new Score("bapt", 10000);
@@ -83,12 +88,6 @@ class MapResourceTest {
     void toStringTest() {
         map_test.toString();
         assertEquals(map_test.toString(), "MapResource{name='CarteBG', scores=[], tabTiles=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]}");
-    }
-
-    @Test
-    void hashCodeTest() {
-        System.out.println(map_test.hashCode());
-        assertEquals(map_test.hashCode(), -580015703);
     }
 
     @Test
@@ -155,7 +154,7 @@ class MapResourceTest {
         CommandCollector cc2 = new CommandCollector("Paul", listCommands);
         map_test.addCommand(cc2);
         assertTrue(map_test.getCommandCollectors().contains(cc2));
-        assertEquals(map_test.getCommandCollectors().stream().map(command->command.getPlayerName()=="Paul").collect(Collectors.toList()).size(), 1);
+        assertEquals(map_test.getCommandCollectors().stream().map(command -> command.getPlayerName() == "Paul").collect(Collectors.toList()).size(), 1);
     }
 
     @Test
@@ -166,5 +165,34 @@ class MapResourceTest {
         assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").findFirst().get().getScore() == 27);
     }
 
+    @Test
+    void setCommandCollectors() {
+        CommandCollector c1 = new CommandCollector();
+        CommandCollector c2 = new CommandCollector();
+        CommandCollector c3 = new CommandCollector();
+        List<CommandCollector> lcc = new ArrayList<>();
+        lcc.add(c1);
+        lcc.add(c2);
+        lcc.add(c3);
+        map_test.setCommandsCollector(lcc);
+        assertEquals(lcc, map_test.getCommandCollectors());
+
+    }
+
+    @Test
+    void testEquals() {
+        Assertions.assertEquals(m1, m2);
+        Assertions.assertTrue(m1.equals(m2) && m2.equals(m1));
+        assertFalse(m1.equals(map_test));
+        assertFalse(map_test.equals(null));
+        assertTrue(map_test.equals(map_test));
+    }
+
+    @Test
+    void testHashCode() {
+        System.out.println(m1.hashCode());
+        Assertions.assertTrue(m1.hashCode() == m2.hashCode());
+        assertFalse(m1.hashCode() == map_test.hashCode());
+    }
 
 }
