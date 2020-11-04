@@ -126,8 +126,8 @@ public class GameResource {
     @GET
     @Path("api/v1/replays/{map_name}/{player_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void getPlayerCommandsFromMap() {
-
+    public List<Command> getPlayerCommandsFromMap(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name) {
+        return storage.getCommands(map_name,player_name);
     }
 
 

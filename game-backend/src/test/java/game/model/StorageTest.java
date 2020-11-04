@@ -121,6 +121,29 @@ class StorageTest {
     }
 
     @Test
+    void addGame(){
+        MapResource m = new MapFactory().newRandomMap();
+        storage.addMap(m);
+        Score s = new Score("Hugo",5000);
+        int lastMapsFileLen = -2;
+        try {
+            lastMapsFileLen = mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        storage.addGame(m.getName(), collector, s);
+        try {
+            assertEquals(lastMapsFileLen, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
+            assertEquals(lastMapsFileLen,storage.listMapSize());
+            assertEquals(m,mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+            assertEquals(m,storage.getMap(m.getName()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        storage.resetMap();
+    }
+
+    @Test
     void addRandomMap(){
         int lastMapsFileLen = -2;
         try {
@@ -136,7 +159,6 @@ class StorageTest {
             e.printStackTrace();
         }
         storage.resetMap();
-
     }
 
     @Test
@@ -144,6 +166,22 @@ class StorageTest {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         assertThrows(IllegalArgumentException.class,() -> storage.addMap(m));
+        storage.resetMap();
+    }
+
+    @Test
+    void getCommandCollector(){
+        MapResource m = new MapFactory().newRandomMap();
+        storage.addMap(m);
+        storage.addGame(m.getName(),collector,new Score("Paul", 5000));
+        storage.addGame(m.getName(), collector, new Score("Paul", 10000));
+        List<Command> commands = new ArrayList<>();
+        commands.add(new MoveCityBlock(0,1));
+        commands.add(new PutCityBlock(1,2));
+        commands.add(new MoveCityBlock(2,3));
+        CommandCollector collector2 = new CommandCollector("Hugo", commands);
+        storage.addGame(m.getName(), collector2, new Score("Hugo", 5000));
+        assertEquals(storage.getCommandCollectorFromMap(m.getName()), m.getCommandCollectors().stream().map(command -> command.getPlayerName()));
         storage.resetMap();
     }
 

@@ -85,11 +85,11 @@ public class Storage {
     }
 
     public List<String> getCommandCollectorFromMap(final String name) {
-        return this.getMap(name).getCommands().stream().map(command -> command.getPlayerName()).collect(Collectors.toList());
+        return this.getMap(name).getCommandCollectors().stream().map(command -> command.getPlayerName()).collect(Collectors.toList());
     }
 
     public List<Command> getCommands(final String map_name, final String player_name) {
-        return this.getMap(map_name).getCommands().stream().filter(command -> command.getPlayerName().equals(player_name)).findFirst().get().getCommands();
+        return this.getMap(map_name).getCommandCollectors().stream().filter(command -> command.getPlayerName().equals(player_name)).findFirst().get().getCommands();
     }
 
     public void refreshMap() {
