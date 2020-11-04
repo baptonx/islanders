@@ -32,7 +32,6 @@ import static org.junit.Assert.*;
 public class GameResourceTest {
     GameResource g;
     MapFactory mf;
-    MapResource maptest;
 
     static {
         System.setProperty("jersey.config.test.container.port", "0");
@@ -71,13 +70,12 @@ public class GameResourceTest {
     @BeforeEach
     void setUp() {
         mf = new MapFactory();
-        MapResource maptest = mf.newRandomMap();
     }
 
     //Test add map to back-end
     @Test
     void postMap(final Client client, final URI baseUri) {
-
+        MapResource maptest = mf.newRandomMap();
         final Response res = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
@@ -89,19 +87,41 @@ public class GameResourceTest {
     // Getting a list of available maps
     @Test
     void getMapsNames(final Client client, final URI baseUri) {
+        MapResource maptest = mf.newRandomMap();
         // add map
-        g.postMap(maptest);
+        final Response resPost = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
         // get id of maps
-        final List<String> MapNamesList = g.getMapsNames();
-        assertEquals(maptest.getName(), MapNamesList.get(0));
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .get();
+        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
+        final List<String> names = resGet.readEntity(new GenericType<>() {
+        });
+        assertEquals(maptest.getName(), names.get(0));
     }
 
     //Test get map from name
     @Test
     void getMapFromName(final Client client, final URI baseUri) {
-        g.postMap(maptest);
+        MapResource maptest = mf.newRandomMap();
+        final Response resPost = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
         // get map
-        final MapResource resMap = g.getMapFromName(maptest.getName());
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/maps/" + maptest.getName())
+                .request()
+                .get();
+        MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(maptest, resMap);
     }
 
@@ -120,8 +140,18 @@ public class GameResourceTest {
     //Test get Random Map
     @Test
     void getRandomMap(final Client client, final URI baseUri) {
-        g.postMap(maptest);
-        final MapResource resMap = g.getRandomMap();
+        MapResource maptest = mf.newRandomMap();
+        final Response res = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/maps/" + maptest.getName())
+                .request()
+                .get();
+        MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(maptest, resMap);
         assertArrayEquals(maptest.getTabTiles(), resMap.getTabTiles());
     }
@@ -131,10 +161,22 @@ public class GameResourceTest {
     void getTopScores(final Client client, final URI baseUri) {
         //add map with a list of score
         List<Score> scores = Stream.generate(Score::new).limit(10).collect(toList());
+        MapResource maptest = mf.newRandomMap();
         maptest.setScores(scores);
-        g.postMap(maptest);
+        final Response resPost = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
         //get the score of the mapTest
-        final List<Score> resScore = g.getTopScores(maptest.getName());
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/topScores/" + maptest.getName())
+                .request()
+                .get();
+        final List<Score> resScore = resGet.readEntity(new GenericType<>() {
+        });
+
         //Get just the 5 best scores
         scores.sort(new ScoreComparator());
         List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
@@ -147,7 +189,13 @@ public class GameResourceTest {
 
         MapResource maptest = mf.newRandomMap();
         maptest.setName("Paul");
-        g.postMap(maptest);
+        final Response resMap = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        assertEquals(Response.Status.OK.getStatusCode(), resMap.getStatus());
+
 
         List<Command> commands = new ArrayList<>();
         commands.add(new MoveCityBlock(0,1));
