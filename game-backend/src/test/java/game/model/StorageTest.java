@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -181,7 +182,7 @@ class StorageTest {
         commands.add(new MoveCityBlock(2,3));
         CommandCollector collector2 = new CommandCollector("Hugo", commands);
         storage.addGame(m.getName(), collector2, new Score("Hugo", 5000));
-        assertEquals(storage.getCommandCollectorFromMap(m.getName()), m.getCommandCollectors().stream().map(command -> command.getPlayerName()));
+        assertEquals(storage.getCommandCollectorFromMap(m.getName()), m.getCommandCollectors().stream().map(command -> command.getPlayerName()).collect(Collectors.toList()));
         storage.resetMap();
     }
 
