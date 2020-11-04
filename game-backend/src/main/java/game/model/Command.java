@@ -8,6 +8,5 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlRootElement
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
 @XmlSeeAlso({MoveCityBlock.class, PutCityBlock.class})
-public interface Command {
-
+public abstract class Command {
 }

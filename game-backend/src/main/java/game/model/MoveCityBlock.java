@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class MoveCityBlock implements Command {
+public class MoveCityBlock extends Command {
     private int posBefore;
     private int posAfter;
 

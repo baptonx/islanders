@@ -1,7 +1,9 @@
 
 package game.resource;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.hanleyt.JerseyExtension;
 
 
@@ -16,11 +18,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-import game.model.MapFactory;
-import game.model.MapResource;
-import game.model.Score;
-import game.model.ScoreComparator;
-import game.model.Storage;
+
+import game.model.*;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -83,8 +82,6 @@ public class GameResourceTest {
                 .request()
                 .post(Entity.json(maptest));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-        MapResource mapResponse = res.readEntity(MapResource.class);
-        assertEquals(maptest, mapResponse);
     }
 
     // Getting a list of available maps
@@ -185,4 +182,88 @@ public class GameResourceTest {
         List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
         assertEquals(topScores, resScore);
     }
+
+    @Test
+    void postGame(final Client client, final URI baseUri) {
+        //ATTENTION NE DEVRAIT PAS PASSER DE POSTGAME D'UNE MAP INEXISTANTE !!!
+
+        MapResource maptest = mf.newRandomMap();
+        maptest.setName("Paul");
+        final Response resMap = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        assertEquals(Response.Status.OK.getStatusCode(), resMap.getStatus());
+
+
+        List<Command> commands = new ArrayList<>();
+        commands.add(new MoveCityBlock(0,1));
+        commands.add(new PutCityBlock(1,2));
+        commands.add(new MoveCityBlock(2,3));
+
+        // Create ObjectMapper object.
+        ObjectMapper mapper = new ObjectMapper();
+        String json="";
+        try {
+            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        final Response res = client
+                .target(baseUri)
+                .path("game/api/v1/replays/nomMap/Paul/1000")
+                .request()
+                .post(Entity.json(json));
+        assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+    }
+
+
+    @Test
+    void getPlayerCommandsFromMap(final Client client, final URI baseUri) {
+        MapResource maptest = mf.newRandomMap();
+        maptest.setName("Paul");
+        final Response resMap = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        assertEquals(Response.Status.OK.getStatusCode(), resMap.getStatus());
+
+
+        List<Command> commands = new ArrayList<>();
+        commands.add(new MoveCityBlock(0,1));
+        commands.add(new PutCityBlock(1,2));
+        commands.add(new MoveCityBlock(2,3));
+
+        // Create ObjectMapper object.
+        ObjectMapper mapper = new ObjectMapper();
+        String json="";
+        try {
+            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        final Response res = client
+                .target(baseUri)
+                .path("game/api/v1/replays/nomMap/Paul/1000")
+                .request()
+                .post(Entity.json(json));
+        assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+
+
+
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/replays/nomMap/Paul")
+                .request()
+                .get();
+        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
+
+        final List<Command> resCommand = resGet.readEntity(new GenericType<>() {});
+        assertEquals(commands, resCommand);
+    }
+
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class PutCityBlock implements Command {
+public class PutCityBlock extends Command {
     private int position;
     private int typeCityBlock;
 

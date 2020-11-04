@@ -10,6 +10,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import game.model.Command;
 import game.model.CommandCollector;
 import game.model.MapFactory;
@@ -21,6 +23,7 @@ import io.swagger.annotations.Api;
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import java.io.StreamCorruptedException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -65,7 +68,7 @@ public class GameResource {
     public Response postMap(final MapResource m) throws IllegalArgumentException {
         final MapResource map = m;
         storage.addMap(map);
-        return Response.status(Response.Status.OK).entity(map).build();
+        return Response.status(Response.Status.OK).build();
     }
 
     // Route pour obtenir les topScores d'une map depuis l'id (il prend les cinq premiers scores de l'attribut scores)
@@ -110,8 +113,16 @@ public class GameResource {
     @POST
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score, final List<Command> commands) {
-        storage.addGame(map_name, new CommandCollector(player_name, commands),new Score(player_name, score));
+    public Response postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score, final String commands) {
+        final ObjectMapper mapper = new ObjectMapper();
+        List<Command> c = new ArrayList<>();
+        try {
+            c = mapper.readValue(commands, List.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        storage.addGame(map_name, new CommandCollector(player_name, c),new Score(player_name, score));
+        return Response.status(Response.Status.OK).build();
     }
 
     // Route pour récupérer l'ensemble des replays des joueurs sur une map donnée (retourne le nom des joueurs)
