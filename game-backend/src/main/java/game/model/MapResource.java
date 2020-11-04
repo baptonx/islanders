@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
 public class MapResource {
     private String name;
@@ -153,6 +152,8 @@ public class MapResource {
     public List<CommandCollector> getCommandCollectors() {
         return commandsCollector;
     }
+
+    public CommandCollector getCommandCollector(String player){ return this.commandsCollector.stream().filter(command -> command.getPlayerName().equals(player)).findFirst().get(); }
 
     public void setCommandsCollector(List<CommandCollector> commandsCollector) {
         this.commandsCollector = commandsCollector;
