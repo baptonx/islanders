@@ -80,11 +80,11 @@ public class GameResource {
 
     // Route pour ajouter le score d'un joueur sur une map
     // POST api/v1/maps/{map_id}/{player_name}/{score} => 200 OK
-    @POST
+    /*@POST
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
     public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score) throws StreamCorruptedException {
         this.storage.addScore(map_name, new Score(player_name, score));
-    }
+    }*/
 
     // Route pour obtenir une map générée aléatoirement par le back-end
     // GET api/v1/maps/random => {"map": {"id" : 45123, "name":"random", "scores" : [5,4,3,3,3,.....], "tabTiles":[...]}}
@@ -99,13 +99,13 @@ public class GameResource {
 
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
     // Body : {"player_name" : "Paul", "map_id" : 741, "undos" : [{"putCityBlock" : { "position" : 74, "typeCityBlock" : 1}},...]}
-    @POST
+    /*@POST
     @Path("api/v1/replays/{map_name}/{player_name}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void postReplay(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, final List<Command> commands) {
         CommandCollector cc = new CommandCollector(player_name, commands);
         storage.addCommand(map_name, cc);
-    }
+    }*/
 
     @POST
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
