@@ -1,5 +1,6 @@
 package game.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -47,5 +48,14 @@ class CommandCollectorTest {
         c.add(new MoveCityBlock(2,3));
         collector.setCommands(c);
         assertEquals(c, collector.getCommands());
+    }
+
+    @Test
+    void testHashCode() {
+        CommandCollector c1 = new CommandCollector();
+        CommandCollector c2 = new CommandCollector();
+        System.out.println(c1.hashCode());
+        Assertions.assertTrue(c1.hashCode() == c2.hashCode());
+        assertFalse(c1.hashCode() == collector.hashCode());
     }
 }
