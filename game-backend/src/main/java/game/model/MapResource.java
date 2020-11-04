@@ -138,17 +138,15 @@ public class MapResource {
         return result;
     }
 
-    public void addCommand(CommandCollector c, final Score s) {
-        if(this.addScore(s)){
-            if (commandsCollector.stream().noneMatch(com -> com.getPlayerName().equals(c.getPlayerName()))) {
-                commandsCollector.add(c);
-            } else {
-                final Optional<CommandCollector> existingCommandCollector = commandsCollector.stream()
-                        .filter(com -> com.getPlayerName().equals(c.getPlayerName()))
-                        .findFirst();
-                // existingCommandCollector.get().setPlayerName(c.getPlayerName());
-                existingCommandCollector.get().setCommands(c.getCommands());
-            }
+    public void addCommand(CommandCollector c) {
+        if (commandsCollector.stream().noneMatch(com -> com.getPlayerName().equals(c.getPlayerName()))) {
+            commandsCollector.add(c);
+        } else {
+            final Optional<CommandCollector> existingCommandCollector = commandsCollector.stream()
+                    .filter(com -> com.getPlayerName().equals(c.getPlayerName()))
+                    .findFirst();
+            // existingCommandCollector.get().setPlayerName(c.getPlayerName());
+            existingCommandCollector.get().setCommands(c.getCommands());
         }
     }
 

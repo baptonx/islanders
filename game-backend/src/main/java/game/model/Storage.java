@@ -64,17 +64,22 @@ public class Storage {
     }
 
     public void addScore(final String mapName, final Score s) throws IllegalArgumentException {
-        final MapResource m = listMap.stream().filter(map -> map.getName().equals(mapName)).findFirst().get();
+        final MapResource m = this.getMap(mapName);
         listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
         m.addScore(s);
         this.addMap(m);
     }
 
-    public void addCommand(final String mapName, final CommandCollector c, final Score s) throws IllegalArgumentException {
+    public void addCommand(final String mapName, final CommandCollector c) throws IllegalArgumentException {
         final MapResource m = listMap.stream().filter(map -> map.getName().equals(mapName)).findFirst().get();
         listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
-        m.addCommand(c,s);
+        m.addCommand(c);
         this.addMap(m);
+    }
+
+    public void addGame(final String mapName, final CommandCollector c, final Score s) {
+        final MapResource m = this.getMap(mapName);
+
     }
 
     public List<String> getCommandCollectorFromMap(final String name) {
