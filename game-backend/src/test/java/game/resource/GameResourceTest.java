@@ -188,7 +188,6 @@ public class GameResourceTest {
         //ATTENTION NE DEVRAIT PAS PASSER DE POSTGAME D'UNE MAP INEXISTANTE !!!
 
         MapResource maptest = mf.newRandomMap();
-        maptest.setName("Paul");
         final Response resMap = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
@@ -223,7 +222,6 @@ public class GameResourceTest {
     @Test
     void getPlayerCommandsFromMap(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
-        maptest.setName("Paul");
         final Response resMap = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
