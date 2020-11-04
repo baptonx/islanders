@@ -108,7 +108,7 @@ public class GameResource {
     @POST
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postReplay(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, final List<Command> commands) {
+    public void postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final String score, final List<Command> commands) {
         CommandCollector cc = new CommandCollector(player_name,commands);
         storage.addCommand(map_name, cc);
     }
