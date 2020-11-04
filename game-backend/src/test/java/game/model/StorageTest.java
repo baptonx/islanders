@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ class StorageTest {
     private CommandCollector collector;
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws IOException {
         storage = new Storage("src/main/java/game/data/mapsTest.txt");
         file = new File("src/main/java/game/data/mapsTest.txt");
         List<Command> commands = new ArrayList<>();
@@ -30,6 +31,11 @@ class StorageTest {
         commands.add(new PutCityBlock(1,2));
         commands.add(new MoveCityBlock(2,3));
         collector = new CommandCollector("Paul", commands);
+    }
+
+    @Test
+    void errorConstructor(){
+        assertNull(new Storage("falsepath"));
     }
     
     @Test

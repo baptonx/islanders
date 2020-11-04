@@ -20,12 +20,11 @@ public class Storage {
     private ObjectMapper mapper = new ObjectMapper();
     private File file;
 
-    public Storage(final String path) {
+    public Storage(final String path){
         super();
         file = new File(path);
         try {
-            this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {
-            });
+            this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }
