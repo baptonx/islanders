@@ -79,7 +79,9 @@ public class Storage {
 
     public void addGame(final String mapName, final CommandCollector c, final Score s) {
         final MapResource m = this.getMap(mapName);
-
+        listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
+        m.addGame(s,c);
+        this.addMap(m);
     }
 
     public List<String> getCommandCollectorFromMap(final String name) {
