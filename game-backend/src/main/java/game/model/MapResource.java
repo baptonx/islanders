@@ -145,7 +145,7 @@ public class MapResource {
             final Optional<CommandCollector> existingCommandCollector = commandsCollector.stream()
                     .filter(com -> com.getPlayerName().equals(c.getPlayerName()))
                     .findFirst();
-            // existingCommandCollector.get().setPlayerName(c.getPlayerName());
+            //existingCommandCollector.get().setPlayerName(c.getPlayerName());
             existingCommandCollector.get().setCommands(c.getCommands());
         }
     }
@@ -156,5 +156,10 @@ public class MapResource {
 
     public void setCommandsCollector(List<CommandCollector> commandsCollector) {
         this.commandsCollector = commandsCollector;
+    }
+    public void addGame(String player, int score, CommandCollector commands){
+        if(addScore(new Score(player,score))){
+            addCommand(commands);
+        }
     }
 }
