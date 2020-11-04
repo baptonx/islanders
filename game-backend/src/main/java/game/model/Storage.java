@@ -70,10 +70,10 @@ public class Storage {
         this.addMap(m);
     }
 
-    public void addCommand(final String mapName, final CommandCollector c) throws IllegalArgumentException {
+    public void addCommand(final String mapName, final CommandCollector c, final Score s) throws IllegalArgumentException {
         final MapResource m = listMap.stream().filter(map -> map.getName().equals(mapName)).findFirst().get();
         listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
-        m.addCommand(c);
+        m.addCommand(c,s);
         this.addMap(m);
     }
 

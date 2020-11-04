@@ -101,6 +101,7 @@ class StorageTest {
     @Test
     void addCommand(){
         MapResource m = new MapFactory().newRandomMap();
+        Score s = new Score("Paul", 150);
         storage.addMap(m);
         int lastMapsFileLen = -2;
         try {
@@ -108,7 +109,7 @@ class StorageTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.addCommand(m.getName(),collector);
+        storage.addCommand(m.getName(),collector,s);
         try {
             assertEquals(lastMapsFileLen, mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
             assertEquals(lastMapsFileLen,storage.listMapSize());

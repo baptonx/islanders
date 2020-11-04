@@ -140,7 +140,8 @@ class MapResourceTest {
 
     @Test
     void addCommand() {
-        map_test.addCommand(collector);
+        Score score1 = new Score("Paul", 1000);
+        map_test.addCommand(collector, score1);
         assertTrue(map_test.getCommands().contains(collector));
     }
 
