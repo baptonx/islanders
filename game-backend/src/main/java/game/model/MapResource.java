@@ -157,8 +157,8 @@ public class MapResource {
     public void setCommandsCollector(List<CommandCollector> commandsCollector) {
         this.commandsCollector = commandsCollector;
     }
-    public void addGame(String player, int score, CommandCollector commands){
-        if(addScore(new Score(player,score))){
+    public void addGame(Score score, CommandCollector commands){
+        if(addScore(score)){
             addCommand(commands);
         }
     }
