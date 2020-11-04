@@ -89,21 +89,10 @@ public class GameResourceTest {
     void getMapsNames(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
         // add map
-        final Response resPost = client
-                .target(baseUri)
-                .path("game/api/v1/maps")
-                .request()
-                .post(Entity.json(maptest));
+        g.postMap(maptest);
         // get id of maps
-        final Response resGet = client
-                .target(baseUri)
-                .path("game/api/v1/maps")
-                .request()
-                .get();
-        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-        final List<String> names = resGet.readEntity(new GenericType<>() {
-        });
-        assertEquals(maptest.getName(), names.get(0));
+        List<String> MapNamesList = g.getMapsNames();
+        assertEquals(maptest.getName(), MapNamesList.get(0));
     }
 
     //Test get map from name
