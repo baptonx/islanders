@@ -150,7 +150,7 @@ public class MapResource {
         }
     }
 
-    public List<CommandCollector> getCommands() {
+    public List<CommandCollector> getCommandCollectors() {
         return commandsCollector;
     }
 

@@ -20,6 +20,7 @@ class MapResourceTest {
     private MapResource map_test;
     private List<Score> scores;
     private CommandCollector collector;
+    List<Command> commands;
 
     @BeforeEach
     void setUp() {
@@ -31,7 +32,7 @@ class MapResourceTest {
         scores.add(scoreB);
         scores.add(scoreP);
 
-        List<Command> commands = new ArrayList<>();
+        commands = new ArrayList<>();
         commands.add(new MoveCityBlock(0,1));
         commands.add(new PutCityBlock(1,2));
         commands.add(new MoveCityBlock(2,3));
@@ -139,9 +140,23 @@ class MapResourceTest {
     }
 
     @Test
-    void addCommand() {
+    void addCommandClassic() {
         map_test.addCommand(collector);
-        assertTrue(map_test.getCommands().contains(collector));
+        assertTrue(map_test.getCommandCollectors().contains(collector));
+        List<Command> listCommands = new ArrayList<>();
+        listCommands.add(new MoveCityBlock(1,2));
+        listCommands.add(new PutCityBlock(2,3));
+        listCommands.add(new MoveCityBlock(4,5));
+        map_test.addCommand(new CommandCollector("Paul", listCommands));
+        assertTrue(map_test.getCommandCollectors().contains(listCommands) && !map_test.getCommandCollectors().contains(commands));
     }
+
+    @Test
+    void addCommandLowerScore(){
+        map_test.addGame(new Score("hugz", 27), collector);
+        map_test.addGame(new Score("hugz", 20), collector);
+        assertTrue();
+    }
+
 
 }
