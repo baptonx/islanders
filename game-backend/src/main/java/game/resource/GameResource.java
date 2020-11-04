@@ -9,6 +9,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
+
+import game.model.Command;
+import game.model.CommandCollector;
 import game.model.MapFactory;
 import game.model.MapResource;
 import game.model.Score;
@@ -18,7 +21,6 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import java.io.StreamCorruptedException;
 import java.util.List;
-import java.util.Optional;
 
 @Singleton
 @Path("game")
@@ -96,28 +98,29 @@ public class GameResource {
 
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
     // Body : {"player_name" : "Paul", "map_id" : 741, "undos" : [{"putCityBlock" : { "position" : 74, "typeCityBlock" : 1}},...]}
-   /* @POST
-    @Path("api/v1/replays")
+    @POST
+    @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postReplay(final List<Command> commands) {
-
+    public void postReplay(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, final List<Command> commands) {
+        CommandCollector cc = new CommandCollector(player_name,commands);
+        storage.addCommand(map_name, cc);
     }
 
     // Route pour récupérer l'ensemble des replays des joueurs sur une map donnée (retourne le nom des joueurs)
     @GET
     @Path("api/v1/replays/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void getReplaysFromMap() {
-
+    public List<String> getPlayerFromMap(@PathParam("map_name") final String map_name) {
+        return storage.getCommandCollectorFromMap(map_name);
     }
 
     // Route pour récupérer l'ensemble des commandes faites par un joueur depuis l'id d'un replay
     @GET
-    @Path("api/v1/replays/{replay_id}")
+    @Path("api/v1/replays/{map_name}/{player_name}")
     @Produces(MediaType.APPLICATION_JSON)
     public void getCommandsFromReplay() {
-
+        
     }
-*/
+
 
 }
