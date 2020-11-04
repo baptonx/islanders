@@ -260,7 +260,7 @@ public class GameResourceTest {
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
 
-        final List<Command> resCommand = resGet.readEntity(new GenericType<>() {});
+        final List<Command> resCommand = resGet.readEntity(new GenericType<>() {});  // l'erreur vient de là
         assertEquals(commands, resCommand);
     }
 
