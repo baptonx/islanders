@@ -213,7 +213,7 @@ public class GameResourceTest {
 
         final Response res = client
                 .target(baseUri)
-                .path("game/api/v1/replays/nomMap/Paul/1000")
+                .path("game/api/v1/replays/"+maptest.getName()+"/Paul/1000")
                 .request()
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
@@ -248,7 +248,7 @@ public class GameResourceTest {
 
         final Response res = client
                 .target(baseUri)
-                .path("game/api/v1/replays/nomMap/Paul/1000")
+                .path("game/api/v1/replays/"+maptest.getName()+"/Paul/1000")
                 .request()
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
@@ -257,7 +257,7 @@ public class GameResourceTest {
 
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/replays/nomMap/Paul")
+                .path("game/api/v1/replays/"+maptest.getName()+"/Paul")
                 .request()
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
