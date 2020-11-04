@@ -1,6 +1,7 @@
 package game.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Objects;
 
 @XmlRootElement
 public class Water extends Tile {
@@ -10,7 +11,7 @@ public class Water extends Tile {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash("Water");
     }
 
     @Override

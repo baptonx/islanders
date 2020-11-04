@@ -251,15 +251,12 @@ public class GameResourceTest {
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 
-
-
         final Response resGet = client
                 .target(baseUri)
                 .path("game/api/v1/replays/"+maptest.getName()+"/Paul")
                 .request()
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-
         final List<Command> resCommand = resGet.readEntity(new GenericType<>() {});  // l'erreur vient de là
         assertEquals(commands, resCommand);
     }
