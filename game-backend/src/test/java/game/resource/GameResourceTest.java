@@ -147,13 +147,7 @@ public class GameResourceTest {
 
         MapResource maptest = mf.newRandomMap();
         maptest.setName("Paul");
-        final Response resMap = client
-                .target(baseUri)
-                .path("game/api/v1/maps")
-                .request()
-                .post(Entity.json(maptest));
-        assertEquals(Response.Status.OK.getStatusCode(), resMap.getStatus());
-
+        g.postMap(maptest);
 
         List<Command> commands = new ArrayList<>();
         commands.add(new MoveCityBlock(0,1));
