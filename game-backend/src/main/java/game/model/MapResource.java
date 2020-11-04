@@ -142,11 +142,11 @@ public class MapResource {
         if (commandsCollector.stream().noneMatch(com -> com.getPlayerName().equals(c.getPlayerName()))) {
             commandsCollector.add(c);
         } else {
-            final Optional<CommandCollector> existingCommandCollector = commandsCollector.stream()
+            commandsCollector.stream()
                     .filter(com -> com.getPlayerName().equals(c.getPlayerName()))
-                    .findFirst();
+                    .findFirst().get().setCommands(c.getCommands());
             //existingCommandCollector.get().setPlayerName(c.getPlayerName());
-            existingCommandCollector.get().setCommands(c.getCommands());
+
         }
     }
 

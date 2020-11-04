@@ -35,9 +35,9 @@ class MapResourceTest {
         scores.add(scoreP);
 
         commands = new ArrayList<>();
-        commands.add(new MoveCityBlock(0,1));
-        commands.add(new PutCityBlock(1,2));
-        commands.add(new MoveCityBlock(2,3));
+        commands.add(new MoveCityBlock(0, 1));
+        commands.add(new PutCityBlock(1, 2));
+        commands.add(new MoveCityBlock(2, 3));
         collector = new CommandCollector("Paul", commands);
     }
 
@@ -65,6 +65,7 @@ class MapResourceTest {
         map_test.setScores(scores);
         assertEquals(scores, map_test.getScores());
     }
+
     @Test
     void addScoreMapResource() {
         map_test.addScore(scores.get(1));
@@ -72,19 +73,20 @@ class MapResourceTest {
     }
 
     @Test
-    void getTile(){
+    void getTile() {
         MapFactory mf = new MapFactory();
         Tile t = mf.newRandomMap().getTile(12);
         assertThat(t, instanceOf(Tile.class));
     }
 
     @Test
-    void toStringTest(){
+    void toStringTest() {
         map_test.toString();
         assertEquals(map_test.toString(), "MapResource{name='CarteBG', scores=[], tabTiles=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]}");
     }
+
     @Test
-    void hashCodeTest(){
+    void hashCodeTest() {
         System.out.println(map_test.hashCode());
         assertEquals(map_test.hashCode(), -580015703);
     }
@@ -111,8 +113,9 @@ class MapResourceTest {
         Arrays.stream(map_test.getTabTiles()).forEach(object ->
                 assertThat(object, instanceOf(Tile.class))
         );
-        assertEquals(100,map_test.getTabTiles().length);
+        assertEquals(100, map_test.getTabTiles().length);
     }
+
     @Test
     void getTopScores() {
         List<Score> scores = new ArrayList<>();
@@ -137,28 +140,30 @@ class MapResourceTest {
         assertTrue(map_test.getScores().contains(score2));
         Score score3 = new Score("hugo", 8000);
         map_test.addScore(score3);
-        assertEquals(2,map_test.getScores().size());
-        assertEquals(8000,map_test.getScores().get(1).getScore());
+        assertEquals(2, map_test.getScores().size());
+        assertEquals(8000, map_test.getScores().get(1).getScore());
     }
 
     @Test
-    void addCommandClassic() {
+    void addCommand() {
         map_test.addCommand(collector);
         assertTrue(map_test.getCommandCollectors().contains(collector));
         List<Command> listCommands = new ArrayList<>();
-        listCommands.add(new MoveCityBlock(1,2));
-        listCommands.add(new PutCityBlock(2,3));
-        listCommands.add(new MoveCityBlock(4,5));
-        map_test.addCommand(new CommandCollector("Paul", listCommands));
-        assertTrue(map_test.getCommandCollectors().contains(listCommands) && !map_test.getCommandCollectors().contains(commands));
+        listCommands.add(new PutCityBlock(1, 2));
+        listCommands.add(new MoveCityBlock(2, 3));
+        listCommands.add(new PutCityBlock(4, 2));
+        CommandCollector cc2 = new CommandCollector("Paul", listCommands);
+        map_test.addCommand(cc2);
+        assertTrue(map_test.getCommandCollectors().contains(cc2));
+        assertEquals(map_test.getCommandCollectors().stream().map(command->command.getPlayerName()=="Paul").collect(Collectors.toList()).size(), 1);
     }
 
     @Test
-    void addGameLowerScore(){
+    void addGameLowerScore() {
         map_test.addGame(new Score("hugz", 27), collector);
-        map_test.addGame(new Score("hugz", 20), new CommandCollector("hugz",commands));
-        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer()=="hugz").collect(Collectors.toList()).size()==1);
-        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer()=="hugz").findFirst().get().getScore()==27);
+        map_test.addGame(new Score("hugz", 20), new CommandCollector("hugz", commands));
+        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").collect(Collectors.toList()).size() == 1);
+        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").findFirst().get().getScore() == 27);
     }
 
 
