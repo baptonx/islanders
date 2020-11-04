@@ -17,6 +17,7 @@ import game.model.MapResource;
 import game.model.Score;
 import game.model.Storage;
 import io.swagger.annotations.Api;
+
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import java.io.StreamCorruptedException;
@@ -82,7 +83,7 @@ public class GameResource {
     @POST
     @Path("api/v1/maps/{map_name}/{player_name}/{score}")
     public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score) throws StreamCorruptedException {
-        this.storage.addScore(map_name, new Score(player_name,score));
+        this.storage.addScore(map_name, new Score(player_name, score));
     }
 
     // Route pour obtenir une map générée aléatoirement par le back-end
@@ -102,15 +103,15 @@ public class GameResource {
     @Path("api/v1/replays/{map_name}/{player_name}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void postReplay(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, final List<Command> commands) {
-        CommandCollector cc = new CommandCollector(player_name,commands);
+        CommandCollector cc = new CommandCollector(player_name, commands);
         storage.addCommand(map_name, cc);
     }
+
     @POST
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final String score, final List<Command> commands) {
-        CommandCollector cc = new CommandCollector(player_name,commands);
-        storage.addCommand(map_name, cc);
+    public void postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score, final List<Command> commands) {
+        storage.addGame(map_name, new CommandCollector(player_name, commands),new Score(player_name, score));
     }
 
     // Route pour récupérer l'ensemble des replays des joueurs sur une map donnée (retourne le nom des joueurs)
@@ -126,7 +127,7 @@ public class GameResource {
     @Path("api/v1/replays/{map_name}/{player_name}")
     @Produces(MediaType.APPLICATION_JSON)
     public void getPlayerCommandsFromMap() {
-        
+
     }
 
 
