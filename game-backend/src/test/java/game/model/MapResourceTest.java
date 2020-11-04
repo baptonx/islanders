@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
@@ -152,10 +154,11 @@ class MapResourceTest {
     }
 
     @Test
-    void addCommandLowerScore(){
+    void addGameLowerScore(){
         map_test.addGame(new Score("hugz", 27), collector);
-        map_test.addGame(new Score("hugz", 20), collector);
-        assertTrue();
+        map_test.addGame(new Score("hugz", 20), new CommandCollector("hugz",commands));
+        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer()=="hugz").collect(Collectors.toList()).size()==1);
+        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer()=="hugz").findFirst().get().getScore()==27);
     }
 
 
