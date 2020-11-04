@@ -99,6 +99,13 @@ public class GameResource {
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
     // Body : {"player_name" : "Paul", "map_id" : 741, "undos" : [{"putCityBlock" : { "position" : 74, "typeCityBlock" : 1}},...]}
     @POST
+    @Path("api/v1/replays/{map_name}/{player_name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void postReplay(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, final List<Command> commands) {
+        CommandCollector cc = new CommandCollector(player_name,commands);
+        storage.addCommand(map_name, cc);
+    }
+    @POST
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void postReplay(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, final List<Command> commands) {
@@ -118,7 +125,7 @@ public class GameResource {
     @GET
     @Path("api/v1/replays/{map_name}/{player_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void getCommandsFromReplay() {
+    public void getPlayerCommandsFromMap() {
         
     }
 
