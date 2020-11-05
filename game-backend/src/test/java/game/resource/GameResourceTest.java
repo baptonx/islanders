@@ -140,20 +140,18 @@ public class GameResourceTest {
     //Test get Random Map
     @Test
     void getRandomMap(final Client client, final URI baseUri) {
-        MapResource maptest = mf.newRandomMap();
-        final Response res = client
-                .target(baseUri)
-                .path("game/api/v1/maps")
-                .request()
-                .post(Entity.json(maptest));
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/maps/" + maptest.getName())
+                .path("game/api/v1/maps/random")
                 .request()
                 .get();
+        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
+
         MapResource resMap = resGet.readEntity(MapResource.class);
-        assertEquals(maptest, resMap);
-        assertArrayEquals(maptest.getTabTiles(), resMap.getTabTiles());
+        assertEquals(MapResource.class, resMap.getClass());
+        assertTrue(resMap.getTabTiles().length>0);
+        assertTrue(resMap.getCommandsCollectors().size()==0);
+        assertTrue(resMap.getScores().size()==0);
     }
 
     //Test get Top scores of a map. Warning just the 5 best scores are returned !!!
@@ -182,6 +180,7 @@ public class GameResourceTest {
         List<Score> topScores = scores.stream().limit(5).collect(Collectors.toList());
         assertEquals(topScores, resScore);
     }
+
 
     @Test
     void postGame(final Client client, final URI baseUri) {
@@ -271,8 +270,91 @@ public class GameResourceTest {
                 .request()
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-        final List<Command> resCommand = resGet.readEntity(new GenericType<>() {});  // l'erreur vient de là
+        final List<Command> resCommand = resGet.readEntity(new GenericType<>() {});
         assertEquals(commands, resCommand);
+    }
+
+
+
+    //Test get Top scores of a map. Warning just the 5 best scores are returned !!!
+    @Test
+    void getPlayerFromMap(final Client client, final URI baseUri) {
+        MapResource maptest = mf.newRandomMap();
+        final Response resMap = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        assertEquals(Response.Status.OK.getStatusCode(), resMap.getStatus());
+
+        // PLAYER1
+        List<Command> commands = new ArrayList<>();
+        commands.add(new MoveCityBlock(0,1));
+        commands.add(new PutCityBlock(1,2));
+        commands.add(new MoveCityBlock(2,3));
+
+
+        // Create ObjectMapper object.
+        ObjectMapper mapper = new ObjectMapper();
+        String json="[";
+        try {
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
+            json+="]";
+            //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        final Response resPlayer1 = client
+                .target(baseUri)
+                .path("game/api/v1/replays/"+maptest.getName()+"/Paul/1000")
+                .request()
+                .post(Entity.json(json));
+        assertEquals(Response.Status.OK.getStatusCode(), resPlayer1.getStatus());
+
+
+        // PLAYER2
+        commands = new ArrayList<>();
+        commands.add(new PutCityBlock(0,1));
+        commands.add(new PutCityBlock(1,2));
+        commands.add(new PutCityBlock(2,3));
+
+        json="[";
+        try {
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
+            json+="]";
+            //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        final Response resPlayer2 = client
+                .target(baseUri)
+                .path("game/api/v1/replays/"+maptest.getName()+"/Baptiste/3000")
+                .request()
+                .post(Entity.json(json));
+        assertEquals(Response.Status.OK.getStatusCode(), resPlayer2.getStatus());
+
+
+        // Test getPlayerFromMap
+        final Response resGet = client
+                .target(baseUri)
+                .path("game/api/v1/replays/"+maptest.getName())
+                .request()
+                .get();
+        assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
+        final List<String> res = resGet.readEntity(new GenericType<>() {});
+        assertTrue(res.contains("Paul"));
+        assertTrue(res.contains("Baptiste"));
+        assertTrue(res.size()==2);
     }
 
 }
