@@ -58,4 +58,14 @@ class CommandCollectorTest {
         Assertions.assertTrue(c1.hashCode() == c2.hashCode());
         assertFalse(c1.hashCode() == collector.hashCode());
     }
+    @Test
+    void testEquals() {
+        CommandCollector c1 = new CommandCollector();
+        CommandCollector c2 = new CommandCollector();
+        Assertions.assertTrue(c1.equals(c2) && c2.equals(c1));
+        assertTrue(c1.equals(c2));
+        c1.setPlayerName("toto");
+        assertFalse(c1.equals(c2));
+        assertFalse(c1.equals(null));
+    }
 }
