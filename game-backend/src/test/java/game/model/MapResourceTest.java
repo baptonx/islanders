@@ -159,10 +159,11 @@ class MapResourceTest {
 
     @Test
     void addGameLowerScore() {
-        map_test.addGame(new Score("hugz", 27), collector);
+        map_test.addGame(new Score("hugz", 27), new CommandCollector("hugz", commands));
         map_test.addGame(new Score("hugz", 20), new CommandCollector("hugz", commands));
         assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").collect(Collectors.toList()).size() == 1);
         assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").findFirst().get().getScore() == 27);
+        assertThrows(IllegalArgumentException.class, ()->{map_test.addGame(new Score("hugz", 27), collector);});
     }
 
     @Test

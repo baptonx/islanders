@@ -20,11 +20,12 @@ public class Storage {
     private ObjectMapper mapper = new ObjectMapper();
     private File file;
 
-    public Storage(final String path){
+    public Storage(final String path) {
         super();
         file = new File(path);
         try {
-            this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {});
+            this.listMap = mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,10 +77,10 @@ public class Storage {
         this.addMap(m);
     }
 
-    public void addGame(final String mapName, final CommandCollector c, final Score s) {
+    public void addGame(final String mapName, final CommandCollector c, final Score s) throws IllegalArgumentException {
         final MapResource m = this.getMap(mapName);
         listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
-        m.addGame(s,c);
+        m.addGame(s, c);
         this.addMap(m);
     }
 
