@@ -23,15 +23,15 @@ class MoveCityBlockTest {
     void testEquals() {
         assertEquals(m1, m3);
         assertTrue(m1.equals(m3) && m3.equals(m1));
-        assertFalse(m1.equals(String.class));
-        assertFalse(m1.equals(null));
-        assertTrue(m1.equals(m1));
-        assertFalse(m1.equals(m2));
-        assertFalse(m2.equals(m4));
+        assertNotEquals(m1,String.class);
+        assertNotEquals(m1,null);
+        assertEquals(m1,m1);
+        assertNotEquals(m1,m2);
+        assertNotEquals(m2,m4);
     }
 
     @Test
     void testHashCode() {
-        assertTrue(m1.hashCode() == m3.hashCode());
+        assertEquals(m1.hashCode(),m3.hashCode());
     }
 }

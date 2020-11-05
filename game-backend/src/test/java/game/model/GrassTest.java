@@ -16,7 +16,7 @@ class GrassTest {
     }
     @Test
     void testHashCode() {
-        assertTrue(grassTile1.hashCode() == grassTile2.hashCode());
+        assertEquals(grassTile1.hashCode(),grassTile2.hashCode());
     }
 
     @Test

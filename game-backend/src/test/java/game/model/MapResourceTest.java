@@ -204,8 +204,8 @@ class MapResourceTest {
 
     @Test
     void testHashCode() {
-        Assertions.assertTrue(m1.hashCode() == m2.hashCode());
-        assertFalse(m1.hashCode() == map_test.hashCode());
+        Assertions.assertEquals(m1.hashCode(),m2.hashCode());
+        assertNotEquals(m1.hashCode(),map_test.hashCode());
     }
 
 }
