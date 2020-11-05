@@ -164,7 +164,7 @@ public class MapResource {
     }
 
     public void addGame(final Score score, final CommandCollector commands) throws IllegalArgumentException {
-        if (score.getPlayer().equals(commands.getPlayerName())) {
+        if (!score.getPlayer().equals(commands.getPlayerName())) {
             throw new IllegalArgumentException("Commandes et scores ne correspondent pas aux même joueur");
         }
         if (addScore(score)) {
