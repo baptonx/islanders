@@ -27,151 +27,167 @@ class StorageTest {
         storage = new Storage("src/main/java/game/data/mapsTest.txt");
         file = new File("src/main/java/game/data/mapsTest.txt");
         List<Command> commands = new ArrayList<>();
-        commands.add(new MoveCityBlock(0,1));
-        commands.add(new PutCityBlock(1,2));
-        commands.add(new MoveCityBlock(2,3));
+        commands.add(new MoveCityBlock(0, 1));
+        commands.add(new PutCityBlock(1, 2));
+        commands.add(new MoveCityBlock(2, 3));
         collector = new CommandCollector("Paul", commands);
+        storage.resetMap();
     }
 
     @Test
-    void errorConstructor(){
+    void errorConstructor() {
         assertNull(new Storage("falsepath"));
     }
-    
+
     @Test
     void getListMap() {
         List<MapResource> listMap = storage.getMaps();
         try {
-            assertEquals(listMap, mapper.readValue(file, new TypeReference<List<MapResource>>() {}));
+            assertEquals(listMap, mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    void getMapsName(){
+    void getMapsName() {
         MapResource m1 = new MapFactory().newMap("Map1");
         MapResource m2 = new MapFactory().newMap("Map2");
         try {
-            assertEquals(storage.getMapsName(), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().map(map -> map.getName()).collect(Collectors.toList()));
+            assertEquals(storage.getMapsName(), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).stream().map(map -> map.getName()).collect(Collectors.toList()));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    void addScore(){
+    void addScore() {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         Score s = new Score("Paul", 150);
         storage.addScore(m.getName(), s);
         try {
-            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
-            assertEquals(storage.getMap(m.getName()),mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).size());
+            assertEquals(storage.getMap(m.getName()), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.resetMap();
-
     }
 
     @Test
-    void getMapFromName(){
+    void getMapFromName() {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         try {
-            assertEquals(storage.getMap(m.getName()),mapper.readValue(file, new TypeReference<List<MapResource>>(){}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+            assertEquals(storage.getMap(m.getName()), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.resetMap();
     }
 
     @Test
-    void addMap(){
+    void addMap() {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         try {
-            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
+            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).size());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.resetMap();
     }
 
     @Test
-    void addCommand(){
+    void addCommand() {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
-        storage.addCommand(m.getName(),collector);
+        storage.addCommand(m.getName(), collector);
         try {
-            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
-            assertEquals(storage.getMap(m.getName()),mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).size());
+            assertEquals(storage.getMap(m.getName()), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.resetMap();
     }
 
     @Test
-    void addGame(){
+    void addGame() {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
-        Score s = new Score("Hugo",5000);
+        Score s = new Score("Paul", 5000);
+        Score sh = new Score("Hugo", 5000);
         storage.addGame(m.getName(), collector, s);
+        assertThrows(IllegalArgumentException.class, () -> storage.addGame(m.getName(), collector, sh));
         try {
-            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
-            assertEquals(storage.getMap(m.getName()),mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
+            assertEquals(storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).size());
+            assertEquals(storage.getMap(m.getName()), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.resetMap();
+
     }
 
     @Test
-    void addRandomMap(){
+    void addRandomMap() {
         storage.addRandomMap();
         try {
-            assertEquals(this.storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).size());
+            assertEquals(this.storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).size());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        storage.resetMap();
     }
 
     @Test
-    void addMapAlreadyNamed(){
+    void addMapAlreadyNamed() {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
-        assertThrows(IllegalArgumentException.class,() -> storage.addMap(m));
-        storage.resetMap();
+        assertThrows(IllegalArgumentException.class, () -> storage.addMap(m));
     }
 
     @Test
     void getCommandCollector() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
-        storage.addGame(m.getName(),collector,new Score("Paul", 5000));
-        assertEquals(storage.getCommandCollectorFromMap(m.getName()), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map -> map.getName().equals(m.getName())).findFirst().get().getCommandCollectors().stream().map(command -> command.getPlayerName()).collect(Collectors.toList()));
-        storage.resetMap();
+        storage.addGame(m.getName(), collector, new Score("Paul", 5000));
+        assertEquals(storage.getCommandCollectorFromMap(m.getName()), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+        })
+                .stream().filter(map -> map.getName().equals(m.getName()))
+                .findFirst().get().getCommandsCollectors()
+                .stream().map(command -> command.getPlayerName())
+                .collect(Collectors.toList()));
     }
 
     @Test
     void getCommands() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
-        storage.addGame(m.getName(), collector, new Score("Paul",5041));
-        assertEquals(storage.getCommands(m.getName(), "Paul"), mapper.readValue(file, new TypeReference<List<MapResource>>() {}).stream().filter(map->map.getName().equals(m.getName())).findFirst().get().getCommandCollectors().stream().filter(command -> command.getPlayerName().equals("Paul")).findFirst().get().getCommands());
-        storage.resetMap();
+        storage.addGame(m.getName(), collector, new Score("Paul", 5041));
+        assertEquals(storage.getCommands(m.getName(), "Paul"), mapper.readValue(file, new TypeReference<List<MapResource>>() {
+        })
+                .stream()
+                .filter(map -> map.getName().equals(m.getName()))
+                .findFirst().get().getCommandsCollectors()
+                .stream().filter(command -> command.getPlayerName().equals("Paul"))
+                .findFirst().get().getCommands());
     }
 
 
     @Test
-    void resetMap(){
-        storage.resetMap();
+    void resetMap() {
         try {
             assertTrue(storage.getMaps().isEmpty());
-            assertTrue(mapper.readValue(file, new TypeReference<List<MapResource>>() {}).isEmpty());
+            assertTrue(mapper.readValue(file, new TypeReference<List<MapResource>>() {
+            }).isEmpty());
         } catch (IOException e) {
             e.printStackTrace();
         }

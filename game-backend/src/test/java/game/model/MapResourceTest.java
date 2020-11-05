@@ -146,15 +146,15 @@ class MapResourceTest {
     @Test
     void addCommand() {
         map_test.addCommand(collector);
-        assertTrue(map_test.getCommandCollectors().contains(collector));
+        assertTrue(map_test.getCommandsCollectors().contains(collector));
         List<Command> listCommands = new ArrayList<>();
         listCommands.add(new PutCityBlock(1, 2));
         listCommands.add(new MoveCityBlock(2, 3));
         listCommands.add(new PutCityBlock(4, 2));
         CommandCollector cc2 = new CommandCollector("Paul", listCommands);
         map_test.addCommand(cc2);
-        assertTrue(map_test.getCommandCollectors().contains(cc2));
-        assertEquals(map_test.getCommandCollectors().stream().map(command -> command.getPlayerName() == "Paul").collect(Collectors.toList()).size(), 1);
+        assertTrue(map_test.getCommandsCollectors().contains(cc2));
+        assertEquals(map_test.getCommandsCollectors().stream().map(command -> command.getPlayerName() == "Paul").collect(Collectors.toList()).size(), 1);
     }
 
     @Test
@@ -176,7 +176,7 @@ class MapResourceTest {
         lcc.add(c2);
         lcc.add(c3);
         map_test.setCommandsCollector(lcc);
-        assertEquals(lcc, map_test.getCommandCollectors());
+        assertEquals(lcc, map_test.getCommandsCollectors());
 
     }
 
