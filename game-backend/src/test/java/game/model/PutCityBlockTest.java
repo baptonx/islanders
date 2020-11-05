@@ -23,7 +23,7 @@ class PutCityBlockTest {
     void testEquals() {
         assertEquals(m1, m3);
         assertTrue(m1.equals(m3) && m3.equals(m1));
-        assertFalse(m1.equals(String.class));
+        assertEquals(m1, String.class);
         assertFalse(m1.equals(null));
         assertTrue(m1.equals(m1));
         assertFalse(m1.equals(m2));
