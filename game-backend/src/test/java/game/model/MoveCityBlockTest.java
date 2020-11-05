@@ -23,7 +23,6 @@ class MoveCityBlockTest {
 
     @Test
     void testHashCode() {
-        System.out.println(m1.hashCode());
         assertTrue(m1.hashCode() == m2.hashCode());
     }
 }

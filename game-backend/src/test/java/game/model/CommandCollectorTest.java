@@ -54,7 +54,6 @@ class CommandCollectorTest {
     void testHashCode() {
         CommandCollector c1 = new CommandCollector();
         CommandCollector c2 = new CommandCollector();
-        System.out.println(c1.hashCode());
         Assertions.assertTrue(c1.hashCode() == c2.hashCode());
         assertFalse(c1.hashCode() == collector.hashCode());
     }

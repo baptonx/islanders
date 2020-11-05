@@ -16,7 +16,6 @@ class TreeTest {
     }
     @Test
     void testHashCode() {
-        System.out.println(treeTile1.hashCode());
         assertTrue(treeTile1.hashCode() == treeTile2.hashCode());
     }
 

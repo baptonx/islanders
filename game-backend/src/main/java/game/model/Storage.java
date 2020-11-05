@@ -45,7 +45,7 @@ public class Storage {
 
     //Lancer une exception si pas le bon nom
     public MapResource getMap(final String name) throws IllegalArgumentException {
-        Optional<MapResource> m = listMap.stream().filter(map -> map.getName().equals(name)).findFirst();
+        final Optional<MapResource> m = listMap.stream().filter(map -> map.getName().equals(name)).findFirst();
         if (m.isEmpty()) {
             throw new IllegalArgumentException("Il n'existe aucune map de ce nom");
         }

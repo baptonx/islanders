@@ -16,7 +16,6 @@ class WaterTest {
     }
     @Test
     void testHashCode() {
-        System.out.println(waterTile1.hashCode());
         assertTrue(waterTile1.hashCode() == waterTile2.hashCode());
     }
 

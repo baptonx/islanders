@@ -96,8 +96,7 @@ public class GameResourceTest {
                 .path("game/api/v1/maps")
                 .request()
                 .post(Entity.json(maptest));
-        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resMapDouble.getStatus());
-        System.out.println(resMapDouble.readEntity(String.class));
+        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), resMapDouble.getStatus());
     }
 
     // Getting a list of available maps
@@ -145,8 +144,7 @@ public class GameResourceTest {
                 .path("game/api/v1/maps/nameOfFalseMap")
                 .request()
                 .get();
-        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resGetFalseMap.getStatus());
-        System.out.println(resGetFalseMap.readEntity(String.class));
+        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), resGetFalseMap.getStatus());
     }
 
    /* @Test
@@ -239,8 +237,6 @@ public class GameResourceTest {
             e.printStackTrace();
         }
 
-        System.out.println(json);
-
         final Response res = client
                 .target(baseUri)
                 .path("game/api/v1/replays/" + maptest.getName() + "/Paul/1000")
@@ -312,8 +308,7 @@ public class GameResourceTest {
                 .path("game/api/v1/replays/" + maptest.getName() + "/unkownPlayer")
                 .request()
                 .get();
-        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resGetUnkownPlayer.getStatus());
-        System.out.println(resGetUnkownPlayer.readEntity(String.class));
+        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), resGetUnkownPlayer.getStatus());
     }
 
 
@@ -397,6 +392,16 @@ public class GameResourceTest {
         assertTrue(res.contains("Paul"));
         assertTrue(res.contains("Baptiste"));
         assertTrue(res.size() == 2);
+    }
+
+    @Test
+    void fausseRoute(final Client client, final URI baseUri) {
+        final Response res = client
+                .target(baseUri)
+                .path("game/api/v1/repl/")
+                .request()
+                .get();
+        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), res.getStatus());
     }
 
 }

@@ -192,7 +192,6 @@ class MapResourceTest {
 
     @Test
     void testHashCode() {
-        System.out.println(m1.hashCode());
         Assertions.assertTrue(m1.hashCode() == m2.hashCode());
         assertFalse(m1.hashCode() == map_test.hashCode());
     }

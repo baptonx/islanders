@@ -16,7 +16,6 @@ class GrassTest {
     }
     @Test
     void testHashCode() {
-        System.out.println(grassTile1.hashCode());
         assertTrue(grassTile1.hashCode() == grassTile2.hashCode());
     }
 
