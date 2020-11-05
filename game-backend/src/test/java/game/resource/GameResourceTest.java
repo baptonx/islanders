@@ -26,6 +26,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
@@ -44,9 +45,8 @@ public class GameResourceTest {
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
 
     Application configureJersey() {
-        Storage storage = new Storage("src/main/java/game/data/mapsTest.txt");
-        storage.resetMap();
-        g = new GameResource(storage);
+        g = new GameResource("src/main/java/game/data/mapsTest.txt");
+        g.resetMap();
         // data = Mockito.mock(Storage.class);
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
@@ -54,7 +54,7 @@ public class GameResourceTest {
                 .register(new AbstractBinder() {
                     @Override
                     protected void configure() {
-                        bind(storage).to(Storage.class);
+                        bind(g.getStorage()).to(Storage.class);
                     }
                 });
     }
@@ -149,9 +149,9 @@ public class GameResourceTest {
 
         MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(MapResource.class, resMap.getClass());
-        assertTrue(resMap.getTabTiles().length>0);
-        assertTrue(resMap.getCommandsCollectors().size()==0);
-        assertTrue(resMap.getScores().size()==0);
+        assertTrue(resMap.getTabTiles().length > 0);
+        assertTrue(resMap.getCommandsCollectors().size() == 0);
+        assertTrue(resMap.getScores().size() == 0);
     }
 
     //Test get Top scores of a map. Warning just the 5 best scores are returned !!!
@@ -196,20 +196,20 @@ public class GameResourceTest {
 
 
         List<Command> commands = new ArrayList<>();
-        commands.add(new MoveCityBlock(0,1));
-        commands.add(new PutCityBlock(1,2));
-        commands.add(new MoveCityBlock(2,3));
+        commands.add(new MoveCityBlock(0, 1));
+        commands.add(new PutCityBlock(1, 2));
+        commands.add(new MoveCityBlock(2, 3));
 
         // Create ObjectMapper object.
         ObjectMapper mapper = new ObjectMapper();
-        String json="[";
+        String json = "[";
         try {
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
-            json+="]";
+            json += "]";
             //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -219,7 +219,7 @@ public class GameResourceTest {
 
         final Response res = client
                 .target(baseUri)
-                .path("game/api/v1/replays/"+maptest.getName()+"/Paul/1000")
+                .path("game/api/v1/replays/" + maptest.getName() + "/Paul/1000")
                 .request()
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
@@ -238,20 +238,20 @@ public class GameResourceTest {
 
 
         List<Command> commands = new ArrayList<>();
-        commands.add(new MoveCityBlock(0,1));
-        commands.add(new PutCityBlock(1,2));
-        commands.add(new MoveCityBlock(2,3));
+        commands.add(new MoveCityBlock(0, 1));
+        commands.add(new PutCityBlock(1, 2));
+        commands.add(new MoveCityBlock(2, 3));
 
         // Create ObjectMapper object.
         ObjectMapper mapper = new ObjectMapper();
-        String json="[";
+        String json = "[";
         try {
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
-            json+="]";
+            json += "]";
             //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -259,21 +259,21 @@ public class GameResourceTest {
 
         final Response res = client
                 .target(baseUri)
-                .path("game/api/v1/replays/"+maptest.getName()+"/Paul/1000")
+                .path("game/api/v1/replays/" + maptest.getName() + "/Paul/1000")
                 .request()
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/replays/"+maptest.getName()+"/Paul")
+                .path("game/api/v1/replays/" + maptest.getName() + "/Paul")
                 .request()
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-        final List<Command> resCommand = resGet.readEntity(new GenericType<>() {});
+        final List<Command> resCommand = resGet.readEntity(new GenericType<>() {
+        });
         assertEquals(commands, resCommand);
     }
-
 
 
     //Test get Top scores of a map. Warning just the 5 best scores are returned !!!
@@ -289,21 +289,21 @@ public class GameResourceTest {
 
         // PLAYER1
         List<Command> commands = new ArrayList<>();
-        commands.add(new MoveCityBlock(0,1));
-        commands.add(new PutCityBlock(1,2));
-        commands.add(new MoveCityBlock(2,3));
+        commands.add(new MoveCityBlock(0, 1));
+        commands.add(new PutCityBlock(1, 2));
+        commands.add(new MoveCityBlock(2, 3));
 
 
         // Create ObjectMapper object.
         ObjectMapper mapper = new ObjectMapper();
-        String json="[";
+        String json = "[";
         try {
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
-            json+="]";
+            json += "]";
             //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -311,7 +311,7 @@ public class GameResourceTest {
 
         final Response resPlayer1 = client
                 .target(baseUri)
-                .path("game/api/v1/replays/"+maptest.getName()+"/Paul/1000")
+                .path("game/api/v1/replays/" + maptest.getName() + "/Paul/1000")
                 .request()
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), resPlayer1.getStatus());
@@ -319,18 +319,18 @@ public class GameResourceTest {
 
         // PLAYER2
         commands = new ArrayList<>();
-        commands.add(new PutCityBlock(0,1));
-        commands.add(new PutCityBlock(1,2));
-        commands.add(new PutCityBlock(2,3));
+        commands.add(new PutCityBlock(0, 1));
+        commands.add(new PutCityBlock(1, 2));
+        commands.add(new PutCityBlock(2, 3));
 
-        json="[";
+        json = "[";
         try {
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
             json += ",";
             json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
-            json+="]";
+            json += "]";
             //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -338,7 +338,7 @@ public class GameResourceTest {
 
         final Response resPlayer2 = client
                 .target(baseUri)
-                .path("game/api/v1/replays/"+maptest.getName()+"/Baptiste/3000")
+                .path("game/api/v1/replays/" + maptest.getName() + "/Baptiste/3000")
                 .request()
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), resPlayer2.getStatus());
@@ -347,14 +347,15 @@ public class GameResourceTest {
         // Test getPlayerFromMap
         final Response resGet = client
                 .target(baseUri)
-                .path("game/api/v1/replays/"+maptest.getName())
+                .path("game/api/v1/replays/" + maptest.getName())
                 .request()
                 .get();
         assertEquals(Response.Status.OK.getStatusCode(), resGet.getStatus());
-        final List<String> res = resGet.readEntity(new GenericType<>() {});
+        final List<String> res = resGet.readEntity(new GenericType<>() {
+        });
         assertTrue(res.contains("Paul"));
         assertTrue(res.contains("Baptiste"));
-        assertTrue(res.size()==2);
+        assertTrue(res.size() == 2);
     }
 
 }

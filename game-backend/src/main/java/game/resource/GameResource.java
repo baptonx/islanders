@@ -23,6 +23,7 @@ import io.swagger.annotations.Api;
 
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +32,26 @@ import java.util.List;
 @Api(value = "game")
 public class GameResource {
 
-    private final Storage storage;
+    private Storage storage = null;
     private final MapFactory mf;
 
     @Inject
-    public GameResource(final Storage storage) {
+    public GameResource(final String path) {
         super();
-        this.storage = storage;
+        try {
+            this.storage = new Storage(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.mf = new MapFactory();
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void resetMap() {
+        storage.resetMap();
     }
 
     // Route pour obtenir les noms (attribut primitif) des cartes disponibles
