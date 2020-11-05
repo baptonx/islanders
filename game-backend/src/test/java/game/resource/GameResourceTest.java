@@ -79,7 +79,7 @@ public class GameResourceTest {
         mf = new MapFactory();
     }
 
-    //Test add map to back-end
+    /*Test add map to back-end*/
     @Test
     void postMap(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
@@ -99,7 +99,7 @@ public class GameResourceTest {
         assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), resMapDouble.getStatus());
     }
 
-    // Getting a list of available maps
+    /* Getting a list of available maps*/
     @Test
     void getMapsNames(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
@@ -121,7 +121,7 @@ public class GameResourceTest {
         assertEquals(maptest.getName(), names.get(0));
     }
 
-    //Test get map from name
+    /*Test get map from name*/
     @Test
     void getMapFromName(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
@@ -159,7 +159,7 @@ public class GameResourceTest {
 
     }*/
 
-    //Test get Random Map
+    /*Test get Random Map*/
     @Test
     void getRandomMap(final Client client, final URI baseUri) {
         final Response resGet = client
@@ -176,7 +176,7 @@ public class GameResourceTest {
         assertTrue(resMap.getScores().size() == 0);
     }
 
-    //Test get Top scores of a map. Warning just the 5 best scores are returned !!!
+    /*Test get Top scores of a map. Warning just the 5 best scores are returned !!!*/
     @Test
     void getTopScores(final Client client, final URI baseUri) {
         //add map with a list of score
@@ -206,7 +206,6 @@ public class GameResourceTest {
 
     @Test
     void postGame(final Client client, final URI baseUri) {
-        //ATTENTION NE DEVRAIT PAS PASSER DE POSTGAME D'UNE MAP INEXISTANTE !!!
 
         MapResource maptest = mf.newRandomMap();
         final Response resMap = client

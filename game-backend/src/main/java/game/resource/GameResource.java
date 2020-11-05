@@ -50,7 +50,7 @@ public class GameResource {
         storage.resetMap();
     }
 
-    // Route pour obtenir les noms (attribut primitif) des cartes disponibles
+    /* Route pour obtenir les noms (attribut primitif) des cartes disponibles*/
     @GET
     @Path("api/v1/maps")
     @Produces(MediaType.APPLICATION_JSON)
@@ -58,7 +58,7 @@ public class GameResource {
         return this.storage.getMapsName();
     }
 
-    // Route pour obtenir une map depuis le nom
+    /* Route pour obtenir une map depuis le nom */
     @GET
     @Path("api/v1/maps/{name}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -66,7 +66,7 @@ public class GameResource {
         return this.storage.getMap(name);
     }
 
-    // Route pour ajouter une nouvelle map
+    /* Route pour ajouter une nouvelle map */
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -76,8 +76,7 @@ public class GameResource {
         return Response.status(Response.Status.OK).build();
     }
 
-    // Route pour obtenir les topScores d'une map depuis l'id (il prend les cinq premiers scores de l'attribut scores)
-    // GET api/v1/maps/topScores/{map_id} => {"topScores": [0,0,0,0,0]}
+    /* Route pour obtenir les topScores d'une map depuis l'id (il prend les cinq premiers scores de l'attribut scores) */
     @GET
     @Path("api/v1/topScores/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -86,6 +85,8 @@ public class GameResource {
         return map.getTopScores();
     }
 
+    /**Les deux route suivantes sont commentées car nous nous sommes rendus comptes qu'un postScore s'accompagne forcement d'un postReplay**/
+
     // Route pour ajouter le score d'un joueur sur une map
     // POST api/v1/maps/{map_id}/{player_name}/{score} => 200 OK
     /*@POST
@@ -93,17 +94,6 @@ public class GameResource {
     public void postScore(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score) throws StreamCorruptedException {
         this.storage.addScore(map_name, new Score(player_name, score));
     }*/
-
-    // Route pour obtenir une map générée aléatoirement par le back-end
-    // GET api/v1/maps/random => {"map": {"id" : 45123, "name":"random", "scores" : [5,4,3,3,3,.....], "tabTiles":[...]}}
-    @GET
-    @Path("api/v1/maps/random")
-    @Produces(MediaType.APPLICATION_JSON)
-    public MapResource getRandomMap() throws IllegalArgumentException, IOException {
-        final MapResource m = mf.newRandomMap();
-        this.storage.addMap(m);
-        return m;
-    }
 
     // Route pour ajouter la liste des commandes faites par un joueur durant une partie
     // Body : {"player_name" : "Paul", "map_id" : 741, "undos" : [{"putCityBlock" : { "position" : 74, "typeCityBlock" : 1}},...]}
@@ -115,6 +105,19 @@ public class GameResource {
         storage.addCommand(map_name, cc);
     }*/
 
+    /*Route pour obtenir une map générée aléatoirement par le back-end*/
+    // GET api/v1/maps/random => {"map": {"id" : 45123, "name":"random", "scores" : [5,4,3,3,3,.....], "tabTiles":[...]}}
+    @GET
+    @Path("api/v1/maps/random")
+    @Produces(MediaType.APPLICATION_JSON)
+    public MapResource getRandomMap() throws IllegalArgumentException, IOException {
+        final MapResource m = mf.newRandomMap();
+        this.storage.addMap(m);
+        return m;
+    }
+
+
+    /*Route permettant de poster les informations en fin de partie*/
     @POST
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -140,7 +143,7 @@ public class GameResource {
         return Response.status(Response.Status.OK).build();
     }
 
-    // Route pour récupérer l'ensemble des replays des joueurs sur une map donnée (retourne le nom des joueurs)
+    /* Route pour récupérer l'ensemble des replays des joueurs sur une map donnée (retourne le nom des joueurs)*/
     @GET
     @Path("api/v1/replays/{map_name}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -148,7 +151,7 @@ public class GameResource {
         return storage.getCommandCollectorFromMap(map_name);
     }
 
-    // Route pour récupérer l'ensemble des commandes faites par un joueur depuis l'id d'un replay
+    /* Route pour récupérer l'ensemble des commandes faites par un joueur depuis son nom sur le nom de la map correspondante*/
     @GET
     @Path("api/v1/replays/{map_name}/{player_name}")
     @Produces(MediaType.APPLICATION_JSON)

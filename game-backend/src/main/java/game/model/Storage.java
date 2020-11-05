@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+/** Objet permettant la liaison entre le fichier texte et les ressources Java **/
 public class Storage {
 
     private List<MapResource> listMap;
@@ -44,6 +44,7 @@ public class Storage {
     }
 
     //Lancer une exception si pas le bon nom
+    /*Retourne un objet MapResource selon son nom, clé unique*/
     public MapResource getMap(final String name) throws IllegalArgumentException {
         final Optional<MapResource> m = listMap.stream().filter(map -> map.getName().equals(name)).findFirst();
         if (m.isEmpty()) {
@@ -61,6 +62,7 @@ public class Storage {
         }
     }
 
+    /*Permet d'ajouter une carte générée aléatoirement*/
     public void addRandomMap() throws IllegalArgumentException, IOException {
         final MapResource m = new MapFactory().newRandomMap();
         this.addMap(m);
@@ -80,6 +82,7 @@ public class Storage {
         this.addMap(m);
     }
 
+    /*addGame permet d'ajouter un score ainsi qu'une liste de commande en fin  de partie*/
     public void addGame(final String mapName, final CommandCollector c, final Score s) throws IllegalArgumentException, IOException {
         final MapResource m = this.getMap(mapName);
         final MapResource temp = m;
@@ -97,6 +100,7 @@ public class Storage {
         return this.getMap(name).getCommandsCollectors().stream().map(command -> command.getPlayerName()).collect(Collectors.toList());
     }
 
+    /*Permet d'obtenir les commandes fait pas un joueur sur une carte donnée*/
     public List<Command> getCommands(final String map_name, final String player_name) throws IllegalArgumentException {
         return this.getMap(map_name).getCommandCollector(player_name).getCommands();
     }

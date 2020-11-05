@@ -2,6 +2,7 @@ package game.model;
 
 import java.util.Objects;
 
+/** Objet contenant le score fait par un joueur **/
 public class Score {
 
     private String player;

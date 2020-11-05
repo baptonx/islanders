@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
+/**Objet correspondant à une carte**/
 @XmlRootElement
 public class MapResource {
     private String name;
@@ -31,8 +31,10 @@ public class MapResource {
 
     public MapResource(final String name) {
         this.name = name;
+        /**Une carte possède une liste de score. Une carte ne possède qu'un unique score par joueur pour l'instant (à débattre)**/
         this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
+        /**Une carte possède une liste de commandCollector. Une carte ne possède qu'un unique commandCollector par joueur**/
         this.commandsCollectors = new ArrayList<>();
     }
 
@@ -163,6 +165,7 @@ public class MapResource {
         this.commandsCollectors = commandsCollector;
     }
 
+    /*Méthode pour ajouter les résultats du partie, liste de commande et score*/
     public void addGame(final Score score, final CommandCollector commands) throws IllegalArgumentException {
         if (!score.getPlayer().equals(commands.getPlayerName())) {
             throw new IllegalArgumentException("Commandes et scores ne correspondent pas aux même joueur");

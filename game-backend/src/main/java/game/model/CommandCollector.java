@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement
+/** Objet contenant la liste des commandes faites par un joueur **/
 public class CommandCollector {
     private String playerName;
     private List<Command> commands;

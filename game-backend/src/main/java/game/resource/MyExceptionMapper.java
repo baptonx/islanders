@@ -11,6 +11,7 @@ public class MyExceptionMapper implements ExceptionMapper<Exception> {
         if (exception instanceof WebApplicationException) {
             return ((WebApplicationException) exception).getResponse();
         }
+        /** On fait une erreur BAD_REQUEST et on fait remonter le message d'erreur définie dans les classes **/
         if(exception instanceof IllegalArgumentException) {
             return Response.status(Response.Status.BAD_REQUEST).entity(exception.getMessage()).build();
         }
