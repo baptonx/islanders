@@ -74,7 +74,7 @@ public class GameResource {
     @POST
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response postMap(final MapResource m) throws IllegalArgumentException {
+    public Response postMap(final MapResource m) throws IllegalArgumentException, IOException {
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).build();
@@ -103,7 +103,7 @@ public class GameResource {
     @GET
     @Path("api/v1/maps/random")
     @Produces(MediaType.APPLICATION_JSON)
-    public MapResource getRandomMap() throws IllegalArgumentException {
+    public MapResource getRandomMap() throws IllegalArgumentException, IOException {
         final MapResource m = mf.newRandomMap();
         this.storage.addMap(m);
         return m;
@@ -131,7 +131,13 @@ public class GameResource {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        storage.addGame(map_name, new CommandCollector(player_name, c), new Score(player_name, score));
+        try {
+            storage.addGame(map_name, new CommandCollector(player_name, c), new Score(player_name, score));
+        } catch (IOException e) {
+            return Response.status(Response.Status.CONFLICT).entity(e.getMessage()).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.valueOf(e.getMessage())).build();
+        }
         return Response.status(Response.Status.OK).build();
     }
 
