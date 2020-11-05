@@ -35,7 +35,7 @@ class StorageTest {
     }
 
     @Test
-    void errorConstructor() {
+    void errorConstructor() throws IOException {
         assertNull(new Storage("falsepath"));
     }
 
@@ -63,7 +63,7 @@ class StorageTest {
     }
 
     @Test
-    void addScore() {
+    void addScore() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         Score s = new Score("Paul", 150);
@@ -79,7 +79,7 @@ class StorageTest {
     }
 
     @Test
-    void getMapFromName() {
+    void getMapFromName() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         try {
@@ -91,7 +91,7 @@ class StorageTest {
     }
 
     @Test
-    void addMap() {
+    void addMap() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         try {
@@ -103,7 +103,7 @@ class StorageTest {
     }
 
     @Test
-    void addCommand() {
+    void addCommand() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         storage.addCommand(m.getName(), collector);
@@ -118,7 +118,7 @@ class StorageTest {
     }
 
     @Test
-    void addGame() {
+    void addGame() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         Score s = new Score("Paul", 5000);
@@ -137,7 +137,7 @@ class StorageTest {
     }
 
     @Test
-    void addRandomMap() {
+    void addRandomMap() throws IOException {
         storage.addRandomMap();
         try {
             assertEquals(this.storage.listMapSize(), mapper.readValue(file, new TypeReference<List<MapResource>>() {
@@ -148,7 +148,7 @@ class StorageTest {
     }
 
     @Test
-    void addMapAlreadyNamed() {
+    void addMapAlreadyNamed() throws IOException {
         MapResource m = new MapFactory().newRandomMap();
         storage.addMap(m);
         assertThrows(IllegalArgumentException.class, () -> storage.addMap(m));

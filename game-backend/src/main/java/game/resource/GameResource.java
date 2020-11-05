@@ -50,7 +50,7 @@ public class GameResource {
         return storage;
     }
 
-    public void resetMap() {
+    public void resetMap() throws IOException {
         storage.resetMap();
     }
 

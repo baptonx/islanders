@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.hanleyt.JerseyExtension;
 
 
+import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -46,7 +47,11 @@ public class GameResourceTest {
 
     Application configureJersey() {
         g = new GameResource("src/main/java/game/data/mapsTest.txt");
-        g.resetMap();
+        try {
+            g.resetMap();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // data = Mockito.mock(Storage.class);
         return new ResourceConfig(GameResource.class)
                 .register(MyExceptionMapper.class)
