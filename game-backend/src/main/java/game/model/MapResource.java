@@ -158,7 +158,10 @@ public class MapResource {
     public void setCommandsCollector(List<CommandCollector> commandsCollector) {
         this.commandsCollector = commandsCollector;
     }
-    public void addGame(Score score, CommandCollector commands){
+    public void addGame(Score score, CommandCollector commands) throws IllegalArgumentException{
+        if(score.getPlayer()!=commands.getPlayerName()){
+            throw new IllegalArgumentException("Commandes et scores ne correspondent pas aux même joueur");
+        }
         if(addScore(score)){
             addCommand(commands);
         }
