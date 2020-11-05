@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import game.model.Command;
 import game.model.CommandCollector;
@@ -117,7 +118,7 @@ public class GameResource {
         final ObjectMapper mapper = new ObjectMapper();
         List<Command> c = new ArrayList<>();
         try {
-            c = mapper.readValue(commands, List.class);
+            c = mapper.readValue(commands, new TypeReference<List<Command>>() {});
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

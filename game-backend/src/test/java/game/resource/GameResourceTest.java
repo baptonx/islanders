@@ -203,12 +203,20 @@ public class GameResourceTest {
 
         // Create ObjectMapper object.
         ObjectMapper mapper = new ObjectMapper();
-        String json="";
+        String json="[";
         try {
-            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
+            json+="]";
+            //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
+        System.out.println(json);
 
         final Response res = client
                 .target(baseUri)
@@ -237,9 +245,15 @@ public class GameResourceTest {
 
         // Create ObjectMapper object.
         ObjectMapper mapper = new ObjectMapper();
-        String json="";
+        String json="[";
         try {
-            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(0));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(1));
+            json += ",";
+            json += mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands.get(2));
+            json+="]";
+            //json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(commands);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
