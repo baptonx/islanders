@@ -35,7 +35,7 @@ class StorageTest {
     }
 
     @Test
-    void errorConstructor() throws IOException {
+    void errorConstructor() {
         assertThrows(IOException.class, () -> new Storage("falsepath"));
     }
 

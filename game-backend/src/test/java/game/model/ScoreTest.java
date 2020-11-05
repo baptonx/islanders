@@ -14,7 +14,7 @@ class ScoreTest {
     private Score score5;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         score1 = new Score("biden", 264);
         score2 = new Score("biden", 214);
         score3 = new Score("biden", 264);
@@ -51,16 +51,16 @@ class ScoreTest {
     void testEquals() {
         assertEquals(score1, score3);
         assertTrue(score1.equals(score3) && score3.equals(score1));
-        assertFalse(score1.equals(score2));
-        assertFalse(score1.equals(null));
-        assertFalse(score1.equals(String.class));
-        assertFalse(score2.equals(score4));
+        assertNotEquals(score1, score2);
+        assertNotEquals(score1, null);
+        assertNotEquals(score1, String.class);
+        assertNotEquals(score2, score4);
     }
 
     @Test
     void testHashCode() {
         System.out.println(score1.hashCode());
-        assertTrue(score1.hashCode() == score3.hashCode());
-        assertFalse(score1.hashCode() == score2.hashCode());
+        assertEquals(score1.hashCode(), score3.hashCode());
+        assertNotEquals(score1.hashCode(), score2.hashCode());
     }
 }

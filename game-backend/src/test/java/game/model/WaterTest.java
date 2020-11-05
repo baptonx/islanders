@@ -10,13 +10,14 @@ class WaterTest {
     Water waterTile2;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         waterTile1 = new Water();
         waterTile2 = new Water();
     }
+
     @Test
     void testHashCode() {
-        assertTrue(waterTile1.hashCode() == waterTile2.hashCode());
+        assertEquals(waterTile1.hashCode(), waterTile2.hashCode());
     }
 
     @Test

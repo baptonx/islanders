@@ -10,13 +10,14 @@ class TreeTest {
     Tree treeTile2;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         treeTile1 = new Tree();
         treeTile2 = new Tree();
     }
+
     @Test
     void testHashCode() {
-        assertTrue(treeTile1.hashCode() == treeTile2.hashCode());
+        assertEquals(treeTile1.hashCode(), treeTile2.hashCode());
     }
 
     @Test
