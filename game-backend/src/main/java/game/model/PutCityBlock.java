@@ -1,6 +1,5 @@
 package game.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
@@ -10,12 +9,12 @@ public class PutCityBlock extends Command {
     private int position;
     private int typeCityBlock;
 
-    public PutCityBlock(){
+    public PutCityBlock() {
         this.position = -1;
         this.typeCityBlock = -1;
     }
 
-    public PutCityBlock(int position, int typeCityBlock) {
+    public PutCityBlock(final int position, final int typeCityBlock) {
         this.position = position;
         this.typeCityBlock = typeCityBlock;
     }
@@ -29,10 +28,14 @@ public class PutCityBlock extends Command {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PutCityBlock that = (PutCityBlock) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final PutCityBlock that = (PutCityBlock) o;
         return position == that.position &&
                 typeCityBlock == that.typeCityBlock;
     }

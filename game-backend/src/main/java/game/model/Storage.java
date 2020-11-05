@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.xml.namespace.QName;
-
 
 public class Storage {
 
@@ -77,14 +75,14 @@ public class Storage {
         this.addMap(m);
     }
 
-    public void addGame(final String mapName, final CommandCollector c, final Score s)  throws IllegalArgumentException{
+    public void addGame(final String mapName, final CommandCollector c, final Score s) throws IllegalArgumentException {
         final MapResource m = this.getMap(mapName);
         final MapResource temp = m;
         listMap = listMap.stream().filter(map -> !map.getName().equals(mapName)).collect(Collectors.toList());
-        try{
+        try {
             m.addGame(s, c);
             this.addMap(m);
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             this.addMap(temp);
             throw e;
         }

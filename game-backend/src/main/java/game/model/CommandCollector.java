@@ -1,7 +1,6 @@
 package game.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +11,20 @@ public class CommandCollector {
     private String playerName;
     private List<Command> commands;
 
-    public CommandCollector(){
+    public CommandCollector() {
         this.playerName = "";
         this.commands = new ArrayList<>();
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CommandCollector that = (CommandCollector) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final CommandCollector that = (CommandCollector) o;
         return Objects.equals(playerName, that.playerName) &&
                 Objects.equals(commands, that.commands);
     }
@@ -32,7 +35,7 @@ public class CommandCollector {
 
     }
 
-    public CommandCollector(String p, List<Command> c) {
+    public CommandCollector(final String p, final List<Command> c) {
         this.playerName = p;
         this.commands = c;
     }
@@ -41,7 +44,7 @@ public class CommandCollector {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
+    public void setPlayerName(final String playerName) {
         this.playerName = playerName;
     }
 
@@ -49,7 +52,7 @@ public class CommandCollector {
         return commands;
     }
 
-    public void setCommands(List<Command> commands) {
+    public void setCommands(final List<Command> commands) {
         this.commands = commands;
     }
 }

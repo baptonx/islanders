@@ -1,6 +1,5 @@
 package game.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
@@ -10,12 +9,12 @@ public class MoveCityBlock extends Command {
     private int posBefore;
     private int posAfter;
 
-    public MoveCityBlock(){
+    public MoveCityBlock() {
         this.posBefore = -1;
         this.posAfter = -1;
     }
 
-    public MoveCityBlock(int posBefore, int posAfter) {
+    public MoveCityBlock(final int posBefore, final int posAfter) {
         this.posBefore = posBefore;
         this.posAfter = posAfter;
     }
@@ -29,10 +28,14 @@ public class MoveCityBlock extends Command {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MoveCityBlock that = (MoveCityBlock) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final MoveCityBlock that = (MoveCityBlock) o;
         return posBefore == that.posBefore &&
                 posAfter == that.posAfter;
     }

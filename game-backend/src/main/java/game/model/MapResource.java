@@ -2,8 +2,7 @@ package game.model;
 
 import com.github.javafaker.Faker;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -136,7 +135,7 @@ public class MapResource {
         return result;
     }
 
-    public void addCommand(CommandCollector c) {
+    public void addCommand(final CommandCollector c) {
         if (commandsCollectors.stream().noneMatch(com -> com.getPlayerName().equals(c.getPlayerName()))) {
             commandsCollectors.add(c);
         } else {
@@ -152,20 +151,20 @@ public class MapResource {
         return commandsCollectors;
     }
 
-    public CommandCollector getCommandCollector(String player) throws IllegalArgumentException {
-        Optional<CommandCollector> cc = this.commandsCollectors.stream().filter(command -> command.getPlayerName().equals(player)).findFirst();
+    public CommandCollector getCommandCollector(final String player) throws IllegalArgumentException {
+        final Optional<CommandCollector> cc = this.commandsCollectors.stream().filter(command -> command.getPlayerName().equals(player)).findFirst();
         if (cc.isEmpty()) {
             throw new IllegalArgumentException("Il n'existe pas de commandes enregistrées pour ce joueur");
         }
         return cc.get();
     }
 
-    public void setCommandsCollector(List<CommandCollector> commandsCollector) {
+    public void setCommandsCollector(final List<CommandCollector> commandsCollector) {
         this.commandsCollectors = commandsCollector;
     }
 
-    public void addGame(Score score, CommandCollector commands) throws IllegalArgumentException {
-        if (score.getPlayer() != commands.getPlayerName()) {
+    public void addGame(final Score score, final CommandCollector commands) throws IllegalArgumentException {
+        if (!score.getPlayer().equals(commands.getPlayerName())) {
             throw new IllegalArgumentException("Commandes et scores ne correspondent pas aux même joueur");
         }
         if (addScore(score)) {
