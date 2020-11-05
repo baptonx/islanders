@@ -32,17 +32,13 @@ import java.util.List;
 @Api(value = "game")
 public class GameResource {
 
-    private Storage storage = null;
+    private final Storage storage;
     private final MapFactory mf;
 
     @Inject
-    public GameResource(final String path) {
+    public GameResource(final Storage storage) {
         super();
-        try {
-            this.storage = new Storage(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.storage = storage;
         this.mf = new MapFactory();
     }
 

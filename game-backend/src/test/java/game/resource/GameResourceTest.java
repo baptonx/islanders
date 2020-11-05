@@ -46,8 +46,10 @@ public class GameResourceTest {
     JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
 
     Application configureJersey() {
-        g = new GameResource("src/main/java/game/data/mapsTest.txt");
+        Storage storage = null;
         try {
+            storage = new Storage("src/main/java/game/data/mapsTest.txt");
+            g = new GameResource(storage);
             g.resetMap();
         } catch (IOException e) {
             e.printStackTrace();
