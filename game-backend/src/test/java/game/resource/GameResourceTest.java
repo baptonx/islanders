@@ -89,6 +89,15 @@ public class GameResourceTest {
                 .request()
                 .post(Entity.json(maptest));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+
+        //Exception map double
+        final Response resMapDouble = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resMapDouble.getStatus());
+        System.out.println(resMapDouble.readEntity(String.class));
     }
 
     // Getting a list of available maps
@@ -130,6 +139,14 @@ public class GameResourceTest {
                 .get();
         MapResource resMap = resGet.readEntity(MapResource.class);
         assertEquals(maptest, resMap);
+        // get false map
+        final Response resGetFalseMap = client
+                .target(baseUri)
+                .path("game/api/v1/maps/nameOfFalseMap")
+                .request()
+                .get();
+        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resGetFalseMap.getStatus());
+        System.out.println(resGetFalseMap.readEntity(String.class));
     }
 
    /* @Test
@@ -201,14 +218,6 @@ public class GameResourceTest {
                 .post(Entity.json(maptest));
         assertEquals(Response.Status.OK.getStatusCode(), resMap.getStatus());
 
-        final Response resMapDouble = client
-                .target(baseUri)
-                .path("game/api/v1/maps")
-                .request()
-                .post(Entity.json(maptest));
-        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resMapDouble.getStatus());
-        System.out.println(resMapDouble.readEntity(String.class));
-
 
         List<Command> commands = new ArrayList<>();
         commands.add(new MoveCityBlock(0, 1));
@@ -238,6 +247,13 @@ public class GameResourceTest {
                 .request()
                 .post(Entity.json(json));
         assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+
+        //Exception name not unique between score and command
+        final Response resUnicity = client
+                .target(baseUri)
+                .path("game/api/v1/replays/" + maptest.getName() + "/Paul/1000")
+                .request()
+                .post(Entity.json(json));
     }
 
 
@@ -288,6 +304,16 @@ public class GameResourceTest {
         final List<Command> resCommand = resGet.readEntity(new GenericType<>() {
         });
         assertEquals(commands, resCommand);
+
+
+        //Exception for a unkown player
+        final Response resGetUnkownPlayer = client
+                .target(baseUri)
+                .path("game/api/v1/replays/" + maptest.getName() + "/unkownPlayer")
+                .request()
+                .get();
+        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resGetUnkownPlayer.getStatus());
+        System.out.println(resGetUnkownPlayer.readEntity(String.class));
     }
 
 

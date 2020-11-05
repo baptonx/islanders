@@ -164,6 +164,7 @@ class MapResourceTest {
         assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").collect(Collectors.toList()).size() == 1);
         assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").findFirst().get().getScore() == 27);
         assertThrows(IllegalArgumentException.class, ()->{map_test.addGame(new Score("hugz", 27), collector);});
+
     }
 
     @Test
