@@ -23,7 +23,6 @@ import io.swagger.annotations.Api;
 
 import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
-import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,11 +113,12 @@ public class GameResource {
         final ObjectMapper mapper = new ObjectMapper();
         List<Command> c = new ArrayList<>();
         try {
-            c = mapper.readValue(commands, new TypeReference<List<Command>>() {});
+            c = mapper.readValue(commands, new TypeReference<List<Command>>() {
+            });
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        storage.addGame(map_name, new CommandCollector(player_name, c),new Score(player_name, score));
+        storage.addGame(map_name, new CommandCollector(player_name, c), new Score(player_name, score));
         return Response.status(Response.Status.OK).build();
     }
 
@@ -135,7 +135,7 @@ public class GameResource {
     @Path("api/v1/replays/{map_name}/{player_name}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Command> getPlayerCommandsFromMap(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name) {
-        return storage.getCommands(map_name,player_name);
+        return storage.getCommands(map_name, player_name);
     }
 
 
