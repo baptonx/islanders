@@ -85,10 +85,10 @@ public class Storage {
     }
 
     public List<String> getCommandCollectorFromMap(final String name) {
-        return this.getMap(name).getCommandCollectors().stream().map(command -> command.getPlayerName()).collect(Collectors.toList());
+        return this.getMap(name).getCommandsCollectors().stream().map(command -> command.getPlayerName()).collect(Collectors.toList());
     }
 
-    public List<Command> getCommands(final String map_name, final String player_name) {
+    public List<Command> getCommands(final String map_name, final String player_name) throws IllegalArgumentException {
         return this.getMap(map_name).getCommandCollector(player_name).getCommands();
     }
 

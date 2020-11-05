@@ -20,21 +20,21 @@ public class MapResource {
     private String name;
     private List<Score> scores;
     private Tile[] tabTiles;
-    private List<CommandCollector> commandsCollector;
+    private List<CommandCollector> commandsCollectors;
 
     public MapResource() {
         final Faker faker = new Faker();
         this.name = faker.dragonBall().character();
         this.tabTiles = new Tile[100];
         this.scores = new ArrayList<>();
-        this.commandsCollector = new ArrayList<>();
+        this.commandsCollectors = new ArrayList<>();
     }
 
     public MapResource(final String name) {
         this.name = name;
         this.scores = new ArrayList<>();
         this.tabTiles = new Tile[100];
-        this.commandsCollector = new ArrayList<>();
+        this.commandsCollectors = new ArrayList<>();
     }
 
     public void generateRandomMap() {
@@ -101,8 +101,7 @@ public class MapResource {
             if (s.getScore() >= existingScore.get().getScore()) {
                 existingScore.get().setScore(s.getScore());
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         }
@@ -138,10 +137,10 @@ public class MapResource {
     }
 
     public void addCommand(CommandCollector c) {
-        if (commandsCollector.stream().noneMatch(com -> com.getPlayerName().equals(c.getPlayerName()))) {
-            commandsCollector.add(c);
+        if (commandsCollectors.stream().noneMatch(com -> com.getPlayerName().equals(c.getPlayerName()))) {
+            commandsCollectors.add(c);
         } else {
-            commandsCollector.stream()
+            commandsCollectors.stream()
                     .filter(com -> com.getPlayerName().equals(c.getPlayerName()))
                     .findFirst().get().setCommands(c.getCommands());
             //existingCommandCollector.get().setPlayerName(c.getPlayerName());
@@ -149,20 +148,27 @@ public class MapResource {
         }
     }
 
-    public List<CommandCollector> getCommandCollectors() {
-        return commandsCollector;
+    public List<CommandCollector> getCommandsCollectors() {
+        return commandsCollectors;
     }
 
-    public CommandCollector getCommandCollector(String player){ return this.commandsCollector.stream().filter(command -> command.getPlayerName().equals(player)).findFirst().get(); }
+    public CommandCollector getCommandCollector(String player) throws IllegalArgumentException {
+        Optional<CommandCollector> cc = this.commandsCollectors.stream().filter(command -> command.getPlayerName().equals(player)).findFirst();
+        if (cc.isEmpty()) {
+            throw new IllegalArgumentException("Il n'existe pas de commandes enregistrées pour ce joueur");
+        }
+        return cc.get();
+    }
 
     public void setCommandsCollector(List<CommandCollector> commandsCollector) {
-        this.commandsCollector = commandsCollector;
+        this.commandsCollectors = commandsCollector;
     }
-    public void addGame(Score score, CommandCollector commands) throws IllegalArgumentException{
-        if(score.getPlayer()!=commands.getPlayerName()){
+
+    public void addGame(Score score, CommandCollector commands) throws IllegalArgumentException {
+        if (score.getPlayer() != commands.getPlayerName()) {
             throw new IllegalArgumentException("Commandes et scores ne correspondent pas aux même joueur");
         }
-        if(addScore(score)){
+        if (addScore(score)) {
             addCommand(commands);
         }
     }
