@@ -201,6 +201,14 @@ public class GameResourceTest {
                 .post(Entity.json(maptest));
         assertEquals(Response.Status.OK.getStatusCode(), resMap.getStatus());
 
+        final Response resMapDouble = client
+                .target(baseUri)
+                .path("game/api/v1/maps")
+                .request()
+                .post(Entity.json(maptest));
+        assertEquals(Response.Status.BAD_GATEWAY.getStatusCode(), resMapDouble.getStatus());
+        System.out.println(resMapDouble.readEntity(String.class));
+
 
         List<Command> commands = new ArrayList<>();
         commands.add(new MoveCityBlock(0, 1));

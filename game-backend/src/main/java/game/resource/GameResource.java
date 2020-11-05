@@ -118,7 +118,7 @@ public class GameResource {
     @POST
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score, final String commands) {
+    public Response postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score, final String commands) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
         List<Command> c = new ArrayList<>();
         try {
@@ -127,6 +127,7 @@ public class GameResource {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        /*
         try {
             storage.addGame(map_name, new CommandCollector(player_name, c), new Score(player_name, score));
         } catch (IOException e) {
@@ -134,6 +135,8 @@ public class GameResource {
         } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.valueOf(e.getMessage())).build();
         }
+        */
+        storage.addGame(map_name, new CommandCollector(player_name, c), new Score(player_name, score));
         return Response.status(Response.Status.OK).build();
     }
 
