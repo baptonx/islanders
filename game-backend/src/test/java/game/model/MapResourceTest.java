@@ -86,7 +86,6 @@ class MapResourceTest {
 
     @Test
     void toStringTest() {
-        map_test.toString();
         assertEquals(map_test.toString(), "MapResource{name='CarteBG', scores=[], tabTiles=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]}");
     }
 
@@ -154,16 +153,18 @@ class MapResourceTest {
         CommandCollector cc2 = new CommandCollector("Paul", listCommands);
         map_test.addCommand(cc2);
         assertTrue(map_test.getCommandsCollectors().contains(cc2));
-        assertEquals(map_test.getCommandsCollectors().stream().map(command -> command.getPlayerName() == "Paul").collect(Collectors.toList()).size(), 1);
+        assertEquals(map_test.getCommandsCollectors().stream().map(command -> command.getPlayerName().equals("Paul")).collect(Collectors.toList()).size(), 1);
     }
 
     @Test
     void addGameLowerScore() {
         map_test.addGame(new Score("hugz", 27), new CommandCollector("hugz", commands));
         map_test.addGame(new Score("hugz", 20), new CommandCollector("hugz", commands));
-        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").collect(Collectors.toList()).size() == 1);
-        assertTrue(map_test.getScores().stream().filter(score -> score.getPlayer() == "hugz").findFirst().get().getScore() == 27);
-        assertThrows(IllegalArgumentException.class, ()->{map_test.addGame(new Score("hugz", 27), collector);});
+        assertEquals(map_test.getScores().stream().filter(score -> score.getPlayer().equals("hugz")).collect(Collectors.toList()).size(), 1);
+        assertEquals(map_test.getScores().stream().filter(score -> score.getPlayer().equals("hugz")).findFirst().get().getScore(), 27);
+        assertThrows(IllegalArgumentException.class, () -> {
+            map_test.addGame(new Score("hugz", 27), collector);
+        });
 
     }
 
@@ -183,11 +184,22 @@ class MapResourceTest {
 
     @Test
     void testEquals() {
+        MapFactory mf = new MapFactory();
+        MapResource m3 = mf.newRandomMap();
+        MapResource m4 = mf.newRandomMap();
         Assertions.assertEquals(m1, m2);
         Assertions.assertTrue(m1.equals(m2) && m2.equals(m1));
-        assertFalse(m1.equals(map_test));
-        assertFalse(map_test.equals(null));
-        assertTrue(map_test.equals(map_test));
+        assertNotEquals(m3, map_test);
+        assertNotEquals(map_test, null);
+        assertNotEquals(map_test, String.class);
+        assertEquals(m3, m3);
+        m3.setName("boo");
+        m4.setName("boo");
+        assertNotEquals(m3, m4);
+        m3.setName("freee");
+        m3.setScores(this.scores);
+        m4.setScores(this.scores);
+        assertNotEquals(m3, m4);
     }
 
     @Test

@@ -13,7 +13,9 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/**Objet correspondant à une carte**/
+/**
+ * Objet correspondant à une carte
+ **/
 @XmlRootElement
 public class MapResource {
     private String name;

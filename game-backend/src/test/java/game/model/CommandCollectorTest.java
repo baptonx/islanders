@@ -66,5 +66,9 @@ class CommandCollectorTest {
         c1.setPlayerName("toto");
         assertFalse(c1.equals(c2));
         assertFalse(c1.equals(null));
+        assertFalse(c1.equals(String.class));
+        c2.setPlayerName("toto");
+        c2.setCommands(commands);
+        assertFalse(c1.equals(c2));
     }
 }

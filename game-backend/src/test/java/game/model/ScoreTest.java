@@ -10,24 +10,28 @@ class ScoreTest {
     private Score score1;
     private Score score2;
     private Score score3;
+    private Score score4;
+    private Score score5;
 
     @BeforeEach
     void setUp(){
-        score1 = new Score("bapt", 5000);
-        score2 = new Score();
-        score3 = new Score("bapt", 5000);
+        score1 = new Score("biden", 264);
+        score2 = new Score("biden", 214);
+        score3 = new Score("biden", 264);
+        score4 = new Score("trump", 214);
+        score5 = new Score();
     }
 
     @Test
     void constructorWithParam() {
-        assertEquals("bapt", score1.getPlayer());
-        assertEquals(5000, score1.getScore());
+        assertEquals("biden", score1.getPlayer());
+        assertEquals(264, score1.getScore());
     }
 
     @Test
     void constructorWithoutParam() {
-        assertEquals("", score2.getPlayer());
-        assertEquals(0, score2.getScore());
+        assertEquals("", score5.getPlayer());
+        assertEquals(0, score5.getScore());
     }
 
     @Test
@@ -49,6 +53,8 @@ class ScoreTest {
         assertTrue(score1.equals(score3) && score3.equals(score1));
         assertFalse(score1.equals(score2));
         assertFalse(score1.equals(null));
+        assertFalse(score1.equals(String.class));
+        assertFalse(score2.equals(score4));
     }
 
     @Test
