@@ -10,14 +10,12 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {MatListModule} from '@angular/material/list';
 import { GameComponent } from './game/game.component';
-import { InventoryComponent } from './inventory/inventory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     GameComponent,
-    InventoryComponent
   ],
     imports: [
         BrowserModule,
