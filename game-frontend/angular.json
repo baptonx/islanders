@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "game-frontend"
+  "defaultProject": "game-frontend",
+  "cli": {
+    "analytics": "daa16bb1-8e07-460d-b5ef-ba5a6174ad84"
+  }
 }

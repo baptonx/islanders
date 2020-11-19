@@ -9,11 +9,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatBadgeModule} from '@angular/material/badge';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {MatListModule} from '@angular/material/list';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
+    GameComponent,
   ],
     imports: [
         BrowserModule,
