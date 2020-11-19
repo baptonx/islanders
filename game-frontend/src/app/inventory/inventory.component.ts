@@ -9,6 +9,8 @@ export class InventoryComponent implements OnInit {
 
   availableCityBlock: Array<number> = [0, 0, 0, 0];
 
+  x = 8;
+
   constructor() {
   }
 
