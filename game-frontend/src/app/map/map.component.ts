@@ -16,6 +16,7 @@ export class MapComponent implements AfterViewInit {
       this.tabTiles[i] = this.getRandomInt(3);
     }
     console.log(this.tabTiles);
+    this.addCityBlock(3, 3, 0);
   }
 
   ngAfterViewInit(): void {
@@ -23,6 +24,15 @@ export class MapComponent implements AfterViewInit {
 
   private getRandomInt(max: number): number {
     return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  public addCityBlock(x: number, y: number, type: number): void {
+    if (type === 0) {
+      this.tabTiles[y * 10 + x] = 3;
+    }
+    else if (type === 1) {
+      this.tabTiles[y * 10 + x] = 4;
+    }
   }
 
   public getTileSvg(x: number, y: number): string {
@@ -35,6 +45,12 @@ export class MapComponent implements AfterViewInit {
     }
     else if (type === 2) {
       return 'assets/water.svg';
+    }
+    else if (type === 3) {
+      return 'assets/circus.svg';
+    }
+    else if (type === 4) {
+      return 'assets/house.svg';
     }
   }
 
