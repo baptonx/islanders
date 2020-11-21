@@ -1,11 +1,33 @@
-#button-container {
-  position:  fixed;
+#inventory {
+  position: fixed;
   top: 300px;
   left: 50%;
-  width: 375px;
-  background: dimgray;
+  background: #cdcdcd;
   margin-left: -187.5px;
   text-align: center;
-  box-shadow: 0px 0px 2px 1px black;
+  box-shadow: 0px 0px 0px 0px black;
   z-index: 100;
+  border-radius: 15px;
+}
+
+.badge {
+  position: inherit;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+
+.inventory-button {
+  margin: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px 0px black;
+  padding: 10px;
+}
+
+.inventory-button:hover {
+  background-color: black;
 }
