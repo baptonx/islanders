@@ -1,4 +1,10 @@
 .topDiv {
+  display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  flex : 1
 }
 
+.container{
+  flex : 1
+}
