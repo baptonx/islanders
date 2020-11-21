@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-inventory',
@@ -7,7 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class InventoryComponent implements OnInit {
 
-  availableCityBlock: Array<number> = [12, 1, 2, 8];
+  private availableCityBlock: Array<number> = [12, 1, 2, 8];
+  @Input() showMe: boolean;
 
   constructor() {
   }
@@ -29,5 +30,9 @@ export class InventoryComponent implements OnInit {
 
   public getCityBlockRemaining(x: number): number {
     return this.availableCityBlock[x];
+  }
+
+  public toggleInventory(): void {
+    this.showMe = !this.showMe;
   }
 }
