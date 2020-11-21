@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'inventory', component: InventoryComponent},
   {
     path: '',
-    redirectTo: '/map',
+    redirectTo: '/hugo',
     pathMatch: 'full'
   }
 ];

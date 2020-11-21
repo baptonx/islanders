@@ -1,5 +1,6 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import {GameService} from '../service/game.service';
+import {InventoryComponent} from '../inventory/inventory.component';
 
 @Component({
   selector: 'app-map',
@@ -9,6 +10,7 @@ import {GameService} from '../service/game.service';
 export class MapComponent implements AfterViewInit {
 
   public tabTiles: Array<number>;
+  @Input() showInventory = false;
 
   private typeName: Array<string>;
   private typeCityBlock: Array<string>;
@@ -119,5 +121,12 @@ export class MapComponent implements AfterViewInit {
       }
     }
     return score;
+  }
+
+  public toggleInventory(x: number, y: number, typeCityBlock: number): void{
+    const pos = y * 10 + x;
+    if (this.typeName[this.tabTiles[pos]] === 'empty') {
+      this.showInventory = true;
+    }
   }
 }

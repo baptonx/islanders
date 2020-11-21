@@ -1,3 +1,4 @@
+
 <div #map class="map">
   <ng-container *ngFor="let y of [0,1,2,3,4,5,6,7,8,9]">
     <ng-container *ngFor="let x of [0,1,2,3,4,5,6,7,8,9]">
@@ -6,8 +7,14 @@
         [attr.data-x]=x
         [attr.data-y]=y
         src={{this.getTileSvg(x,y)}}
+        (click)="this.toggleInventory(x,y,0)"
         (click)="this.addCityBlock(x,y,0)"
+
       />
     </ng-container>
   </ng-container>
 </div>
+<div class="inventory">
+  <app-inventory [showMe]="showInventory"></app-inventory>
+</div>
+
