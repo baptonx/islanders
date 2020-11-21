@@ -6,6 +6,7 @@
         [attr.data-x]=x
         [attr.data-y]=y
         src={{this.getTileSvg(x,y)}}
+        (click)="this.addCityBlock(x,y,0)"
       />
     </ng-container>
   </ng-container>
