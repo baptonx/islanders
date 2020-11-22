@@ -12,7 +12,6 @@ export class MapComponent implements AfterViewInit, OnInit {
 
   public tabTiles: Array<number>;
   public availableCityBlock: Array<number>;
-  public cityBlockSelected: number | undefined;
 
   public score: number;
   public nextScore: number;
@@ -64,12 +63,6 @@ export class MapComponent implements AfterViewInit, OnInit {
     this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('house')] = this.neighbourPointsHouse;
     this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('fountain')] = this.neighbourPointsFountain;
     this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('wind-turbine')] = this.neighbourPointsWindTurbine;*/
-
-    // Initialisation of AvailableCityBlock
-    this.availableCityBlock = [];
-
-    // Initialisation of cityBlockSelected
-    this.cityBlockSelected = undefined;
 
     // Initialisation score
     this.score = 0;
@@ -168,9 +161,5 @@ export class MapComponent implements AfterViewInit, OnInit {
     for (let i = 0; i < this.availableCityBlock.length; i++) {
       this.availableCityBlock[i]++;
     }
-  }
-
-  public inventoryOnClick(x: number): void {
-    this.cityBlockSelected = x;
   }
 }
