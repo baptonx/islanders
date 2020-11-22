@@ -1,7 +1,6 @@
 .inventory {
   position: relative;
-  top:50%;
-  left:50%;
+  display: inline-flex;
   background-color: #cdcdcd;
   box-shadow: 0px 0px 0px 0px black;
   border-radius: 15px;
@@ -9,8 +8,8 @@
 
 .badge {
   position: inherit;
-  top: -10px;
-  right: -10px;
+  top: 10px;
+  right: 10px;
   padding: 5px 10px;
   border-radius: 50%;
   background: red;
@@ -18,7 +17,6 @@
 }
 
 .inventory-button {
-  float: left;
   margin: 10px;
   background: #ffffff;
   border-radius: 8px;

@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {InventoryService} from '../service/inventory.service';
 
 @Component({
   selector: 'app-inventory',
@@ -7,13 +8,15 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class InventoryComponent implements OnInit {
 
-  private availableCityBlock: Array<number> = [12, 1, 2, 8];
-  @Input() showMe: boolean;
+  private availableCityBlock: Array<number>;
+  private typeCityBlock: Array<string>;
 
-  constructor() {
+  constructor(private invetoryService: InventoryService) {
   }
 
   ngOnInit(): void {
+    this.availableCityBlock = this.invetoryService.availableCityBlock;
+    this.typeCityBlock = this.invetoryService.typeCityBlock;
   }
 
   public getCityBlockSvg(x: number): string {
@@ -31,8 +34,12 @@ export class InventoryComponent implements OnInit {
   public getCityBlockRemaining(x: number): number {
     return this.availableCityBlock[x];
   }
-
-  public toggleInventory(): void {
-    this.showMe = !this.showMe;
+  public getPathNameWithName(name: string): string {
+    return 'assets/' + name + '.svg';
   }
+
+  public inventoryOnClick(x: number): void {
+    this.invetoryService.cityBlockSelected = x;
+  }
+
 }

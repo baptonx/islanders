@@ -11,6 +11,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {MatListModule} from '@angular/material/list';
 import { GameComponent } from './game/game.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import {InventoryService} from './service/inventory.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { InventoryComponent } from './inventory/inventory.component';
         OverlayModule,
         MatListModule
     ],
-  providers: [],
+  providers: [InventoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

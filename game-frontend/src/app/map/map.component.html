@@ -13,13 +13,13 @@
         [attr.data-y]=y
         src={{this.getTileSvg(x,y)}}
         (click)="this.addCityBlock(x,y)"
-
       />
     </ng-container>
   </ng-container>
 </div>
+<app-inventory class="inventory"></app-inventory>
 
-<div class="inventory">
+<!--<div class="inventory">
   <div *ngFor="let x of [0,1,2,3]" class="inventory-button">
     <img
       src={{this.getPathNameWithName(this.typeCityBlock[x])}}
@@ -27,5 +27,5 @@
     />
     <span class="badge">{{this.availableCityBlock[x]}}</span>
   </div>
-</div>
+</div>-->
 

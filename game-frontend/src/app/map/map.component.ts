@@ -1,13 +1,14 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {GameService} from '../service/game.service';
 import {InventoryComponent} from '../inventory/inventory.component';
+import {InventoryService} from '../service/inventory.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements AfterViewInit, OnInit {
 
   public tabTiles: Array<number>;
   public availableCityBlock: Array<number>;
@@ -25,7 +26,7 @@ export class MapComponent implements AfterViewInit {
   private neighbourPointsWindTurbine: Map<string, number> = new Map();
   private tabDictionariesScore: Array<Map<string, number>> = new Array<Map<string, number>>(4);
 
-  constructor(public gameService: GameService) {
+  constructor(public gameService: GameService, private inventoryService: InventoryService) {
     // Initialisation of tabTiles
     this.tabTiles = new Array<number>(100);
     for (let i = 0; i < 100; i++) {
@@ -34,11 +35,11 @@ export class MapComponent implements AfterViewInit {
     console.log(this.tabTiles);
 
     // Initialisation of typeName
-    this.typeName = ['empty', 'tree', 'water', 'circus', 'house', 'fountain', 'wind-turbine'];
-    this.typeCityBlock = ['circus', 'house', 'fountain', 'wind-turbine'];
+    //  this.typeName = ['empty', 'tree', 'water', 'circus', 'house', 'fountain', 'wind-turbine'];
+    //  this.typeCityBlock = ['circus', 'house', 'fountain', 'wind-turbine'];
 
     // Initialisation of dictionaries
-    this.neighbourPointsCircus.set('circus', -20);
+    /*this.neighbourPointsCircus.set('circus', -20);
     this.neighbourPointsCircus.set('house', 10);
     this.neighbourPointsCircus.set('radius', 3);
 
@@ -59,13 +60,13 @@ export class MapComponent implements AfterViewInit {
     this.neighbourPointsWindTurbine.set('water', 8);
     this.neighbourPointsWindTurbine.set('radius', 1);
 
-    this.tabDictionariesScore[this.typeCityBlock.indexOf('circus')] = this.neighbourPointsCircus;
-    this.tabDictionariesScore[this.typeCityBlock.indexOf('house')] = this.neighbourPointsHouse;
-    this.tabDictionariesScore[this.typeCityBlock.indexOf('fountain')] = this.neighbourPointsFountain;
-    this.tabDictionariesScore[this.typeCityBlock.indexOf('wind-turbine')] = this.neighbourPointsWindTurbine;
+    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('circus')] = this.neighbourPointsCircus;
+    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('house')] = this.neighbourPointsHouse;
+    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('fountain')] = this.neighbourPointsFountain;
+    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('wind-turbine')] = this.neighbourPointsWindTurbine;*/
 
     // Initialisation of AvailableCityBlock
-    this.availableCityBlock = [0, 1, 0, 0];
+    this.availableCityBlock = [];
 
     // Initialisation of cityBlockSelected
     this.cityBlockSelected = undefined;
@@ -73,6 +74,17 @@ export class MapComponent implements AfterViewInit {
     // Initialisation score
     this.score = 0;
     this.nextScore = 10;
+  }
+
+  ngOnInit(): void {
+    this.typeCityBlock = this.inventoryService.typeCityBlock;
+    this.typeName = this.inventoryService.typeName;
+    this.availableCityBlock = this.inventoryService.availableCityBlock;
+    this.neighbourPointsCircus = this.inventoryService.neighbourPointsCircus;
+    this.neighbourPointsFountain = this.inventoryService.neighbourPointsFountain;
+    this.neighbourPointsHouse = this.inventoryService.neighbourPointsHouse;
+    this.neighbourPointsWindTurbine = this.inventoryService.neighbourPointsWindTurbine;
+    this.tabDictionariesScore = this.inventoryService.tabDictionariesScore;
   }
 
   ngAfterViewInit(): void {
@@ -102,12 +114,12 @@ export class MapComponent implements AfterViewInit {
   }
 
   public addCityBlock(x: number, y: number): void {
-    if (this.cityBlockSelected !== undefined && this.availableCityBlock[this.cityBlockSelected] > 0) {
+    if (this.inventoryService.cityBlockSelected !== undefined && this.availableCityBlock[this.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
       if (this.typeName[this.tabTiles[pos]] === 'empty') {
-        const t = this.cityBlockToTypeTile(this.cityBlockSelected);
+        const t = this.cityBlockToTypeTile(this.inventoryService.cityBlockSelected);
         this.tabTiles[pos] = t;
-        this.availableCityBlock[this.cityBlockSelected]--;
+        this.availableCityBlock[this.inventoryService.cityBlockSelected]--;
         console.log('score du cityBlock : ' + this.computeScore(x, y));
       }
     }
