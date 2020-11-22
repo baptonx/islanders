@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {GameService} from '../service/game.service';
 import {InventoryComponent} from '../inventory/inventory.component';
 import {InventoryService} from '../service/inventory.service';
