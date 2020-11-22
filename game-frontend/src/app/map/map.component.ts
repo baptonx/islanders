@@ -10,8 +10,10 @@ import {InventoryComponent} from '../inventory/inventory.component';
 export class MapComponent implements AfterViewInit {
 
   public tabTiles: Array<number>;
-  @Input() showInventory = false;
+  public availableCityBlock: Array<number>;
+  public cityBlockSelected: number | undefined;
 
+  public score: number;
   private typeName: Array<string>;
   private typeCityBlock: Array<string>;
 
@@ -60,6 +62,15 @@ export class MapComponent implements AfterViewInit {
     this.tabDictionariesScore[this.typeCityBlock.indexOf('house')] = this.neighbourPointsHouse;
     this.tabDictionariesScore[this.typeCityBlock.indexOf('fountain')] = this.neighbourPointsFountain;
     this.tabDictionariesScore[this.typeCityBlock.indexOf('wind-turbine')] = this.neighbourPointsWindTurbine;
+
+    // Initialisation of AvailableCityBlock
+    this.availableCityBlock = [12, 1, 2, 8];
+
+    // Initialisation of cityBlockSelected
+    this.cityBlockSelected = undefined;
+
+    // Initialisation score
+    this.score = 0;
   }
 
   ngAfterViewInit(): void {
@@ -71,7 +82,11 @@ export class MapComponent implements AfterViewInit {
 
   public getTileSvg(x: number, y: number): string {
     const type = this.tabTiles[y * 10 + x];
-    return 'assets/' + this.typeName[type] + '.svg';
+    return this.getPathNameWithName(this.typeName[type]);
+  }
+
+  public getPathNameWithName(name: string): string {
+    return 'assets/' + name + '.svg';
   }
 
   private cityBlockToTypeTile(typeCityBlock: number): number {
@@ -84,18 +99,21 @@ export class MapComponent implements AfterViewInit {
     return this.typeCityBlock.indexOf(name);
   }
 
-  public addCityBlock(x: number, y: number, typeCityBlock: number): void {
-    const pos = y * 10 + x;
-    if (this.typeName[this.tabTiles[pos]] === 'empty') {
-      const t = this.cityBlockToTypeTile(typeCityBlock);
-      this.tabTiles[pos] = t;
-      console.log(this.computeScore(x, y));
+  public addCityBlock(x: number, y: number): void {
+    if (this.cityBlockSelected !== undefined && this.availableCityBlock[this.cityBlockSelected] > 0) {
+      const pos = y * 10 + x;
+      if (this.typeName[this.tabTiles[pos]] === 'empty') {
+        const t = this.cityBlockToTypeTile(this.cityBlockSelected);
+        this.tabTiles[pos] = t;
+        this.availableCityBlock[this.cityBlockSelected]--;
+        console.log('score du cityBlock : ' + this.computeScore(x, y));
+      }
     }
   }
 
   public computeScore(x: number, y: number): number {
     console.log('y : ' + y + ' x : ' + x);
-    let score = 0;
+    let scoreCityBlock = 0;
     const pos = y * 10 + x;
     const type = this.tabTiles[pos];
     const typeCityBlock = this.typeTileToCityBlock(type);
@@ -114,19 +132,17 @@ export class MapComponent implements AfterViewInit {
             const typeRadius = this.tabTiles[newY * 10 + newX];
             const scoreRadius = dict.get(this.typeName[typeRadius]);
             if (scoreRadius !== undefined) {
-              score += scoreRadius;
+              scoreCityBlock += scoreRadius;
             }
           }
         }
       }
     }
-    return score;
+    this.score += scoreCityBlock;
+    return scoreCityBlock;
   }
 
-  public toggleInventory(x: number, y: number, typeCityBlock: number): void{
-    const pos = y * 10 + x;
-    if (this.typeName[this.tabTiles[pos]] === 'empty') {
-      this.showInventory = true;
-    }
+  public inventoryOnClick(x: number): void {
+    this.cityBlockSelected = x;
   }
 }
