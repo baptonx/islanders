@@ -14,6 +14,7 @@ export class MapComponent implements AfterViewInit {
   public cityBlockSelected: number | undefined;
 
   public score: number;
+  public nextScore: number;
   private typeName: Array<string>;
   private typeCityBlock: Array<string>;
 
@@ -64,13 +65,14 @@ export class MapComponent implements AfterViewInit {
     this.tabDictionariesScore[this.typeCityBlock.indexOf('wind-turbine')] = this.neighbourPointsWindTurbine;
 
     // Initialisation of AvailableCityBlock
-    this.availableCityBlock = [12, 1, 2, 8];
+    this.availableCityBlock = [0, 1, 0, 0];
 
     // Initialisation of cityBlockSelected
     this.cityBlockSelected = undefined;
 
     // Initialisation score
     this.score = 0;
+    this.nextScore = 10;
   }
 
   ngAfterViewInit(): void {
@@ -139,7 +141,21 @@ export class MapComponent implements AfterViewInit {
       }
     }
     this.score += scoreCityBlock;
+    this.updateScore();
     return scoreCityBlock;
+  }
+
+  public updateScore(): void {
+    while (this.score > this.nextScore) {
+      this.nextScore += 10;
+      this.updateInventory();
+    }
+  }
+
+  public updateInventory(): void {
+    for (let i = 0; i < this.availableCityBlock.length; i++) {
+      this.availableCityBlock[i]++;
+    }
   }
 
   public inventoryOnClick(x: number): void {
