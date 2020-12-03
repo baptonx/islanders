@@ -84,3 +84,6 @@
   flex-direction: row;
 }
 
+.inputNomJoueur{
+  border : 0px;
+}
