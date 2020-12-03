@@ -19,13 +19,13 @@ export class MapComponent implements AfterViewInit, OnInit {
   public availableCityBlock: Array<number>;
   private typeName: Array<string>;
   private typeCityBlock: Array<string>;
-
   // 4 dictionaries to calculate the scores
   private neighbourPointsCircus: Map<string, number> = new Map();
   private neighbourPointsHouse: Map<string, number> = new Map();
   private neighbourPointsFountain: Map<string, number> = new Map();
   private neighbourPointsWindTurbine: Map<string, number> = new Map();
   private tabDictionariesScore: Array<Map<string, number>> = new Array<Map<string, number>>(4);
+  private cityBlockSelected;
 
   constructor(public gameService: GameService, private inventoryService: InventoryService) {
     // Initialisation of tabTiles
@@ -38,10 +38,10 @@ export class MapComponent implements AfterViewInit, OnInit {
     // Initialisation score
     this.score = 0;
     this.nextScore = 10;
+    this.nomJoueur = 'Paul';
   }
 
   ngOnInit(): void {
-    this.nomJoueur = 'Paul';
     this.typeCityBlock = this.inventoryService.typeCityBlock;
     this.typeName = this.inventoryService.typeName;
     this.availableCityBlock = this.inventoryService.availableCityBlock;
@@ -79,6 +79,7 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   public addCityBlock(x: number, y: number): void {
+    console.log(this.cityBlockSelected);
     if (this.inventoryService.cityBlockSelected !== undefined && this.availableCityBlock[this.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
       if (this.typeName[this.tabTiles[pos]] === 'empty') {
@@ -130,8 +131,8 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   public updateInventory(): void {
-    for (let i = 0; i < this.inventoryService.availableCityBlock.length; i++) {
-      this.inventoryService.availableCityBlock[i]++;
+    for (let i = 0; i < this.availableCityBlock.length; i++) {
+      this.availableCityBlock[i]++;
     }
   }
 }
