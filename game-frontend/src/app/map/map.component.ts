@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {GameService} from '../service/game.service';
 import {InventoryComponent} from '../inventory/inventory.component';
 import {InventoryService} from '../service/inventory.service';
+import {AnonCmd, buttonBinder} from 'interacto';
 
 @Component({
   selector: 'app-map',
@@ -14,6 +15,10 @@ export class MapComponent implements AfterViewInit, OnInit {
   public nomJoueur: string;
   public score: number;
   public nextScore: number;
+  @ViewChild('changernom')
+  changerNom: ElementRef<HTMLButtonElement>;
+  @ViewChild('inputNomJoueur')
+  inputNomJoueur: ElementRef<HTMLInputElement>;
 
   //Service Inventory
   public availableCityBlock: Array<number>;
@@ -53,6 +58,16 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
+
+    buttonBinder()
+      .on(this.changerNom.nativeElement)
+      .toProduce(i => new AnonCmd(() => {
+          this.inputNomJoueur.nativeElement.disabled = !this.inputNomJoueur.nativeElement.disabled;
+          if (this.inputNomJoueur.nativeElement.disabled){
+            this.nomJoueur = this.inputNomJoueur.nativeElement.value;
+          }
+        }))
+      .bind();
   }
 
   private getRandomInt(max: number): number {
@@ -134,4 +149,5 @@ export class MapComponent implements AfterViewInit, OnInit {
       this.inventoryService.availableCityBlock[i]++;
     }
   }
+
 }
