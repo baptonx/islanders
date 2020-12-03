@@ -12,7 +12,7 @@ export class MapComponent implements AfterViewInit, OnInit {
 
   public tabTiles: Array<number>;
   public availableCityBlock: Array<number>;
-
+  public nomJoueur: string;
   public score: number;
   public nextScore: number;
   private typeName: Array<string>;
@@ -39,6 +39,7 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+    this.nomJoueur = 'Paul';
     this.typeCityBlock = this.inventoryService.typeCityBlock;
     this.typeName = this.inventoryService.typeName;
     this.availableCityBlock = this.inventoryService.availableCityBlock;
