@@ -12,13 +12,15 @@ import {MatListModule} from '@angular/material/list';
 import { GameComponent } from './game/game.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import {InventoryService} from './service/inventory.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     GameComponent,
-    InventoryComponent
+    InventoryComponent,
+    HomeComponent
   ],
     imports: [
         BrowserModule,
