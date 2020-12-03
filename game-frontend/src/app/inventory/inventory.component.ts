@@ -11,12 +11,12 @@ export class InventoryComponent implements OnInit {
   private availableCityBlock: Array<number>;
   private typeCityBlock: Array<string>;
 
-  constructor(private invetoryService: InventoryService) {
+  constructor(private inventoryService: InventoryService) {
   }
 
   ngOnInit(): void {
-    this.availableCityBlock = this.invetoryService.availableCityBlock;
-    this.typeCityBlock = this.invetoryService.typeCityBlock;
+    this.availableCityBlock = this.inventoryService.availableCityBlock;
+    this.typeCityBlock = this.inventoryService.typeCityBlock;
   }
 
   public getCityBlockSvg(x: number): string {
@@ -39,7 +39,7 @@ export class InventoryComponent implements OnInit {
   }
 
   public inventoryOnClick(x: number): void {
-    this.invetoryService.cityBlockSelected = x;
+    this.inventoryService.cityBlockSelected = x;
   }
 
 }
