@@ -9,12 +9,14 @@ import {InventoryService} from '../service/inventory.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements AfterViewInit, OnInit {
-
+  //Service Map
   public tabTiles: Array<number>;
-  public availableCityBlock: Array<number>;
   public nomJoueur: string;
   public score: number;
   public nextScore: number;
+
+  //Service Inventory
+  public availableCityBlock: Array<number>;
   private typeName: Array<string>;
   private typeCityBlock: Array<string>;
 
