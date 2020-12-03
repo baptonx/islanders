@@ -10,7 +10,7 @@ import {AnonCmd, buttonBinder} from 'interacto';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements AfterViewInit, OnInit {
-  //Service Map
+  // Service Map
   public tabTiles: Array<number>;
   public nomJoueur: string;
   public score: number;
@@ -20,7 +20,7 @@ export class MapComponent implements AfterViewInit, OnInit {
   @ViewChild('inputNomJoueur')
   inputNomJoueur: ElementRef<HTMLInputElement>;
 
-  //Service Inventory
+  // Service Inventory
   public availableCityBlock: Array<number>;
   private typeName: Array<string>;
   private typeCityBlock: Array<string>;
