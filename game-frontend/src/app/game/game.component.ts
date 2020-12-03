@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InventoryComponent } from '../inventory/inventory.component';
+import {MapComponent} from '../map/map.component';
 
 @Component({
   selector: 'app-game',

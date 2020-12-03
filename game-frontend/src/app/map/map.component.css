@@ -64,7 +64,23 @@
 .score {
   position: absolute;
   top: 20px;
-  right: 200px;
+  left: 50px;
   font-size: 1.7em;
+}
+
+.container{
+  flex : 1
+}
+
+.topDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex : 1
+}
+
+.namePlayer{
+  display : flex;
+  flex-direction: row;
 }
 
