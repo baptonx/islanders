@@ -1,0 +1,25 @@
+
+<div #map class="mapHome">
+  <ng-container *ngFor="let y of [0,1,2,3,4,5,6,7,8,9]">
+    <ng-container *ngFor="let x of [0,1,2,3,4,5,6,7,8,9]">
+      <img
+        class='tile'
+        [attr.data-x]=x
+        [attr.data-y]=y
+        src={{map.getTileSvg(x,y)}}
+      />
+    </ng-container>
+  </ng-container>
+</div>
+
+
+<!--<div class="inventory">
+  <div *ngFor="let x of [0,1,2,3]" class="inventory-button">
+    <img
+      src={{this.getPathNameWithName(this.typeCityBlock[x])}}
+      (click)="this.inventoryOnClick(x)"
+    />
+    <span class="badge">{{this.availableCityBlock[x]}}</span>
+  </div>
+</div>-->
+

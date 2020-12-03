@@ -128,8 +128,8 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   public updateInventory(): void {
-    for (let i = 0; i < this.availableCityBlock.length; i++) {
-      this.availableCityBlock[i]++;
+    for (let i = 0; i < this.inventoryService.availableCityBlock.length; i++) {
+      this.inventoryService.availableCityBlock[i]++;
     }
   }
 }
