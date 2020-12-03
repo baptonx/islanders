@@ -33,37 +33,6 @@ export class MapComponent implements AfterViewInit, OnInit {
     }
     console.log(this.tabTiles);
 
-    // Initialisation of typeName
-    //  this.typeName = ['empty', 'tree', 'water', 'circus', 'house', 'fountain', 'wind-turbine'];
-    //  this.typeCityBlock = ['circus', 'house', 'fountain', 'wind-turbine'];
-
-    // Initialisation of dictionaries
-    /*this.neighbourPointsCircus.set('circus', -20);
-    this.neighbourPointsCircus.set('house', 10);
-    this.neighbourPointsCircus.set('radius', 3);
-
-    this.neighbourPointsHouse.set('tree', 4);
-    this.neighbourPointsHouse.set('house', 5);
-    this.neighbourPointsHouse.set('circus', 8);
-    this.neighbourPointsHouse.set('fountain', 10);
-    this.neighbourPointsHouse.set('wind-turbine', -10);
-    this.neighbourPointsHouse.set('radius', 1);
-
-    this.neighbourPointsFountain.set('tree', 4);
-    this.neighbourPointsFountain.set('house', 5);
-    this.neighbourPointsFountain.set('circus', 6);
-    this.neighbourPointsFountain.set('radius', 1);
-
-    this.neighbourPointsWindTurbine.set('tree', -5);
-    this.neighbourPointsWindTurbine.set('house', -7);
-    this.neighbourPointsWindTurbine.set('water', 8);
-    this.neighbourPointsWindTurbine.set('radius', 1);
-
-    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('circus')] = this.neighbourPointsCircus;
-    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('house')] = this.neighbourPointsHouse;
-    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('fountain')] = this.neighbourPointsFountain;
-    this.tabDictionariesScore[this.inventoryService.typeCityBlock.indexOf('wind-turbine')] = this.neighbourPointsWindTurbine;*/
-
     // Initialisation score
     this.score = 0;
     this.nextScore = 10;
