@@ -1,20 +1,28 @@
 <div class ="container">
   <div class = 'topDiv'>
-    <div class = 'namePlayer'>
-      <h1>
-        Joueur :
-      </h1>
-      <input #inputNomJoueur class = 'inputNomJoueur' type = 'text' value = {{this.nomJoueur}}>
-      <button #changernom>Changer nom</button>
-
-    </div>
-    <h2>
+    <h1>
       Islanders
-    </h2>
+    </h1>
   </div>
-  <div class="score">
-    <h3>Score : {{this.score}}</h3>
-    <h3>Next Score : {{this.nextScore}}</h3>
+  <div class = 'info'>
+    <div class = 'info_currentgame'>
+      <div class = 'namePlayer'>
+        <input #inputNomJoueur class = 'inputNomJoueur' type = 'text' value = {{this.nomJoueur}}>
+        <button #changernom>Changer nom</button>
+      </div>
+      <div class = 'score'>
+        <p>Score : {{this.score}}</p>
+        <p>Next Score : {{this.nextScore}}</p>
+      </div>
+    </div>
+    <div class = 'container_tableau_score'>
+      <p>LeaderBoard</p>
+      <ng-container *ngFor="let y of this.tabScores.entries()">
+        <p>
+          {{y}}
+        </p>
+      </ng-container>
+    </div>
   </div>
 
   <div #map class="map">

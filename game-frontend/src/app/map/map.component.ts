@@ -15,6 +15,7 @@ export class MapComponent implements AfterViewInit, OnInit {
   public nomJoueur: string;
   public score: number;
   public nextScore: number;
+  public tabScores: Map<string, number> = new Map();
   @ViewChild('changernom')
   changerNom: ElementRef<HTMLButtonElement>;
   @ViewChild('inputNomJoueur')
@@ -44,6 +45,8 @@ export class MapComponent implements AfterViewInit, OnInit {
     this.score = 0;
     this.nextScore = 10;
     this.nomJoueur = 'Paul';
+    this.tabScores.set('Paul', 10);
+    this.tabScores.set('Hugo', 20);
   }
 
   ngOnInit(): void {
