@@ -13,6 +13,7 @@ import { GameComponent } from './game/game.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import {InventoryService} from './service/inventory.service';
 import { HomeComponent } from './home/home.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HomeComponent } from './home/home.component';
     MapComponent,
     GameComponent,
     InventoryComponent,
-    HomeComponent
+    HomeComponent,
+    LeaderboardComponent
   ],
     imports: [
         BrowserModule,
