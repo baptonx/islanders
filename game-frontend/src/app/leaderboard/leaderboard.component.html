@@ -1,8 +1,16 @@
 <div class = 'container_tableau_score'>
-  <p>LeaderBoard</p>
+  <div class = 'header_container'>
+    <img
+      src='assets/ranking.svg'
+    />
+    <p>LeaderBoard</p>
+  </div>
   <ng-container *ngFor="let y of this.leaderboardService.tabScores.entries()">
-    <p>
-      {{y}}
-    </p>
+    <div class ="score_container">
+      <p>
+        {{y[0]}} {{y[1]}}
+      </p>
+    </div>
+
   </ng-container>
 </div>
