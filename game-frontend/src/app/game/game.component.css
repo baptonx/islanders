@@ -11,7 +11,14 @@
 .info_currentgame{
   display : flex;
   flex-direction: column;
-  flex : 1;
+  justify-self: left;
+  flex:2;
+}
+
+a{
+  position:absolute;
+  bottom:5%;
+  right:5%;
 }
 
 .info{
@@ -48,4 +55,17 @@
 
 .inventory-button:hover {
   background-color: black;
+}
+
+app-leaderboard{
+  display:flex;
+  flex:1;
+  justify-self: flex-end;
+}
+
+h2{
+  display: flex;
+  flex:4;
+  justify-content: center;
+  align-self:flex-start;
 }

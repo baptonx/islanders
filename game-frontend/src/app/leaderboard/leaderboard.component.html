@@ -6,11 +6,8 @@
     <p>LeaderBoard</p>
   </div>
   <ng-container *ngFor="let y of this.leaderboardService.tabScores.entries()">
-    <div class ="score_container">
-      <p>
+      <p class = "score">
         {{y[0]}} {{y[1]}}
       </p>
-    </div>
-
   </ng-container>
 </div>
