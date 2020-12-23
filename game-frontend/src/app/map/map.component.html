@@ -11,13 +11,13 @@
         <button #changernom>Changer nom</button>
       </div>
       <div class = 'score'>
-        <p>Score : {{this.score}}</p>
-        <p>Next Score : {{this.nextScore}}</p>
+        <p>Score : {{this.mapService.score}}</p>
+        <p>Next Score : {{this.mapService.nextScore}}</p>
       </div>
     </div>
     <div class = 'container_tableau_score'>
       <p>LeaderBoard</p>
-      <ng-container *ngFor="let y of this.tabScores.entries()">
+      <ng-container *ngFor="let y of this.mapService.tabScores.entries()">
         <p>
           {{y}}
         </p>

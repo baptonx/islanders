@@ -3,6 +3,7 @@ import {GameService} from '../service/game.service';
 import {InventoryComponent} from '../inventory/inventory.component';
 import {InventoryService} from '../service/inventory.service';
 import {AnonCmd, buttonBinder} from 'interacto';
+import {MapService} from "../service/map.service";
 
 @Component({
   selector: 'app-map',
@@ -10,17 +11,20 @@ import {AnonCmd, buttonBinder} from 'interacto';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements AfterViewInit, OnInit {
+  /*
   // Service Map
   public tabTiles: Array<number>;
   public nomJoueur: string;
   public score: number;
   public nextScore: number;
   public tabScores: Map<string, number> = new Map();
+   */
   @ViewChild('changernom')
   changerNom: ElementRef<HTMLButtonElement>;
   @ViewChild('inputNomJoueur')
   inputNomJoueur: ElementRef<HTMLInputElement>;
 
+  /*
   // Service Inventory
   public availableCityBlock: Array<number>;
   private typeName: Array<string>;
@@ -32,8 +36,10 @@ export class MapComponent implements AfterViewInit, OnInit {
   private neighbourPointsWindTurbine: Map<string, number> = new Map();
   private tabDictionariesScore: Array<Map<string, number>> = new Array<Map<string, number>>(4);
   private cityBlockSelected;
+   */
 
-  constructor(public gameService: GameService, private inventoryService: InventoryService) {
+  constructor(public mapService: MapService) {
+    /*
     // Initialisation of tabTiles
     this.tabTiles = new Array<number>(100);
     for (let i = 0; i < 100; i++) {
@@ -47,9 +53,11 @@ export class MapComponent implements AfterViewInit, OnInit {
     this.nomJoueur = 'Paul';
     this.tabScores.set('Paul', 10);
     this.tabScores.set('Hugo', 20);
+     */
   }
 
   ngOnInit(): void {
+    /*
     this.typeCityBlock = this.inventoryService.typeCityBlock;
     this.typeName = this.inventoryService.typeName;
     this.availableCityBlock = this.inventoryService.availableCityBlock;
@@ -58,6 +66,7 @@ export class MapComponent implements AfterViewInit, OnInit {
     this.neighbourPointsHouse = this.inventoryService.neighbourPointsHouse;
     this.neighbourPointsWindTurbine = this.inventoryService.neighbourPointsWindTurbine;
     this.tabDictionariesScore = this.inventoryService.tabDictionariesScore;
+     */
   }
 
   ngAfterViewInit(): void {
@@ -67,7 +76,7 @@ export class MapComponent implements AfterViewInit, OnInit {
       .toProduce(i => new AnonCmd(() => {
           this.inputNomJoueur.nativeElement.disabled = !this.inputNomJoueur.nativeElement.disabled;
           if (this.inputNomJoueur.nativeElement.disabled){
-            this.nomJoueur = this.inputNomJoueur.nativeElement.value;
+            this.mapService.nomJoueur = this.inputNomJoueur.nativeElement.value;
           }
         }))
       .bind();
@@ -78,8 +87,8 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   public getTileSvg(x: number, y: number): string {
-    const type = this.tabTiles[y * 10 + x];
-    return this.getPathNameWithName(this.typeName[type]);
+    const type = this.mapService.tabTiles[y * 10 + x];
+    return this.getPathNameWithName(this.mapService.inventoryService.typeName[type]);
   }
 
   public getPathNameWithName(name: string): string {
@@ -87,23 +96,23 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   private cityBlockToTypeTile(typeCityBlock: number): number {
-    const nameCityBlock = this.typeCityBlock[typeCityBlock];
-    return this.typeName.indexOf(nameCityBlock);
+    const nameCityBlock = this.mapService.inventoryService.typeCityBlock[typeCityBlock];
+    return this.mapService.inventoryService.typeName.indexOf(nameCityBlock);
   }
 
   private typeTileToCityBlock(type: number): number {
-    const name = this.typeName[type];
-    return this.typeCityBlock.indexOf(name);
+    const name = this.mapService.inventoryService.typeName[type];
+    return this.mapService.inventoryService.typeCityBlock.indexOf(name);
   }
 
   public addCityBlock(x: number, y: number): void {
-    console.log(this.cityBlockSelected);
-    if (this.inventoryService.cityBlockSelected !== undefined && this.availableCityBlock[this.inventoryService.cityBlockSelected] > 0) {
+    console.log(this.mapService.inventoryService.cityBlockSelected);
+    if (this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
-      if (this.typeName[this.tabTiles[pos]] === 'empty') {
-        const t = this.cityBlockToTypeTile(this.inventoryService.cityBlockSelected);
-        this.tabTiles[pos] = t;
-        this.availableCityBlock[this.inventoryService.cityBlockSelected]--;
+      if (this.mapService.inventoryService.typeName[this.mapService.tabTiles[pos]] === 'empty') {
+        const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
+        this.mapService.tabTiles[pos] = t;
+        this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected]--;
         console.log('score du cityBlock : ' + this.computeScore(x, y));
       }
     }
@@ -113,9 +122,9 @@ export class MapComponent implements AfterViewInit, OnInit {
     console.log('y : ' + y + ' x : ' + x);
     let scoreCityBlock = 0;
     const pos = y * 10 + x;
-    const type = this.tabTiles[pos];
+    const type = this.mapService.tabTiles[pos];
     const typeCityBlock = this.typeTileToCityBlock(type);
-    const dict = this.tabDictionariesScore[typeCityBlock];
+    const dict = this.mapService.inventoryService.tabDictionariesScore[typeCityBlock];
     const radius = dict.get('radius');
     console.log('radius : ' + radius);
 
@@ -127,8 +136,8 @@ export class MapComponent implements AfterViewInit, OnInit {
           const newX = x + xRadius;
           if (newY >= 0 && newY < 10 && newX >= 0 && newX < 10) {
             // console.log('newY : ' + newY + ' newX : ' + newX);
-            const typeRadius = this.tabTiles[newY * 10 + newX];
-            const scoreRadius = dict.get(this.typeName[typeRadius]);
+            const typeRadius = this.mapService.tabTiles[newY * 10 + newX];
+            const scoreRadius = dict.get(this.mapService.inventoryService.typeName[typeRadius]);
             if (scoreRadius !== undefined) {
               scoreCityBlock += scoreRadius;
             }
@@ -136,21 +145,21 @@ export class MapComponent implements AfterViewInit, OnInit {
         }
       }
     }
-    this.score += scoreCityBlock;
+    this.mapService.score += scoreCityBlock;
     this.updateScore();
     return scoreCityBlock;
   }
 
   public updateScore(): void {
-    while (this.score > this.nextScore) {
-      this.nextScore += 10;
+    while (this.mapService.score > this.mapService.nextScore) {
+      this.mapService.nextScore += 10;
       this.updateInventory();
     }
   }
 
   public updateInventory(): void {
-    for (let i = 0; i < this.availableCityBlock.length; i++) {
-      this.availableCityBlock[i]++;
+    for (let i = 0; i < this.mapService.inventoryService.availableCityBlock.length; i++) {
+      this.mapService.inventoryService.availableCityBlock[i]++;
     }
   }
 
