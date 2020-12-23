@@ -4,6 +4,7 @@ import {InventoryComponent} from '../inventory/inventory.component';
 import {InventoryService} from '../service/inventory.service';
 import {AnonCmd, buttonBinder} from 'interacto';
 import {MapService} from '../service/map.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-map',
@@ -34,7 +35,7 @@ export class MapComponent{
   private cityBlockSelected;
    */
 
-  constructor(public mapService: MapService) {
+  constructor(public mapService: MapService, public router: Router) {
     /*
     // Initialisation of tabTiles
     this.tabTiles = new Array<number>(100);
@@ -57,7 +58,7 @@ export class MapComponent{
   }
 
   public getTileSvg(x: number, y: number): string {
-    const type = this.mapService.tabTiles[y * 10 + x];
+    const type = this.mapService.map.tabTiles[y * 10 + x];
     return this.getPathNameWithName(this.mapService.inventoryService.typeName[type]);
   }
 
@@ -79,9 +80,9 @@ export class MapComponent{
     console.log(this.mapService.inventoryService.cityBlockSelected);
     if(this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
-      if (this.mapService.inventoryService.typeName[this.mapService.tabTiles[pos]] === 'empty') {
+      if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
-        this.mapService.tabTiles[pos] = t;
+        this.mapService.map.tabTiles[pos] = t;
         this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected]--;
         console.log('score du cityBlock : ' + this.computeScore(x, y));
       }
@@ -92,7 +93,7 @@ export class MapComponent{
     console.log('y : ' + y + ' x : ' + x);
     let scoreCityBlock = 0;
     const pos = y * 10 + x;
-    const type = this.mapService.tabTiles[pos];
+    const type = this.mapService.map.tabTiles[pos];
     const typeCityBlock = this.typeTileToCityBlock(type);
     const dict = this.mapService.inventoryService.tabDictionariesScore[typeCityBlock];
     const radius = dict.get('radius');
@@ -106,7 +107,7 @@ export class MapComponent{
           const newX = x + xRadius;
           if (newY >= 0 && newY < 10 && newX >= 0 && newX < 10) {
             // console.log('newY : ' + newY + ' newX : ' + newX);
-            const typeRadius = this.mapService.tabTiles[newY * 10 + newX];
+            const typeRadius = this.mapService.map.tabTiles[newY * 10 + newX];
             const scoreRadius = dict.get(this.mapService.inventoryService.typeName[typeRadius]);
             if (scoreRadius !== undefined) {
               scoreCityBlock += scoreRadius;

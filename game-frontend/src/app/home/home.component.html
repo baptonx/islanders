@@ -1,8 +1,22 @@
   <h1 class="title" >ISLANDER</h1>
-<button class="start_button" label="START">
-  <img src="">
-</button>
-<div #map class="mapHome">
+  <button class="start_button" label="START">
+    <img src="">
+    <li><a routerLink="/play">Play</a></li>
+  </button>
+
+  <button #buttonAddMap>NewMap</button>
+
+  <div class = 'chooseMapDiv'>
+    <div class = 'leftBox'><button class = 'arrowLeft' #arrowLeft>Left</button></div>
+    <div class = 'middleBox'><app-map></app-map></div>
+    <div class = 'rightBox'><button class = 'arrowRight' #arrowRight>Right</button></div>
+  </div>
+
+
+
+
+
+<!--<div #map class="mapHome">
   <ng-container *ngFor="let y of [0,1,2,3,4,5,6,7,8,9]">
     <ng-container *ngFor="let x of [0,1,2,3,4,5,6,7,8,9]">
       <img
@@ -13,7 +27,7 @@
       />
     </ng-container>
   </ng-container>
-</div>
+</div>-->
 
 
 <!--<div class="inventory">

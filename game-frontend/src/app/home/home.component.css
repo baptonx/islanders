@@ -1,70 +1,9 @@
-.mapHome {
-  --size-cell: 58px;
-  --nb-cell: 10;
-  --z-rotate: 45deg;
-  --x-rotate: 60deg;
-
-
-  line-height: 0;
-  position: absolute;
-  top: 70px;
-  /*left: 40pc;*/
-  left: 50%;
-  transform: translateX(-50%) translateY(90px) scale(1.4) rotateX(var(--x-rotate)) rotateZ(var(--z-rotate));
-  margin: auto;
-  width: calc(var(--size-cell) * var(--nb-cell));
-  z-index: 1000;
+.chooseMapDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.tile {
-  user-select: none;
-  margin: 0 -21px;
-  animation: showTile 3s;
-  transform: rotateZ(-45deg) rotateY(-60deg) scale(1.6);
-  clip-path: polygon(50px 0, 0 25px, 0 32px, 50px 58px, 100px 33px, 100px 25px, 50px 0);
-}
-
-
-
-.inventory {
-  /*position: relative;
-  top:50%;
-  left:50%;*/
-  position: absolute;
-  bottom: 10px;
-  left:50%;
-  transform: translate(-50%, 0%);
-  background-color: #cdcdcd;
-  box-shadow: 0px 0px 0px 0px black;
-  border-radius: 15px;
-}
-
-.badge {
-  position: inherit;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background: red;
-  color: white;
-}
-
-.inventory-button {
-  float: left;
-  margin: 10px;
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.inventory-button:hover {
-  background-color: black;
-}
-
-.score {
-  position: absolute;
-  top: 20px;
-  right: 200px;
-  font-size: 1.7em;
+.leftBox {
 }
 

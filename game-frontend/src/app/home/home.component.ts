@@ -1,37 +1,69 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {InventoryService} from '../service/inventory.service';
+import {HomeService} from "../service/home.service";
+import {AnonCmd, buttonBinder} from "interacto";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  private typeName: Array<string>;
-  public tabTiles: Array<number>;
+export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChild('arrowLeft')
+  arrowLeft: ElementRef<HTMLButtonElement>;
+  @ViewChild('arrowRight')
+  arrowRight: ElementRef<HTMLButtonElement>;
+  @ViewChild('buttonAddMap')
+  buttonAddMap: ElementRef<HTMLButtonElement>;
 
-  constructor(private inventoryService: InventoryService) {
-    this.tabTiles = new Array<number>(100);
-    for (let i = 0; i < 100; i++) {
-      this.tabTiles[i] = this.getRandomInt(3);
-    }
-    this.typeName = this.inventoryService.typeName;
+  constructor(public homeService: HomeService) {
   }
 
   ngOnInit(): void {
+    this.homeService.initialize();
   }
 
-  private getRandomInt(max: number): number {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+  ngAfterViewInit(): void {
+    buttonBinder()
+      .on(this.arrowLeft.nativeElement)
+      .toProduce(i => new AnonCmd(() => {
+        if (this.homeService.indexCurrentMap > 0) {
+          this.homeService.indexCurrentMap--;
+        }
+        else {
+          this.homeService.indexCurrentMap = this.homeService.tabMap.length - 1;
+        }
+        this.homeService.changeMap(this.homeService.indexCurrentMap);
+      }))
+      .bind();
 
-  public getTileSvg(x: number, y: number): string {
-    const type = this.tabTiles[y * 10 + x];
-    return this.getPathNameWithName(this.typeName[type]);
-  }
+    buttonBinder()
+      .on(this.arrowRight.nativeElement)
+      .toProduce(i => new AnonCmd(() => {
+        if (this.homeService.indexCurrentMap < this.homeService.tabMap.length-1) {
+          this.homeService.indexCurrentMap++;
+        }
+        else {
+          this.homeService.indexCurrentMap = 0;
+        }
+        this.homeService.changeMap(this.homeService.indexCurrentMap);
+      }))
+      .bind();
 
-  public getPathNameWithName(name: string): string {
-    return 'assets/' + name + '.svg';
-  }
+    /*
+    buttonBinder()
+      .on(this.buttonAddMap.nativeElement)
+      .toProduce(i => new AnonCmd(() => {
+        if (this.homeService.indexCurrentMap < this.homeService.tabMap.length-1) {
+          this.homeService.indexCurrentMap++;
+        }
+        else {
+          this.homeService.indexCurrentMap = 0;
+        }
+        this.homeService.changeMap(this.homeService.indexCurrentMap);
+      }))
+      .bind();
 
+     */
+  }
 }

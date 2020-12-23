@@ -55,6 +55,11 @@ export class InventoryService {
     this.cityBlockSelected = x;
   }
 
+  public initialize(): void {
+    this.availableCityBlock = [0, 1, 0, 0];
+    this.cityBlockSelected = undefined;
+  }
+
   /***public getCityBlockSvg(x: number): string {
     if (x === 0) {
       return 'assets/house.svg';

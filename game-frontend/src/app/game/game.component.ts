@@ -4,6 +4,7 @@ import {MapComponent} from '../map/map.component';
 import {InfogameService} from '../service/infogame.service';
 import {AnonCmd, buttonBinder} from 'interacto';
 import {LeaderboardService} from '../service/leaderboard.service';
+import {MapService} from "../service/map.service";
 
 @Component({
   selector: 'app-game',
@@ -17,9 +18,12 @@ export class GameComponent implements OnInit, AfterViewInit {
   @ViewChild('inputNomJoueur')
   inputNomJoueur: ElementRef<HTMLInputElement>;
 
-  constructor(public infogameService: InfogameService, public leaderboardService: LeaderboardService) { }
+  constructor(public infogameService: InfogameService, public leaderboardService: LeaderboardService, public mapService: MapService) { }
 
   ngOnInit(): void {
+    this.mapService.map = Object.assign({}, this.mapService.map);
+    this.mapService.map.tabTiles = Object.assign([], this.mapService.map.tabTiles);
+    this.mapService.inventoryService.initialize();
   }
 
   ngAfterViewInit(): void {
