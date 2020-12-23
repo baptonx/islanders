@@ -42,4 +42,28 @@ export class InventoryService {
     this.tabDictionariesScore[this.typeCityBlock.indexOf('fountain')] = this.neighbourPointsFountain;
     this.tabDictionariesScore[this.typeCityBlock.indexOf('wind-turbine')] = this.neighbourPointsWindTurbine;
   }
+
+  public getCityBlockRemaining(x: number): number {
+    return this.availableCityBlock[x];
+  }
+
+  public getPathNameWithName(name: string): string {
+    return 'assets/' + name + '.svg';
+  }
+
+  public inventoryOnClick(x: number): void {
+    this.cityBlockSelected = x;
+  }
+
+  /***public getCityBlockSvg(x: number): string {
+    if (x === 0) {
+      return 'assets/house.svg';
+    } else if (x === 1) {
+      return 'assets/fountain.svg';
+    } else if (x === 2) {
+      return 'assets/wind-turbine.svg';
+    } else if (x === 3) {
+      return 'assets/circus.svg';
+    }
+  }***/
 }
