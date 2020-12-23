@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LeaderboardService} from '../service/leaderboard.service';
 
 @Component({
   selector: 'app-leaderboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaderboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public leaderboardService: LeaderboardService) { }
 
   ngOnInit(): void {
   }

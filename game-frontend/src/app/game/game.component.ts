@@ -3,6 +3,7 @@ import { InventoryComponent } from '../inventory/inventory.component';
 import {MapComponent} from '../map/map.component';
 import {InfogameService} from '../service/infogame.service';
 import {AnonCmd, buttonBinder} from 'interacto';
+import {LeaderboardService} from '../service/leaderboard.service';
 
 @Component({
   selector: 'app-game',
@@ -16,7 +17,7 @@ export class GameComponent implements OnInit, AfterViewInit {
   @ViewChild('inputNomJoueur')
   inputNomJoueur: ElementRef<HTMLInputElement>;
 
-  constructor(public infogameService: InfogameService) { }
+  constructor(public infogameService: InfogameService, public leaderboardService: LeaderboardService) { }
 
   ngOnInit(): void {
   }

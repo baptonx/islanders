@@ -1,1 +1,8 @@
-<p>leaderboard works!</p>
+<div class = 'container_tableau_score'>
+  <p>LeaderBoard</p>
+  <ng-container *ngFor="let y of this.leaderboardService.tabScores.entries()">
+    <p>
+      {{y}}
+    </p>
+  </ng-container>
+</div>

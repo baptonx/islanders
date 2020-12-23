@@ -15,14 +15,7 @@
         <p>Next Score : {{this.infogameService.nextScore}}</p>
       </div>
     </div>
-    <div class = 'container_tableau_score'>
-      <p>LeaderBoard</p>
-      <ng-container *ngFor="let y of this.infogameService.tabScores.entries()">
-        <p>
-          {{y}}
-        </p>
-      </ng-container>
-    </div>
+    <app-leaderboard></app-leaderboard>
   </div>
   <app-map></app-map>
   <app-inventory class="inventory"></app-inventory>

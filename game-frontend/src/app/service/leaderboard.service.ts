@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LeaderboardService {
-
-  constructor() { }
+  public tabScores: Map<string, number> = new Map();
+  constructor() {
+    this.tabScores.set('Paul', 10);
+    this.tabScores.set('Hugo', 20);
+  }
 }
