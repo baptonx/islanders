@@ -1,4 +1,30 @@
 <div class = 'container'>
-    <app-map></app-map>
+  <div class = 'topDiv'>
+    <h1>
+      Islanders
+    </h1>
+  </div>
+  <div class = 'info'>
+    <div class = 'info_currentgame'>
+      <div class = 'namePlayer'>
+        <input #inputNomJoueur class = 'inputNomJoueur' type = 'text' value = {{this.infogameService.nomJoueur}}>
+        <button #changernom>Changer nom</button>
+      </div>
+      <div class = 'score'>
+        <p>Score : {{this.infogameService.score}}</p>
+        <p>Next Score : {{this.infogameService.nextScore}}</p>
+      </div>
+    </div>
+    <div class = 'container_tableau_score'>
+      <p>LeaderBoard</p>
+      <ng-container *ngFor="let y of this.infogameService.tabScores.entries()">
+        <p>
+          {{y}}
+        </p>
+      </ng-container>
+    </div>
+  </div>
+  <app-map></app-map>
+  <app-inventory class="inventory"></app-inventory>
 </div>
 

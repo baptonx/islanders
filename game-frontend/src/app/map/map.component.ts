@@ -3,14 +3,14 @@ import {GameService} from '../service/game.service';
 import {InventoryComponent} from '../inventory/inventory.component';
 import {InventoryService} from '../service/inventory.service';
 import {AnonCmd, buttonBinder} from 'interacto';
-import {MapService} from "../service/map.service";
+import {MapService} from '../service/map.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements AfterViewInit, OnInit {
+export class MapComponent{
   /*
   // Service Map
   public tabTiles: Array<number>;
@@ -19,10 +19,6 @@ export class MapComponent implements AfterViewInit, OnInit {
   public nextScore: number;
   public tabScores: Map<string, number> = new Map();
    */
-  @ViewChild('changernom')
-  changerNom: ElementRef<HTMLButtonElement>;
-  @ViewChild('inputNomJoueur')
-  inputNomJoueur: ElementRef<HTMLInputElement>;
 
   /*
   // Service Inventory
@@ -56,32 +52,6 @@ export class MapComponent implements AfterViewInit, OnInit {
      */
   }
 
-  ngOnInit(): void {
-    /*
-    this.typeCityBlock = this.inventoryService.typeCityBlock;
-    this.typeName = this.inventoryService.typeName;
-    this.availableCityBlock = this.inventoryService.availableCityBlock;
-    this.neighbourPointsCircus = this.inventoryService.neighbourPointsCircus;
-    this.neighbourPointsFountain = this.inventoryService.neighbourPointsFountain;
-    this.neighbourPointsHouse = this.inventoryService.neighbourPointsHouse;
-    this.neighbourPointsWindTurbine = this.inventoryService.neighbourPointsWindTurbine;
-    this.tabDictionariesScore = this.inventoryService.tabDictionariesScore;
-     */
-  }
-
-  ngAfterViewInit(): void {
-
-    buttonBinder()
-      .on(this.changerNom.nativeElement)
-      .toProduce(i => new AnonCmd(() => {
-          this.inputNomJoueur.nativeElement.disabled = !this.inputNomJoueur.nativeElement.disabled;
-          if (this.inputNomJoueur.nativeElement.disabled){
-            this.mapService.nomJoueur = this.inputNomJoueur.nativeElement.value;
-          }
-        }))
-      .bind();
-  }
-
   private getRandomInt(max: number): number {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -107,7 +77,7 @@ export class MapComponent implements AfterViewInit, OnInit {
 
   public addCityBlock(x: number, y: number): void {
     console.log(this.mapService.inventoryService.cityBlockSelected);
-    if (this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
+    if(this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.tabTiles[pos]] === 'empty') {
         const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
@@ -145,14 +115,14 @@ export class MapComponent implements AfterViewInit, OnInit {
         }
       }
     }
-    this.mapService.score += scoreCityBlock;
+    this.mapService.infogameService.score += scoreCityBlock;
     this.updateScore();
     return scoreCityBlock;
   }
 
   public updateScore(): void {
-    while (this.mapService.score > this.mapService.nextScore) {
-      this.mapService.nextScore += 10;
+    while (this.mapService.infogameService.score >= this.mapService.infogameService.nextScore) {
+      this.mapService.infogameService.nextScore += 10;
       this.updateInventory();
     }
   }

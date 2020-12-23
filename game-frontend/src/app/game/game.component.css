@@ -1,3 +1,59 @@
 .container{
   flex : 1
 }
+
+.topDiv {
+  display: flex;
+  flex : 1;
+  justify-content: center;
+}
+
+.info_currentgame{
+  display : flex;
+  flex-direction: column;
+  flex : 1;
+}
+
+.info{
+  display : flex;
+  flex : 1;
+  flex-direction: row;
+}
+
+.inputNomJoueur{
+  border-width : 1px;
+  border-radius: 5px;
+}
+
+.container_tableau_score{
+  display: flex;
+  flex : 1;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.inventory {
+  /*position: relative;
+  top:50%;
+  left:50%;*/
+  position: absolute;
+  bottom: 10px;
+  left:50%;
+  transform: translate(-50%, 0%);
+  background-color: #cdcdcd;
+  box-shadow: 0px 0px 0px 0px black;
+  border-radius: 15px;
+}
+
+.inventory-button {
+  float: left;
+  margin: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.inventory-button:hover {
+  background-color: black;
+}
