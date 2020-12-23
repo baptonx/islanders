@@ -4,10 +4,14 @@ import {InfogameService} from "../service/infogame.service";
 export class MapImpl {
   public tabTiles: Array<number>;
   public name: string;
+  public tabScores: Map<string, number>;
 
   constructor() {
     this.tabTiles = this.generateRandomMap();
     this.name = "nomParDefaut";
+    this.tabScores = new Map();
+    this.tabScores.set('Paul', this.getRandomInt(50));
+    this.tabScores.set('Hugo', this.getRandomInt(50));
   }
 
   private getRandomInt(max: number): number {

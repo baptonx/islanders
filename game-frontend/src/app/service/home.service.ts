@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {MapService} from "./map.service";
 import {MapImpl} from "../model/map-impl";
+import {LeaderboardService} from "./leaderboard.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class HomeService {
   public tabMap: Array<MapImpl>;
   public indexCurrentMap;
 
-  constructor(public mapService: MapService) {
+  constructor(public mapService: MapService, public leaderboardService: LeaderboardService) {
     this.tabMap = new Array<MapImpl>(3);
     for (let i = 0; i < this.tabMap.length; i++) {
       this.tabMap[i] = new MapImpl();
@@ -25,5 +26,10 @@ export class HomeService {
 
   public changeMap(index: number): void {
     this.mapService.map = this.tabMap[index];
+    this.leaderboardService.changeTabScores(this.mapService.map.tabScores);
+  }
+
+  public addMap(): void {
+    this.tabMap.push(new MapImpl());
   }
 }

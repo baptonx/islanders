@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   arrowRight: ElementRef<HTMLButtonElement>;
   @ViewChild('buttonAddMap')
   buttonAddMap: ElementRef<HTMLButtonElement>;
+  @ViewChild('inputNamePlayer')
+  inputNamePlayer: ElementRef<HTMLButtonElement>;
 
   constructor(public homeService: HomeService) {
   }
@@ -50,20 +52,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }))
       .bind();
 
-    /*
+
     buttonBinder()
       .on(this.buttonAddMap.nativeElement)
       .toProduce(i => new AnonCmd(() => {
-        if (this.homeService.indexCurrentMap < this.homeService.tabMap.length-1) {
-          this.homeService.indexCurrentMap++;
-        }
-        else {
-          this.homeService.indexCurrentMap = 0;
-        }
-        this.homeService.changeMap(this.homeService.indexCurrentMap);
+        this.homeService.addMap();
+        this.homeService.tabMap[this.homeService.tabMap.length - 1].name = this.inputNamePlayer.nativeElement.value;
       }))
       .bind();
-
-     */
   }
 }
