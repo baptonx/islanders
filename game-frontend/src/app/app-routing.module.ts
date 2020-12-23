@@ -7,12 +7,12 @@ import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   {path: 'map', component: MapComponent},
-  {path: 'gme', component: GameComponent},
+  {path: 'play', component: GameComponent},
   {path: 'inventory', component: InventoryComponent},
   {path: 'home', component: HomeComponent},
   {
     path: '',
-    redirectTo: '/gme',
+    redirectTo: '/play',
     pathMatch: 'full'
   }
 ];
