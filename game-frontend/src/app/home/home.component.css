@@ -1,9 +1,40 @@
-.chooseMapDiv {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.container{
+  flex:1;
 }
 
-.leftBox {
+.header_container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bottom_container{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  bottom: 5%;
+  right:40%;
+}
+
+.middle_container{
+  display: flex;
+  flex-direction: row;
+}
+
+.arrowLeft{
+  position: absolute;
+  display: flex;
+  top:50%;
+  left:5%;
+  justify-content: flex-start;
+}
+
+.arrowRight{
+  position: absolute;
+  display: flex;
+  top:50%;
+  right:5%;
+  justify-content: flex-end;
 }
 

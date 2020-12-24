@@ -1,45 +1,20 @@
-  <h1 class="title" >ISLANDER</h1>
-  <button class="start_button" label="START">
-    <img src="">
-    <li><a routerLink="/play">Play</a></li>
-  </button>
-
-  <button #buttonAddMap>NewMap</button>
-  <input #inputNamePlayer>
-
-
-
-  <div class = 'chooseMapDiv'>
-    <div class = 'leftBox'><button class = 'arrowLeft' #arrowLeft>Left</button></div>
-    <div class = 'middleBox'><app-map></app-map></div>
-    <div class = 'rightBox'><button class = 'arrowRight' #arrowRight>Right</button></div>
+<div class = "container">
+  <div class ="header_container">
+    <h1>ISLANDER</h1>
+    <h2>{{this.homeService.mapService.map.name}}</h2>
   </div>
-
-
-
-
-
-<!--<div #map class="mapHome">
-  <ng-container *ngFor="let y of [0,1,2,3,4,5,6,7,8,9]">
-    <ng-container *ngFor="let x of [0,1,2,3,4,5,6,7,8,9]">
-      <img
-        class='tile'
-        [attr.data-x]=x
-        [attr.data-y]=y
-        src={{this.getTileSvg(x,y)}}
-      />
-    </ng-container>
-  </ng-container>
-</div>-->
-
-
-<!--<div class="inventory">
-  <div *ngFor="let x of [0,1,2,3]" class="inventory-button">
-    <img
-      src={{this.getPathNameWithName(this.typeCityBlock[x])}}
-      (click)="this.inventoryOnClick(x)"
-    />
-    <span class="badge">{{this.availableCityBlock[x]}}</span>
+  <div class = 'middle_container'>
+    <button class = 'arrowLeft' #arrowLeft>Left</button>
+    <app-map></app-map>
+    <button class = 'arrowRight' #arrowRight>Right</button>
   </div>
-</div>-->
-
+  <div class = "bottom_container">
+    <button class="start_button" label="START" routerLink="/play">
+      <p>Play !</p>
+    </button>
+    <div class ="new_map_container">
+      <button #buttonAddMap>NewMap</button>
+      <input #inputNamePlayer>
+    </div>
+  </div>
+</div>
