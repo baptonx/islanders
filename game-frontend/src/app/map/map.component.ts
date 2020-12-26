@@ -5,6 +5,9 @@ import {InventoryService} from '../service/inventory.service';
 import {AnonCmd, buttonBinder} from 'interacto';
 import {MapService} from '../service/map.service';
 import {Router} from "@angular/router";
+import {CommandMove} from "../model/command-move";
+import {ClonerService} from "../service/cloner.service";
+import {CommandAdd} from "../model/command-add";
 
 @Component({
   selector: 'app-map',
@@ -35,7 +38,7 @@ export class MapComponent{
   private cityBlockSelected;
    */
 
-  constructor(public mapService: MapService) {
+  constructor(public mapService: MapService, public gameService: GameService, public clonerService: ClonerService) {
   }
 
   private getRandomInt(max: number): number {
@@ -67,20 +70,31 @@ export class MapComponent{
     if (this.mapService.typeMoveBlock !== undefined && this.mapService.hasMovedBlock === false) {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
+        // Creation d'une commande
+        this.gameService.undoArray.push(new CommandMove(this.mapService, x, y, this.clonerService));
+        this.gameService.redoArray = [];
+        /*
         this.mapService.map.tabTiles[this.mapService.posMoveBlock] = 0;
         this.mapService.map.tabTiles[pos] = this.mapService.typeMoveBlock;
         this.computeScore(x, y);
         this.mapService.hasMovedBlock = true;
         this.mapService.typeMoveBlock = undefined;
+         */
       }
     }
     else if (this.mapService.typeMoveBlock === undefined && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
+        // Creation d'une commande
+        this.gameService.undoArray.push(new CommandAdd(this.mapService, x, y, this.clonerService));
+        this.gameService.redoArray = [];
+        //() => new CommandMove(this.mapService, x, y, this.clonerService);
+        /*
         const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
         this.mapService.map.tabTiles[pos] = t;
         this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected]--;
         console.log('score du cityBlock : ' + this.computeScore(x, y));
+         */
       }
     }
   }

@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Command, Undoable} from "interacto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
   // private game: Game;
+  public undoArray: Array<Undoable>;
+  public redoArray: Array<Undoable>;
 
   constructor(private http: HttpClient) {
+    this.undoArray = new Array<Undoable>();
+    this.redoArray = new Array<Undoable>();
     // this.game = new GameImpl();
   }
 

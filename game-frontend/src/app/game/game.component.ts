@@ -2,10 +2,13 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import { InventoryComponent } from '../inventory/inventory.component';
 import {MapComponent} from '../map/map.component';
 import {InfogameService} from '../service/infogame.service';
-import {AnonCmd, buttonBinder} from 'interacto';
+import {AnonCmd, buttonBinder, Command, CommandBase, Redo, Undo, Undoable} from 'interacto';
 import {LeaderboardService} from '../service/leaderboard.service';
 import {MapService} from "../service/map.service";
 import {HomeService} from "../service/home.service";
+import {CommandMove} from "../model/command-move";
+import {ClonerService} from "../service/cloner.service";
+import {GameService} from "../service/game.service";
 
 @Component({
   selector: 'app-game',
@@ -16,14 +19,18 @@ export class GameComponent implements OnInit, AfterViewInit {
 
   @ViewChild('inputNomJoueur')
   inputNomJoueur: ElementRef<HTMLInputElement>;
-
   @ViewChild('buttonHome')
   buttonHome: ElementRef<HTMLInputElement>;
-
   @ViewChild('buttonChangeName')
   buttonChangeName: ElementRef<HTMLInputElement>;
+  @ViewChild('buttonUndo')
+  buttonUndo: ElementRef<HTMLInputElement>;
+  @ViewChild('buttonRedo')
+  buttonRedo: ElementRef<HTMLInputElement>;
+  @ViewChild('buttonCommand')
+  buttonCommand: ElementRef<HTMLInputElement>;
 
-  constructor(public infogameService: InfogameService, public leaderboardService: LeaderboardService, public mapService: MapService, public homeService: HomeService) { }
+  constructor(public gameService: GameService, public infogameService: InfogameService, public leaderboardService: LeaderboardService, public mapService: MapService, public homeService: HomeService, public clonerService: ClonerService) { }
 
   ngOnInit(): void {
     this.mapService.map = Object.assign({}, this.mapService.map);
@@ -51,6 +58,24 @@ export class GameComponent implements OnInit, AfterViewInit {
         this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
       }))
       .bind();
+  }
+
+  public undoFct(): void {
+    if (this.gameService.undoArray.length > 0) {
+      let c: Undoable;
+      c = this.gameService.undoArray.pop();
+      c.undo();
+      this.gameService.redoArray.push(c);
+    }
+  }
+
+  public redoFct(): void {
+    if (this.gameService.redoArray.length > 0) {
+      let c: Undoable;
+      c = this.gameService.redoArray.pop();
+      c.redo();
+      this.gameService.undoArray.push(c);
+    }
   }
 
 }
