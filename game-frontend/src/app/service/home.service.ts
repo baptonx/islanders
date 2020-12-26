@@ -8,15 +8,20 @@ import {LeaderboardService} from "./leaderboard.service";
 })
 export class HomeService {
   public tabMap: Array<MapImpl>;
+  public tabMapTestFrontEnd: Array<MapImpl>;
   public indexCurrentMap;
 
   constructor(public mapService: MapService, public leaderboardService: LeaderboardService) {
-    this.tabMap = new Array<MapImpl>(3);
-    for (let i = 0; i < this.tabMap.length; i++) {
-      this.tabMap[i] = new MapImpl();
-      this.tabMap[i].name = "Map" + i;
-    }
+    //ICI remplir tabMap avec le back-end
+    this.tabMap = new Array<MapImpl>();
     this.indexCurrentMap = 0;
+
+    //Uniquement pour les tests du front-end :
+    this.tabMapTestFrontEnd = new Array<MapImpl>(3);
+    for (let i = 0; i < this.tabMapTestFrontEnd.length; i++) {
+      this.tabMapTestFrontEnd[i] = new MapImpl();
+      this.tabMapTestFrontEnd[i].name = "Map" + i;
+    }
   }
 
   public initialize(): void {
@@ -25,8 +30,12 @@ export class HomeService {
   }
 
   public changeMap(index: number): void {
-    this.mapService.map = this.tabMap[index];
-    this.leaderboardService.changeTabScores(this.mapService.map.tabScores);
+    console.log(this.tabMap.length);
+    if(this.tabMap.length > 0) {
+      console.log("change map > 0");
+      this.mapService.map = this.tabMap[index];
+      this.leaderboardService.changeTabScores(this.mapService.map.tabScores);
+    }
   }
 
   public addMap(): void {

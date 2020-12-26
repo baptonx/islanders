@@ -4,14 +4,23 @@ import {InfogameService} from "../service/infogame.service";
 export class MapImpl {
   public tabTiles: Array<number>;
   public name: string;
-  public tabScores: Map<string, number>;
+  public tabScores: Array<Array<number|string>>;
 
   constructor() {
     this.tabTiles = this.generateRandomMap();
     this.name = "nomParDefaut";
-    this.tabScores = new Map();
-    this.tabScores.set('Paul', this.getRandomInt(50));
-    this.tabScores.set('Hugo', this.getRandomInt(50));
+    this.tabScores = new Array<Array<number|string>>(5);
+
+    this.tabScores[0] = new Array<number | string>(2);
+    this.tabScores[0][0] = '-'; this.tabScores[0][1] = 0;
+    this.tabScores[1] = new Array<number | string>(2);
+    this.tabScores[1][0] = '--'; this.tabScores[1][1] = 0;
+    this.tabScores[2] = new Array<number | string>(2);
+    this.tabScores[2][0] = '---'; this.tabScores[2][1] = 0;
+    this.tabScores[3] = new Array<number | string>(2);
+    this.tabScores[3][0] = '----'; this.tabScores[3][1] = 0;
+    this.tabScores[4] = new Array<number | string>(2);
+    this.tabScores[4][0] = '-----'; this.tabScores[4][1] = 0;
   }
 
   private getRandomInt(max: number): number {

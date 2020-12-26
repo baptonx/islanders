@@ -14,6 +14,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import {InventoryService} from './service/inventory.service';
 import { HomeComponent } from './home/home.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
         BrowserAnimationsModule,
         MatBadgeModule,
         OverlayModule,
-        MatListModule
+        MatListModule,
+        FormsModule
     ],
   providers: [InventoryService],
   bootstrap: [AppComponent]

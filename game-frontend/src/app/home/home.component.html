@@ -1,20 +1,33 @@
 <div class = "container">
   <div class ="header_container">
     <h1>ISLANDER</h1>
-    <h2>{{this.homeService.mapService.map.name}}</h2>
+    <h2 *ngIf="homeService.tabMap.length>0">{{this.homeService.mapService.map.name}}</h2>
   </div>
-  <div class = 'middle_container'>
-    <button class = 'arrowLeft' #arrowLeft>Left</button>
+  <div class = 'middle_container' *ngIf="homeService.tabMap.length>0">
+    <button class = 'arrowLeft' #arrowLeft (click)="clickArrowLeft()">Left</button>
     <app-map></app-map>
-    <button class = 'arrowRight' #arrowRight>Right</button>
+    <button class = 'arrowRight' #arrowRight (click)="clickArrowRight()">Right</button>
+    <app-leaderboard></app-leaderboard>
   </div>
   <div class = "bottom_container">
-    <button class="start_button" label="START" routerLink="/play">
-      <p>Play !</p>
-    </button>
-    <div class ="new_map_container">
-      <button #buttonAddMap>NewMap</button>
-      <input #inputNamePlayer>
+    <div class ="new_player_container">
+      <p>Player name : </p>
+      <input [(ngModel)] = "homeService.mapService.infogameService.nomJoueur">
     </div>
+    <div class ="new_map_container">
+      <p>Map name : </p>
+      <input #inputNameMap>
+      <button #buttonAddMap>NewMap</button>
+    </div>
+    <button #buttonStart class="start_button" label="START">
+      Start !
+    </button>
+    <button>
+      View Replay
+    </button>
+    <button>
+      Load a map...
+    </button>
   </div>
+  <p [ngClass]="{'errorOutputRed': homeService.mapService.infogameService.isErrorOutputRed, 'errorOutputGreen': !homeService.mapService.infogameService.isErrorOutputRed}">{{homeService.mapService.infogameService.errorOutput}}</p>
 </div>

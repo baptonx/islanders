@@ -11,6 +11,10 @@
 }
 
 .info_currentgame{
+  position:absolute;
+  top:1%;
+  left:1%;
+
   display : flex;
   flex-direction: column;
   justify-self: left;
@@ -21,6 +25,18 @@ a{
   position:absolute;
   bottom:5%;
   right:5%;
+}
+
+.home_button{
+  position:absolute;
+  bottom:5%;
+  right:5%;
+}
+
+.undoRedoDiv{
+  position:absolute;
+  bottom:5%;
+  left:5%;
 }
 
 .info{
@@ -59,15 +75,14 @@ a{
   background-color: black;
 }
 
-app-leaderboard{
-  display:flex;
-  flex:1;
-  justify-self: flex-end;
+.header_container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-h2{
-  display: flex;
-  flex:4;
-  justify-content: center;
-  align-self:flex-start;
+app-leaderboard{
+  position:absolute;
+  top:1%;
+  right:1%;
 }

@@ -1,25 +1,35 @@
 <div class = 'container'>
-  <div class = 'topDiv'>
-    <h1>
-      Islanders
-    </h1>
+  <div class ="header_container">
+    <h1>ISLANDER</h1>
+    <h2>{{this.mapService.map.name}}</h2>
   </div>
+
   <div class = 'info'>
     <div class = 'info_currentgame'>
       <div class = 'namePlayer'>
-        <input #inputNomJoueur class = 'inputNomJoueur' type = 'text' value = {{this.infogameService.nomJoueur}}>
-        <button #changernom>Changer nom</button>
+        <h2>{{this.infogameService.nomJoueur}}</h2>
+        <input #inputNomJoueur class = 'inputNomJoueur' type = 'text'>
+        <button #buttonChangeName>Change name</button>
       </div>
       <div class = 'score'>
         <p>Score : {{this.infogameService.score}}</p>
         <p>Next Score : {{this.infogameService.nextScore}}</p>
       </div>
     </div>
-    <h2>{{this.mapService.map.name}}</h2>
     <app-leaderboard></app-leaderboard>
+    <app-map></app-map>
   </div>
-  <app-map></app-map>
+
   <app-inventory class="inventory"></app-inventory>
-  <a routerLink="/home">Home</a>
+
+  <button #buttonHome class="home_button" label="HOME">
+    HOME
+  </button>
+
+  <div class="undoRedoDiv">
+    <button>undo</button>
+    <button>redo</button>
+  </div>
+
 </div>
 

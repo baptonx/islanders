@@ -5,6 +5,7 @@ import {InfogameService} from '../service/infogame.service';
 import {AnonCmd, buttonBinder} from 'interacto';
 import {LeaderboardService} from '../service/leaderboard.service';
 import {MapService} from "../service/map.service";
+import {HomeService} from "../service/home.service";
 
 @Component({
   selector: 'app-game',
@@ -13,28 +14,41 @@ import {MapService} from "../service/map.service";
 })
 export class GameComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('changernom')
-  changerNom: ElementRef<HTMLButtonElement>;
   @ViewChild('inputNomJoueur')
   inputNomJoueur: ElementRef<HTMLInputElement>;
 
-  constructor(public infogameService: InfogameService, public leaderboardService: LeaderboardService, public mapService: MapService) { }
+  @ViewChild('buttonHome')
+  buttonHome: ElementRef<HTMLInputElement>;
+
+  @ViewChild('buttonChangeName')
+  buttonChangeName: ElementRef<HTMLInputElement>;
+
+  constructor(public infogameService: InfogameService, public leaderboardService: LeaderboardService, public mapService: MapService, public homeService: HomeService) { }
 
   ngOnInit(): void {
     this.mapService.map = Object.assign({}, this.mapService.map);
     this.mapService.map.tabTiles = Object.assign([], this.mapService.map.tabTiles);
+    this.mapService.initializeMoveBlock();
     this.mapService.inventoryService.initialize();
+    this.infogameService.initializeScore();
   }
 
   ngAfterViewInit(): void {
+    buttonBinder()
+      .on(this.buttonHome.nativeElement)
+      .toProduce(i => new AnonCmd(() => {
+        console.log(this.infogameService.nomJoueur);
+        this.leaderboardService.addScore(this.infogameService.nomJoueur, this.infogameService.score);
+        this.leaderboardService.changeSpecificTabScores(this.homeService.tabMap[this.homeService.indexCurrentMap].tabScores, this.leaderboardService.tabScores);
+        this.mapService.router.navigate(['/home']);
+      }))
+      .bind();
 
     buttonBinder()
-      .on(this.changerNom.nativeElement)
+      .on(this.buttonChangeName.nativeElement)
       .toProduce(i => new AnonCmd(() => {
-        this.inputNomJoueur.nativeElement.disabled = !this.inputNomJoueur.nativeElement.disabled;
-        if (this.inputNomJoueur.nativeElement.disabled){
-          this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
-        }
+        console.log(this.buttonChangeName.nativeElement.value);
+        this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
       }))
       .bind();
   }

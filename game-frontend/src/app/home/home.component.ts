@@ -15,17 +15,41 @@ export class HomeComponent implements OnInit, AfterViewInit {
   arrowRight: ElementRef<HTMLButtonElement>;
   @ViewChild('buttonAddMap')
   buttonAddMap: ElementRef<HTMLButtonElement>;
-  @ViewChild('inputNamePlayer')
-  inputNamePlayer: ElementRef<HTMLButtonElement>;
+  @ViewChild('inputNameMap')
+  inputNameMap: ElementRef<HTMLButtonElement>;
+  @ViewChild('buttonStart')
+  buttonStart: ElementRef<HTMLButtonElement>;
 
   constructor(public homeService: HomeService) {
   }
 
   ngOnInit(): void {
     this.homeService.initialize();
+    this.homeService.mapService.infogameService.errorOutput = '';
+  }
+
+  public clickArrowLeft(): void {
+    if (this.homeService.indexCurrentMap > 0) {
+      this.homeService.indexCurrentMap--;
+    }
+    else {
+      this.homeService.indexCurrentMap = this.homeService.tabMap.length - 1;
+    }
+    this.homeService.changeMap(this.homeService.indexCurrentMap);
+  }
+
+  public clickArrowRight(): void {
+    if (this.homeService.indexCurrentMap < this.homeService.tabMap.length - 1) {
+      this.homeService.indexCurrentMap++;
+    }
+    else {
+      this.homeService.indexCurrentMap = 0;
+    }
+    this.homeService.changeMap(this.homeService.indexCurrentMap);
   }
 
   ngAfterViewInit(): void {
+    /*
     buttonBinder()
       .on(this.arrowLeft.nativeElement)
       .toProduce(i => new AnonCmd(() => {
@@ -51,13 +75,38 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.homeService.changeMap(this.homeService.indexCurrentMap);
       }))
       .bind();
+     */
 
 
     buttonBinder()
       .on(this.buttonAddMap.nativeElement)
       .toProduce(i => new AnonCmd(() => {
-        this.homeService.addMap();
-        this.homeService.tabMap[this.homeService.tabMap.length - 1].name = this.inputNamePlayer.nativeElement.value;
+        if (this.inputNameMap.nativeElement.value !== '') {
+          this.homeService.addMap();
+          this.homeService.tabMap[this.homeService.tabMap.length - 1].name = this.inputNameMap.nativeElement.value;
+          this.homeService.indexCurrentMap = this.homeService.tabMap.length - 1;
+          this.homeService.changeMap(this.homeService.indexCurrentMap);
+
+          this.homeService.mapService.infogameService.errorOutput = 'Map: ' + this.inputNameMap.nativeElement.value + ' added';
+          this.homeService.mapService.infogameService.isErrorOutputRed = false;
+        }
+        else {
+          this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the map is null';
+          this.homeService.mapService.infogameService.isErrorOutputRed = true;
+        }
+      }))
+      .bind();
+
+    buttonBinder()
+      .on(this.buttonStart.nativeElement)
+      .toProduce(i => new AnonCmd(() => {
+        if (this.homeService.mapService.infogameService.nomJoueur !== '') {
+          this.homeService.mapService.router.navigate(['/play']);
+        }
+        else {
+          this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the player is null';
+          this.homeService.mapService.infogameService.isErrorOutputRed = true;
+        }
       }))
       .bind();
   }

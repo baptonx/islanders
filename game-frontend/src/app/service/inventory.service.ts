@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {MapService} from "./map.service";
 
 @Injectable({
   providedIn: 'root'
@@ -49,10 +50,6 @@ export class InventoryService {
 
   public getPathNameWithName(name: string): string {
     return 'assets/' + name + '.svg';
-  }
-
-  public inventoryOnClick(x: number): void {
-    this.cityBlockSelected = x;
   }
 
   public initialize(): void {

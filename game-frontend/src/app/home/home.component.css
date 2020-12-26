@@ -14,7 +14,8 @@
   flex-direction: row;
   align-self: center;
   bottom: 5%;
-  right:40%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .middle_container{
@@ -36,5 +37,25 @@
   top:50%;
   right:5%;
   justify-content: flex-end;
+}
+
+.errorOutputRed{
+  position:absolute;
+  bottom:1%;
+  right:10%;
+  color: red;
+}
+
+.errorOutputGreen{
+  position:absolute;
+  bottom:1%;
+  right:10%;
+  color: green;
+}
+
+app-leaderboard{
+  position:absolute;
+  top:1%;
+  right:1%;
 }
 

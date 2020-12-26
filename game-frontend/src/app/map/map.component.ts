@@ -35,22 +35,7 @@ export class MapComponent{
   private cityBlockSelected;
    */
 
-  constructor(public mapService: MapService, public router: Router) {
-    /*
-    // Initialisation of tabTiles
-    this.tabTiles = new Array<number>(100);
-    for (let i = 0; i < 100; i++) {
-      this.tabTiles[i] = this.getRandomInt(3);
-    }
-    console.log(this.tabTiles);
-
-    // Initialisation score
-    this.score = 0;
-    this.nextScore = 10;
-    this.nomJoueur = 'Paul';
-    this.tabScores.set('Paul', 10);
-    this.tabScores.set('Hugo', 20);
-     */
+  constructor(public mapService: MapService) {
   }
 
   private getRandomInt(max: number): number {
@@ -78,7 +63,18 @@ export class MapComponent{
 
   public addCityBlock(x: number, y: number): void {
     console.log(this.mapService.inventoryService.cityBlockSelected);
-    if(this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
+    //Check Move city block before
+    if (this.mapService.typeMoveBlock !== undefined && this.mapService.hasMovedBlock === false) {
+      const pos = y * 10 + x;
+      if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
+        this.mapService.map.tabTiles[this.mapService.posMoveBlock] = 0;
+        this.mapService.map.tabTiles[pos] = this.mapService.typeMoveBlock;
+        this.computeScore(x, y);
+        this.mapService.hasMovedBlock = true;
+        this.mapService.typeMoveBlock = undefined;
+      }
+    }
+    else if (this.mapService.typeMoveBlock === undefined && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
@@ -134,4 +130,9 @@ export class MapComponent{
     }
   }
 
+  public moveBlock(x: number, y: number): void {
+    const pos = y * 10 + x;
+    this.mapService.typeMoveBlock = this.mapService.map.tabTiles[pos];
+    this.mapService.posMoveBlock = pos;
+  }
 }
