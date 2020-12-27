@@ -9,6 +9,7 @@ import {HomeService} from "../service/home.service";
 import {CommandMove} from "../model/command-move";
 import {ClonerService} from "../service/cloner.service";
 import {GameService} from "../service/game.service";
+import {CommandRename} from "../model/command-rename";
 
 @Component({
   selector: 'app-game',
@@ -55,7 +56,9 @@ export class GameComponent implements OnInit, AfterViewInit {
       .on(this.buttonChangeName.nativeElement)
       .toProduce(i => new AnonCmd(() => {
         console.log(this.buttonChangeName.nativeElement.value);
-        this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
+        this.gameService.undoArray.push(new CommandRename(this.infogameService, this.inputNomJoueur.nativeElement.value));
+        this.gameService.redoArray = [];
+        //this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
       }))
       .bind();
   }

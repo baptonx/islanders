@@ -1,6 +1,4 @@
 import {Undoable} from "interacto";
-import {MapService} from "../service/map.service";
-import {ClonerService} from "../service/cloner.service";
 import {InfogameService} from "../service/infogame.service";
 
 export class CommandRename implements Undoable  {
