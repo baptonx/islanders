@@ -1,9 +1,9 @@
-import {CommandBase, Undoable} from 'interacto';
+import {Undoable} from 'interacto';
 import {MapService} from '../service/map.service';
 import {ClonerService} from "../service/cloner.service";
 import {MapImpl} from "./map-impl";
 
-export class CommandMove extends CommandBase implements Undoable  {
+export class CommandMove implements Undoable  {
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number|undefined;
   mementoPosMoveBlock: number;
@@ -17,7 +17,6 @@ export class CommandMove extends CommandBase implements Undoable  {
   public mementoNextScore: number;
 
   public constructor(private mapService: MapService, private x: number, private y: number, private clonerService: ClonerService) {
-    super();
     this.createMemento();
     this.execution();
   }

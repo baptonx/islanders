@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import { InventoryComponent } from '../inventory/inventory.component';
 import {MapComponent} from '../map/map.component';
 import {InfogameService} from '../service/infogame.service';
-import {AnonCmd, buttonBinder, Command, CommandBase, Redo, Undo, Undoable} from 'interacto';
+import {AnonCmd, buttonBinder, Command, Redo, Undo, Undoable} from 'interacto';
 import {LeaderboardService} from '../service/leaderboard.service';
 import {MapService} from "../service/map.service";
 import {HomeService} from "../service/home.service";
