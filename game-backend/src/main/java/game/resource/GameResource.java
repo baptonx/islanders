@@ -71,6 +71,7 @@ public class GameResource {
     @Path("api/v1/maps")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postMap(final MapResource m) throws IllegalArgumentException, IOException {
+        System.out.println("post started !");
         final MapResource map = m;
         storage.addMap(map);
         return Response.status(Response.Status.OK).build();
@@ -85,7 +86,9 @@ public class GameResource {
         return map.getTopScores();
     }
 
-    /**Les deux route suivantes sont commentées car nous nous sommes rendus comptes qu'un postScore s'accompagne forcement d'un postReplay**/
+    /**
+     * Les deux route suivantes sont commentées car nous nous sommes rendus comptes qu'un postScore s'accompagne forcement d'un postReplay
+     **/
 
     // Route pour ajouter le score d'un joueur sur une map
     // POST api/v1/maps/{map_id}/{player_name}/{score} => 200 OK
@@ -115,7 +118,6 @@ public class GameResource {
         this.storage.addMap(m);
         return m;
     }
-
 
     /*Route permettant de poster les informations en fin de partie*/
     @POST

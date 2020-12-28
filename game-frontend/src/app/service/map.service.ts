@@ -2,7 +2,7 @@ import {ElementRef, Injectable, ViewChild} from '@angular/core';
 import {InventoryService} from './inventory.service';
 import {InfogameService} from './infogame.service';
 import {MapImpl} from '../model/map-impl';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

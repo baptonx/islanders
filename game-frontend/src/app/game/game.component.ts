@@ -47,7 +47,8 @@ export class GameComponent implements OnInit, AfterViewInit {
       .toProduce(i => new AnonCmd(() => {
         console.log(this.infogameService.nomJoueur);
         this.leaderboardService.addScore(this.infogameService.nomJoueur, this.infogameService.score);
-        this.leaderboardService.changeSpecificTabScores(this.homeService.tabMap[this.homeService.indexCurrentMap].tabScores, this.leaderboardService.tabScores);
+        this.leaderboardService
+          .changeSpecificTabScores(this.homeService.tabMap[this.homeService.indexCurrentMap].tabScores, this.leaderboardService.tabScores);
         this.mapService.router.navigate(['/home']);
       }))
       .bind();
@@ -58,7 +59,7 @@ export class GameComponent implements OnInit, AfterViewInit {
         console.log(this.buttonChangeName.nativeElement.value);
         this.gameService.undoArray.push(new CommandRename(this.infogameService, this.inputNomJoueur.nativeElement.value));
         this.gameService.redoArray = [];
-        //this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
+        this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
       }))
       .bind();
   }

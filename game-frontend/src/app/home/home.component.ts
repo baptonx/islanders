@@ -1,7 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {InventoryService} from '../service/inventory.service';
-import {HomeService} from "../service/home.service";
-import {AnonCmd, buttonBinder} from "interacto";
+import {HomeService} from '../service/home.service';
+import {AnonCmd, buttonBinder} from 'interacto';
+import {BackendService} from '../service/backend.service';
+import {MapImpl} from '../model/map-impl';
 
 @Component({
   selector: 'app-home',
@@ -20,19 +22,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('buttonStart')
   buttonStart: ElementRef<HTMLButtonElement>;
 
-  constructor(public homeService: HomeService) {
+  constructor(public backendService: BackendService, public homeService: HomeService) {
   }
 
   ngOnInit(): void {
     this.homeService.initialize();
+    this.backendService.getMapNames();
+    this.backendService.getMapFromName('Dende');
+    this.backendService.postMap(new MapImpl());
     this.homeService.mapService.infogameService.errorOutput = '';
   }
 
   public clickArrowLeft(): void {
     if (this.homeService.indexCurrentMap > 0) {
       this.homeService.indexCurrentMap--;
-    }
-    else {
+    } else {
       this.homeService.indexCurrentMap = this.homeService.tabMap.length - 1;
     }
     this.homeService.changeMap(this.homeService.indexCurrentMap);
@@ -41,8 +45,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public clickArrowRight(): void {
     if (this.homeService.indexCurrentMap < this.homeService.tabMap.length - 1) {
       this.homeService.indexCurrentMap++;
-    }
-    else {
+    } else {
       this.homeService.indexCurrentMap = 0;
     }
     this.homeService.changeMap(this.homeService.indexCurrentMap);
@@ -89,8 +92,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
           this.homeService.mapService.infogameService.errorOutput = 'Map: ' + this.inputNameMap.nativeElement.value + ' added';
           this.homeService.mapService.infogameService.isErrorOutputRed = false;
-        }
-        else {
+        } else {
           this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the map is null';
           this.homeService.mapService.infogameService.isErrorOutputRed = true;
         }
@@ -102,8 +104,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       .toProduce(i => new AnonCmd(() => {
         if (this.homeService.mapService.infogameService.nomJoueur !== '') {
           this.homeService.mapService.router.navigate(['/play']);
-        }
-        else {
+        } else {
           this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the player is null';
           this.homeService.mapService.infogameService.isErrorOutputRed = true;
         }
