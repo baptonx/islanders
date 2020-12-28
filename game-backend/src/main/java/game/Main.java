@@ -33,18 +33,26 @@ public final class Main {
      * @return Grizzly HTTP server.
      */
     public static HttpServer startServer() {
-        final ResourceConfig rc = new ResourceConfig(GameResource.class)
-                .register(MyExceptionMapper.class)
-                .register(JacksonFeature.class)
-                .register(io.swagger.jaxrs.listing.ApiListingResource.class)
-                .register(io.swagger.jaxrs.listing.SwaggerSerializers.class)
-                .register(new AbstractBinder() {
-                    @Override
-                    protected void configure() {
-                        bind(Storage.class).to(Storage.class);
-                    }
-                });
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(HTTP_ADDRESS), rc);
+        try {
+            final Storage storage = new Storage("src/main/java/game/data/mapsTest.txt");
+
+            final ResourceConfig rc = new ResourceConfig(GameResource.class)
+                    .register(MyExceptionMapper.class)
+                    .register(JacksonFeature.class)
+                    .register(io.swagger.jaxrs.listing.ApiListingResource.class)
+                    .register(io.swagger.jaxrs.listing.SwaggerSerializers.class)
+                    .register(new AbstractBinder() {
+                        @Override
+                        protected void configure() {
+                            bind(storage).to(Storage.class);
+                        }
+                    });
+            return GrizzlyHttpServerFactory.createHttpServer(URI.create(HTTP_ADDRESS), rc);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     // http://localhost:4444/swag/index.html
