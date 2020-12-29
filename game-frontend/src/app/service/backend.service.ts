@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MapImpl} from '../model/map-impl';
 import {Score} from '../model/score';
 import {Command, Undoable} from 'interacto';
+import {MapRessource} from '../model/map-ressource';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class BackendService {
    * Store a map in the backend
    */
 
-  public postMap(map: MapImpl): void {
+  public postMap(map: MapRessource): void {
     const uri = `/game/api/v1/maps`;
     console.log(JSON.stringify(map));
     const body = {
@@ -61,7 +62,7 @@ export class BackendService {
       commandsCollectors: [],
       topScores: [{player: 'Paul', score: 150}]
     };
-    this.http.post(uri, body, {}).subscribe(
+    this.http.post<MapRessource>(uri, map, {}).subscribe(
       {
         next: data => {
           console.log('Map post :' + data);

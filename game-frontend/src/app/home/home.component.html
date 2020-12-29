@@ -17,7 +17,7 @@
     <div class ="new_map_container">
       <p>Map name : </p>
       <input #inputNameMap>
-      <button #buttonAddMap>NewMap</button>
+      <button #buttonAddMap (click)="addNewMap()">NewMap</button>
     </div>
     <button #buttonStart class="start_button" label="START">
       Start !

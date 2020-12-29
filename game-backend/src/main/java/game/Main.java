@@ -34,7 +34,7 @@ public final class Main {
      */
     public static HttpServer startServer() {
         try {
-            final Storage storage = new Storage("src/main/java/game/data/mapsTest.txt");
+            final Storage storage = new Storage("src/main/java/game/data/mapsTest.json");
 
             final ResourceConfig rc = new ResourceConfig(GameResource.class)
                     .register(MyExceptionMapper.class)

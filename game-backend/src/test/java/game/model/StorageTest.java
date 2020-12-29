@@ -24,8 +24,8 @@ class StorageTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        storage = new Storage("src/main/java/game/data/mapsTest.txt");
-        file = new File("src/main/java/game/data/mapsTest.txt");
+        storage = new Storage("src/main/java/game/data/mapsTest.json");
+        file = new File("src/main/java/game/data/mapsTest.json");
         List<Command> commands = new ArrayList<>();
         commands.add(new MoveCityBlock(0, 1));
         commands.add(new PutCityBlock(1, 2));

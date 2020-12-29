@@ -48,7 +48,7 @@ public class GameResourceTest {
     Application configureJersey() {
         Storage storage = null;
         try {
-            storage = new Storage("src/main/java/game/data/mapsTest.txt");
+            storage = new Storage("src/main/java/game/data/mapsTest.json");
             g = new GameResource(storage);
             g.resetMap();
         } catch (IOException e) {
@@ -83,6 +83,7 @@ public class GameResourceTest {
     @Test
     void postMap(final Client client, final URI baseUri) {
         MapResource maptest = mf.newRandomMap();
+        String name = maptest.getName();
         final Response res = client
                 .target(baseUri)
                 .path("game/api/v1/maps")
@@ -235,6 +236,7 @@ public class GameResourceTest {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        System.out.println(json);
 
         final Response res = client
                 .target(baseUri)
@@ -246,7 +248,7 @@ public class GameResourceTest {
         //Exception name not unique between score and command
         final Response resUnicity = client
                 .target(baseUri)
-                .path("game/api/v1/replays/" + maptest.getName() + "/Paul/1000")
+                .path("game/api/v1/rep  lays/" + maptest.getName() + "/Paul/1000")
                 .request()
                 .post(Entity.json(json));
     }

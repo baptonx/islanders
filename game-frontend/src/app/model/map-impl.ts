@@ -1,26 +1,24 @@
 import {InventoryService} from '../service/inventory.service';
 import {InfogameService} from '../service/infogame.service';
 import {Score} from './score';
+import {MapRessource} from './map-ressource';
 
 export class MapImpl {
   public tabTiles: Array<number>;
   public name: string;
   public tabScores: Array<Array<number | string>>;
   private scores: Array<Score>;
-  private commandCollectors: any[];
+  private commandsCollectors: any[];
   private topScores: Array<Score>;
 
   constructor() {
-    this.name = 'nomParDefaut';
-    this.scores = new Array<Score>();
-    this.scores.push(new Score());
+    this.name = 'Beerus';
+    this.scores = [];
     this.tabTiles = this.generateRandomMap();
-    this.commandCollectors = [];
-    this.topScores = new Array<Score>();
-    this.topScores.push(new Score());
+    this.commandsCollectors = [];
+    this.topScores = [];
 
     this.tabScores = new Array<Array<number | string>>(5);
-
     this.tabScores[0] = new Array<number | string>(2);
     this.tabScores[0][0] = '-';
     this.tabScores[0][1] = 0;
@@ -51,21 +49,29 @@ export class MapImpl {
     return tab;
   }
 
-  public generateRandomObjectMap(): Array<string> {
-    const tab = new Array<string>(100);
+  public generateTabTiles(): Array<string> {
+    const tab = new Array<any>();
     for (let i = 0; i < 100; i++) {
-      switch (this.getRandomInt(3)) {
+      switch (this.tabTiles[i]) {
         case 0:
-          tab[i] = ('{"type":"game.model.Grass"}');
+          tab.push({type: 'game.model.Grass'});
           break;
         case 1:
-          tab[i] = ('{"type":"game.model.Tree"}');
+          tab.push({type: 'game.model.Tree'});
           break;
         case 2:
-          tab[i] = ('{"type":"game.model.Water"}');
+          tab.push({type: 'game.model.Water'});
           break;
       }
     }
     return tab;
+  }
+
+  public toMapRessource(): MapRessource {
+    const mapRessource = new MapRessource(this.name);
+    mapRessource.setTabTiles(this.generateTabTiles());
+    mapRessource.setScores([new Score(), new Score()]);
+    mapRessource.setCommandsCollectors(this.commandsCollectors);
+    return mapRessource;
   }
 }

@@ -5,6 +5,7 @@ import {LeaderboardService} from './leaderboard.service';
 import {observable, Observable, throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {BackendService} from './backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class HomeService {
   public tabMapTestFrontEnd: Array<MapImpl>;
   public indexCurrentMap;
 
-  constructor(public http: HttpClient, public mapService: MapService, public leaderboardService: LeaderboardService) {
+  constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public backendService: BackendService) {
     //  ICI remplir tabMap avec le back-end
     this.tabMap = new Array<MapImpl>();
     this.mapNames = new Array<string>();
