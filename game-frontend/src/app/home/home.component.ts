@@ -4,6 +4,11 @@ import {HomeService} from '../service/home.service';
 import {AnonCmd, buttonBinder} from 'interacto';
 import {BackendService} from '../service/backend.service';
 import {MapImpl} from '../model/map-impl';
+import {CommandAdd} from '../model/command-add';
+import {ClonerService} from '../service/cloner.service';
+import {MapService} from '../service/map.service';
+import {InfogameService} from '../service/infogame.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,9 +32,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.homeService.initialize();
-    this.backendService.getMapNames();
-    this.backendService.getMapFromName('Dende');
+    /** Test des routes du backend
+     * Attention ces méthodes modifient
+     * le mapTest.json du backend
+     * à chaque fois qu'angular refresh la page web
+     */
+    /*
     this.backendService.postMap(new MapImpl());
+    this.backendService.getMapNames();
+    this.backendService.getMapFromName('Goku');
+    this.backendService.getTopScores('Goku');
+    this.backendService.getRandomMap();
+    this.backendService.postGame('Goku', 'Joueur1', 320);
+    this.backendService.getPlayerFromMap('Goku');
+    this.backendService.getPlayerCommandFromMap('Goku', 'Joueur1');
+     */
     this.homeService.mapService.infogameService.errorOutput = '';
   }
 
