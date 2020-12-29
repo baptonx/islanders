@@ -9,8 +9,10 @@ import {MapRessource} from '../model/map-ressource';
   providedIn: 'root'
 })
 export class BackendService {
+  tabMap: Array<MapImpl>;
 
   constructor(public http: HttpClient) {
+    this.tabMap = new Array<MapImpl>();
   }
 
   /**
@@ -33,19 +35,22 @@ export class BackendService {
   /**
    * Return the map with the name given in parameter
    */
-  public getMapFromName(name: string): void {
+  public getMapFromName(name: string): MapRessource {
     const uri = `/game/api/v1/maps/${name}`;
-    this.http.get<MapImpl>(uri).subscribe(
+    let res = new MapRessource('');
+    this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
           console.log('Map :' + JSON.stringify(data));
-          // this.tabMap = data.total;
+          res = data;
+          this.tabMap.push(data.toMapimpl());
         },
         error: error => {
           console.error('There was an error!', error.message);
         }
       }
     );
+    return res;
   }
 
   /**

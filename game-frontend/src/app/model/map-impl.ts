@@ -8,14 +8,14 @@ export class MapImpl {
   public name: string;
   public tabScores: Array<Array<number | string>>;
   private scores: Array<Score>;
-  private commandsCollectors: any[];
+  private commandsCollectors: Array<string>;
   private topScores: Array<Score>;
 
   constructor() {
     this.name = 'Beerus';
     this.scores = [];
     this.tabTiles = this.generateRandomMap();
-    this.commandsCollectors = [];
+    this.commandsCollectors = Array<string>();
     this.topScores = [];
 
     this.tabScores = new Array<Array<number | string>>(5);
@@ -74,4 +74,16 @@ export class MapImpl {
     mapRessource.setCommandsCollectors(this.commandsCollectors);
     return mapRessource;
   }
+
+  public setTabTiles(numbers: Array<number>): void {
+    this.tabTiles = numbers;
+  }
+
+  public setScores(scores1: Array<Score>): void {
+    this.scores = scores1;
+  }
+  public setCommandsCollectors(cc: Array<string>): void {
+    this.commandsCollectors = cc;
+  }
+
 }

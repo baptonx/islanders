@@ -66,7 +66,7 @@ export class MapComponent{
 
   public addCityBlock(x: number, y: number): void {
     console.log(this.mapService.inventoryService.cityBlockSelected);
-    //Check Move city block before
+    // Check Move city block before
     if (this.mapService.typeMoveBlock !== undefined && this.mapService.hasMovedBlock === false) {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
@@ -88,7 +88,7 @@ export class MapComponent{
         // Creation d'une commande
         this.gameService.undoArray.push(new CommandAdd(this.mapService, x, y, this.clonerService));
         this.gameService.redoArray = [];
-        //() => new CommandMove(this.mapService, x, y, this.clonerService);
+        // () => new CommandMove(this.mapService, x, y, this.clonerService);
         /*
         const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
         this.mapService.map.tabTiles[pos] = t;

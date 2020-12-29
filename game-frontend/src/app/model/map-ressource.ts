@@ -1,4 +1,5 @@
 import {Score} from './score';
+import {MapImpl} from './map-impl';
 
 export class MapRessource {
   scores: Array<Score>;
@@ -22,30 +23,30 @@ export class MapRessource {
   public setScores(tab: Array<Score>): void {
     this.scores = tab;
   }
-  public generateTabTiles(): Array<string> {
+  public generateTabTiles(): Array<number> {
     const tab = new Array<any>();
     for (let i = 0; i < 100; i++) {
       switch (this.tabTiles[i]) {
-        case 0:
-          tab.push({type: 'game.model.Grass'});
+        case {type: 'game.model.Grass'}:
+          tab.push(0);
           break;
-        case 1:
-          tab.push({type: 'game.model.Tree'});
+        case {type: 'game.model.Tree'}:
+          tab.push(1);
           break;
-        case 2:
-          tab.push({type: 'game.model.Water'});
+        case {type: 'game.model.Water'}:
+          tab.push(2);
           break;
       }
     }
     return tab;
   }
 
-  public toMapRessource(): MapRessource {
-    const mapRessource = new MapRessource(this.name);
-    mapRessource.setTabTiles(this.generateTabTiles());
-    mapRessource.setScores([new Score(), new Score()]);
-    mapRessource.setCommandsCollectors(this.commandsCollectors);
-    return mapRessource;
+  public toMapimpl(): MapImpl {
+    const mapImpl = new MapImpl();
+    mapImpl.setTabTiles(this.generateTabTiles());
+    mapImpl.setScores([new Score(), new Score()]);
+    mapImpl.setCommandsCollectors(this.commandsCollectors);
+    return mapImpl;
   }
 
 

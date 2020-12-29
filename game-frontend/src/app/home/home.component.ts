@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   public addNewMap(): void {
-    this.backendService.getRandomMap();
+    this.backendService.getMapFromName('Zamasu');
   }
 
   ngAfterViewInit(): void {
