@@ -40,6 +40,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
      * à chaque fois qu'angular refresh la page web
      */
     const map = new MapImpl();
+    // this.backendService.postMap(map.toMapRessource());
+    this.backendService.getMapNames();
+    this.backendService.getMapFromName('Beerus');
+    // this.backendService.getTopScores('Beerus');
+    // this.backendService.getRandomMap();
+    // this.backendService.postGame('Beerus', 'Joueur1', 320);
+    // this.backendService.getPlayerFromMap('Beerus');
+    // this.backendService.getPlayerCommandFromMap('Beerus', 'Joueur1');
     this.homeService.mapService.infogameService.errorOutput = '';
   }
 

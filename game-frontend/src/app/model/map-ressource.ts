@@ -41,7 +41,7 @@ export class MapRessource {
     return tab;
   }
 
-  public toMapimpl(): MapImpl {
+  public toMapImpl(): MapImpl {
     const mapImpl = new MapImpl();
     mapImpl.setTabTiles(this.generateTabTiles());
     mapImpl.setScores([new Score(), new Score()]);
