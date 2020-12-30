@@ -3,9 +3,9 @@
     <h1>ISLANDER</h1>
     <h2 *ngIf="homeService.mapService.map!=undefined">{{this.homeService.mapService.map.name}}</h2>
   </div>
-  <div class = 'middle_container' *ngIf="homeService.mapService.map!=undefined">
+  <div class = 'middle_container'>
     <button class = 'arrowLeft' #arrowLeft (click)="clickArrowLeft()">Left</button>
-    <app-map ></app-map>
+    <app-map *ngIf="homeService.mapService.map!=undefined"></app-map>
     <button class = 'arrowRight' #arrowRight (click)="clickArrowRight()">Right</button>
     <app-leaderboard></app-leaderboard>
   </div>
