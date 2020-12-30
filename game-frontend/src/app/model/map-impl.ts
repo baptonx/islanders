@@ -1,7 +1,4 @@
-import {InventoryService} from '../service/inventory.service';
-import {InfogameService} from '../service/infogame.service';
 import {Score} from './score';
-import {MapRessource} from './map-ressource';
 import {CommandCollector} from './command-collector';
 
 export class MapImpl {
@@ -51,7 +48,6 @@ export class MapImpl {
   public setTabTiles(numbers: Array<number>): void {
     this.tabTiles = numbers;
   }
-
 
 
   public setScores(scores1: Array<Score>): void {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Command, Undoable} from "interacto";
+import {Undoable} from 'interacto';
 
 @Injectable({
   providedIn: 'root'

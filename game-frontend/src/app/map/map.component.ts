@@ -81,9 +81,9 @@ export class MapComponent {
         this.mapService.typeMoveBlock = undefined;
          */
       }
-    }
-    // tslint:disable-next-line:max-line-length
-    else if (this.mapService.typeMoveBlock === undefined && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
+    } else if (this.mapService.typeMoveBlock === undefined
+      && this.mapService.inventoryService.cityBlockSelected !== undefined
+      && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande
