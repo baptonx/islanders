@@ -15,21 +15,14 @@ import {MapAdapter} from '../model/map-adapter';
 export class HomeService {
   public tabMap: Array<MapImpl>;
   public mapNames: Array<string>;
-  public tabMapTestFrontEnd: Array<MapImpl>;
   public indexCurrentMap;
 
+  // tslint:disable-next-line:max-line-length
   constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public backendService: BackendService, public http: HttpClient) {
     //  ICI remplir tabMap avec le back-end
     this.tabMap = new Array<MapImpl>();
     this.mapNames = new Array<string>();
     this.indexCurrentMap = 0;
-
-    //  Uniquement pour les tests du front-end :
-    this.tabMapTestFrontEnd = new Array<MapImpl>(3);
-    for (let i = 0; i < this.tabMapTestFrontEnd.length; i++) {
-      this.tabMapTestFrontEnd[i] = new MapImpl();
-      this.tabMapTestFrontEnd[i].name = 'Map' + i;
-    }
   }
 
 
@@ -52,14 +45,11 @@ export class HomeService {
     this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
-          console.log(data);
           const res = new MapRessource(data.name);
           res.setCommandsCollectors(data.commandsCollectors);
           res.setScores(data.scores);
           res.setTabTiles(data.tabTiles);
-          console.log(res);
           this.mapService.map = MapAdapter.mapRessourceToMapImpl(res);
-          console.log(this.mapService.map);
         },
         error: error => {
           console.error('There was an error!', error.message);
@@ -77,7 +67,6 @@ export class HomeService {
     this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
-          console.log("coucou");
           this.mapService.map = MapAdapter.mapRessourceToMapImpl(data);
           console.log(this.mapService.map);
         },

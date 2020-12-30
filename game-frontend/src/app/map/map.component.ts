@@ -47,7 +47,6 @@ export class MapComponent {
 
   public getTileSvg(x: number, y: number): string {
     const type = this.mapService.map.tabTiles[y * 10 + x];
-    console.log(type);
     return this.getPathNameWithName(this.mapService.inventoryService.typeName[type]);
   }
 
@@ -82,7 +81,9 @@ export class MapComponent {
         this.mapService.typeMoveBlock = undefined;
          */
       }
-    } else if (this.mapService.typeMoveBlock === undefined && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
+    }
+    // tslint:disable-next-line:max-line-length
+    else if (this.mapService.typeMoveBlock === undefined && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande

@@ -1,3 +1,5 @@
-export class Water {
-  type = 'game.model.Water';
+import {Tile} from './tile';
+
+export class Water extends Tile {
+  public type = 'game.model.Water';
 }

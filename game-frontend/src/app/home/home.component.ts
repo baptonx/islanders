@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
      * le mapTest.json du backend
      * à chaque fois qu'angular refresh la page web
      */
-    const map = new MapImpl();
     // this.backendService.postMap(map.toMapRessource());
     // this.backendService.getMapNames();
     // this.backendService.getMapFromName('Beerus');

@@ -18,37 +18,55 @@ export class MapAdapter {
 
   public static mapImplToMapRessource(map: MapImpl): MapRessource {
     const mapRessource = new MapRessource(map.name);
-    mapRessource.setTabTiles(this.generateTabTiles());
+    mapRessource.setTabTiles(this.numbersToTiles(map.tabTiles));
     mapRessource.setScores(map.scores);
     mapRessource.setCommandsCollectors(map.commandsCollectors);
     return mapRessource;
   }
 
-  private static numbersToTiles(tiles: Array<Tile>): Array<number> {
-    const tab = new Array<number>();
+  private static numbersToTiles(tiles: Array<number>): Array<Tile> {
+    const tab = new Array<Tile>();
     tiles.forEach((tile) => {
-        if (tile.tab === 'game.model.Grass') {
-          tab.push(0);
-        } else if (tile.tab === 'game.model.Tree') {
-          tab.push(1);
-        } else {
-          tab.push(2);
+      switch (tile){
+        case 0: {
+          tab.push(new Grass());
+          break;
         }
-      }
-    );
+        case 1: {
+          tab.push(new Tree());
+          break;
+        }
+        case 2: {
+          tab.push(new Water());
+          break;
+        }
+        default: {
+          tab.push(new Grass());
+        }
+      }});
     return tab;
   }
 
   private static tilesToNumbers(tiles: Array<Tile>): Array<number> {
     const tab = new Array<number>();
     tiles.forEach((tile) => {
-        if (tile.type === 'game.model.Grass') {
-          tab.push(0);
-        } else if (tile.type === 'game.model.Tree') {
-          tab.push(1);
-        } else {
-          tab.push(2);
-        }
+        switch (tile.type){
+          case 'game.model.Grass': {
+            tab.push(0);
+            break;
+          }
+          case 'game.model.Tree': {
+            tab.push(1);
+            break;
+          }
+          case 'game.model.Water': {
+            tab.push(2);
+            break;
+          }
+          default: {
+            tab.push(0);
+          }
+      }
       }
     );
     return tab;
