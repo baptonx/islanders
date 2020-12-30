@@ -40,6 +40,7 @@ export class HomeService {
       {
         next: data => {
           this.mapNames = data;
+          this.changeMap(this.mapNames[0]);
         },
         error: error => {
           console.error('There was an error!', error.message);
@@ -71,29 +72,6 @@ export class HomeService {
       }
     );
   }
-
-  /**
-   * Les maps reçues du backend possèdent comme tableau de tile des objets Grass, Tree et Water
-   * Les MapImpl du frontend utilisent seulement les entiers 0 1 2, il faut donc faire la correspondance entre les deux
-   */
-  public loadMap(name: string): void {
-    const uri = `/game/api/v1/maps/${name}`;
-    let res: MapImpl = new MapImpl('map-test');
-    this.http.get<MapRessource>(uri).subscribe(
-      {
-        next: data => {
-          console.log('coucou');
-          res = MapAdapter.mapRessourceToMapImpl(data);
-          console.log(res);
-          this.mapService.map = res;
-        },
-        error: error => {
-          console.error('There was an error!', error.message);
-        }
-      }
-    );
-  }
-
 
   public addMap(): void {
     /*

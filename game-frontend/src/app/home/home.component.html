@@ -23,7 +23,6 @@
     <button>
       View Replay
     </button>
-    <button #buttonLoadMap (click)="this.homeService.loadMap('Zamasu')">Load Map</button>
     <select (change)="this.homeService.changeMap($event.target.value)">
       <option #mapName *ngFor="let y of this.homeService.mapNames.values()">{{y}}</option>
     </select>
