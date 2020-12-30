@@ -47,12 +47,11 @@ export class HomeService {
   }
 
   public changeMap(name: string): void {
-    console.log('coucou');
     const uri = `/game/api/v1/maps/${name}`;
-    this.http.get<MapRessource>(uri).subscribe(
+    this.http.get<MapImpl>(uri).subscribe(
       {
         next: data => {
-          this.mapService.map = data.toMapimpl();
+          this.mapService.map = data;
         },
         error: error => {
           console.error('There was an error!', error.message);
