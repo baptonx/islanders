@@ -7,6 +7,7 @@ import {catchError, retry} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BackendService} from './backend.service';
 import {MapRessource} from '../model/map-ressource';
+import {MapAdapter} from '../model/map-adapter';
 
 @Injectable({
   providedIn: 'root'
@@ -47,21 +48,24 @@ export class HomeService {
   }
 
   public changeMap(name: string): void {
-    /*
-    console.log(name);
-    const tab = new Array<number>();
     const uri = `/game/api/v1/maps/${name}`;
-    this.http.get<MapImpl>(uri).subscribe(
+    this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
-
+          console.log(data);
+          const res = new MapRessource(data.name);
+          res.setCommandsCollectors(data.commandsCollectors);
+          res.setScores(data.scores);
+          res.setTabTiles(data.tabTiles);
+          console.log(res);
+          this.mapService.map = MapAdapter.mapRessourceToMapImpl(res);
+          console.log(this.mapService.map);
         },
         error: error => {
           console.error('There was an error!', error.message);
         }
       }
     );
-     */
   }
 
   /**
@@ -69,14 +73,12 @@ export class HomeService {
    * Les MapImpl du frontend utilisent seulement les entiers 0 1 2, il faut donc faire la correspondance entre les deux
    */
   public loadMap(name: string): void {
-    let res = new MapImpl();
     const uri = `/game/api/v1/maps/${name}`;
-    this.http.get<MapImpl>(uri).subscribe(
+    this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
-          res = data;
-          this.mapService.map = res;
-          this.mapService.map.adaptTabTiles();
+          console.log("coucou");
+          this.mapService.map = MapAdapter.mapRessourceToMapImpl(data);
           console.log(this.mapService.map);
         },
         error: error => {

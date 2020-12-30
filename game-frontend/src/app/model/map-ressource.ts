@@ -27,6 +27,7 @@ export class MapRessource {
   public setScores(tab: Array<Score>): void {
     this.scores = tab;
   }
+
   public generateTabTiles(): Array<number> {
     const tab = new Array<any>();
     for (let i = 0; i < 100; i++) {

@@ -34,9 +34,9 @@ export class BackendService {
   /**
    * Return the map with the name given in parameter
    */
-  public getMapFromName(name: string): MapImpl {
+  /***public getMapFromName(name: string): MapImpl {
     const uri = `/game/api/v1/maps/${name}`;
-    let res: MapImpl = new MapImpl();
+
     this.http.get<MapImpl>(uri).subscribe(
       {
         next: data => {
@@ -49,7 +49,7 @@ export class BackendService {
       }
     );
     return res;
-  }
+  }***/
 
   /**
    * Store a map in the backend
