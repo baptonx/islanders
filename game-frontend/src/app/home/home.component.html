@@ -1,9 +1,9 @@
 <div class = "container">
   <div class ="header_container">
     <h1>ISLANDER</h1>
-    <h2 *ngIf="homeService.tabMap.length>0">{{this.homeService.mapService.map.name}}</h2>
+    <h2>{{this.homeService.mapService.map.name}}</h2>
   </div>
-  <div class = 'middle_container' *ngIf="homeService.tabMap.length>0">
+  <div class = 'middle_container'>
     <button class = 'arrowLeft' #arrowLeft (click)="clickArrowLeft()">Left</button>
     <app-map></app-map>
     <button class = 'arrowRight' #arrowRight (click)="clickArrowRight()">Right</button>
@@ -15,7 +15,7 @@
       <input [(ngModel)] = "homeService.mapService.infogameService.nomJoueur">
     </div>
     <div class ="new_map_container">
-      <button #buttonAddMap (click)="addNewMap()">NewMap</button>
+      <button (click)="addNewMap()">NewMap</button>
     </div>
     <button #buttonStart class="start_button" label="START">
       Start !

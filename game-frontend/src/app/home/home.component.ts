@@ -20,14 +20,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   arrowLeft: ElementRef<HTMLButtonElement>;
   @ViewChild('arrowRight')
   arrowRight: ElementRef<HTMLButtonElement>;
-  @ViewChild('buttonAddMap')
-  buttonAddMap: ElementRef<HTMLButtonElement>;
-  @ViewChild('inputNameMap')
-  inputNameMap: ElementRef<HTMLButtonElement>;
   @ViewChild('buttonStart')
   buttonStart: ElementRef<HTMLButtonElement>;
-  @ViewChild('mapName')
-  selectMap: ElementRef<HTMLOptionElement>;
 
   constructor(public backendService: BackendService, public homeService: HomeService) {
   }
@@ -54,44 +48,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (this.homeService.indexCurrentMap > 0) {
       this.homeService.indexCurrentMap--;
     } else {
-      this.homeService.indexCurrentMap = this.homeService.tabMap.length - 1;
+      this.homeService.indexCurrentMap = this.homeService.mapNames.length - 1;
     }
-    this.homeService.changeMap(this.homeService.indexCurrentMap);
+    this.homeService.changeMap(this.homeService.mapNames[this.homeService.indexCurrentMap]);
   }
 
   public clickArrowRight(): void {
-    if (this.homeService.indexCurrentMap < this.homeService.tabMap.length - 1) {
+    if (this.homeService.indexCurrentMap < this.homeService.mapNames.length - 1) {
       this.homeService.indexCurrentMap++;
     } else {
       this.homeService.indexCurrentMap = 0;
     }
-    this.homeService.changeMap(this.homeService.indexCurrentMap);
+    this.homeService.changeMap(this.homeService.mapNames[this.homeService.indexCurrentMap]);
   }
 
   public addNewMap(): void {
-    this.backendService.getRandomMap();
+    this.homeService.addMap();
   }
 
 
   ngAfterViewInit(): void {
-
-    buttonBinder()
-      .on(this.buttonAddMap.nativeElement)
-      .toProduce(i => new AnonCmd(() => {
-        if (this.inputNameMap.nativeElement.value !== '') {
-          this.homeService.addMap();
-          this.homeService.tabMap[this.homeService.tabMap.length - 1].name = this.inputNameMap.nativeElement.value;
-          this.homeService.indexCurrentMap = this.homeService.tabMap.length - 1;
-          this.homeService.changeMap(this.homeService.indexCurrentMap);
-
-          this.homeService.mapService.infogameService.errorOutput = 'Map: ' + this.inputNameMap.nativeElement.value + ' added';
-          this.homeService.mapService.infogameService.isErrorOutputRed = false;
-        } else {
-          this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the map is null';
-          this.homeService.mapService.infogameService.isErrorOutputRed = true;
-        }
-      }))
-      .bind();
 
     buttonBinder()
       .on(this.buttonStart.nativeElement)
