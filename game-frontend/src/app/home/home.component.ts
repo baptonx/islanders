@@ -22,25 +22,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
   arrowRight: ElementRef<HTMLButtonElement>;
   @ViewChild('buttonStart')
   buttonStart: ElementRef<HTMLButtonElement>;
+  mapNames: Array<string>;
 
-  constructor(public backendService: BackendService, public homeService: HomeService) {
+  constructor(public homeService: HomeService) {
   }
 
   ngOnInit(): void {
     this.homeService.initialize();
-    /** Test des routes du backend
-     * Attention ces méthodes modifient
-     * le mapTest.json du backend
-     * à chaque fois qu'angular refresh la page web
-     */
-    // this.backendService.postMap(map.toMapRessource());
-    // this.backendService.getMapNames();
-    // this.backendService.getMapFromName('Beerus');
-    // this.backendService.getTopScores('Beerus');
-    // this.backendService.getRandomMap();
-    // this.backendService.postGame('Beerus', 'Joueur1', 320);
-    // this.backendService.getPlayerFromMap('Beerus');
-    // this.backendService.getPlayerCommandFromMap('Beerus', 'Joueur1');
+    this.mapNames = this.homeService.mapNames;
     this.homeService.mapService.infogameService.errorOutput = '';
   }
 
