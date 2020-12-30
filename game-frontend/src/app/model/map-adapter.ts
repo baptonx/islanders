@@ -10,7 +10,7 @@ export class MapAdapter {
 
   public static mapRessourceToMapImpl(map: MapRessource): MapImpl {
     const mapImpl = new MapImpl(map.name);
-    mapImpl.setTabTiles(this.tilesToNumbers(mapImpl.tabTiles));
+    mapImpl.setTabTiles(this.tilesToNumbers(map.tabTiles));
     mapImpl.setScores(map.scores);
     mapImpl.setCommandsCollectors(map.commandsCollectors);
     return mapImpl;
@@ -27,9 +27,9 @@ export class MapAdapter {
   private static numbersToTiles(tiles: Array<Tile>): Array<number> {
     const tab = new Array<number>();
     tiles.forEach((tile) => {
-        if (tile instanceof Grass) {
+        if (tile.tab === 'game.model.Grass') {
           tab.push(0);
-        } else if (tile instanceof Tree) {
+        } else if (tile.tab === 'game.model.Tree') {
           tab.push(1);
         } else {
           tab.push(2);
@@ -42,9 +42,9 @@ export class MapAdapter {
   private static tilesToNumbers(tiles: Array<Tile>): Array<number> {
     const tab = new Array<number>();
     tiles.forEach((tile) => {
-        if (tile instanceof Grass) {
+        if (tile.type === 'game.model.Grass') {
           tab.push(0);
-        } else if (tile instanceof Tree) {
+        } else if (tile.type === 'game.model.Tree') {
           tab.push(1);
         } else {
           tab.push(2);
