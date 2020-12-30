@@ -41,7 +41,6 @@ export class HomeService {
   public changeMap(name: string): void {
     const uri = `/game/api/v1/maps/${name}`;
     const res: MapRessource = new MapRessource('');
-    console.log(res);
     this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
