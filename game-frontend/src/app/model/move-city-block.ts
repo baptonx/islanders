@@ -3,7 +3,9 @@ import {MapService} from '../service/map.service';
 import {ClonerService} from '../service/cloner.service';
 import {MapImpl} from './map-impl';
 
-export class CommandAdd implements Undoable {
+export class MoveCityBlock implements Undoable {
+  posBefore: number;
+  posAfter: number;
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
@@ -22,7 +24,7 @@ export class CommandAdd implements Undoable {
   }
 
   // Create the memento for undoing the command
-  protected createMemento(): void {
+  protected createMemento() {
     // We copy the current state of the MapService
     this.mementoHasMovedBlock = this.mapService.hasMovedBlock;
     this.mementoTypeMoveBlock = this.mapService.typeMoveBlock;
@@ -47,6 +49,7 @@ export class CommandAdd implements Undoable {
 
     const pos = this.y * 10 + this.x;
     this.mapService.map.tabTiles[pos] = 0;
+    this.mapService.map.tabTiles[this.mementoPosMoveBlock] = this.mementoTypeMoveBlock;
 
     this.mapService.inventoryService.availableCityBlock[0] = this.mementoAvailableCityBlock[0];
     this.mapService.inventoryService.availableCityBlock[1] = this.mementoAvailableCityBlock[1];
@@ -61,10 +64,11 @@ export class CommandAdd implements Undoable {
 
   redo(): void {
     const pos = this.y * 10 + this.x;
-    const t = this.cityBlockToTypeTile(this.mementoCityBlockSelected);
-    this.mapService.map.tabTiles[pos] = t;
-    this.mapService.inventoryService.availableCityBlock[this.mementoCityBlockSelected]--;
-    console.log('score du cityBlock : ' + this.computeScore(this.x, this.y));
+    this.mapService.map.tabTiles[this.mementoPosMoveBlock] = 0;
+    this.mapService.map.tabTiles[pos] = this.mementoTypeMoveBlock;
+    this.computeScore(this.x, this.y);
+    this.mapService.hasMovedBlock = true;
+    this.mapService.typeMoveBlock = undefined;
   }
 
   getUndoName(): string {
@@ -125,4 +129,5 @@ export class CommandAdd implements Undoable {
       this.mapService.inventoryService.availableCityBlock[i]++;
     }
   }
+
 }

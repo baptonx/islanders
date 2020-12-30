@@ -4,7 +4,7 @@ import {HomeService} from '../service/home.service';
 import {AnonCmd, buttonBinder} from 'interacto';
 import {BackendService} from '../service/backend.service';
 import {MapImpl} from '../model/map-impl';
-import {CommandAdd} from '../model/command-add';
+import {PutCityBlock} from '../model/put-city-block';
 import {ClonerService} from '../service/cloner.service';
 import {MapService} from '../service/map.service';
 import {InfogameService} from '../service/infogame.service';

@@ -2,18 +2,28 @@ package game.model;
 
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement
 public class PutCityBlock extends Command {
     private int position;
     private int typeCityBlock;
-    private int memento;
+    private boolean mementoHasMovedBlock;
+    private int mementoTypeMoveBlock;
+    private int mementoPosMoveBlock;
+    private MapResource map;
+
+    public List<Integer> mementoAvailableCityBlock;
+    public int mementoCityBlockSelected;
+
+    public String mementoNomJoueur;
+    public int mementoScore;
+    public int mementoNextScore;
 
     public PutCityBlock() {
         this.position = -1;
         this.typeCityBlock = -1;
-        this.memento=5;
     }
 
     public PutCityBlock(final int position, final int typeCityBlock) {

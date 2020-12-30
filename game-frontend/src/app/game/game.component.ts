@@ -6,7 +6,7 @@ import {AnonCmd, buttonBinder, Command, Redo, Undo, Undoable} from 'interacto';
 import {LeaderboardService} from '../service/leaderboard.service';
 import {MapService} from "../service/map.service";
 import {HomeService} from "../service/home.service";
-import {CommandMove} from "../model/command-move";
+import {MoveCityBlock} from "../model/move-city-block";
 import {ClonerService} from "../service/cloner.service";
 import {GameService} from "../service/game.service";
 import {CommandRename} from "../model/command-rename";
@@ -48,7 +48,7 @@ export class GameComponent implements OnInit, AfterViewInit {
         console.log(this.infogameService.nomJoueur);
         this.leaderboardService.addScore(this.infogameService.nomJoueur, this.infogameService.score);
         this.leaderboardService
-          .changeSpecificTabScores(this.homeService.tabMap[this.homeService.indexCurrentMap].tabScores, this.leaderboardService.tabScores);
+          .changeSpecificTabScores(this.homeService.mapService.map.tabScores, this.leaderboardService.tabScores);
         this.mapService.router.navigate(['/home']);
       }))
       .bind();

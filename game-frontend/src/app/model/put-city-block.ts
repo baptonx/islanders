@@ -1,11 +1,13 @@
 import {Undoable} from 'interacto';
 import {MapService} from '../service/map.service';
-import {ClonerService} from "../service/cloner.service";
-import {MapImpl} from "./map-impl";
+import {ClonerService} from '../service/cloner.service';
+import {MapImpl} from './map-impl';
 
-export class CommandMove implements Undoable  {
+export class PutCityBlock implements Undoable {
+  position: number;
+  typeCityBlock: number;
   mementoHasMovedBlock: boolean;
-  mementoTypeMoveBlock: number|undefined;
+  mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
   map: MapImpl;
 
@@ -22,13 +24,13 @@ export class CommandMove implements Undoable  {
   }
 
   // Create the memento for undoing the command
-  protected createMemento() {
+  protected createMemento(): void {
     // We copy the current state of the MapService
     this.mementoHasMovedBlock = this.mapService.hasMovedBlock;
     this.mementoTypeMoveBlock = this.mapService.typeMoveBlock;
     this.mementoPosMoveBlock = this.mapService.posMoveBlock;
     this.map = this.clonerService.deepClone(this.mapService.map);
-    this.mementoAvailableCityBlock =  Object.assign([], this.mapService.inventoryService.availableCityBlock);
+    this.mementoAvailableCityBlock = Object.assign([], this.mapService.inventoryService.availableCityBlock);
     this.mementoCityBlockSelected = this.mapService.inventoryService.cityBlockSelected;
     this.mementoNomJoueur = this.mapService.infogameService.nomJoueur;
     this.mementoScore = this.mapService.infogameService.score;
@@ -47,7 +49,6 @@ export class CommandMove implements Undoable  {
 
     const pos = this.y * 10 + this.x;
     this.mapService.map.tabTiles[pos] = 0;
-    this.mapService.map.tabTiles[this.mementoPosMoveBlock] = this.mementoTypeMoveBlock;
 
     this.mapService.inventoryService.availableCityBlock[0] = this.mementoAvailableCityBlock[0];
     this.mapService.inventoryService.availableCityBlock[1] = this.mementoAvailableCityBlock[1];
@@ -62,11 +63,10 @@ export class CommandMove implements Undoable  {
 
   redo(): void {
     const pos = this.y * 10 + this.x;
-    this.mapService.map.tabTiles[this.mementoPosMoveBlock] = 0;
-    this.mapService.map.tabTiles[pos] = this.mementoTypeMoveBlock;
-    this.computeScore(this.x, this.y);
-    this.mapService.hasMovedBlock = true;
-    this.mapService.typeMoveBlock = undefined;
+    const t = this.cityBlockToTypeTile(this.mementoCityBlockSelected);
+    this.mapService.map.tabTiles[pos] = t;
+    this.mapService.inventoryService.availableCityBlock[this.mementoCityBlockSelected]--;
+    console.log('score du cityBlock : ' + this.computeScore(this.x, this.y));
   }
 
   getUndoName(): string {
@@ -127,5 +127,4 @@ export class CommandMove implements Undoable  {
       this.mapService.inventoryService.availableCityBlock[i]++;
     }
   }
-
 }

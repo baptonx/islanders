@@ -5,9 +5,9 @@ import {InventoryService} from '../service/inventory.service';
 import {AnonCmd, buttonBinder} from 'interacto';
 import {MapService} from '../service/map.service';
 import {Router} from '@angular/router';
-import {CommandMove} from '../model/command-move';
+import {MoveCityBlock} from '../model/move-city-block';
 import {ClonerService} from '../service/cloner.service';
-import {CommandAdd} from '../model/command-add';
+import {PutCityBlock} from '../model/put-city-block';
 
 @Component({
   selector: 'app-map',
@@ -71,7 +71,7 @@ export class MapComponent {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande
-        this.gameService.undoArray.push(new CommandMove(this.mapService, x, y, this.clonerService));
+        this.gameService.undoArray.push(new MoveCityBlock(this.mapService, x, y, this.clonerService));
         this.gameService.redoArray = [];
         /*
         this.mapService.map.tabTiles[this.mapService.posMoveBlock] = 0;
@@ -87,9 +87,9 @@ export class MapComponent {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande
-        this.gameService.undoArray.push(new CommandAdd(this.mapService, x, y, this.clonerService));
+        this.gameService.undoArray.push(new PutCityBlock(this.mapService, x, y, this.clonerService));
         this.gameService.redoArray = [];
-        // () => new CommandMove(this.mapService, x, y, this.clonerService);
+        // () => new MoveCityBlock(this.mapService, x, y, this.clonerService);
         /*
         const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
         this.mapService.map.tabTiles[pos] = t;
