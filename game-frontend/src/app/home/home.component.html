@@ -1,20 +1,20 @@
-<div class="container">
-  <div class="header_container">
+<div class = "container">
+  <div class ="header_container">
     <h1>ISLANDER</h1>
     <h2 *ngIf="homeService.tabMap.length>0">{{this.homeService.mapService.map.name}}</h2>
   </div>
-  <div class='middle_container' *ngIf="homeService.tabMap.length>0">
-    <button class='arrowLeft' #arrowLeft (click)="clickArrowLeft()">Left</button>
+  <div class = 'middle_container' *ngIf="homeService.tabMap.length>0">
+    <button class = 'arrowLeft' #arrowLeft (click)="clickArrowLeft()">Left</button>
     <app-map></app-map>
-    <button class='arrowRight' #arrowRight (click)="clickArrowRight()">Right</button>
+    <button class = 'arrowRight' #arrowRight (click)="clickArrowRight()">Right</button>
     <app-leaderboard></app-leaderboard>
   </div>
-  <div class="bottom_container">
-    <div class="new_player_container">
+  <div class = "bottom_container">
+    <div class ="new_player_container">
       <p>Player name : </p>
-      <input [(ngModel)]="homeService.mapService.infogameService.nomJoueur">
+      <input [(ngModel)] = "homeService.mapService.infogameService.nomJoueur">
     </div>
-    <div class="new_map_container">
+    <div class ="new_map_container">
       <button #buttonAddMap (click)="addNewMap()">NewMap</button>
     </div>
     <button #buttonStart class="start_button" label="START">
@@ -28,6 +28,5 @@
       <option #mapName *ngFor="let y of this.homeService.mapNames.values()">{{y}}</option>
     </select>
   </div>
-  <p
-    [ngClass]="{'errorOutputRed': homeService.mapService.infogameService.isErrorOutputRed, 'errorOutputGreen': !homeService.mapService.infogameService.isErrorOutputRed}">{{homeService.mapService.infogameService.errorOutput}}</p>
+  <p [ngClass]="{'errorOutputRed': homeService.mapService.infogameService.isErrorOutputRed, 'errorOutputGreen': !homeService.mapService.infogameService.isErrorOutputRed}">{{homeService.mapService.infogameService.errorOutput}}</p>
 </div>

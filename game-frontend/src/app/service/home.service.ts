@@ -17,7 +17,7 @@ export class HomeService {
   public tabMapTestFrontEnd: Array<MapImpl>;
   public indexCurrentMap;
 
-  constructor(public mapService: MapService, public http: HttpClient) {
+  constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public backendService: BackendService, public http: HttpClient) {
     //  ICI remplir tabMap avec le back-end
     this.tabMap = new Array<MapImpl>();
     this.mapNames = new Array<string>();
