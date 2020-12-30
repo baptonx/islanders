@@ -8,10 +8,12 @@ import java.util.Objects;
 public class PutCityBlock extends Command {
     private int position;
     private int typeCityBlock;
+    private int memento;
 
     public PutCityBlock() {
         this.position = -1;
         this.typeCityBlock = -1;
+        this.memento=5;
     }
 
     public PutCityBlock(final int position, final int typeCityBlock) {

@@ -33,6 +33,7 @@ export class HomeService {
 
 
   public initialize(): void {
+    this.backendService.postMap(new MapRessource('Test'));
     this.http.get<Array<string>>('/game/api/v1/maps').subscribe(
       {
         next: data => {
@@ -72,21 +73,19 @@ export class HomeService {
       {
         next: data => {
           res = data;
+          this.mapService.map = res;
+          this.mapService.map.adaptTabTiles();
+          console.log(this.mapService.map);
         },
         error: error => {
           console.error('There was an error!', error.message);
         }
       }
     );
-
-    this.mapService.map = res;
-    this.mapService.map.adaptTabTiles();
-    console.log(this.mapService.map);
   }
 
 
   public addMap(): void {
-    let res = new MapImpl();
     const uri = `/game/api/v1/maps/random`;
     this.http.get<MapImpl>(uri, {}).subscribe({
         next: data => {

@@ -67,15 +67,15 @@ export class MapImpl {
     return tab;
   }
 
-  /*
-    public toMapRessource(): MapRessource {
-      const mapRessource = new MapRessource(this.name);
-      mapRessource.setTabTiles(this.generateTabTiles());
-      mapRessource.setScores([new Score(), new Score()]);
-      mapRessource.setCommandsCollectors(this.commandsCollectors);
-      return mapRessource;
-    }
-  */
+
+  public toMapRessource(): MapRessource {
+    const mapRessource = new MapRessource(this.name);
+    mapRessource.setTabTiles(this.generateTabTiles());
+    mapRessource.setScores([new Score(), new Score()]);
+    mapRessource.setCommandsCollectors(this.commandsCollectors);
+    return mapRessource;
+  }
+
   public setTabTiles(numbers: Array<number>): void {
     this.tabTiles = numbers;
   }

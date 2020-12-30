@@ -1,18 +1,22 @@
 import {Score} from './score';
 import {MapImpl} from './map-impl';
+import {Grass} from './grass';
+import {Tile} from './tile';
+import {CommandCollector} from './command-collector';
 
 export class MapRessource {
   scores: Array<Score>;
-  tabTiles: Array<any>;
-  commandsCollectors: Array<string>;
+  tabTiles: Array<Tile>;
+  commandsCollectors: Array<CommandCollector>;
 
   constructor(private name: string) {
     this.scores = new Array<Score>();
-    this.tabTiles = new Array<string>();
+    this.tabTiles = new Array<Grass>();
+    this.tabTiles.push(new Grass());
     this.commandsCollectors = new Array<string>();
   }
 
-  public setTabTiles(tab: Array<string>): void {
+  public setTabTiles(tab: Array<Tile>): void {
     this.tabTiles = tab;
   }
 
@@ -40,14 +44,8 @@ export class MapRessource {
     }
     return tab;
   }
+/*
 
-  public toMapImpl(): MapImpl {
-    const mapImpl = new MapImpl();
-    mapImpl.setTabTiles(this.generateTabTiles());
-    mapImpl.setScores([new Score(), new Score()]);
-    mapImpl.setCommandsCollectors(this.commandsCollectors);
-    return mapImpl;
-  }
-
+*/
 
 }
