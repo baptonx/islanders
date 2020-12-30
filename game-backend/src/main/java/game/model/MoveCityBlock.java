@@ -2,12 +2,24 @@ package game.model;
 
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement
 public class MoveCityBlock extends Command {
     private int posBefore;
     private int posAfter;
+    private boolean mementoHasMovedBlock;
+    private int mementoTypeMoveBlock;
+    private int mementoPosMoveBlock;
+    private MapResource map;
+
+    public List<Integer> mementoAvailableCityBlock;
+    public int mementoCityBlockSelected;
+
+    public String mementoNomJoueur;
+    public int mementoScore;
+    public int mementoNextScore;
 
     public MoveCityBlock() {
         this.posBefore = -1;
