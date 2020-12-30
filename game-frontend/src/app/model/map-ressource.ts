@@ -2,18 +2,19 @@ import {Score} from './score';
 import {MapImpl} from './map-impl';
 
 export class MapRessource {
+  topScores: Array<Score>;
   scores: Array<Score>;
-  tabTiles: Array<any>;
+  tabTiles: Array<object>;
   commandsCollectors: Array<string>;
+  name: string;
 
-  constructor(private name: string) {
+  constructor() {
     this.scores = new Array<Score>();
-    this.tabTiles = new Array<string>();
+    this.tabTiles = new Array<object>();
     this.commandsCollectors = new Array<string>();
   }
 
   public setTabTiles(tab: Array<string>): void {
-    this.tabTiles = tab;
   }
 
   public setCommandsCollectors(tab: Array<string>): void {
@@ -24,7 +25,7 @@ export class MapRessource {
     this.scores = tab;
   }
   public generateTabTiles(): Array<number> {
-    const tab = new Array<any>();
+    const tab = new Array<number>();
     for (let i = 0; i < 100; i++) {
       switch (this.tabTiles[i]) {
         case {type: 'game.model.Grass'}:
