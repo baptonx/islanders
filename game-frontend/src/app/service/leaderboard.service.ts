@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import {Score} from '../model/score';
+import {HttpClient} from '@angular/common/http';
+import {MapService} from './map.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LeaderboardService {
-  public tabScores: Array<Array<number|string>>;
+  public tabScores: Array<Score>;
 
-  constructor() {
-    this.tabScores = new Array<Array<number|string>>(5);
+  constructor(public http: HttpClient, public mapService: MapService) {
 
+    this.tabScores = new Array<Score>();
+
+    /***this.tabScores = new Array<Array<number|string>>(5);
     this.tabScores[0] = new Array<number | string>(2);
     this.tabScores[0][0] = '-'; this.tabScores[0][1] = 0;
     this.tabScores[1] = new Array<number | string>(2);
@@ -18,10 +23,23 @@ export class LeaderboardService {
     this.tabScores[3] = new Array<number | string>(2);
     this.tabScores[3][0] = '----'; this.tabScores[3][1] = 0;
     this.tabScores[4] = new Array<number | string>(2);
-    this.tabScores[4][0] = '-----'; this.tabScores[4][1] = 0;
+    this.tabScores[4][0] = '-----'; this.tabScores[4][1] = 0;***/
+  }
+  public getScore(): void{
+    const uri = `/game/api/v1/topScores/${this.mapService.map.name}`;
+    this.http.get<Array<Score>>(uri).subscribe(
+      {
+        next: data => {
+          this.tabScores = data;
+        },
+        error: error => {
+          console.error('There was an error!', error.message);
+        }
+      }
+    );
   }
 
-  public changeTabScores(newScores: Array<Array<number|string>>): void {
+  /***public changeTabScores(newScores: Array<Array<number|string>>): void {
     this.tabScores[0][0] = newScores[0][0]; this.tabScores[0][1] = newScores[0][1];
     this.tabScores[1][0] = newScores[1][0]; this.tabScores[1][1] = newScores[1][1];
     this.tabScores[2][0] = newScores[2][0]; this.tabScores[2][1] = newScores[2][1];
@@ -71,5 +89,5 @@ export class LeaderboardService {
         break;
       }
     }
-  }
+  }***/
 }

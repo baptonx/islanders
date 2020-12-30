@@ -45,10 +45,10 @@ export class GameComponent implements OnInit, AfterViewInit {
     buttonBinder()
       .on(this.buttonHome.nativeElement)
       .toProduce(i => new AnonCmd(() => {
-        console.log(this.infogameService.nomJoueur);
+        /***console.log(this.infogameService.nomJoueur);
         this.leaderboardService.addScore(this.infogameService.nomJoueur, this.infogameService.score);
         this.leaderboardService
-          .changeSpecificTabScores(this.homeService.mapService.map.tabScores, this.leaderboardService.tabScores);
+          .changeSpecificTabScores(this.homeService.mapService.map.tabScores, this.leaderboardService.tabScores);***/
         this.mapService.router.navigate(['/home']);
       }))
       .bind();
@@ -56,10 +56,10 @@ export class GameComponent implements OnInit, AfterViewInit {
     buttonBinder()
       .on(this.buttonChangeName.nativeElement)
       .toProduce(i => new AnonCmd(() => {
-        console.log(this.buttonChangeName.nativeElement.value);
+        /***console.log(this.buttonChangeName.nativeElement.value);
         this.gameService.undoArray.push(new CommandRename(this.infogameService, this.inputNomJoueur.nativeElement.value));
         this.gameService.redoArray = [];
-        this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
+        this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;***/
       }))
       .bind();
   }

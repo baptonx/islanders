@@ -50,9 +50,8 @@ export class HomeService {
           res.setCommandsCollectors(data.commandsCollectors);
           res.setScores(data.scores);
           res.setTabTiles(data.tabTiles);
-          console.log(res);
           this.mapService.map = MapAdapter.mapRessourceToMapImpl(res);
-          console.log(this.mapService.map);
+          this.leaderboardService.getScore();
         },
         error: error => {
           console.error('There was an error!', error.message);

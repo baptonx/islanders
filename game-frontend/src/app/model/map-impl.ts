@@ -14,7 +14,7 @@ export class MapImpl {
   constructor(public name: string) {
     this.scores = [];
     this.tabTiles = Array<any>();
-    this.commandsCollectors = Array<string>();
+    this.commandsCollectors = Array<CommandCollector>();
     this.topScores = [];
 
     this.tabScores = new Array<Array<number | string>>(5);
