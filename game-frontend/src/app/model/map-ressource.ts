@@ -9,7 +9,7 @@ export class MapRessource {
   tabTiles: Array<Tile>;
   commandsCollectors: Array<CommandCollector>;
 
-  constructor(private name: string) {
+  constructor(public name: string) {
     this.scores = new Array<Score>();
     this.tabTiles = new Array<Grass>();
     this.tabTiles.push(new Grass());
@@ -20,7 +20,7 @@ export class MapRessource {
     this.tabTiles = tab;
   }
 
-  public setCommandsCollectors(tab: Array<string>): void {
+  public setCommandsCollectors(tab: Array<CommandCollector>): void {
     this.commandsCollectors = tab;
   }
 

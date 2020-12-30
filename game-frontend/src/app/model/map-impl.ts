@@ -2,17 +2,16 @@ import {InventoryService} from '../service/inventory.service';
 import {InfogameService} from '../service/infogame.service';
 import {Score} from './score';
 import {MapRessource} from './map-ressource';
+import {CommandCollector} from './command-collector';
 
 export class MapImpl {
   public tabTiles: Array<any>;
-  public name: string;
   public tabScores: Array<Array<number | string>>;
-  private scores: Array<Score>;
-  private commandsCollectors: Array<string>;
-  private topScores: Array<Score>;
+  public scores: Array<Score>;
+  public commandsCollectors: Array<CommandCollector>;
+  public topScores: Array<Score>;
 
-  constructor() {
-    this.name = 'Beerus';
+  constructor(public name: string) {
     this.scores = [];
     this.tabTiles = Array<any>();
     this.commandsCollectors = Array<string>();
@@ -66,16 +65,6 @@ export class MapImpl {
     console.log(tab);
     return tab;
   }
-
-
-  public toMapRessource(): MapRessource {
-    const mapRessource = new MapRessource(this.name);
-    mapRessource.setTabTiles(this.generateTabTiles());
-    mapRessource.setScores([new Score(), new Score()]);
-    mapRessource.setCommandsCollectors(this.commandsCollectors);
-    return mapRessource;
-  }
-
   public setTabTiles(numbers: Array<number>): void {
     this.tabTiles = numbers;
   }
@@ -102,7 +91,7 @@ export class MapImpl {
     this.scores = scores1;
   }
 
-  public setCommandsCollectors(cc: Array<string>): void {
+  public setCommandsCollectors(cc: Array<CommandCollector>): void {
     this.commandsCollectors = cc;
   }
 
