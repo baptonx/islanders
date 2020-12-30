@@ -9,10 +9,10 @@ import {MapRessource} from '../model/map-ressource';
   providedIn: 'root'
 })
 export class BackendService {
-  tabMap: Array<MapImpl>;
+  tabMap: Array<string>;
 
   constructor(public http: HttpClient) {
-    this.tabMap = new Array<MapImpl>();
+    this.tabMap = new Array<string>();
   }
 
   /**
@@ -22,8 +22,7 @@ export class BackendService {
     this.http.get<Array<string>>('/game/api/v1/maps').subscribe(
       {
         next: data => {
-          console.log('MapNames Array :' + JSON.stringify(data));
-          // this.tabMap = data.total;
+          this.tabMap = new Array<string>(JSON.stringify(data));
         },
         error: error => {
           console.error('There was an error!', error.message);
@@ -41,9 +40,9 @@ export class BackendService {
     this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
-          console.log('Map :' + JSON.stringify(data));
+          /***console.log('Map :' + JSON.stringify(data));
           res = data;
-          this.tabMap.push(data.toMapimpl());
+          this.tabMap.push(data.toMapimpl());***/
         },
         error: error => {
           console.error('There was an error!', error.message);

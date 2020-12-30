@@ -6,6 +6,7 @@ import {observable, Observable, throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BackendService} from './backend.service';
+import {MapRessource} from '../model/map-ressource';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class HomeService {
   public tabMapTestFrontEnd: Array<MapImpl>;
   public indexCurrentMap;
 
-  constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public backendService: BackendService) {
+  constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public backendService: BackendService, public http: HttpClient) {
     //  ICI remplir tabMap avec le back-end
     this.tabMap = new Array<MapImpl>();
     this.mapNames = new Array<string>();
@@ -33,20 +34,45 @@ export class HomeService {
 
 
   public initialize(): void {
-    this.indexCurrentMap = 0;
-    this.changeMap(0);
+    this.http.get<Array<string>>('/game/api/v1/maps').subscribe(
+      {
+        next: data => {
+          this.mapNames = data;
+        },
+        error: error => {
+          console.error('There was an error!', error.message);
+        }
+      }
+    );
   }
 
-  public changeMap(index: number): void {
-    console.log(this.tabMap.length);
-    if (this.tabMap.length > 0) {
-      console.log('change map > 0');
-      this.mapService.map = this.tabMap[index];
-      // this.leaderboardService.changeTabScores(this.mapService.map.tabScores);
-    }
+  public changeMap(name: string): void {
+    console.log('coucou');
+    const uri = `/game/api/v1/maps/${name}`;
+    this.http.get<MapRessource>(uri).subscribe(
+      {
+        next: data => {
+          this.mapService.map = data.toMapimpl();
+        },
+        error: error => {
+          console.error('There was an error!', error.message);
+        }
+      }
+    );
   }
 
   public addMap(): void {
-    this.tabMap.push(new MapImpl());
+    const uri = `/game/api/v1/maps/random`;
+    this.http.get(uri).subscribe(
+      {
+        next: data => {
+          console.log('Random Map :' + JSON.stringify(data));
+          // this.tabMap = data.total;
+        },
+        error: error => {
+          console.error('There was an error!', error.message);
+        }
+      }
+    );
   }
 }

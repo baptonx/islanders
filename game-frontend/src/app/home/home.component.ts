@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   inputNameMap: ElementRef<HTMLButtonElement>;
   @ViewChild('buttonStart')
   buttonStart: ElementRef<HTMLButtonElement>;
+  @ViewChild('mapName')
+  selectMap: ElementRef<HTMLOptionElement>;
 
   constructor(public backendService: BackendService, public homeService: HomeService) {
   }
@@ -38,14 +40,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
      * à chaque fois qu'angular refresh la page web
      */
     const map = new MapImpl();
-    this.backendService.postMap(map.toMapRessource());
-    this.backendService.getMapNames();
-    this.backendService.getMapFromName('Beerus');
-    this.backendService.getTopScores('Beerus');
-    this.backendService.getRandomMap();
-    this.backendService.postGame('Beerus', 'Joueur1', 320);
-    this.backendService.getPlayerFromMap('Beerus');
-    this.backendService.getPlayerCommandFromMap('Beerus', 'Joueur1');
     this.homeService.mapService.infogameService.errorOutput = '';
   }
 
@@ -72,34 +66,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    /*
-    buttonBinder()
-      .on(this.arrowLeft.nativeElement)
-      .toProduce(i => new AnonCmd(() => {
-        if (this.homeService.indexCurrentMap > 0) {
-          this.homeService.indexCurrentMap--;
-        }
-        else {
-          this.homeService.indexCurrentMap = this.homeService.tabMap.length - 1;
-        }
-        this.homeService.changeMap(this.homeService.indexCurrentMap);
-      }))
-      .bind();
-
-    buttonBinder()
-      .on(this.arrowRight.nativeElement)
-      .toProduce(i => new AnonCmd(() => {
-        if (this.homeService.indexCurrentMap < this.homeService.tabMap.length-1) {
-          this.homeService.indexCurrentMap++;
-        }
-        else {
-          this.homeService.indexCurrentMap = 0;
-        }
-        this.homeService.changeMap(this.homeService.indexCurrentMap);
-      }))
-      .bind();
-     */
-
 
     buttonBinder()
       .on(this.buttonAddMap.nativeElement)

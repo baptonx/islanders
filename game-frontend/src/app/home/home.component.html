@@ -15,8 +15,6 @@
       <input [(ngModel)] = "homeService.mapService.infogameService.nomJoueur">
     </div>
     <div class ="new_map_container">
-      <p>Map name : </p>
-      <input #inputNameMap>
       <button #buttonAddMap (click)="addNewMap()">NewMap</button>
     </div>
     <button #buttonStart class="start_button" label="START">
@@ -28,6 +26,9 @@
     <button>
       Load a map...
     </button>
+    <select (change)="this.homeService.changeMap()">
+        <option #mapName *ngFor="let y of this.homeService.mapNames.values()">{{y}}</option>
+    </select>
   </div>
   <p [ngClass]="{'errorOutputRed': homeService.mapService.infogameService.isErrorOutputRed, 'errorOutputGreen': !homeService.mapService.infogameService.isErrorOutputRed}">{{homeService.mapService.infogameService.errorOutput}}</p>
 </div>
