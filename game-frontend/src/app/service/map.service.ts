@@ -14,7 +14,7 @@ export class MapService {
   posMoveBlock: number;
 
   constructor(public inventoryService: InventoryService, public infogameService: InfogameService, public router: Router) {
-    this.map = new MapImpl();
+    this.map = new MapImpl('map-test');
     this.initializeMoveBlock();
   }
 

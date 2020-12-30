@@ -27,7 +27,7 @@ export class HomeService {
     //  Uniquement pour les tests du front-end :
     this.tabMapTestFrontEnd = new Array<MapImpl>(3);
     for (let i = 0; i < this.tabMapTestFrontEnd.length; i++) {
-      this.tabMapTestFrontEnd[i] = new MapImpl();
+      this.tabMapTestFrontEnd[i] = new MapImpl('map-test');
       this.tabMapTestFrontEnd[i].name = 'Map' + i;
     }
   }
@@ -74,12 +74,14 @@ export class HomeService {
    */
   public loadMap(name: string): void {
     const uri = `/game/api/v1/maps/${name}`;
+    let res: MapImpl = new MapImpl('map-test');
     this.http.get<MapRessource>(uri).subscribe(
       {
         next: data => {
-          console.log("coucou");
-          this.mapService.map = MapAdapter.mapRessourceToMapImpl(data);
-          console.log(this.mapService.map);
+          console.log('coucou');
+          res = MapAdapter.mapRessourceToMapImpl(data);
+          console.log(res);
+          this.mapService.map = res;
         },
         error: error => {
           console.error('There was an error!', error.message);

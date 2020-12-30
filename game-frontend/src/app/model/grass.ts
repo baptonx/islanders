@@ -1,3 +1,8 @@
-export class Grass {
-  type = 'game.model.Grass';
+import {Tile} from './tile';
+
+export class Grass extends Tile {
+
+  constructor() {
+    super('game.model.Grass');
+  }
 }
