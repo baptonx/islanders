@@ -11,9 +11,8 @@ export class MapRessource {
 
   constructor(public name: string) {
     this.scores = new Array<Score>();
-    this.tabTiles = new Array<Grass>();
-    this.tabTiles.push(new Grass());
-    this.commandsCollectors = new Array<string>();
+    this.tabTiles = new Array<Tile>();
+    this.commandsCollectors = new Array<CommandCollector>();
   }
 
   public setTabTiles(tab: Array<Tile>): void {

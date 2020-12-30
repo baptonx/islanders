@@ -47,45 +47,12 @@ export class MapImpl {
     return tab;
   }
 
-  public generateTabTiles(): Array<any> {
-    const tab = new Array<any>(100);
-    for (let i = 0; i < 100; i++) {
-      switch (this.getRandomInt(3)) {
-        case 0:
-          tab.push({type: 'game.model.Grass'});
-          break;
-        case 1:
-          tab.push({type: 'game.model.Tree'});
-          break;
-        case 2:
-          tab.push({type: 'game.model.Water'});
-          break;
-      }
-    }
-    console.log(tab);
-    return tab;
-  }
+
   public setTabTiles(numbers: Array<number>): void {
     this.tabTiles = numbers;
   }
 
-  public adaptTabTiles(): void {
-    const tab = new Array<number>();
-    this.tabTiles.forEach((tile) => {
-      switch (JSON.stringify(tile)) {
-        case '{"type":"game.model.Grass"}':
-          tab.push(0);
-          break;
-        case '{"type":"game.model.Tree"}':
-          tab.push(1);
-          break;
-        case '{"type":"game.model.Water"}':
-          tab.push(2);
-          break;
-      }
-    });
-    this.tabTiles = tab;
-  }
+
 
   public setScores(scores1: Array<Score>): void {
     this.scores = scores1;
