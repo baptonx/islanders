@@ -47,6 +47,7 @@ export class HomeService {
   }
 
   public changeMap(name: string): void {
+    /*
     console.log(name);
     const tab = new Array<number>();
     const uri = `/game/api/v1/maps/${name}`;
@@ -60,6 +61,7 @@ export class HomeService {
         }
       }
     );
+     */
   }
 
   /**
@@ -86,6 +88,7 @@ export class HomeService {
 
 
   public addMap(): void {
+    /*
     const uri = `/game/api/v1/maps/random`;
     this.http.get<MapImpl>(uri, {}).subscribe({
         next: data => {
@@ -98,5 +101,6 @@ export class HomeService {
       }
     );
     this.mapService.map.adaptTabTiles();
+     */
   }
 }

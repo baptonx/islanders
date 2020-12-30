@@ -44,8 +44,5 @@ export class MapRessource {
     }
     return tab;
   }
-/*
-
-*/
 
 }
