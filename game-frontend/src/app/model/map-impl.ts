@@ -80,6 +80,24 @@ export class MapImpl {
     this.tabTiles = numbers;
   }
 
+  public adaptTabTiles(): void {
+    const tab = new Array<number>();
+    this.tabTiles.forEach((tile) => {
+      switch (JSON.stringify(tile)) {
+        case '{"type":"game.model.Grass"}':
+          tab.push(0);
+          break;
+        case '{"type":"game.model.Tree"}':
+          tab.push(1);
+          break;
+        case '{"type":"game.model.Water"}':
+          tab.push(2);
+          break;
+      }
+    });
+    this.tabTiles = tab;
+  }
+
   public setScores(scores1: Array<Score>): void {
     this.scores = scores1;
   }
