@@ -17,11 +17,10 @@ export class HomeService {
   public tabMapTestFrontEnd: Array<MapImpl>;
   public indexCurrentMap;
 
-  constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public backendService: BackendService, public http: HttpClient) {
+  constructor(public mapService: MapService, public http: HttpClient) {
     //  ICI remplir tabMap avec le back-end
     this.tabMap = new Array<MapImpl>();
     this.mapNames = new Array<string>();
-
     this.indexCurrentMap = 0;
 
     //  Uniquement pour les tests du front-end :
@@ -47,12 +46,67 @@ export class HomeService {
   }
 
   public changeMap(name: string): void {
-    console.log('coucou');
+    console.log(name);
+    const tab = new Array<number>(100);
     const uri = `/game/api/v1/maps/${name}`;
-    this.http.get<MapRessource>(uri).subscribe(
+    this.http.get<MapImpl>(uri).subscribe(
       {
         next: data => {
-          this.mapService.map = data.toMapimpl();
+          data.tabTiles.forEach((tile) => {
+            switch (tile) {
+              case {type: 'game.model.Grass'}:
+                tab.push(0);
+                break;
+              case {type: 'game.model.Tree'}:
+                tab.push(1);
+                break;
+              case {type: 'game.model.Water'}:
+                tab.push(2);
+                break;
+            }
+          });
+          /**
+           * Les maps reçues du backend possèdent comme tableau de tile des objets Grass, Tree et Water
+           * Les MapImpl du frontend utilisent seulement les entiers 0 1 2, il faut donc faire la correspondance entre les deux
+           */
+          this.mapService.map = data;
+          this.mapService.map.setTabTiles(tab);
+        },
+        error: error => {
+          console.error('There was an error!', error.message);
+        }
+      }
+    );
+  }
+
+  /**
+   * Les maps reçues du backend possèdent comme tableau de tile des objets Grass, Tree et Water
+   * Les MapImpl du frontend utilisent seulement les entiers 0 1 2, il faut donc faire la correspondance entre les deux
+   */
+  public loadMap(name: string): void {
+    const tab = new Array<number>();
+    const uri = `/game/api/v1/maps/${name}`;
+    this.http.get<MapImpl>(uri).subscribe(
+      {
+        next: data => {
+          console.log(JSON.stringify(data.tabTiles[0]));
+          data.tabTiles.forEach((tile) => {
+            switch (JSON.stringify(tile)) {
+              case '{"type":"game.model.Grass"}':
+                tab.push(0);
+                break;
+              case '{"type":"game.model.Tree"}':
+                tab.push(1);
+                break;
+              case '{"type":"game.model.Water"}':
+                tab.push(2);
+                break;
+            }
+          });
+
+          this.mapService.map = data;
+          this.mapService.map.tabTiles = tab;
+          console.log(this.mapService.map);
         },
         error: error => {
           console.error('There was an error!', error.message);

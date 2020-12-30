@@ -1,11 +1,11 @@
 import {Undoable} from 'interacto';
 import {MapService} from '../service/map.service';
-import {ClonerService} from "../service/cloner.service";
-import {MapImpl} from "./map-impl";
+import {ClonerService} from '../service/cloner.service';
+import {MapImpl} from './map-impl';
 
 export class CommandAdd implements Undoable {
   mementoHasMovedBlock: boolean;
-  mementoTypeMoveBlock: number|undefined;
+  mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
   map: MapImpl;
 
@@ -22,13 +22,13 @@ export class CommandAdd implements Undoable {
   }
 
   // Create the memento for undoing the command
-  protected createMemento() {
+  protected createMemento(): void {
     // We copy the current state of the MapService
     this.mementoHasMovedBlock = this.mapService.hasMovedBlock;
     this.mementoTypeMoveBlock = this.mapService.typeMoveBlock;
     this.mementoPosMoveBlock = this.mapService.posMoveBlock;
     this.map = this.clonerService.deepClone(this.mapService.map);
-    this.mementoAvailableCityBlock =  Object.assign([], this.mapService.inventoryService.availableCityBlock);
+    this.mementoAvailableCityBlock = Object.assign([], this.mapService.inventoryService.availableCityBlock);
     this.mementoCityBlockSelected = this.mapService.inventoryService.cityBlockSelected;
     this.mementoNomJoueur = this.mapService.infogameService.nomJoueur;
     this.mementoScore = this.mapService.infogameService.score;

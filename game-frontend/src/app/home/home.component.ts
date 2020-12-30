@@ -41,8 +41,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
      */
     const map = new MapImpl();
     // this.backendService.postMap(map.toMapRessource());
-    this.backendService.getMapNames();
-    this.backendService.getMapFromName('Beerus');
+    // this.backendService.getMapNames();
+    // this.backendService.getMapFromName('Beerus');
     // this.backendService.getTopScores('Beerus');
     // this.backendService.getRandomMap();
     // this.backendService.postGame('Beerus', 'Joueur1', 320);
@@ -70,8 +70,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   public addNewMap(): void {
-    this.backendService.getMapFromName('Zamasu');
+    this.backendService.getRandomMap();
   }
+
 
   ngAfterViewInit(): void {
 

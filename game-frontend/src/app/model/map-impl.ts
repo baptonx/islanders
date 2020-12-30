@@ -4,7 +4,7 @@ import {Score} from './score';
 import {MapRessource} from './map-ressource';
 
 export class MapImpl {
-  public tabTiles: Array<number>;
+  public tabTiles: Array<any>;
   public name: string;
   public tabScores: Array<Array<number | string>>;
   private scores: Array<Score>;
@@ -14,7 +14,7 @@ export class MapImpl {
   constructor() {
     this.name = 'Beerus';
     this.scores = [];
-    this.tabTiles = this.generateRandomMap();
+    this.tabTiles = Array<any>();
     this.commandsCollectors = Array<string>();
     this.topScores = [];
 
@@ -34,7 +34,6 @@ export class MapImpl {
     this.tabScores[4] = new Array<number | string>(2);
     this.tabScores[4][0] = '-----';
     this.tabScores[4][1] = 0;
-
   }
 
   private getRandomInt(max: number): number {
@@ -49,10 +48,10 @@ export class MapImpl {
     return tab;
   }
 
-  public generateTabTiles(): Array<string> {
-    const tab = new Array<any>();
+  public generateTabTiles(): Array<any> {
+    const tab = new Array<any>(100);
     for (let i = 0; i < 100; i++) {
-      switch (this.tabTiles[i]) {
+      switch (this.getRandomInt(3)) {
         case 0:
           tab.push({type: 'game.model.Grass'});
           break;
@@ -64,17 +63,19 @@ export class MapImpl {
           break;
       }
     }
+    console.log(tab);
     return tab;
   }
-/*
-  public toMapRessource(): MapRessource {
-    const mapRessource = new MapRessource(this.name);
-    mapRessource.setTabTiles(this.generateTabTiles());
-    mapRessource.setScores([new Score(), new Score()]);
-    mapRessource.setCommandsCollectors(this.commandsCollectors);
-    return mapRessource;
-  }
-*/
+
+  /*
+    public toMapRessource(): MapRessource {
+      const mapRessource = new MapRessource(this.name);
+      mapRessource.setTabTiles(this.generateTabTiles());
+      mapRessource.setScores([new Score(), new Score()]);
+      mapRessource.setCommandsCollectors(this.commandsCollectors);
+      return mapRessource;
+    }
+  */
   public setTabTiles(numbers: Array<number>): void {
     this.tabTiles = numbers;
   }
@@ -82,8 +83,13 @@ export class MapImpl {
   public setScores(scores1: Array<Score>): void {
     this.scores = scores1;
   }
+
   public setCommandsCollectors(cc: Array<string>): void {
     this.commandsCollectors = cc;
+  }
+
+  public getTabTiles(): Array<any> {
+    return this.tabTiles;
   }
 
 }
