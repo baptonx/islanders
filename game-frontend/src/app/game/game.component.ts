@@ -11,6 +11,7 @@ import {ClonerService} from '../service/cloner.service';
 import {GameService} from '../service/game.service';
 import {CommandRename} from '../model/command-rename';
 import {Command} from '../model/command';
+import {MapAdapter} from '../model/map-adapter';
 
 @Component({
   selector: 'app-game',
@@ -56,8 +57,13 @@ export class GameComponent implements OnInit, AfterViewInit {
         // C'est le POST qui s'occupe de regarder si le score du joueur pour la map donnée est plus grand que son
         // ancien score, si oui met à jour le score et le undoCollector
         // Attention pour le UndoCollector passer une listCommands
+        const body = Array<Command>();
+        this.gameService.undoCollector.commands.forEach((command) => {
+          body.push(MapAdapter.commandImplToCommand(command));
+        });
+        console.log(body);
         this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
-          this.infogameService.score, this.gameService.undoCollector.commands);
+          this.infogameService.score, JSON.stringify(body) );
 
 
         // Puis faire ViewReplays : refaire un select qui se met a jour quand on change de map dans le home.
