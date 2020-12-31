@@ -1,16 +1,16 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { InventoryComponent } from '../inventory/inventory.component';
+import {InventoryComponent} from '../inventory/inventory.component';
 import {MapComponent} from '../map/map.component';
 import {InfogameService} from '../service/infogame.service';
 import {AnonCmd, buttonBinder, Redo, Undo, Undoable} from 'interacto';
 import {LeaderboardService} from '../service/leaderboard.service';
-import {MapService} from "../service/map.service";
-import {HomeService} from "../service/home.service";
-import {MoveCityBlock} from "../model/move-city-block";
-import {ClonerService} from "../service/cloner.service";
-import {GameService} from "../service/game.service";
-import {CommandRename} from "../model/command-rename";
-import {Command} from "../model/command";
+import {MapService} from '../service/map.service';
+import {HomeService} from '../service/home.service';
+import {MoveCityBlock} from '../model/move-city-block';
+import {ClonerService} from '../service/cloner.service';
+import {GameService} from '../service/game.service';
+import {CommandRename} from '../model/command-rename';
+import {Command} from '../model/command';
 
 @Component({
   selector: 'app-game',
@@ -32,7 +32,8 @@ export class GameComponent implements OnInit, AfterViewInit {
   @ViewChild('buttonCommand')
   buttonCommand: ElementRef<HTMLInputElement>;
 
-  constructor(public gameService: GameService, public infogameService: InfogameService, public leaderboardService: LeaderboardService, public mapService: MapService, public homeService: HomeService, public clonerService: ClonerService) { }
+  constructor(public gameService: GameService, public infogameService: InfogameService, public leaderboardService: LeaderboardService, public mapService: MapService, public homeService: HomeService, public clonerService: ClonerService) {
+  }
 
   ngOnInit(): void {
     this.mapService.map = Object.assign({}, this.mapService.map);
@@ -47,19 +48,20 @@ export class GameComponent implements OnInit, AfterViewInit {
       .on(this.buttonHome.nativeElement)
       .toProduce(i => new AnonCmd(() => {
         /***console.log(this.infogameService.nomJoueur);
-        this.leaderboardService.addScore(this.infogameService.nomJoueur, this.infogameService.score);
-        this.leaderboardService
-          .changeSpecificTabScores(this.homeService.mapService.map.tabScores, this.leaderboardService.tabScores);***/
+         this.leaderboardService.addScore(this.infogameService.nomJoueur, this.infogameService.score);
+         this.leaderboardService
+         .changeSpecificTabScores(this.homeService.mapService.map.tabScores, this.leaderboardService.tabScores);***/
 
-        //DONNER AU POST : NomMap, NomJoueur, Score, UndoCollector
-        //C'est le POST qui s'occupe de regarder si le score du joueur pour la map donnée est plus grand que son
-        //ancien score, si oui met à jour le score et le undoCollector
-        //Attention pour le UndoCollector passer une listCommands
+        // DONNER AU POST : NomMap, NomJoueur, Score, UndoCollector
+        // C'est le POST qui s'occupe de regarder si le score du joueur pour la map donnée est plus grand que son
+        // ancien score, si oui met à jour le score et le undoCollector
+        // Attention pour le UndoCollector passer une listCommands
+        this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
+          this.infogameService.score, this.gameService.undoCollector.commands);
 
 
-
-        //Puis faire ViewReplays : refaire un select qui se met a jour quand on change de map dans le home.
-        //Puis quand on selectionne nom d'un joueur, charge un component replay (comme component play mais avec
+        // Puis faire ViewReplays : refaire un select qui se met a jour quand on change de map dans le home.
+        // Puis quand on selectionne nom d'un joueur, charge un component replay (comme component play mais avec
         // moins de trucs)
 
         this.mapService.router.navigate(['/home']);

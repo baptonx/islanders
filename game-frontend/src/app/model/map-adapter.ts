@@ -5,8 +5,48 @@ import {Tile} from './tile';
 import {Grass} from './grass';
 import {Tree} from './tree';
 import {Water} from './water';
+import {Command} from './command';
+import {CommandRename} from './command-rename';
+import {PutCityBlockImpl} from './put-city-block-impl';
+import {PutCityBlock} from './put-city-block';
+import {MoveCityBlockImpl} from './move-city-block-impl';
+import {MoveCityBlock} from './move-city-block';
 
 export class MapAdapter {
+
+  public static commandImplToCommand(command: Command): Command {
+    if (command instanceof CommandRename) {
+      return command;
+    } else if (command instanceof PutCityBlockImpl) {
+      const pcbi: PutCityBlockImpl = command as PutCityBlockImpl;
+      const pcb = new PutCityBlock(pcbi.x, pcbi.y);
+      pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
+      pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
+      pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
+      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
+      pcb.mementoScore = pcbi.mementoScore;
+      pcb.mementoNextScore = pcbi.mementoNextScore;
+      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
+      pcb.typeCityBlock = pcbi.typeCityBlock;
+      pcb.position = pcbi.position;
+      pcb.map = MapAdapter.mapImplToMapRessource(pcbi.map);
+      console.log(JSON.stringify(pcb));
+    } else if (command instanceof MoveCityBlockImpl) {
+      const pcbi: MoveCityBlockImpl = command as MoveCityBlockImpl;
+      const pcb = new MoveCityBlock(pcbi.x, pcbi.y);
+      pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
+      pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
+      pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
+      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
+      pcb.mementoScore = pcbi.mementoScore;
+      pcb.mementoNextScore = pcbi.mementoNextScore;
+      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
+      pcb.posAfter = pcbi.posAfter;
+      pcb.posBefore = pcbi.posBefore;
+      pcb.map = MapAdapter.mapImplToMapRessource(pcbi.map);
+      console.log(pcb);
+    }
+  }
 
   public static mapRessourceToMapImpl(map: MapRessource): MapImpl {
     const mapImpl = new MapImpl(map.name);
@@ -24,10 +64,10 @@ export class MapAdapter {
     return mapRessource;
   }
 
-  private static numbersToTiles(tiles: Array<number>): Array<Tile> {
+  public static numbersToTiles(tiles: Array<number>): Array<Tile> {
     const tab = new Array<Tile>();
     tiles.forEach((tile) => {
-      switch (tile){
+      switch (tile) {
         case 0: {
           tab.push(new Grass());
           break;
@@ -43,14 +83,15 @@ export class MapAdapter {
         default: {
           tab.push(new Grass());
         }
-      }});
+      }
+    });
     return tab;
   }
 
-  private static tilesToNumbers(tiles: Array<Tile>): Array<number> {
+  public static tilesToNumbers(tiles: Array<Tile>): Array<number> {
     const tab = new Array<number>();
     tiles.forEach((tile) => {
-        switch (tile.type){
+        switch (tile.type) {
           case 'game.model.Grass': {
             tab.push(0);
             break;
@@ -66,7 +107,7 @@ export class MapAdapter {
           default: {
             tab.push(0);
           }
-      }
+        }
       }
     );
     return tab;

@@ -111,7 +111,7 @@ export class BackendService {
    */
   public postGame(mapName: string, playerName: string, score: number): void {
     const uri = `/game/api/v1/replays/${mapName}/${playerName}/${score}`;
-    const commands = [{
+    const body = [{
       type: 'game.model.MoveCityBlock',
       posBefore: 0,
       posAfter: 1
@@ -124,7 +124,7 @@ export class BackendService {
       posBefore: 2,
       posAfter: 3
     }];
-    this.http.post(uri, commands, {
+    this.http.post(uri, body, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })

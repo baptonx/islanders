@@ -8,6 +8,8 @@ import java.util.Objects;
 @XmlRootElement
 public class PutCityBlock extends Command {
     private int position;
+    private int x;
+    private int y;
     private int typeCityBlock;
     private boolean mementoHasMovedBlock;
     private int mementoTypeMoveBlock;

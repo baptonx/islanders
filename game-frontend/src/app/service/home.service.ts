@@ -16,7 +16,7 @@ export class HomeService {
   public mapNames: Array<string>;
   public indexCurrentMap;
 
-  constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public backendService: BackendService, public http: HttpClient) {
+  constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public http: HttpClient) {
     //  ICI remplir tabMap avec le back-end
     this.mapNames = new Array<string>();
     this.indexCurrentMap = 0;
@@ -24,7 +24,6 @@ export class HomeService {
 
 
   public initialize(): void {
-    // this.backendService.postMap(new MapRessource('Test'));
     this.http.get<Array<string>>('/game/api/v1/maps').subscribe(
       {
         next: data => {
@@ -38,6 +37,7 @@ export class HomeService {
       }
     );
   }
+
   public changeMap(name: string): void {
     const uri = `/game/api/v1/maps/${name}`;
     const res: MapRessource = new MapRessource('');

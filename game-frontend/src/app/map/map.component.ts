@@ -8,6 +8,8 @@ import {Router} from '@angular/router';
 import {MoveCityBlock} from '../model/move-city-block';
 import {ClonerService} from '../service/cloner.service';
 import {PutCityBlock} from '../model/put-city-block';
+import {MoveCityBlockImpl} from '../model/move-city-block-impl';
+import {PutCityBlockImpl} from '../model/put-city-block-impl';
 
 @Component({
   selector: 'app-map',
@@ -71,7 +73,7 @@ export class MapComponent {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande
-        this.gameService.undoCollector.commands.push(new MoveCityBlock(this.mapService, x, y, this.clonerService));
+        this.gameService.undoCollector.commands.push(new MoveCityBlockImpl(this.mapService, x, y, this.clonerService));
         this.gameService.redoCollector.commands = [];
         /*
         this.mapService.map.tabTiles[this.mapService.posMoveBlock] = 0;
@@ -87,7 +89,7 @@ export class MapComponent {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande
-        this.gameService.undoCollector.commands.push(new PutCityBlock(this.mapService, x, y, this.clonerService));
+        this.gameService.undoCollector.commands.push(new PutCityBlockImpl(this.mapService, x, y, this.clonerService));
         this.gameService.redoCollector.commands = [];
         // () => new MoveCityBlock(this.mapService, x, y, this.clonerService);
         /*

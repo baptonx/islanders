@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.homeService.initialize();
     this.mapNames = this.homeService.mapNames;
     this.homeService.mapService.infogameService.errorOutput = '';
   }
+
 
   public clickArrowLeft(): void {
     if (this.homeService.indexCurrentMap > 0) {
@@ -57,6 +57,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
+    this.homeService.initialize();
+    this.mapNames = this.homeService.mapNames;
 
     buttonBinder()
       .on(this.buttonStart.nativeElement)
