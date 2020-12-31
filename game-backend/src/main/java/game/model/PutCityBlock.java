@@ -14,7 +14,7 @@ public class PutCityBlock extends Command {
     private boolean mementoHasMovedBlock;
     private int mementoTypeMoveBlock;
     private int mementoPosMoveBlock;
-    private MapResource map;
+    private List<Tile> tabTiles;
 
     public List<Integer> mementoAvailableCityBlock;
     public int mementoCityBlockSelected;

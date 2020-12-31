@@ -32,7 +32,7 @@ export class GameService {
     commands.forEach((command) => {
       body.push(MapAdapter.commandImplToCommand(command));
     });
-    this.http.post(uri, body, {
+    this.http.post(uri, JSON.stringify(body), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })

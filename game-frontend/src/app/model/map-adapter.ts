@@ -29,7 +29,7 @@ export class MapAdapter {
       pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
       pcb.typeCityBlock = pcbi.typeCityBlock;
       pcb.position = pcbi.position;
-      pcb.map = MapAdapter.mapImplToMapRessource(pcbi.map);
+      pcb.map = MapAdapter.numbersToTiles(pcbi.map.tabTiles);
       console.log(JSON.stringify(pcb));
     } else if (command instanceof MoveCityBlockImpl) {
       const pcbi: MoveCityBlockImpl = command as MoveCityBlockImpl;
@@ -43,7 +43,7 @@ export class MapAdapter {
       pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
       pcb.posAfter = pcbi.posAfter;
       pcb.posBefore = pcbi.posBefore;
-      pcb.map = MapAdapter.mapImplToMapRessource(pcbi.map);
+      pcb.map = MapAdapter.numbersToTiles(pcbi.map.tabTiles);
       console.log(pcb);
     }
   }

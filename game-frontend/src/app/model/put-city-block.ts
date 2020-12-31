@@ -4,6 +4,7 @@ import {ClonerService} from '../service/cloner.service';
 import {MapImpl} from './map-impl';
 import {Command} from './command';
 import {MapRessource} from './map-ressource';
+import {Tile} from './tile';
 
 
 export class PutCityBlock extends Command implements Undoable {
@@ -12,7 +13,7 @@ export class PutCityBlock extends Command implements Undoable {
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
-  map: MapRessource;
+  map: Array<Tile>;
 
   public mementoAvailableCityBlock: Array<number>;
   public mementoCityBlockSelected = undefined;
