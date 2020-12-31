@@ -8,14 +8,14 @@ import java.util.Objects;
 
 @XmlRootElement
 public class PutCityBlock extends Command {
-    private int position;
-    private int x;
-    private int y;
-    private int typeCityBlock;
-    private boolean mementoHasMovedBlock;
-    private int mementoTypeMoveBlock;
-    private int mementoPosMoveBlock;
-    private List<Tile> tabTiles;
+    public int position;
+    public int x;
+    public int y;
+    public int typeCityBlock;
+    public boolean mementoHasMovedBlock;
+    public int mementoTypeMoveBlock;
+    public int mementoPosMoveBlock;
+    public List<Tile> map;
     public List<Integer> mementoAvailableCityBlock;
     public int mementoCityBlockSelected;
     public String mementoNomJoueur;
@@ -23,7 +23,7 @@ public class PutCityBlock extends Command {
     public int mementoNextScore;
 
     public PutCityBlock() {
-        this.tabTiles = new ArrayList<>();
+        this.map = new ArrayList<>();
         this.position = -1;
         this.typeCityBlock = -1;
     }

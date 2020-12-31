@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CommandRename extends Command {
-    private String mementoNomJoueur;
+    public String mementoNomJoueur;
 
     public CommandRename() {
     }
