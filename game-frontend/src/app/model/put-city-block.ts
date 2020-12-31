@@ -8,6 +8,9 @@ import {Tile} from './tile';
 
 
 export class PutCityBlock extends Command implements Undoable {
+  type = 'game.model.PutCityBlock';
+  x: number;
+  y: number;
   position: number;
   typeCityBlock: number;
   mementoHasMovedBlock: boolean;
@@ -22,8 +25,10 @@ export class PutCityBlock extends Command implements Undoable {
   public mementoScore: number;
   public mementoNextScore: number;
 
-  public constructor(public x: number, public y: number) {
+  public constructor(x: number, y: number) {
     super();
+    this.x = x;
+    this.y = y;
     // this.createMemento();
     // this.execution();
   }

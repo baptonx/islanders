@@ -2,6 +2,7 @@ package game.model;
 
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,15 +16,14 @@ public class PutCityBlock extends Command {
     private int mementoTypeMoveBlock;
     private int mementoPosMoveBlock;
     private List<Tile> tabTiles;
-
     public List<Integer> mementoAvailableCityBlock;
     public int mementoCityBlockSelected;
-
     public String mementoNomJoueur;
     public int mementoScore;
     public int mementoNextScore;
 
     public PutCityBlock() {
+        this.tabTiles = new ArrayList<>();
         this.position = -1;
         this.typeCityBlock = -1;
     }

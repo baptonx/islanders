@@ -63,7 +63,7 @@ export class GameComponent implements OnInit, AfterViewInit {
         });
         console.log(body);
         this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
-          this.infogameService.score, JSON.stringify(body) );
+          this.infogameService.score, body);
 
 
         // Puis faire ViewReplays : refaire un select qui se met a jour quand on change de map dans le home.

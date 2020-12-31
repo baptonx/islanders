@@ -1,8 +1,9 @@
-import {Undoable} from "interacto";
-import {InfogameService} from "../service/infogame.service";
-import {Command} from "./command";
+import {Undoable} from 'interacto';
+import {InfogameService} from '../service/infogame.service';
+import {Command} from './command';
 
-export class CommandRename extends Command implements Undoable  {
+export class CommandRename extends Command implements Undoable {
+  type = 'game.Model.MoveCityBlock';
   public mementoNomJoueur: string;
 
   public constructor(private infoGameService: InfogameService, private nouveauNomJoueur: string) {

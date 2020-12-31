@@ -8,6 +8,9 @@ import {Tile} from './tile';
 
 
 export class MoveCityBlock extends Command implements Undoable {
+  type = 'game.Model.MoveCityBlock';
+  x: number;
+  y: number;
   posBefore: number;
   posAfter: number;
   mementoHasMovedBlock: boolean;
@@ -22,119 +25,122 @@ export class MoveCityBlock extends Command implements Undoable {
   public mementoScore: number;
   public mementoNextScore: number;
 
-  public constructor(public x: number, public y: number) {
+  public constructor(x: number, y: number) {
     super();
+    this.x = x;
+    this.y = y;
     // this.createMemento();
     // this.execution();
   }
-/*
-  // Create the memento for undoing the command
-  protected createMemento() {
-    // We copy the current state of the MapService
-    this.mementoHasMovedBlock = this.mapService.hasMovedBlock;
-    this.mementoTypeMoveBlock = this.mapService.typeMoveBlock;
-    this.mementoPosMoveBlock = this.mapService.posMoveBlock;
-    this.map = this.clonerService.deepClone(this.mapService.map);
-    this.mementoAvailableCityBlock = Object.assign([], this.mapService.inventoryService.availableCityBlock);
-    this.mementoCityBlockSelected = this.mapService.inventoryService.cityBlockSelected;
-    this.mementoNomJoueur = this.mapService.infogameService.nomJoueur;
-    this.mementoScore = this.mapService.infogameService.score;
-    this.mementoNextScore = this.mapService.infogameService.nextScore;
-  }
+
+  /*
+    // Create the memento for undoing the command
+    protected createMemento() {
+      // We copy the current state of the MapService
+      this.mementoHasMovedBlock = this.mapService.hasMovedBlock;
+      this.mementoTypeMoveBlock = this.mapService.typeMoveBlock;
+      this.mementoPosMoveBlock = this.mapService.posMoveBlock;
+      this.map = this.clonerService.deepClone(this.mapService.map);
+      this.mementoAvailableCityBlock = Object.assign([], this.mapService.inventoryService.availableCityBlock);
+      this.mementoCityBlockSelected = this.mapService.inventoryService.cityBlockSelected;
+      this.mementoNomJoueur = this.mapService.infogameService.nomJoueur;
+      this.mementoScore = this.mapService.infogameService.score;
+      this.mementoNextScore = this.mapService.infogameService.nextScore;
+    }
 
 
-  protected execution(): void {
-    this.redo();
-  }
+    protected execution(): void {
+      this.redo();
+    }
 
-  undo(): void {
-    this.mapService.hasMovedBlock = this.mementoHasMovedBlock;
-    this.mapService.typeMoveBlock = this.mementoTypeMoveBlock;
-    this.mapService.posMoveBlock = this.mementoPosMoveBlock;
+    undo(): void {
+      this.mapService.hasMovedBlock = this.mementoHasMovedBlock;
+      this.mapService.typeMoveBlock = this.mementoTypeMoveBlock;
+      this.mapService.posMoveBlock = this.mementoPosMoveBlock;
 
-    const pos = this.y * 10 + this.x;
-    this.mapService.map.tabTiles[pos] = 0;
-    this.mapService.map.tabTiles[this.mementoPosMoveBlock] = this.mementoTypeMoveBlock;
+      const pos = this.y * 10 + this.x;
+      this.mapService.map.tabTiles[pos] = 0;
+      this.mapService.map.tabTiles[this.mementoPosMoveBlock] = this.mementoTypeMoveBlock;
 
-    this.mapService.inventoryService.availableCityBlock[0] = this.mementoAvailableCityBlock[0];
-    this.mapService.inventoryService.availableCityBlock[1] = this.mementoAvailableCityBlock[1];
-    this.mapService.inventoryService.availableCityBlock[2] = this.mementoAvailableCityBlock[2];
-    this.mapService.inventoryService.availableCityBlock[3] = this.mementoAvailableCityBlock[3];
-    this.mapService.inventoryService.cityBlockSelected = this.mementoCityBlockSelected;
+      this.mapService.inventoryService.availableCityBlock[0] = this.mementoAvailableCityBlock[0];
+      this.mapService.inventoryService.availableCityBlock[1] = this.mementoAvailableCityBlock[1];
+      this.mapService.inventoryService.availableCityBlock[2] = this.mementoAvailableCityBlock[2];
+      this.mapService.inventoryService.availableCityBlock[3] = this.mementoAvailableCityBlock[3];
+      this.mapService.inventoryService.cityBlockSelected = this.mementoCityBlockSelected;
 
-    this.mapService.infogameService.nomJoueur = this.mementoNomJoueur;
-    this.mapService.infogameService.score = this.mementoScore;
-    this.mapService.infogameService.nextScore = this.mementoNextScore;
-  }
+      this.mapService.infogameService.nomJoueur = this.mementoNomJoueur;
+      this.mapService.infogameService.score = this.mementoScore;
+      this.mapService.infogameService.nextScore = this.mementoNextScore;
+    }
 
-  redo(): void {
-    const pos = this.y * 10 + this.x;
-    this.mapService.map.tabTiles[this.mementoPosMoveBlock] = 0;
-    this.mapService.map.tabTiles[pos] = this.mementoTypeMoveBlock;
-    this.computeScore(this.x, this.y);
-    this.mapService.hasMovedBlock = true;
-    this.mapService.typeMoveBlock = undefined;
-  }
+    redo(): void {
+      const pos = this.y * 10 + this.x;
+      this.mapService.map.tabTiles[this.mementoPosMoveBlock] = 0;
+      this.mapService.map.tabTiles[pos] = this.mementoTypeMoveBlock;
+      this.computeScore(this.x, this.y);
+      this.mapService.hasMovedBlock = true;
+      this.mapService.typeMoveBlock = undefined;
+    }
 
-  getUndoName(): string {
-    return 'Undo move';
-  }
+    getUndoName(): string {
+      return 'Undo move';
+    }
 
-  private cityBlockToTypeTile(typeCityBlock: number): number {
-    const nameCityBlock = this.mapService.inventoryService.typeCityBlock[typeCityBlock];
-    return this.mapService.inventoryService.typeName.indexOf(nameCityBlock);
-  }
+    private cityBlockToTypeTile(typeCityBlock: number): number {
+      const nameCityBlock = this.mapService.inventoryService.typeCityBlock[typeCityBlock];
+      return this.mapService.inventoryService.typeName.indexOf(nameCityBlock);
+    }
 
-  private typeTileToCityBlock(type: number): number {
-    const name = this.mapService.inventoryService.typeName[type];
-    return this.mapService.inventoryService.typeCityBlock.indexOf(name);
-  }
+    private typeTileToCityBlock(type: number): number {
+      const name = this.mapService.inventoryService.typeName[type];
+      return this.mapService.inventoryService.typeCityBlock.indexOf(name);
+    }
 
-  public computeScore(x: number, y: number): number {
-    console.log('y : ' + y + ' x : ' + x);
-    let scoreCityBlock = 0;
-    const pos = y * 10 + x;
-    const type = this.mapService.map.tabTiles[pos];
-    const typeCityBlock = this.typeTileToCityBlock(type);
-    const dict = this.mapService.inventoryService.tabDictionariesScore[typeCityBlock];
-    const radius = dict.get('radius');
-    console.log('radius : ' + radius);
+    public computeScore(x: number, y: number): number {
+      console.log('y : ' + y + ' x : ' + x);
+      let scoreCityBlock = 0;
+      const pos = y * 10 + x;
+      const type = this.mapService.map.tabTiles[pos];
+      const typeCityBlock = this.typeTileToCityBlock(type);
+      const dict = this.mapService.inventoryService.tabDictionariesScore[typeCityBlock];
+      const radius = dict.get('radius');
+      console.log('radius : ' + radius);
 
 
-    for (let yRadius = -radius; yRadius <= radius; yRadius++) {
-      for (let xRadius = -radius; xRadius <= radius; xRadius++) {
-        if (!(xRadius === 0 && yRadius === 0)) {
-          const newY = y + yRadius;
-          const newX = x + xRadius;
-          if (newY >= 0 && newY < 10 && newX >= 0 && newX < 10) {
-            // console.log('newY : ' + newY + ' newX : ' + newX);
-            const typeRadius = this.mapService.map.tabTiles[newY * 10 + newX];
-            const scoreRadius = dict.get(this.mapService.inventoryService.typeName[typeRadius]);
-            if (scoreRadius !== undefined) {
-              scoreCityBlock += scoreRadius;
+      for (let yRadius = -radius; yRadius <= radius; yRadius++) {
+        for (let xRadius = -radius; xRadius <= radius; xRadius++) {
+          if (!(xRadius === 0 && yRadius === 0)) {
+            const newY = y + yRadius;
+            const newX = x + xRadius;
+            if (newY >= 0 && newY < 10 && newX >= 0 && newX < 10) {
+              // console.log('newY : ' + newY + ' newX : ' + newX);
+              const typeRadius = this.mapService.map.tabTiles[newY * 10 + newX];
+              const scoreRadius = dict.get(this.mapService.inventoryService.typeName[typeRadius]);
+              if (scoreRadius !== undefined) {
+                scoreCityBlock += scoreRadius;
+              }
             }
           }
         }
       }
+      this.mapService.infogameService.score += scoreCityBlock;
+      this.updateScore();
+      return scoreCityBlock;
     }
-    this.mapService.infogameService.score += scoreCityBlock;
-    this.updateScore();
-    return scoreCityBlock;
-  }
 
-  public updateScore(): void {
-    while (this.mapService.infogameService.score >= this.mapService.infogameService.nextScore) {
-      this.mapService.infogameService.nextScore += 10;
-      this.updateInventory();
+    public updateScore(): void {
+      while (this.mapService.infogameService.score >= this.mapService.infogameService.nextScore) {
+        this.mapService.infogameService.nextScore += 10;
+        this.updateInventory();
+      }
     }
-  }
 
-  public updateInventory(): void {
-    for (let i = 0; i < this.mapService.inventoryService.availableCityBlock.length; i++) {
-      this.mapService.inventoryService.availableCityBlock[i]++;
+    public updateInventory(): void {
+      for (let i = 0; i < this.mapService.inventoryService.availableCityBlock.length; i++) {
+        this.mapService.inventoryService.availableCityBlock[i]++;
+      }
     }
-  }
 
- */
+   */
 
 }

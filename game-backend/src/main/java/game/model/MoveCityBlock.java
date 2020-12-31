@@ -2,11 +2,14 @@ package game.model;
 
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement
 public class MoveCityBlock extends Command {
+    private int x;
+    private int y;
     private int posBefore;
     private int posAfter;
     private boolean mementoHasMovedBlock;
@@ -22,6 +25,7 @@ public class MoveCityBlock extends Command {
     public int mementoNextScore;
 
     public MoveCityBlock() {
+        this.tabTiles = new ArrayList<>();
         this.posBefore = -1;
         this.posAfter = -1;
     }
@@ -56,4 +60,5 @@ public class MoveCityBlock extends Command {
     public int hashCode() {
         return Objects.hash(posBefore, posAfter);
     }
+
 }
