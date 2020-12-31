@@ -31,6 +31,7 @@ export class MapAdapter {
       pcb.position = pcbi.position;
       pcb.map = MapAdapter.numbersToTiles(pcbi.map.tabTiles);
       console.log(JSON.stringify(pcb));
+      return pcb;
     } else if (command instanceof MoveCityBlockImpl) {
       const pcbi: MoveCityBlockImpl = command as MoveCityBlockImpl;
       const pcb = new MoveCityBlock(pcbi.x, pcbi.y);
@@ -45,6 +46,10 @@ export class MapAdapter {
       pcb.posBefore = pcbi.posBefore;
       pcb.map = MapAdapter.numbersToTiles(pcbi.map.tabTiles);
       console.log(pcb);
+      return pcb;
+    }
+    else{
+      return null;
     }
   }
 
