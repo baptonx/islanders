@@ -24,7 +24,7 @@
       View Replay
     </button>
     <select (change)="this.homeService.changeMap($event.target.value)">
-      <option #mapName *ngFor="let y of this.homeService.mapNames.values()">{{y}}</option>
+      <option #mapName *ngFor="let y of this.homeService.mapNames">{{y}}</option>
     </select>
   </div>
   <p [ngClass]="{'errorOutputRed': homeService.mapService.infogameService.isErrorOutputRed, 'errorOutputGreen': !homeService.mapService.infogameService.isErrorOutputRed}">{{homeService.mapService.infogameService.errorOutput}}</p>

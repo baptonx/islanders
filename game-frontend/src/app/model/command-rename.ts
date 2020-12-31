@@ -1,10 +1,12 @@
 import {Undoable} from "interacto";
 import {InfogameService} from "../service/infogame.service";
+import {Command} from "./command";
 
-export class CommandRename implements Undoable  {
+export class CommandRename extends Command implements Undoable  {
   public mementoNomJoueur: string;
 
   public constructor(private infoGameService: InfogameService, private nouveauNomJoueur: string) {
+    super();
     this.createMemento();
     this.execution();
   }

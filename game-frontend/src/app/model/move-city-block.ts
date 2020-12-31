@@ -2,8 +2,10 @@ import {Undoable} from 'interacto';
 import {MapService} from '../service/map.service';
 import {ClonerService} from '../service/cloner.service';
 import {MapImpl} from './map-impl';
+import {Command} from "./command";
 
-export class MoveCityBlock implements Undoable {
+
+export class MoveCityBlock extends Command implements Undoable {
   posBefore: number;
   posAfter: number;
   mementoHasMovedBlock: boolean;
@@ -19,6 +21,7 @@ export class MoveCityBlock implements Undoable {
   public mementoNextScore: number;
 
   public constructor(private mapService: MapService, private x: number, private y: number, private clonerService: ClonerService) {
+    super();
     this.createMemento();
     this.execution();
   }

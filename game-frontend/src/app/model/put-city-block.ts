@@ -2,8 +2,10 @@ import {Undoable} from 'interacto';
 import {MapService} from '../service/map.service';
 import {ClonerService} from '../service/cloner.service';
 import {MapImpl} from './map-impl';
+import {Command} from "./command";
 
-export class PutCityBlock implements Undoable {
+
+export class PutCityBlock extends Command implements Undoable {
   position: number;
   typeCityBlock: number;
   mementoHasMovedBlock: boolean;
@@ -19,6 +21,7 @@ export class PutCityBlock implements Undoable {
   public mementoNextScore: number;
 
   public constructor(private mapService: MapService, private x: number, private y: number, private clonerService: ClonerService) {
+    super();
     this.createMemento();
     this.execution();
   }
@@ -49,13 +52,12 @@ export class PutCityBlock implements Undoable {
 
     const pos = this.y * 10 + this.x;
     this.mapService.map.tabTiles[pos] = 0;
-    this.mapService.inventoryService.availableCityBlock = this.mementoAvailableCityBlock;
-    /*this.mapService.inventoryService.availableCityBlock[0] = this.mementoAvailableCityBlock[0];
+    this.mapService.inventoryService.availableCityBlock[0] = this.mementoAvailableCityBlock[0];
     this.mapService.inventoryService.availableCityBlock[1] = this.mementoAvailableCityBlock[1];
     this.mapService.inventoryService.availableCityBlock[2] = this.mementoAvailableCityBlock[2];
     this.mapService.inventoryService.availableCityBlock[3] = this.mementoAvailableCityBlock[3];
     this.mapService.inventoryService.cityBlockSelected = this.mementoCityBlockSelected;
-*/
+
     this.mapService.infogameService.nomJoueur = this.mementoNomJoueur;
     this.mapService.infogameService.score = this.mementoScore;
     this.mapService.infogameService.nextScore = this.mementoNextScore;

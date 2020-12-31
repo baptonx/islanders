@@ -71,8 +71,8 @@ export class MapComponent {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande
-        this.gameService.undoArray.push(new MoveCityBlock(this.mapService, x, y, this.clonerService));
-        this.gameService.redoArray = [];
+        this.gameService.undoCollector.commands.push(new MoveCityBlock(this.mapService, x, y, this.clonerService));
+        this.gameService.redoCollector.commands = [];
         /*
         this.mapService.map.tabTiles[this.mapService.posMoveBlock] = 0;
         this.mapService.map.tabTiles[pos] = this.mapService.typeMoveBlock;
@@ -87,8 +87,8 @@ export class MapComponent {
       const pos = y * 10 + x;
       if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
         // Creation d'une commande
-        this.gameService.undoArray.push(new PutCityBlock(this.mapService, x, y, this.clonerService));
-        this.gameService.redoArray = [];
+        this.gameService.undoCollector.commands.push(new PutCityBlock(this.mapService, x, y, this.clonerService));
+        this.gameService.redoCollector.commands = [];
         // () => new MoveCityBlock(this.mapService, x, y, this.clonerService);
         /*
         const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);

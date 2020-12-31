@@ -27,10 +27,13 @@ export class LeaderboardService {
   }
   public getScore(): void{
     const uri = `/game/api/v1/topScores/${this.mapService.map.name}`;
+    this.tabScores = new Array<Score>();
     this.http.get<Array<Score>>(uri).subscribe(
       {
         next: data => {
-          this.tabScores = data;
+          for(let s of data) {
+            this.tabScores.push(s);
+          }
         },
         error: error => {
           console.error('There was an error!', error.message);

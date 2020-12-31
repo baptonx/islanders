@@ -1,4 +1,5 @@
-import {Command} from './command';
+import {Command} from "./command";
+
 
 export class CommandCollector {
   playerName: string;

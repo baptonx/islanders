@@ -1,19 +1,20 @@
 import {Score} from './score';
 import {CommandCollector} from './command-collector';
+import {Tile} from "./tile";
 
 export class MapImpl {
   public tabTiles: Array<any>;
-  public tabScores: Array<Array<number | string>>;
+  //public tabScores: Array<Array<number | string>>;
   public scores: Array<Score>;
   public commandsCollectors: Array<CommandCollector>;
   public topScores: Array<Score>;
 
   constructor(public name: string) {
     this.scores = [];
-    this.tabTiles = Array<any>();
+    this.tabTiles = Array<Tile>();
     this.commandsCollectors = Array<CommandCollector>();
     this.topScores = [];
-
+/*
     this.tabScores = new Array<Array<number | string>>(5);
     this.tabScores[0] = new Array<number | string>(2);
     this.tabScores[0][0] = '-';
@@ -30,6 +31,7 @@ export class MapImpl {
     this.tabScores[4] = new Array<number | string>(2);
     this.tabScores[4][0] = '-----';
     this.tabScores[4][1] = 0;
+ */
   }
 
   private getRandomInt(max: number): number {
