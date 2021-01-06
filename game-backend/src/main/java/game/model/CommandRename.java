@@ -1,12 +1,15 @@
 package game.model;
 
-import java.util.List;
 import java.util.Objects;
 
 public class CommandRename extends Command {
-    public String mementoNomJoueur;
+    private String mementoNomJoueur;
 
     public CommandRename() {
+    }
+
+    public String getMementoNomJoueur() {
+        return this.mementoNomJoueur;
     }
 
     @Override
@@ -18,7 +21,7 @@ public class CommandRename extends Command {
             return false;
         }
         final CommandRename that = (CommandRename) o;
-        return mementoNomJoueur == that.mementoNomJoueur;
+        return mementoNomJoueur.equals(that.getMementoNomJoueur());
     }
 
     @Override

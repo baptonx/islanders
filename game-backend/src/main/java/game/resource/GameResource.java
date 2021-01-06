@@ -129,7 +129,7 @@ public class GameResource {
             c = mapper.readValue(commands, new TypeReference<List<Command>>() {
             });
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            // throw exception Web
         }
         /*
         try {
