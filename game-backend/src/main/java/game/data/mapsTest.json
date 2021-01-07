@@ -1,139 +1,35 @@
 [
   {
-    "name": "Goten",
+    "name": "King Cold",
     "scores": [
       {
-        "player": "Paul",
-        "score": 36
+        "player": "baptiste",
+        "score": 4
       },
       {
-        "player": "testPaul",
+        "player": "Paul",
+        "score": 33
+      },
+      {
+        "player": "bapt",
+        "score": 25
+      },
+      {
+        "player": "PaulTest",
+        "score": 28
+      },
+      {
+        "player": "test",
+        "score": 28
+      },
+      {
+        "player": "Pa",
         "score": 61
       }
     ],
     "tabTiles": [
       {
-        "type": "game.model.Water"
-      },
-      {
         "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Tree"
@@ -154,58 +50,25 @@
         "type": "game.model.Tree"
       },
       {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
         "type": "game.model.Tree"
       },
       {
         "type": "game.model.Water"
       },
       {
-        "type": "game.model.Water"
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Grass"
@@ -223,31 +86,13 @@
         "type": "game.model.Grass"
       },
       {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
         "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Grass"
@@ -259,6 +104,27 @@
         "type": "game.model.Tree"
       },
       {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
         "type": "game.model.Water"
       },
       {
@@ -266,6 +132,78 @@
       },
       {
         "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
       },
       {
         "type": "game.model.Grass"
@@ -295,6 +233,69 @@
         "type": "game.model.Grass"
       },
       {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
         "type": "game.model.Tree"
       },
       {
@@ -307,20 +308,39 @@
         "type": "game.model.Grass"
       },
       {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
         "type": "game.model.Tree"
       },
       {
         "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
       }
     ],
     "commandsCollectors": [
       {
         "playerName": "Paul",
+        "commands": []
+      },
+      {
+        "playerName": "PaulTest",
         "commands": [
           {
             "type": "game.model.PutCityBlock",
             "position": -1,
-            "x": 6,
+            "x": 4,
             "y": 6,
             "typeCityBlock": -1,
             "mementoHasMovedBlock": false,
@@ -333,15 +353,40 @@
               0
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Paul",
+            "mementoNomJoueur": "PaulTest",
+            "mementoScore": 0,
+            "mementoNextScore": 10
+          }
+        ]
+      },
+      {
+        "playerName": "Pa",
+        "commands": [
+          {
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 5,
+            "y": 7,
+            "typeCityBlock": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 0,
+            "mementoAvailableCityBlock": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "Pa",
             "mementoScore": 0,
             "mementoNextScore": 10
           },
           {
             "type": "game.model.PutCityBlock",
             "position": -1,
-            "x": 3,
-            "y": 4,
+            "x": 4,
+            "y": 6,
             "typeCityBlock": -1,
             "mementoHasMovedBlock": false,
             "mementoTypeMoveBlock": 0,
@@ -353,45 +398,86 @@
               1
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 12,
+            "mementoNomJoueur": "Pa",
+            "mementoScore": 16,
             "mementoNextScore": 20
           },
           {
-            "type": "game.model.MoveCityBlock",
-            "x": 7,
-            "y": 5,
-            "posBefore": -1,
-            "posAfter": -1,
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 3,
+            "y": 4,
+            "typeCityBlock": -1,
             "mementoHasMovedBlock": false,
             "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 66,
+            "mementoPosMoveBlock": 0,
             "mementoAvailableCityBlock": [
-              2,
-              1,
-              2,
-              2
+              4,
+              3,
+              4,
+              4
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 24,
-            "mementoNextScore": 30
+            "mementoNomJoueur": "Pa",
+            "mementoScore": 49,
+            "mementoNextScore": 50
           }
         ]
       },
       {
-        "playerName": "testPaul",
+        "playerName": "test",
+        "commands": []
+      },
+      {
+        "playerName": "baptiste",
+        "commands": [
+          {
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 7,
+            "y": 7,
+            "typeCityBlock": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 0,
+            "mementoAvailableCityBlock": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "baptiste",
+            "mementoScore": 0,
+            "mementoNextScore": 10
+          }
+        ]
+      },
+      {
+        "playerName": "bapt",
         "commands": []
       }
     ],
     "topScores": [
       {
-        "player": "Paul",
-        "score": 36
+        "player": "baptiste",
+        "score": 4
       },
       {
-        "player": "testPaul",
-        "score": 61
+        "player": "bapt",
+        "score": 25
+      },
+      {
+        "player": "PaulTest",
+        "score": 28
+      },
+      {
+        "player": "test",
+        "score": 28
+      },
+      {
+        "player": "Paul",
+        "score": 33
       }
     ]
   }
