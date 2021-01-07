@@ -16,7 +16,6 @@ export class PutCityBlock extends Command implements Undoable {
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
-  //map: Array<Tile>;
 
   public mementoAvailableCityBlock: Array<number>;
   public mementoCityBlockSelected = undefined;
@@ -24,6 +23,7 @@ export class PutCityBlock extends Command implements Undoable {
   public mementoNomJoueur: string;
   public mementoScore: number;
   public mementoNextScore: number;
+  public mementoGameOver: boolean;
 
   public constructor(x: number, y: number) {
     super();

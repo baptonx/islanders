@@ -33,7 +33,7 @@ export class MapAdapter {
       pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
       pcb.typeCityBlock = pcbi.typeCityBlock;
       pcb.position = pcbi.position;
-      // pcb.map = MapAdapter.numbersToTiles(pcbi.map.tabTiles);
+      pcb.mementoGameOver = pcbi.mementoGameOver;
       console.log(JSON.stringify(pcb));
       return pcb;
     } else if (command instanceof MoveCityBlockImpl) {
@@ -48,7 +48,6 @@ export class MapAdapter {
       pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
       pcb.posAfter = pcbi.posAfter;
       pcb.posBefore = pcbi.posBefore;
-      // pcb.map = MapAdapter.numbersToTiles(pcbi.map.tabTiles);
       console.log(pcb);
       return pcb;
     } else {

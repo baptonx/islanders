@@ -12,6 +12,7 @@ export class MapService {
   hasMovedBlock: boolean;
   typeMoveBlock: number|undefined;
   posMoveBlock: number;
+  isGameOver: boolean;
 
   constructor(public inventoryService: InventoryService, public infogameService: InfogameService, public router: Router) {
     this.initializeMoveBlock();
@@ -21,5 +22,6 @@ export class MapService {
     this.hasMovedBlock = false;
     this.typeMoveBlock = undefined;
     this.posMoveBlock = 0;
+    this.isGameOver = false;
   }
 }

@@ -14,7 +14,6 @@ public class PutCityBlock extends Command {
     private boolean mementoHasMovedBlock;
     private int mementoTypeMoveBlock;
     private int mementoPosMoveBlock;
-    // private List<Tile> map;
     private List<Integer> mementoAvailableCityBlock;
     private int mementoCityBlockSelected;
     private String mementoNomJoueur;
@@ -59,6 +58,10 @@ public class PutCityBlock extends Command {
 
     public int getMementoPosMoveBlock() {
         return mementoPosMoveBlock;
+    }
+
+    public boolean isMementoGameOver() {
+        return mementoGameOver;
     }
     /*
     public List<Tile> getMap() {
