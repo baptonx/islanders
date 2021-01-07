@@ -67,25 +67,6 @@ app-leaderboard {
   justify-self: center;
 }
 
-.start_button{
-  background: indianred;
-  border: 1px solid darkred;
-  box-shadow: 0px 2px 0 darkred, 2px 4px 6px darkred;
-  font-weight: 900;
-  letter-spacing: 1px;
-  transition: all 150ms linear;
-}
-
-.start_button:hover {
-  background: darkred;
-  border: 1px solid rgba(0,0,0, .05);
-  box-shadow: 1px 1px 2px rgba(255,255,255, .2);
-  color: indianred;
-  text-decoration: none;
-  text-shadow: -1px -1px 0 darkred;
-  transition: all 250ms linear;
-}
-
 .mid{
   flex : 1;
   display: flex;
@@ -115,5 +96,17 @@ app-leaderboard {
 
 .start_svg{
   width:100px;
+}
+
+.button_new_map{
+  display: flex;
+  flex:1;
+  flex-direction: row;
+  align-items: center;
+}
+
+.add_svg{
+  width:50px;
+  margin-right: 20px;
 }
 
