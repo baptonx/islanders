@@ -25,6 +25,8 @@ export class MoveCityBlock extends Command implements Undoable {
   public mementoScore: number;
   public mementoNextScore: number;
 
+  public mementoGameOver: boolean;
+
   public constructor(x: number, y: number) {
     super();
     this.x = x;

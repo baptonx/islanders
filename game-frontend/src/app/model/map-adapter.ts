@@ -48,6 +48,7 @@ export class MapAdapter {
       pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
       pcb.posAfter = pcbi.posAfter;
       pcb.posBefore = pcbi.posBefore;
+      pcb.mementoGameOver = pcbi.mementoGameOver;
       console.log(pcb);
       return pcb;
     } else {

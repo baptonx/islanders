@@ -19,6 +19,7 @@ export class PutCityBlockImpl extends Command implements Undoable {
   public mementoNomJoueur: string;
   public mementoScore: number;
   public mementoNextScore: number;
+
   public mementoGameOver: boolean;
 
   public constructor(public mapService: MapService, public x: number, public y: number, public clonerService: ClonerService) {
@@ -63,6 +64,8 @@ export class PutCityBlockImpl extends Command implements Undoable {
     this.mapService.infogameService.nomJoueur = this.mementoNomJoueur;
     this.mapService.infogameService.score = this.mementoScore;
     this.mapService.infogameService.nextScore = this.mementoNextScore;
+
+    this.mapService.isGameOver = this.mementoGameOver;
   }
 
   redo(): void {
@@ -70,7 +73,8 @@ export class PutCityBlockImpl extends Command implements Undoable {
     const t = this.cityBlockToTypeTile(this.mementoCityBlockSelected);
     this.mapService.map.tabTiles[pos] = t;
     this.mapService.inventoryService.availableCityBlock[this.mementoCityBlockSelected]--;
-    console.log('score du cityBlock : ' + this.computeScore(this.x, this.y));
+    this.computeScore(this.x, this.y);
+    this.mapService.updateGameOver();
   }
 
   getUndoName(): string {

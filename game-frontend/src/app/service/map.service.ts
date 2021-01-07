@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class MapService {
   map: MapImpl;
   hasMovedBlock: boolean;
-  typeMoveBlock: number|undefined;
+  typeMoveBlock: number | undefined;
   posMoveBlock: number;
   isGameOver: boolean;
 
@@ -23,5 +23,38 @@ export class MapService {
     this.typeMoveBlock = undefined;
     this.posMoveBlock = 0;
     this.isGameOver = false;
+  }
+
+
+  public updateGameOver(): boolean {
+
+    let inventoryAvailable = false;
+
+    // Si un element dans inventaire
+    for (let i = 0; i < this.inventoryService.availableCityBlock.length; i++) {
+      if (this.inventoryService.availableCityBlock[i] > 0) {
+        inventoryAvailable = true;
+      }
+    }
+
+    if (inventoryAvailable === false) {
+      console.log("game over : inventaire nul");
+      this.isGameOver = true;
+      return true;
+    }
+
+    // inventaire disponible, cherche case vide
+    for (let i = 0; i < this.map.tabTiles.length; i++) {
+      if (this.map.tabTiles[i] === 0) {
+        console.log("Pas de game over : tile disponible et inventaire disponible");
+        this.isGameOver = false;
+        return false;
+      }
+    }
+
+    // inventaire disponible mais pas de case vide
+    console.log("Game over : inventaire disponible mais pas de tile disponible");
+    this.isGameOver = true;
+    return true;
   }
 }

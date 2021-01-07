@@ -20,6 +20,8 @@ export class MoveCityBlockImpl extends Command implements Undoable {
   public mementoScore: number;
   public mementoNextScore: number;
 
+  public mementoGameOver: boolean;
+
   public constructor(private mapService: MapService, public x: number, public y: number, private clonerService: ClonerService) {
     super();
     this.createMemento();
@@ -38,6 +40,7 @@ export class MoveCityBlockImpl extends Command implements Undoable {
     this.mementoNomJoueur = this.mapService.infogameService.nomJoueur;
     this.mementoScore = this.mapService.infogameService.score;
     this.mementoNextScore = this.mapService.infogameService.nextScore;
+    this.mementoGameOver = this.mapService.isGameOver;
 
     this.posBefore = -1;
     this.posAfter = -1;
@@ -66,6 +69,8 @@ export class MoveCityBlockImpl extends Command implements Undoable {
     this.mapService.infogameService.nomJoueur = this.mementoNomJoueur;
     this.mapService.infogameService.score = this.mementoScore;
     this.mapService.infogameService.nextScore = this.mementoNextScore;
+
+    this.mapService.isGameOver = this.mementoGameOver;
   }
 
   redo(): void {
@@ -73,6 +78,7 @@ export class MoveCityBlockImpl extends Command implements Undoable {
     this.mapService.map.tabTiles[this.mementoPosMoveBlock] = 0;
     this.mapService.map.tabTiles[pos] = this.mementoTypeMoveBlock;
     this.computeScore(this.x, this.y);
+    this.mapService.updateGameOver();
     this.mapService.hasMovedBlock = true;
     this.mapService.typeMoveBlock = undefined;
   }

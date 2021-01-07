@@ -22,6 +22,7 @@ public class MoveCityBlock extends Command {
     private String mementoNomJoueur;
     private int mementoScore;
     private int mementoNextScore;
+
     private boolean mementoGameOver;
 
 

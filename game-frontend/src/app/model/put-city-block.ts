@@ -23,6 +23,7 @@ export class PutCityBlock extends Command implements Undoable {
   public mementoNomJoueur: string;
   public mementoScore: number;
   public mementoNextScore: number;
+
   public mementoGameOver: boolean;
 
   public constructor(x: number, y: number) {
