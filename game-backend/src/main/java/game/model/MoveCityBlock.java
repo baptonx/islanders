@@ -15,7 +15,7 @@ public class MoveCityBlock extends Command {
     private boolean mementoHasMovedBlock;
     private int mementoTypeMoveBlock;
     private int mementoPosMoveBlock;
-    private List<Tile> map;
+    // private List<Tile> map;
 
     private List<Integer> mementoAvailableCityBlock;
     private int mementoCityBlockSelected;
@@ -25,7 +25,7 @@ public class MoveCityBlock extends Command {
     private int mementoNextScore;
 
     public MoveCityBlock() {
-        this.map = new ArrayList<>();
+        //this.map = new ArrayList<>();
         this.posBefore = -1;
         this.posAfter = -1;
     }
@@ -62,10 +62,12 @@ public class MoveCityBlock extends Command {
     public int getMementoPosMoveBlock() {
         return mementoPosMoveBlock;
     }
-
+    /*
     public List<Tile> getMap() {
         return map;
     }
+
+     */
 
     public List<Integer> getMementoAvailableCityBlock() {
         return mementoAvailableCityBlock;
