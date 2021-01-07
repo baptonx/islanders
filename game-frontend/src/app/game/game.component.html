@@ -19,7 +19,7 @@
     </div>
     <app-leaderboard></app-leaderboard>
   </div>
-  <div *ngIf="this.mapService.isGameOver" class="gameOver" (click)="removeGameOver()">
+  <div *ngIf="this.mapService.isGameOver" class="gameOver" (click)="clickHome()">
     <img class="img_game_over" src="assets/game-over.svg"/>
   </div>
   <div class="map_container">
@@ -31,7 +31,7 @@
       <button (click)="redoFct()">redo</button>
     </div>
     <app-inventory class="inventory"></app-inventory>
-    <button #buttonHome label="HOME">
+    <button (click)="clickHome()" label="HOME">
       HOME
     </button>
   </div>

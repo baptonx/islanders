@@ -15,10 +15,10 @@ export class MapService {
   isGameOver: boolean;
 
   constructor(public inventoryService: InventoryService, public infogameService: InfogameService, public router: Router) {
-    this.initializeMoveBlock();
+    this.initialize();
   }
 
-  public initializeMoveBlock(): void {
+  public initialize(): void {
     this.hasMovedBlock = false;
     this.typeMoveBlock = undefined;
     this.posMoveBlock = 0;

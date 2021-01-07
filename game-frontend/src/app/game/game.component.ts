@@ -40,43 +40,26 @@ export class GameComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.mapService.map = Object.assign({}, this.mapService.map);
     this.mapService.map.tabTiles = Object.assign([], this.mapService.map.tabTiles);
-    this.mapService.initializeMoveBlock();
+    this.mapService.initialize();
     this.mapService.inventoryService.initialize();
     this.infogameService.initializeScore();
     this.gameService.initializeUndoCollector();
   }
 
+  public clickHome(): void {
+    const body = Array<Command>();
+    this.gameService.undoCollector.commands.forEach((command) => {
+      body.push(MapAdapter.commandImplToCommand(command));
+    });
+    console.log(body);
+    this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
+      this.infogameService.score, body);
+    this.removeGameOver();
+
+    this.mapService.router.navigate(['/home']);
+  }
+
   ngAfterViewInit(): void {
-    buttonBinder()
-      .on(this.buttonHome.nativeElement)
-      .toProduce(i => new AnonCmd(() => {
-        /***console.log(this.infogameService.nomJoueur);
-         this.leaderboardService.addScore(this.infogameService.nomJoueur, this.infogameService.score);
-         this.leaderboardService
-         .changeSpecificTabScores(this.homeService.mapService.map.tabScores, this.leaderboardService.tabScores);***/
-
-          // DONNER AU POST : NomMap, NomJoueur, Score, UndoCollector
-          // C'est le POST qui s'occupe de regarder si le score du joueur pour la map donnée est plus grand que son
-          // ancien score, si oui met à jour le score et le undoCollector
-          // Attention pour le UndoCollector passer une listCommands
-        const body = Array<Command>();
-        this.gameService.undoCollector.commands.forEach((command) => {
-          body.push(MapAdapter.commandImplToCommand(command));
-        });
-        console.log(body);
-        this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
-          this.infogameService.score, body);
-        this.removeGameOver();
-
-
-        // Puis faire ViewReplays : refaire un select qui se met a jour quand on change de map dans le home.
-        // Puis quand on selectionne nom d'un joueur, charge un component replay (comme component play mais avec
-        // moins de trucs)
-
-        this.mapService.router.navigate(['/home']);
-      }))
-      .bind();
-
     buttonBinder()
       .on(this.buttonChangeName.nativeElement)
       .toProduce(i => new AnonCmd(() => {

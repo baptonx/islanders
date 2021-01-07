@@ -25,7 +25,7 @@ export class ReplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.replayService.initializeUndoRedoCollector();
-    this.mapService.initializeMoveBlock();
+    this.mapService.initialize();
     this.mapService.inventoryService.initialize();
     this.infogameService.initializeScore();
   }
