@@ -20,7 +20,7 @@ public class PutCityBlock extends Command {
     private String mementoNomJoueur;
     private int mementoScore;
     private int mementoNextScore;
-    // private boolean mementoGameOver;
+    private boolean mementoGameOver;
 
     public PutCityBlock() {
         //this.map = new ArrayList<>();
