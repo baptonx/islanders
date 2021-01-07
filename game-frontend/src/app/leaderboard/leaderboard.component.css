@@ -1,5 +1,7 @@
 .container_tableau_score{
   background-color: #55a2ff;
+  display: flex;
+  flex:1;
 }
 
 .header_container{

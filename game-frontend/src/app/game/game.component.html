@@ -1,9 +1,4 @@
 <div class = 'container'>
-  <div class ="header_container">
-    <h1>ISLANDER</h1>
-    <h2>{{this.mapService.map.name}}</h2>
-  </div>
-
   <div class = 'info'>
     <div class = 'info_currentgame'>
       <div class = 'namePlayer'>
@@ -15,6 +10,10 @@
         <p>Score : {{this.infogameService.score}}</p>
         <p>Next Score : {{this.infogameService.nextScore}}</p>
       </div>
+    </div>
+    <div class ="header_container">
+      <h1>ISLANDER</h1>
+      <h2>{{this.mapService.map.name}}</h2>
     </div>
     <app-leaderboard></app-leaderboard>
   </div>

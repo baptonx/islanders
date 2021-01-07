@@ -2,6 +2,13 @@
   flex : 1
 }
 
+.header_container{
+  display:flex;
+  flex:3;
+  align-self: center;
+  justify-self: center;
+}
+
 .topDiv {
   display: flex;
   flex : 1;
@@ -12,7 +19,7 @@
   display : flex;
   flex-direction: column;
   justify-self: left;
-  flex:2;
+  flex:1;
 }
 
 .undoRedoDiv{
@@ -24,7 +31,6 @@
   display : flex;
   flex : 1;
   flex-direction: row;
-  background-color: #55a2ff;
 }
 
 .inputNomJoueur{
@@ -58,4 +64,9 @@
   flex-direction: row;
   align-self: center;
   justify-content: center;
+}
+
+app-leaderboard{
+  display: flex;
+  flex:1;
 }
