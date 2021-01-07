@@ -8,21 +8,21 @@ import java.util.Objects;
 
 @XmlRootElement
 public class MoveCityBlock extends Command {
-    public int x;
-    public int y;
-    public int posBefore;
-    public int posAfter;
-    public boolean mementoHasMovedBlock;
-    public int mementoTypeMoveBlock;
-    public int mementoPosMoveBlock;
-    public List<Tile> map;
+    private int x;
+    private int y;
+    private int posBefore;
+    private int posAfter;
+    private boolean mementoHasMovedBlock;
+    private int mementoTypeMoveBlock;
+    private int mementoPosMoveBlock;
+    private List<Tile> map;
 
-    public List<Integer> mementoAvailableCityBlock;
-    public int mementoCityBlockSelected;
+    private List<Integer> mementoAvailableCityBlock;
+    private int mementoCityBlockSelected;
 
-    public String mementoNomJoueur;
-    public int mementoScore;
-    public int mementoNextScore;
+    private String mementoNomJoueur;
+    private int mementoScore;
+    private int mementoNextScore;
 
     public MoveCityBlock() {
         this.map = new ArrayList<>();
@@ -41,6 +41,50 @@ public class MoveCityBlock extends Command {
 
     public int getPosAfter() {
         return posAfter;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public boolean isMementoHasMovedBlock() {
+        return mementoHasMovedBlock;
+    }
+
+    public int getMementoTypeMoveBlock() {
+        return mementoTypeMoveBlock;
+    }
+
+    public int getMementoPosMoveBlock() {
+        return mementoPosMoveBlock;
+    }
+
+    public List<Tile> getMap() {
+        return map;
+    }
+
+    public List<Integer> getMementoAvailableCityBlock() {
+        return mementoAvailableCityBlock;
+    }
+
+    public int getMementoCityBlockSelected() {
+        return mementoCityBlockSelected;
+    }
+
+    public String getMementoNomJoueur() {
+        return mementoNomJoueur;
+    }
+
+    public int getMementoScore() {
+        return mementoScore;
+    }
+
+    public int getMementoNextScore() {
+        return mementoNextScore;
     }
 
     @Override

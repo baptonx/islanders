@@ -62,8 +62,12 @@ public final class Main {
         final ClassLoader loader = Main.class.getClassLoader();
         final CLStaticHttpHandler docsHandler = new CLStaticHttpHandler(loader, "swag/");
         docsHandler.setFileCacheEnabled(false);
-        server.getServerConfiguration().addHttpHandler(docsHandler, "/swag/");
-        ClientBuilder.newClient().target(HTTP_ADDRESS);
+        server.getServerConfiguration().
+
+                addHttpHandler(docsHandler, "/swag/");
+        ClientBuilder.newClient().
+
+                target(HTTP_ADDRESS);
         System.in.read();
         server.shutdownNow();
     }
