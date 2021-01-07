@@ -6,7 +6,7 @@ import {MapService} from "./map.service";
 })
 export class InventoryService {
 
-  public typeName = ['empty', 'tree', 'water', 'circus', 'house2', 'fountain2', 'wind-turbine'];
+  public typeName = ['empty', 'tree', 'water', 'circus', 'house', 'fountain', 'wind-turbine'];
   public typeCityBlock = ['circus', 'house', 'fountain', 'wind-turbine'];
   public availableCityBlock = [0, 1, 0, 0];
   public neighbourPointsCircus: Map<string, number> = new Map();
