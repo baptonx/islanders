@@ -28,13 +28,20 @@
 .arrow {
   display: flex;
   flex: 1;
-  justify-content: flex-start;
   background-color: transparent;
   border: transparent;
   align-self: center;
   justify-self: center;
   -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+#arrowLeft{
+  justify-content: flex-end;
+}
+
+#arrowRight{
+  justify-content: flex-start;
 }
 
 @keyframes zoom {

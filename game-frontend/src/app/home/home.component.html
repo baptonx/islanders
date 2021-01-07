@@ -4,11 +4,11 @@
     <h2 *ngIf="homeService.mapService.map!==undefined">{{this.homeService.mapService.map.name}}</h2>
   </div>
   <div class='middle_container'>
-    <button class='arrow' *ngIf="homeService.mapService.map!==undefined" #arrowLeft (click)="clickArrowLeft()">
+    <button class='arrow' *ngIf="homeService.mapService.map!==undefined" id="arrowLeft" (click)="clickArrowLeft()">
       <img src="assets/left-arrow.svg"/>
     </button>
     <app-map class='map' *ngIf="homeService.mapService.map!==undefined"></app-map>
-    <button class='arrow' *ngIf="homeService.mapService.map!==undefined" #arrowRight (click)="clickArrowRight()">
+    <button class='arrow' *ngIf="homeService.mapService.map!==undefined" id="arrowRight" (click)="clickArrowRight()">
       <img src="assets/right-arrow.svg"/>
     </button>
     <app-leaderboard></app-leaderboard>
