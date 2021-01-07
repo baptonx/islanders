@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LeaderboardService} from '../service/leaderboard.service';
 
 @Component({
@@ -8,9 +8,22 @@ import {LeaderboardService} from '../service/leaderboard.service';
 })
 export class LeaderboardComponent implements OnInit {
 
-  constructor(public leaderboardService: LeaderboardService) { }
+  public hidden = false;
+
+  constructor(public leaderboardService: LeaderboardService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  toggleDisplay(): void {
+    this.hidden = !this.hidden;
+    console.log(this.hidden);
+  }
+
+  isHidden(): boolean {
+    console.log(this.hidden);
+    return this.hidden;
   }
 
 }

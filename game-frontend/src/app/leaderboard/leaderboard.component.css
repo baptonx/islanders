@@ -1,18 +1,55 @@
-.container_tableau_score{
-  background-color: #55a2ff;
+.container_tableau_score {
   display: flex;
-  flex:1;
+  flex-direction: column;
+
 }
 
-.header_container{
+.container_scores {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: gray;
+  list-style: none;
+  border-radius: 5px;
+  border-color: black;
+  align-items: center;
+
+}
+
+.header_container {
+  background-color: red;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-self: center;
+  justify-self: center;
 }
 
-img{
-  width: 20%;
+.score {
+
+  display: flex;
+  background: rgb(22, 160, 133);
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+img {
+  width: 100%;
   height: auto;
 }
 
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+img:hover {
+  transform: scale(1.2);
+  animation-name: zoom;
+  animation-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+}
 

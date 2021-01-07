@@ -1,34 +1,39 @@
-<div class = 'container'>
-  <div class = 'info'>
-    <div class = 'info_currentgame'>
-      <div class = 'namePlayer'>
+<div class='container'>
+  <div class='info'>
+    <div class='info_currentgame'>
+      <div class='namePlayer'>
         <h2>{{this.infogameService.nomJoueur}}</h2>
-        <input #inputNomJoueur class = 'inputNomJoueur' type = 'text'>
+        <input #inputNomJoueur class='inputNomJoueur' type='text'>
         <button #buttonChangeName>Change name</button>
       </div>
-      <div class = 'score'>
+      <div class='score'>
+        <div class="ldBar" data-value="50">
+        </div>
         <p>Score : {{this.infogameService.score}}</p>
         <p>Next Score : {{this.infogameService.nextScore}}</p>
       </div>
     </div>
-    <div class ="header_container">
+    <div class="header_container">
       <h1>ISLANDER</h1>
       <h2>{{this.mapService.map.name}}</h2>
     </div>
     <app-leaderboard></app-leaderboard>
   </div>
-  <div class ="map_container">
-    <app-map class = "map"></app-map>
+  <div *ngIf="this.mapService.isGameOver" class="gameOver" (click)="removeGameOver()">
+    <img class="img_game_over" src="assets/game-over.svg"/>
+    <button #buttonHome class="home_button" label="HOME">
+      HOME
+    </button>
   </div>
-  <div class = "bottom_container">
+  <div class="map_container">
+    <app-map class="map"></app-map>
+  </div>
+  <div class="bottom_container">
     <div class="undoRedoDiv">
       <button (click)="undoFct()">undo</button>
       <button (click)="redoFct()">redo</button>
     </div>
     <app-inventory class="inventory"></app-inventory>
-    <button #buttonHome class="home_button" label="HOME">
-      HOME
-    </button>
   </div>
   <p>{{this.mapService.isGameOver}}</p>
 </div>

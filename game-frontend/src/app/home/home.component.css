@@ -1,5 +1,6 @@
 .container {
   flex: 1;
+  background: -moz-linear-gradient(whitesmoke, lightblue);
 }
 
 .header_container {
@@ -73,7 +74,6 @@
   animation-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
 }
-
 
 .errorOutputRed {
   color: red;

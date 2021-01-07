@@ -1,13 +1,14 @@
-<div class = 'container_tableau_score'>
-  <div class = 'header_container'>
+<div class='container'>
+  <div class='header_container' (click)="toggleDisplay()">
     <img
-      src='assets/ranking.svg'
+      src='assets/ranking2.svg'
     />
     <p>LeaderBoard</p>
   </div>
-  <ng-container *ngFor="let y of this.leaderboardService.tabScores">
-      <p class = "score">
+  <div class="container_scores">
+    <ng-container *ngFor="let y of this.leaderboardService.tabScores">
+      <p class="score" *ngIf="!this.isHidden()">
         {{y.player}} {{y.score}}
       </p>
-  </ng-container>
-</div>
+    </ng-container>
+  </div>

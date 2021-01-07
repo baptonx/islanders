@@ -66,6 +66,7 @@ export class GameComponent implements OnInit, AfterViewInit {
         console.log(body);
         this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
           this.infogameService.score, body);
+        this.removeGameOver();
 
 
         // Puis faire ViewReplays : refaire un select qui se met a jour quand on change de map dans le home.
@@ -103,6 +104,10 @@ export class GameComponent implements OnInit, AfterViewInit {
       c.redo();
       this.gameService.undoCollector.commands.push(c);
     }
+  }
+
+  removeGameOver(): void{
+    this.mapService.isGameOver = false;
   }
 
 }
