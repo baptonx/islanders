@@ -9,13 +9,10 @@
 }
 
 .bottom_container{
-  position: absolute;
   display: flex;
   flex-direction: row;
   align-self: center;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: center;
 }
 
 .middle_container{
@@ -24,25 +21,18 @@
 }
 
 .arrowLeft{
-  position: absolute;
   display: flex;
-  top:50%;
-  left:5%;
+  flex: 1;
   justify-content: flex-start;
 }
 
 .arrowRight{
-  position: absolute;
   display: flex;
-  top:50%;
-  right:5%;
+  flex: 1;
   justify-content: flex-end;
 }
 
 .errorOutputRed{
-  position:absolute;
-  bottom:1%;
-  right:10%;
   color: red;
 }
 
@@ -58,4 +48,11 @@ app-leaderboard{
   top:1%;
   right:1%;
 }
+
+.map{
+  flex:7;
+  align-self: center;
+  justify-self: center;
+}
+
 

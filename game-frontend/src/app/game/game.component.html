@@ -17,19 +17,19 @@
       </div>
     </div>
     <app-leaderboard></app-leaderboard>
-    <app-map></app-map>
   </div>
-
-  <app-inventory class="inventory"></app-inventory>
-
-  <button #buttonHome class="home_button" label="HOME">
-    HOME
-  </button>
-
-  <div class="undoRedoDiv">
-    <button (click)="undoFct()">undo</button>
-    <button (click)="redoFct()">redo</button>
+  <div class ="map_container">
+    <app-map class = "map"></app-map>
   </div>
-
+  <div class = "bottom_container">
+    <div class="undoRedoDiv">
+      <button (click)="undoFct()">undo</button>
+      <button (click)="redoFct()">redo</button>
+    </div>
+    <app-inventory class="inventory"></app-inventory>
+    <button #buttonHome class="home_button" label="HOME">
+      HOME
+    </button>
+  </div>
 </div>
 
