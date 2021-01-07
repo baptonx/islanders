@@ -6,6 +6,7 @@ public class CommandRename extends Command {
     private String mementoNomJoueur;
 
     public CommandRename() {
+        mementoNomJoueur = "player";
     }
 
     public String getMementoNomJoueur() {
