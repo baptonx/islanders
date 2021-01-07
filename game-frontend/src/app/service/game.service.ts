@@ -26,6 +26,11 @@ export class GameService {
     // this.game = new GameImpl();
   }
 
+  public initializeUndoCollector(): void {
+    this.undoCollector = new CommandCollector();
+    this.redoCollector = new CommandCollector();
+  }
+
   public postGame(mapName: string, playerName: string, score: number, commands: Array<Command>): void {
     const uri = `/game/api/v1/replays/${mapName}/${playerName}/${score}`;
     const body = commands;

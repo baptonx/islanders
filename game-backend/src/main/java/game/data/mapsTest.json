@@ -1,10 +1,14 @@
 [
   {
-    "name": "Dende",
+    "name": "Goten",
     "scores": [
       {
         "player": "Paul",
-        "score": 160
+        "score": 36
+      },
+      {
+        "player": "testPaul",
+        "score": 61
       }
     ],
     "tabTiles": [
@@ -12,139 +16,7 @@
         "type": "game.model.Water"
       },
       {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
         "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
       },
       {
         "type": "game.model.Tree"
@@ -168,10 +40,247 @@
         "type": "game.model.Water"
       },
       {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
         "type": "game.model.Tree"
       },
       {
         "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
       },
       {
         "type": "game.model.Grass"
@@ -195,115 +304,10 @@
         "type": "game.model.Grass"
       },
       {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
         "type": "game.model.Grass"
       },
       {
         "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
       },
       {
         "type": "game.model.Grass"
@@ -316,8 +320,8 @@
           {
             "type": "game.model.PutCityBlock",
             "position": -1,
-            "x": 5,
-            "y": 5,
+            "x": 6,
+            "y": 6,
             "typeCityBlock": -1,
             "mementoHasMovedBlock": false,
             "mementoTypeMoveBlock": 0,
@@ -334,6 +338,26 @@
             "mementoNextScore": 10
           },
           {
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 3,
+            "y": 4,
+            "typeCityBlock": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 0,
+            "mementoAvailableCityBlock": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "Paul",
+            "mementoScore": 12,
+            "mementoNextScore": 20
+          },
+          {
             "type": "game.model.MoveCityBlock",
             "x": 7,
             "y": 5,
@@ -341,30 +365,10 @@
             "posAfter": -1,
             "mementoHasMovedBlock": false,
             "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
-            "mementoAvailableCityBlock": [
-              0,
-              0,
-              0,
-              0
-            ],
-            "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 8,
-            "mementoNextScore": 10
-          },
-          {
-            "type": "game.model.PutCityBlock",
-            "position": -1,
-            "x": 8,
-            "y": 5,
-            "typeCityBlock": -1,
-            "mementoHasMovedBlock": true,
-            "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
+            "mementoPosMoveBlock": 66,
             "mementoAvailableCityBlock": [
               2,
-              2,
+              1,
               2,
               2
             ],
@@ -372,134 +376,22 @@
             "mementoNomJoueur": "Paul",
             "mementoScore": 24,
             "mementoNextScore": 30
-          },
-          {
-            "type": "game.model.PutCityBlock",
-            "position": -1,
-            "x": 8,
-            "y": 6,
-            "typeCityBlock": -1,
-            "mementoHasMovedBlock": true,
-            "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
-            "mementoAvailableCityBlock": [
-              4,
-              3,
-              4,
-              4
-            ],
-            "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 41,
-            "mementoNextScore": 50
-          },
-          {
-            "type": "game.model.PutCityBlock",
-            "position": -1,
-            "x": 6,
-            "y": 7,
-            "typeCityBlock": -1,
-            "mementoHasMovedBlock": true,
-            "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
-            "mementoAvailableCityBlock": [
-              6,
-              4,
-              6,
-              6
-            ],
-            "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 67,
-            "mementoNextScore": 70
-          },
-          {
-            "type": "game.model.PutCityBlock",
-            "position": -1,
-            "x": 5,
-            "y": 5,
-            "typeCityBlock": -1,
-            "mementoHasMovedBlock": true,
-            "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
-            "mementoAvailableCityBlock": [
-              7,
-              4,
-              7,
-              7
-            ],
-            "mementoCityBlockSelected": 0,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 75,
-            "mementoNextScore": 80
-          },
-          {
-            "type": "game.model.PutCityBlock",
-            "position": -1,
-            "x": 4,
-            "y": 3,
-            "typeCityBlock": -1,
-            "mementoHasMovedBlock": true,
-            "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
-            "mementoAvailableCityBlock": [
-              10,
-              8,
-              11,
-              11
-            ],
-            "mementoCityBlockSelected": 3,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 115,
-            "mementoNextScore": 120
-          },
-          {
-            "type": "game.model.PutCityBlock",
-            "position": -1,
-            "x": 8,
-            "y": 2,
-            "typeCityBlock": -1,
-            "mementoHasMovedBlock": true,
-            "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
-            "mementoAvailableCityBlock": [
-              12,
-              10,
-              13,
-              12
-            ],
-            "mementoCityBlockSelected": 2,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 132,
-            "mementoNextScore": 140
-          },
-          {
-            "type": "game.model.PutCityBlock",
-            "position": -1,
-            "x": 3,
-            "y": 4,
-            "typeCityBlock": -1,
-            "mementoHasMovedBlock": true,
-            "mementoTypeMoveBlock": 0,
-            "mementoPosMoveBlock": 55,
-            "mementoAvailableCityBlock": [
-              14,
-              12,
-              14,
-              14
-            ],
-            "mementoCityBlockSelected": 2,
-            "mementoNomJoueur": "Paul",
-            "mementoScore": 152,
-            "mementoNextScore": 160
           }
         ]
+      },
+      {
+        "playerName": "testPaul",
+        "commands": []
       }
     ],
     "topScores": [
       {
         "player": "Paul",
-        "score": 160
+        "score": 36
+      },
+      {
+        "player": "testPaul",
+        "score": 61
       }
     ]
   }

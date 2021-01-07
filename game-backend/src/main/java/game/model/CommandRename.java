@@ -3,6 +3,7 @@ package game.model;
 import java.util.Objects;
 
 public class CommandRename extends Command {
+    private String nouveauNomJoueur;
     private String mementoNomJoueur;
 
     public CommandRename() {

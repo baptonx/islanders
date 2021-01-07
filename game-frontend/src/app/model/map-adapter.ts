@@ -11,12 +11,16 @@ import {PutCityBlockImpl} from './put-city-block-impl';
 import {PutCityBlock} from './put-city-block';
 import {MoveCityBlockImpl} from './move-city-block-impl';
 import {MoveCityBlock} from './move-city-block';
+import {CommandRenameImpl} from "./command-rename-impl";
 
 export class MapAdapter {
 
   public static commandImplToCommand(command: Command): Command {
-    if (command instanceof CommandRename) {
-      return command;
+    if (command instanceof CommandRenameImpl) {
+      const cri: CommandRenameImpl = command as CommandRenameImpl;
+      const cr = new CommandRename(cri.nouveauNomJoueur);
+      cr.mementoNomJoueur = cri.mementoNomJoueur;
+      return cr;
     } else if (command instanceof PutCityBlockImpl) {
       const pcbi: PutCityBlockImpl = command as PutCityBlockImpl;
       const pcb = new PutCityBlock(pcbi.x, pcbi.y);
@@ -47,8 +51,7 @@ export class MapAdapter {
       // pcb.map = MapAdapter.numbersToTiles(pcbi.map.tabTiles);
       console.log(pcb);
       return pcb;
-    }
-    else{
+    } else {
       return null;
     }
   }

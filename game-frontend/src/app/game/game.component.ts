@@ -12,6 +12,7 @@ import {GameService} from '../service/game.service';
 import {CommandRename} from '../model/command-rename';
 import {Command} from '../model/command';
 import {MapAdapter} from '../model/map-adapter';
+import {CommandRenameImpl} from "../model/command-rename-impl";
 
 @Component({
   selector: 'app-game',
@@ -42,6 +43,7 @@ export class GameComponent implements OnInit, AfterViewInit {
     this.mapService.initializeMoveBlock();
     this.mapService.inventoryService.initialize();
     this.infogameService.initializeScore();
+    this.gameService.initializeUndoCollector();
   }
 
   ngAfterViewInit(): void {
@@ -53,10 +55,10 @@ export class GameComponent implements OnInit, AfterViewInit {
          this.leaderboardService
          .changeSpecificTabScores(this.homeService.mapService.map.tabScores, this.leaderboardService.tabScores);***/
 
-        // DONNER AU POST : NomMap, NomJoueur, Score, UndoCollector
-        // C'est le POST qui s'occupe de regarder si le score du joueur pour la map donnée est plus grand que son
-        // ancien score, si oui met à jour le score et le undoCollector
-        // Attention pour le UndoCollector passer une listCommands
+          // DONNER AU POST : NomMap, NomJoueur, Score, UndoCollector
+          // C'est le POST qui s'occupe de regarder si le score du joueur pour la map donnée est plus grand que son
+          // ancien score, si oui met à jour le score et le undoCollector
+          // Attention pour le UndoCollector passer une listCommands
         const body = Array<Command>();
         this.gameService.undoCollector.commands.forEach((command) => {
           body.push(MapAdapter.commandImplToCommand(command));
@@ -78,7 +80,7 @@ export class GameComponent implements OnInit, AfterViewInit {
       .on(this.buttonChangeName.nativeElement)
       .toProduce(i => new AnonCmd(() => {
         //console.log(this.buttonChangeName.nativeElement.value);
-        this.gameService.undoCollector.commands.push(new CommandRename(this.infogameService, this.inputNomJoueur.nativeElement.value));
+        this.gameService.undoCollector.commands.push(new CommandRenameImpl(this.infogameService, this.inputNomJoueur.nativeElement.value));
         this.gameService.redoCollector.commands = [];
         this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
       }))
