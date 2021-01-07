@@ -16,7 +16,7 @@ export class PutCityBlock extends Command implements Undoable {
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
-  map: Array<Tile>;
+  //map: Array<Tile>;
 
   public mementoAvailableCityBlock: Array<number>;
   public mementoCityBlockSelected = undefined;

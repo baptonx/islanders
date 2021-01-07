@@ -8,7 +8,7 @@ import {Tile} from './tile';
 
 
 export class MoveCityBlock extends Command implements Undoable {
-  type = 'game.Model.MoveCityBlock';
+  type = 'game.model.MoveCityBlock';
   x: number;
   y: number;
   posBefore: number;
@@ -16,7 +16,7 @@ export class MoveCityBlock extends Command implements Undoable {
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
-  map: Array<Tile>;
+  //map: Array<Tile>;
 
   public mementoAvailableCityBlock: Array<number>;
   public mementoCityBlockSelected = undefined;
@@ -29,6 +29,9 @@ export class MoveCityBlock extends Command implements Undoable {
     super();
     this.x = x;
     this.y = y;
+
+    this.posBefore = -1;
+    this.posAfter = -1;
     // this.createMemento();
     // this.execution();
   }

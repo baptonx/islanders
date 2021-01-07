@@ -11,7 +11,7 @@ export class MoveCityBlockImpl extends Command implements Undoable {
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
-  map: MapImpl;
+  //map: MapImpl;
 
   public mementoAvailableCityBlock: Array<number>;
   public mementoCityBlockSelected = undefined;
@@ -32,12 +32,15 @@ export class MoveCityBlockImpl extends Command implements Undoable {
     this.mementoHasMovedBlock = this.mapService.hasMovedBlock;
     this.mementoTypeMoveBlock = this.mapService.typeMoveBlock;
     this.mementoPosMoveBlock = this.mapService.posMoveBlock;
-    this.map = this.clonerService.deepClone(this.mapService.map);
+    //this.map = this.clonerService.deepClone(this.mapService.map);
     this.mementoAvailableCityBlock = Object.assign([], this.mapService.inventoryService.availableCityBlock);
     this.mementoCityBlockSelected = this.mapService.inventoryService.cityBlockSelected;
     this.mementoNomJoueur = this.mapService.infogameService.nomJoueur;
     this.mementoScore = this.mapService.infogameService.score;
     this.mementoNextScore = this.mapService.infogameService.nextScore;
+
+    this.posBefore = -1;
+    this.posAfter = -1;
   }
 
 
