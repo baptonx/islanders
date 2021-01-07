@@ -15,6 +15,7 @@ import {InventoryService} from './service/inventory.service';
 import { HomeComponent } from './home/home.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import {FormsModule} from '@angular/forms';
+import { ReplayComponent } from './replay/replay.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {FormsModule} from '@angular/forms';
     GameComponent,
     InventoryComponent,
     HomeComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    ReplayComponent
   ],
     imports: [
         BrowserModule,

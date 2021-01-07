@@ -60,12 +60,12 @@ export class HomeService {
             this.nameCurrentMap = name;
             this.leaderboardService.getScore();
 
-            let replayNamesTemp = new Array<string>();
-            for (let c of this.mapService.map.commandsCollectors) {
+            const replayNamesTemp = new Array<string>();
+            for (const c of this.mapService.map.commandsCollectors) {
               replayNamesTemp.push(c.playerName);
             }
             this.replayNames = replayNamesTemp;
-            this.nameCurrentPlayerReplay = this.replayNames[0];
+            //this.nameCurrentPlayerReplay = this.replayNames[0];
 
           },
           error: error => {

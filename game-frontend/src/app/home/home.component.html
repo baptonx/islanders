@@ -21,7 +21,7 @@
           Ajouter
         </p>
       </button>
-      <select [ngModel]="this.homeService.nameCurrentPlayerReplay" (ngModelChange)="this.callToStartReplay($event)">
+      <select [ngModel]="this.homeService.nameCurrentPlayerReplay" (ngModelChange)="this.clickReplay($event)">
         <option *ngFor="let y of this.homeService.replayNames" [value] = y>{{y}}</option>
       </select>
       <!--<button class ="button_new_map">

@@ -60,16 +60,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  public clickReplay(nameCurrentPlayerRep: string): void {
+    if (this.homeService.nameCurrentPlayerReplay !== '') {
+      this.homeService.mapService.infogameService.nomJoueur = nameCurrentPlayerRep;
+      this.homeService.mapService.router.navigate(['/replay']);
+    } else {
+      this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the player replay is null';
+      this.homeService.mapService.infogameService.isErrorOutputRed = true;
+    }
+  }
+
   public addNewMap(): void {
     this.homeService.addMap();
   }
 
   public callToChangeMap(nameCurrentMap: string): void{
     this.homeService.changeMap(nameCurrentMap);
-  }
-
-  public callToStartReplay(nameCurrentPlayerRep: string): void{
-    console.log("start replay");
   }
 
   ngAfterViewInit(): void {

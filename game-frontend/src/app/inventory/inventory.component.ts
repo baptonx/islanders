@@ -13,6 +13,7 @@ export class InventoryComponent{
   }
 
   public inventoryOnClick(x: number): void {
+    console.log("clique inventaire");
     this.inventoryService.cityBlockSelected = x;
     this.mapService.typeMoveBlock = undefined;
   }

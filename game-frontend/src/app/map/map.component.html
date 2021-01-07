@@ -12,7 +12,7 @@
           (dblclick)="this.moveBlock(x, y)"
         />
         <img
-          *ngIf="mapService.router.url === '/home'"
+          *ngIf="mapService.router.url === '/home' || mapService.router.url === '/replay'"
           class='tile'
           [attr.data-x]=x
           [attr.data-y]=y
