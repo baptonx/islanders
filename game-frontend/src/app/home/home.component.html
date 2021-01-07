@@ -21,12 +21,15 @@
           Ajouter
         </p>
       </button>
-      <button class ="button_new_map">
+      <select [ngModel]="this.homeService.nameCurrentPlayerReplay" (ngModelChange)="this.callToStartReplay($event)">
+        <option *ngFor="let y of this.homeService.replayNames" [value] = y>{{y}}</option>
+      </select>
+      <!--<button class ="button_new_map">
         <img src="assets/replay.svg" class ="add_svg"/>
         <p>
           Voir les replays disponibles
         </p>
-      </button>
+      </button>-->
     </div>
     <div class = "mid">
       <div>

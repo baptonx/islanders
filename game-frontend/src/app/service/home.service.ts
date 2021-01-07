@@ -8,6 +8,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BackendService} from './backend.service';
 import {MapRessource} from '../model/map-ressource';
 import {MapAdapter} from '../model/map-adapter';
+import {Command} from "../model/command";
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,13 @@ export class HomeService {
   public mapNames: Array<string>;
   public indexCurrentMap: number;
   public nameCurrentMap: string;
+  public replayNames: Array<string>;
+  public nameCurrentPlayerReplay: string;
 
   constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public http: HttpClient) {
     //  ICI remplir tabMap avec le back-end
     this.mapNames = new Array<string>();
+    this.replayNames = new Array<string>();
     this.indexCurrentMap = 0;
   }
 
@@ -55,6 +59,14 @@ export class HomeService {
             this.indexCurrentMap = this.mapNames.indexOf(name);
             this.nameCurrentMap = name;
             this.leaderboardService.getScore();
+
+            let replayNamesTemp = new Array<string>();
+            for (let c of this.mapService.map.commandsCollectors) {
+              replayNamesTemp.push(c.playerName);
+            }
+            this.replayNames = replayNamesTemp;
+            this.nameCurrentPlayerReplay = this.replayNames[0];
+
           },
           error: error => {
             console.error('There was an error!', error.message);

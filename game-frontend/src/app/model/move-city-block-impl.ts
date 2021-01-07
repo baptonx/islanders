@@ -78,9 +78,9 @@ export class MoveCityBlockImpl extends Command implements Undoable {
     this.mapService.map.tabTiles[this.mementoPosMoveBlock] = 0;
     this.mapService.map.tabTiles[pos] = this.mementoTypeMoveBlock;
     this.computeScore(this.x, this.y);
-    this.mapService.updateGameOver();
     this.mapService.hasMovedBlock = true;
     this.mapService.typeMoveBlock = undefined;
+    this.mapService.updateGameOver();
   }
 
   getUndoName(): string {

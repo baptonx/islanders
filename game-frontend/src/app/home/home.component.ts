@@ -63,9 +63,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public addNewMap(): void {
     this.homeService.addMap();
   }
+
   public callToChangeMap(nameCurrentMap: string): void{
     this.homeService.changeMap(nameCurrentMap);
   }
+
+  public callToStartReplay(nameCurrentPlayerRep: string): void{
+    console.log("start replay");
+  }
+
   ngAfterViewInit(): void {
     this.homeService.initialize();
     this.mapNames = this.homeService.mapNames;
