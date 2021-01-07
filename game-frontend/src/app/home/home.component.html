@@ -5,33 +5,38 @@
   </div>
   <div class='middle_container'>
     <button class='arrowLeft' #arrowLeft (click)="clickArrowLeft()">
-      Left
       <img src="assets/left-arrow.svg"/>
     </button>
     <app-map class='map' *ngIf="homeService.mapService.map!==undefined"></app-map>
     <button class='arrowRight' #arrowRight (click)="clickArrowRight()">
-      Right
-      <img src="assets/right-arrow.svg"/></button>
+      <img src="assets/right-arrow.svg"/>
+    </button>
     <app-leaderboard></app-leaderboard>
   </div>
   <div class="bottom_container">
-    <div class="new_player_container">
-      <p>Player name : </p>
-      <input [(ngModel)]="homeService.mapService.infogameService.nomJoueur">
+    <div class="left">
+      <button (click)="addNewMap()">
+        NewMap
+      </button>
+      <button>
+        View Replay
+      </button>
     </div>
-    <div class="new_map_container">
-      <button (click)="addNewMap()">NewMap</button>
+    <div class = "mid">
+      <div>
+        <input class = "inputNomJoueur" [(ngModel)]="homeService.mapService.infogameService.nomJoueur">
+      </div>
+      <button #buttonStart class="start_button" label="START">
+        Start !
+      </button>
     </div>
-    <button #buttonStart class="start_button" label="START">
-      Start !
-    </button>
-    <button>
-      View Replay
-    </button>
-    <select [ngModel]="this.homeService.nameCurrentMap" (ngModelChange)="this.callToChangeMap($event)">
-      <option #mapName *ngFor="let y of this.homeService.mapNames" [value] = y>{{y}}</option>
-    </select>
+    <div class = "right">
+      <select [ngModel]="this.homeService.nameCurrentMap" (ngModelChange)="this.callToChangeMap($event)">
+        <option #mapName *ngFor="let y of this.homeService.mapNames" [value] = y>{{y}}</option>
+      </select>
+    </div>
   </div>
   <p
-    [ngClass]="{'errorOutputRed': homeService.mapService.infogameService.isErrorOutputRed, 'errorOutputGreen': !homeService.mapService.infogameService.isErrorOutputRed}">{{homeService.mapService.infogameService.errorOutput}}</p>
+    [ngClass]="{'errorOutputRed': homeService.mapService.infogameService.isErrorOutputRed, 'errorOutputGreen': !homeService.mapService.infogameService.isErrorOutputRed}">{{homeService.mapService.infogameService.errorOutput}}
+  </p>
 </div>
