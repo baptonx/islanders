@@ -25,7 +25,9 @@
   flex-direction: row;
   margin:auto;
 }
-
+img{
+  width: 25%;
+}
 .arrow {
   display: flex;
   flex: 1;

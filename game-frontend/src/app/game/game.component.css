@@ -71,7 +71,8 @@ app-leaderboard {
   flex: 1;
 }
 
-.img_game_over, .home_button {
+.img_game_over {
+  width:50%;
   position: absolute;
   top: 50%;
   left: 50%;
