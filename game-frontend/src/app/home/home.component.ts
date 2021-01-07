@@ -51,6 +51,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.homeService.changeMap(this.homeService.mapNames[this.homeService.indexCurrentMap]);
   }
 
+  public clickStart(): void{
+    if (this.homeService.mapService.infogameService.nomJoueur !== '') {
+      this.homeService.mapService.router.navigate(['/play']);
+    } else {
+      this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the player is null';
+      this.homeService.mapService.infogameService.isErrorOutputRed = true;
+    }
+  }
+
   public addNewMap(): void {
     this.homeService.addMap();
   }
@@ -60,17 +69,5 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.homeService.initialize();
     this.mapNames = this.homeService.mapNames;
-
-    buttonBinder()
-      .on(this.buttonStart.nativeElement)
-      .toProduce(i => new AnonCmd(() => {
-        if (this.homeService.mapService.infogameService.nomJoueur !== '') {
-          this.homeService.mapService.router.navigate(['/play']);
-        } else {
-          this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the player is null';
-          this.homeService.mapService.infogameService.isErrorOutputRed = true;
-        }
-      }))
-      .bind();
   }
 }

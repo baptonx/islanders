@@ -89,7 +89,6 @@ app-leaderboard {
 .mid{
   flex : 1;
   display: flex;
-  background-color: #55a2ff;
   flex-direction: column;
   justify-items: center;
   align-items: center;
@@ -98,6 +97,7 @@ app-leaderboard {
 .left{
   flex : 1;
   display: flex;
+  flex-direction: column;
 }
 
 .right{
@@ -113,4 +113,7 @@ app-leaderboard {
   font-size: 24px;
 }
 
+.start_svg{
+  width:100px;
+}
 

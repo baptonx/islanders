@@ -26,8 +26,8 @@
       <div>
         <input class = "inputNomJoueur" [(ngModel)]="homeService.mapService.infogameService.nomJoueur">
       </div>
-      <button #buttonStart class="start_button" label="START">
-        Start !
+      <button #buttonStart class="start_button" (click)="clickStart()">
+        <img src="assets/start.svg" class ="start_svg"/>
       </button>
     </div>
     <div class = "right">
