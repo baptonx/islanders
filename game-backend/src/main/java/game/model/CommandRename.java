@@ -1,7 +1,9 @@
 package game.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+@XmlRootElement
 public class CommandRename extends Command {
     private String nouveauNomJoueur;
     private String mementoNomJoueur;

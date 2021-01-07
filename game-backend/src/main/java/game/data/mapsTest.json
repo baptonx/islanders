@@ -1,30 +1,18 @@
 [
   {
-    "name": "King Cold",
+    "name": "Super Saiyan Blue Goku",
     "scores": [
       {
         "player": "baptiste",
-        "score": 4
-      },
-      {
-        "player": "Paul",
-        "score": 33
-      },
-      {
-        "player": "bapt",
-        "score": 25
-      },
-      {
-        "player": "PaulTest",
-        "score": 28
+        "score": 57
       },
       {
         "player": "test",
-        "score": 28
+        "score": 25
       },
       {
-        "player": "Pa",
-        "score": 61
+        "player": "paul",
+        "score": 63
       }
     ],
     "tabTiles": [
@@ -32,46 +20,7 @@
         "type": "game.model.Tree"
       },
       {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
         "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Grass"
@@ -86,7 +35,7 @@
         "type": "game.model.Grass"
       },
       {
-        "type": "game.model.Grass"
+        "type": "game.model.Water"
       },
       {
         "type": "game.model.Grass"
@@ -95,25 +44,7 @@
         "type": "game.model.Water"
       },
       {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
         "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Tree"
@@ -134,19 +65,10 @@
         "type": "game.model.Grass"
       },
       {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
+        "type": "game.model.Tree"
       },
       {
         "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
       },
       {
         "type": "game.model.Water"
@@ -162,51 +84,6 @@
       },
       {
         "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Water"
@@ -221,67 +98,10 @@
         "type": "game.model.Tree"
       },
       {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
         "type": "game.model.Water"
       },
       {
         "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Grass"
-      },
-      {
-        "type": "game.model.Tree"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Water"
-      },
-      {
-        "type": "game.model.Tree"
       },
       {
         "type": "game.model.Water"
@@ -294,6 +114,33 @@
       },
       {
         "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Tree"
@@ -314,7 +161,97 @@
         "type": "game.model.Grass"
       },
       {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
         "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
       },
       {
         "type": "game.model.Grass"
@@ -326,16 +263,63 @@
         "type": "game.model.Water"
       },
       {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
         "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Water"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Grass"
+      },
+      {
+        "type": "game.model.Tree"
+      },
+      {
+        "type": "game.model.Tree"
       }
     ],
     "commandsCollectors": [
       {
-        "playerName": "Paul",
-        "commands": []
-      },
-      {
-        "playerName": "PaulTest",
+        "playerName": "test",
         "commands": [
           {
             "type": "game.model.PutCityBlock",
@@ -353,19 +337,39 @@
               0
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "PaulTest",
+            "mementoNomJoueur": "test",
             "mementoScore": 0,
             "mementoNextScore": 10
+          },
+          {
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 3,
+            "y": 6,
+            "typeCityBlock": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 0,
+            "mementoAvailableCityBlock": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "test",
+            "mementoScore": 12,
+            "mementoNextScore": 20
           }
         ]
       },
       {
-        "playerName": "Pa",
+        "playerName": "paul",
         "commands": [
           {
             "type": "game.model.PutCityBlock",
             "position": -1,
-            "x": 5,
+            "x": 4,
             "y": 7,
             "typeCityBlock": -1,
             "mementoHasMovedBlock": false,
@@ -378,9 +382,14 @@
               0
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Pa",
+            "mementoNomJoueur": "baptiste",
             "mementoScore": 0,
             "mementoNextScore": 10
+          },
+          {
+            "type": "game.model.CommandRename",
+            "nouveauNomJoueur": "paul",
+            "mementoNomJoueur": "baptiste"
           },
           {
             "type": "game.model.PutCityBlock",
@@ -398,35 +407,51 @@
               1
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Pa",
-            "mementoScore": 16,
+            "mementoNomJoueur": "paul",
+            "mementoScore": 12,
             "mementoNextScore": 20
           },
           {
             "type": "game.model.PutCityBlock",
             "position": -1,
             "x": 3,
-            "y": 4,
+            "y": 6,
             "typeCityBlock": -1,
             "mementoHasMovedBlock": false,
             "mementoTypeMoveBlock": 0,
             "mementoPosMoveBlock": 0,
             "mementoAvailableCityBlock": [
+              2,
+              1,
+              2,
+              2
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "paul",
+            "mementoScore": 29,
+            "mementoNextScore": 30
+          },
+          {
+            "type": "game.model.MoveCityBlock",
+            "x": 4,
+            "y": 4,
+            "posBefore": -1,
+            "posAfter": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 63,
+            "mementoAvailableCityBlock": [
               4,
-              3,
+              2,
               4,
               4
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "Pa",
-            "mementoScore": 49,
+            "mementoNomJoueur": "paul",
+            "mementoScore": 47,
             "mementoNextScore": 50
           }
         ]
-      },
-      {
-        "playerName": "test",
-        "commands": []
       },
       {
         "playerName": "baptiste",
@@ -447,37 +472,90 @@
               0
             ],
             "mementoCityBlockSelected": 1,
-            "mementoNomJoueur": "baptiste",
+            "mementoNomJoueur": "paul",
             "mementoScore": 0,
             "mementoNextScore": 10
+          },
+          {
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 8,
+            "y": 7,
+            "typeCityBlock": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 0,
+            "mementoAvailableCityBlock": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "paul",
+            "mementoScore": 20,
+            "mementoNextScore": 30
+          },
+          {
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 7,
+            "y": 4,
+            "typeCityBlock": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 0,
+            "mementoAvailableCityBlock": [
+              4,
+              3,
+              4,
+              4
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "paul",
+            "mementoScore": 41,
+            "mementoNextScore": 50
+          },
+          {
+            "type": "game.model.PutCityBlock",
+            "position": -1,
+            "x": 5,
+            "y": 4,
+            "typeCityBlock": -1,
+            "mementoHasMovedBlock": false,
+            "mementoTypeMoveBlock": 0,
+            "mementoPosMoveBlock": 0,
+            "mementoAvailableCityBlock": [
+              4,
+              2,
+              4,
+              4
+            ],
+            "mementoCityBlockSelected": 1,
+            "mementoNomJoueur": "paul",
+            "mementoScore": 49,
+            "mementoNextScore": 50
+          },
+          {
+            "type": "game.model.CommandRename",
+            "nouveauNomJoueur": "baptiste",
+            "mementoNomJoueur": "paul"
           }
         ]
-      },
-      {
-        "playerName": "bapt",
-        "commands": []
       }
     ],
     "topScores": [
       {
+        "player": "paul",
+        "score": 63
+      },
+      {
         "player": "baptiste",
-        "score": 4
-      },
-      {
-        "player": "bapt",
-        "score": 25
-      },
-      {
-        "player": "PaulTest",
-        "score": 28
+        "score": 57
       },
       {
         "player": "test",
-        "score": 28
-      },
-      {
-        "player": "Paul",
-        "score": 33
+        "score": 25
       }
     ]
   }
