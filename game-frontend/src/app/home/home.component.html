@@ -28,8 +28,8 @@
     <button>
       View Replay
     </button>
-    <select (change)="this.homeService.changeMap($event.target.value)">
-      <option #mapName *ngFor="let y of this.homeService.mapNames">{{y}}</option>
+    <select [ngModel]="this.homeService.nameCurrentMap" (ngModelChange)="this.callToChangeMap($event)">
+      <option #mapName *ngFor="let y of this.homeService.mapNames" [value] = y>{{y}}</option>
     </select>
   </div>
   <p

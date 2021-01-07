@@ -14,7 +14,8 @@ import {MapAdapter} from '../model/map-adapter';
 })
 export class HomeService {
   public mapNames: Array<string>;
-  public indexCurrentMap;
+  public indexCurrentMap: number;
+  public nameCurrentMap: string;
 
   constructor(public mapService: MapService, public leaderboardService: LeaderboardService, public http: HttpClient) {
     //  ICI remplir tabMap avec le back-end
@@ -39,24 +40,28 @@ export class HomeService {
   }
 
   public changeMap(name: string): void {
-    const uri = `/game/api/v1/maps/${name}`;
-    const res: MapRessource = new MapRessource('');
-    this.http.get<MapRessource>(uri).subscribe(
-      {
-        next: data => {
-          // console.log(data);
-          res.name = data.name;
-          res.setCommandsCollectors(data.commandsCollectors);
-          res.setScores(data.scores);
-          res.setTabTiles(data.tabTiles);
-          this.mapService.map = MapAdapter.mapRessourceToMapImpl(res);
-          this.leaderboardService.getScore();
-        },
-        error: error => {
-          console.error('There was an error!', error.message);
+    if (name !== undefined){
+      const uri = `/game/api/v1/maps/${name}`;
+      const res: MapRessource = new MapRessource('');
+      this.http.get<MapRessource>(uri).subscribe(
+        {
+          next: data => {
+            // console.log(data);
+            res.name = data.name;
+            res.setCommandsCollectors(data.commandsCollectors);
+            res.setScores(data.scores);
+            res.setTabTiles(data.tabTiles);
+            this.mapService.map = MapAdapter.mapRessourceToMapImpl(res);
+            this.indexCurrentMap = this.mapNames.indexOf(name);
+            this.nameCurrentMap = name;
+            this.leaderboardService.getScore();
+          },
+          error: error => {
+            console.error('There was an error!', error.message);
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   public addMap(): void {
