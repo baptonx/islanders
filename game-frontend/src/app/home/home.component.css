@@ -25,7 +25,7 @@
   display: flex;
   flex: 1;
   justify-content: flex-start;
-  background: lightcoral;
+  background-color: transparent;
   border: transparent;
   align-self: center;
   justify-self: center;
@@ -94,8 +94,13 @@ app-leaderboard {
   font-size: 24px;
 }
 
+.start_button{
+  background-color: transparent;
+  border: transparent;
+}
+
 .start_svg{
-  width:100px;
+  width:260px;
 }
 
 .button_new_map{
@@ -103,6 +108,8 @@ app-leaderboard {
   flex:1;
   flex-direction: row;
   align-items: center;
+  background-color: transparent;
+  border: transparent;
 }
 
 .add_svg{
