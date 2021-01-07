@@ -24,6 +24,10 @@ public class MoveCityBlock extends Command {
     private int mementoNextScore;
     private boolean mementoGameOver;
 
+    public boolean isMementoGameOver() {
+        return mementoGameOver;
+    }
+
     public MoveCityBlock() {
         //this.map = new ArrayList<>();
         this.posBefore = -1;
