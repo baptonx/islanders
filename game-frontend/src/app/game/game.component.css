@@ -2,8 +2,6 @@
   flex : 1
 }
 
-
-
 .topDiv {
   display: flex;
   flex : 1;
@@ -11,38 +9,22 @@
 }
 
 .info_currentgame{
-  position:absolute;
-  top:1%;
-  left:1%;
-
   display : flex;
   flex-direction: column;
   justify-self: left;
   flex:2;
 }
 
-a{
-  position:absolute;
-  bottom:5%;
-  right:5%;
-}
-
-.home_button{
-  position:absolute;
-  bottom:5%;
-  right:5%;
-}
-
 .undoRedoDiv{
-  position:absolute;
-  bottom:5%;
-  left:5%;
+  display:flex;
+  flex:1
 }
 
 .info{
   display : flex;
   flex : 1;
   flex-direction: row;
+  background-color: #55a2ff;
 }
 
 .inputNomJoueur{
@@ -51,24 +33,8 @@ a{
 }
 
 .inventory {
-  /*position: relative;
-  top:50%;
-  left:50%;*/
-  position: absolute;
-  bottom: 10px;
   left:50%;
   transform: translate(-50%, 0%);
-  background-color: #cdcdcd;
-  box-shadow: 0px 0px 0px 0px black;
-  border-radius: 15px;
-}
-
-.inventory-button {
-  float: left;
-  margin: 10px;
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 10px;
 }
 
 .inventory-button:hover {
@@ -81,8 +47,15 @@ a{
   flex-direction: column;
 }
 
-app-leaderboard{
-  position:absolute;
-  top:1%;
-  right:1%;
+.map_container{
+  display:flex;
+  flex:1;
+  justify-content: center;
+}
+
+.bottom_container{
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
 }
