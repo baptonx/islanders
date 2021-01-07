@@ -21,9 +21,6 @@
   </div>
   <div *ngIf="this.mapService.isGameOver" class="gameOver" (click)="removeGameOver()">
     <img class="img_game_over" src="assets/game-over.svg"/>
-    <button #buttonHome class="home_button" label="HOME">
-      HOME
-    </button>
   </div>
   <div class="map_container">
     <app-map class="map"></app-map>
@@ -34,6 +31,9 @@
       <button (click)="redoFct()">redo</button>
     </div>
     <app-inventory class="inventory"></app-inventory>
+    <button #buttonHome label="HOME">
+      HOME
+    </button>
   </div>
   <p>{{this.mapService.isGameOver}}</p>
 </div>

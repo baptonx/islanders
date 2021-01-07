@@ -12,8 +12,57 @@ import {PutCityBlock} from './put-city-block';
 import {MoveCityBlockImpl} from './move-city-block-impl';
 import {MoveCityBlock} from './move-city-block';
 import {CommandRenameImpl} from "./command-rename-impl";
+import {InfogameService} from "../service/infogame.service";
 
 export class MapAdapter {
+
+  public static commandToCommandImpl(command: Command, infoGameService: InfogameService): Command {
+    if (command instanceof CommandRename) {
+      const cri: CommandRename = command as CommandRename;
+      const cr = new CommandRenameImpl(infoGameService, cri.nouveauNomJoueur, false);
+      cr.mementoNomJoueur = cri.mementoNomJoueur;
+      return cr;
+    } else if (command instanceof PutCityBlock) {
+      const pcbi: PutCityBlock = command as PutCityBlock;
+      return command;
+      /*
+      const pcb = new PutCityBlock(pcbi.x, pcbi.y);
+      pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
+      pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
+      pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
+      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
+      pcb.mementoScore = pcbi.mementoScore;
+      pcb.mementoNextScore = pcbi.mementoNextScore;
+      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
+      pcb.typeCityBlock = pcbi.typeCityBlock;
+      pcb.position = pcbi.position;
+      pcb.mementoGameOver = pcbi.mementoGameOver;
+      console.log(JSON.stringify(pcb));
+      return pcb;
+
+       */
+    } else if (command instanceof MoveCityBlock) {
+      const pcbi: MoveCityBlock = command as MoveCityBlock;
+      return command;
+      /*
+      const pcb = new MoveCityBlock(pcbi.x, pcbi.y);
+      pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
+      pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
+      pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
+      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
+      pcb.mementoScore = pcbi.mementoScore;
+      pcb.mementoNextScore = pcbi.mementoNextScore;
+      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
+      pcb.posAfter = pcbi.posAfter;
+      pcb.posBefore = pcbi.posBefore;
+      pcb.mementoGameOver = pcbi.mementoGameOver;
+      console.log(pcb);
+      return pcb;
+       */
+    } else {
+      return null;
+    }
+  }
 
   public static commandImplToCommand(command: Command): Command {
     if (command instanceof CommandRenameImpl) {

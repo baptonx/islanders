@@ -6,10 +6,12 @@ export class CommandRenameImpl extends Command implements Undoable {
   type = 'game.model.CommandRename';
   public mementoNomJoueur: string;
 
-  public constructor(private infoGameService: InfogameService, public nouveauNomJoueur: string) {
+  public constructor(private infoGameService: InfogameService, public nouveauNomJoueur: string, public doMemExec = true) {
     super();
-    this.createMemento();
-    this.execution();
+    if (doMemExec) {
+      this.createMemento();
+      this.execution();
+    }
   }
 
 
