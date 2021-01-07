@@ -149,7 +149,9 @@ export class MapComponent {
 
   public moveBlock(x: number, y: number): void {
     const pos = y * 10 + x;
-    this.mapService.typeMoveBlock = this.mapService.map.tabTiles[pos];
-    this.mapService.posMoveBlock = pos;
+    if (this.mapService.map.tabTiles[pos] > 2) {
+      this.mapService.typeMoveBlock = this.mapService.map.tabTiles[pos];
+      this.mapService.posMoveBlock = pos;
+    }
   }
 }
