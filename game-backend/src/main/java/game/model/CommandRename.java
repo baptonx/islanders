@@ -8,6 +8,7 @@ public class CommandRename extends Command {
 
     public CommandRename() {
         mementoNomJoueur = "player";
+        nouveauNomJoueur = "";
     }
 
     public String getMementoNomJoueur() {
@@ -24,6 +25,10 @@ public class CommandRename extends Command {
         }
         final CommandRename that = (CommandRename) o;
         return mementoNomJoueur.equals(that.getMementoNomJoueur());
+    }
+
+    public String getNouveauNomJoueur() {
+        return nouveauNomJoueur;
     }
 
     @Override

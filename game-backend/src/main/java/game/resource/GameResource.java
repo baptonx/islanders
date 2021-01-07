@@ -140,11 +140,14 @@ public class GameResource {
         final ObjectMapper mapper = new ObjectMapper();
         List<Command> c = new ArrayList<>();
 
+        System.out.println(mapper.readValue(commands, new TypeReference<List<Command>>() {
+        }));
+
         try {
             c = mapper.readValue(commands, new TypeReference<List<Command>>() {
             });
         } catch (JsonProcessingException e) {
-            // throw exception Web
+            e.printStackTrace();
         }
         /*
         try {
@@ -155,6 +158,7 @@ public class GameResource {
             return Response.status(Response.Status.valueOf(e.getMessage())).build();
         }
         */
+        System.out.println("marche");
         storage.addGame(map_name, new CommandCollector(player_name, c), new Score(player_name, score));
         return Response.status(Response.Status.OK).build();
     }

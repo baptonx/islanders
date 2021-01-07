@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -117,15 +118,19 @@ class MapResourceTest {
     @Test
     void getTopScores() {
         List<Score> scores = new ArrayList<>();
-        scores.add(new Score("bapt", 42));
+        scores.add(new Score("bapt", 92));
         scores.add(new Score("bapt", 52));
-        scores.add(new Score("bapt", 62));
         scores.add(new Score("bapt", 72));
         scores.add(new Score("bapt", 82));
-        scores.add(new Score("bapt", 92));
+        scores.add(new Score("bapt", 62));
+        scores.add(new Score("bapt", 42));
         map_test.setScores(scores);
-        scores.remove(0);
-        assertEquals(map_test.getTopScores(), scores);
+        scores.sort(new ScoreComparator());
+        scores.remove(5);
+        System.out.println(scores.toString());
+        List<Score> sc = map_test.getTopScores();
+        System.out.println(sc.toString());
+        assertEquals(scores, sc);
     }
 
     @Test
@@ -204,8 +209,8 @@ class MapResourceTest {
 
     @Test
     void testHashCode() {
-        Assertions.assertEquals(m1.hashCode(),m2.hashCode());
-        assertNotEquals(m1.hashCode(),map_test.hashCode());
+        Assertions.assertEquals(m1.hashCode(), m2.hashCode());
+        assertNotEquals(m1.hashCode(), map_test.hashCode());
     }
 
 }

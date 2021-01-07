@@ -21,12 +21,12 @@ class ScoreComparatorTest {
 
     @Test
     void greaterThan() {
-        assertTrue(sc.compare(s1, s2) < 0);
+        assertTrue(sc.compare(s1, s2) > 0);
     }
 
     @Test
     void smallerThan() {
-        assertTrue(sc.compare(s2, s1) > 0);
+        assertTrue(sc.compare(s2, s1) < 0);
     }
 
     @Test

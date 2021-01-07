@@ -1,56 +1,74 @@
-.container{
-  flex:1;
+.container {
+  flex: 1;
 }
 
-.header_container{
+.header_container {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.bottom_container{
+.bottom_container {
   display: flex;
   flex-direction: row;
   align-self: center;
   justify-content: center;
 }
 
-.middle_container{
+.middle_container {
   display: flex;
   flex-direction: row;
 }
 
-.arrowLeft{
+.arrowLeft {
   display: flex;
   flex: 1;
   justify-content: flex-start;
+  background: transparent;
+  border: transparent;
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.arrowRight{
+.arrowLeft:hover {
+  box-shadow: 0 0 40px 40px #e74c3c inset;
+}
+
+
+.arrowRight {
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  background: transparent;
+  border: transparent;
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.errorOutputRed{
+.arrowLeft:hover {
+  box-shadow: 0 0 40px 40px #e74c3c inset;
+}
+
+
+.errorOutputRed {
   color: red;
 }
 
-.errorOutputGreen{
-  position:absolute;
-  bottom:1%;
-  right:10%;
+.errorOutputGreen {
+  position: absolute;
+  bottom: 1%;
+  right: 10%;
   color: green;
 }
 
-app-leaderboard{
-  position:absolute;
-  top:1%;
-  right:1%;
+app-leaderboard {
+  position: absolute;
+  top: 1%;
+  right: 1%;
 }
 
-.map{
-  flex:7;
+.map {
+  flex: 7;
   align-self: center;
   justify-self: center;
 }

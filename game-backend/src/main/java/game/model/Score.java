@@ -2,7 +2,9 @@ package game.model;
 
 import java.util.Objects;
 
-/** Objet contenant le score fait par un joueur **/
+/**
+ * Objet contenant le score fait par un joueur
+ **/
 public class Score {
 
     private String player;
@@ -51,5 +53,10 @@ public class Score {
 
     public void setScore(final int score) {
         this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return ("" + score + "");
     }
 }

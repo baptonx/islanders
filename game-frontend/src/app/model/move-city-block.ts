@@ -11,8 +11,8 @@ export class MoveCityBlock extends Command implements Undoable {
   type = 'game.model.MoveCityBlock';
   x: number;
   y: number;
-  posBefore: number;
-  posAfter: number;
+  posBefore = -1;
+  posAfter = -1;
   mementoHasMovedBlock: boolean;
   mementoTypeMoveBlock: number | undefined;
   mementoPosMoveBlock: number;
