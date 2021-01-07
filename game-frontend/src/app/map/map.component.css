@@ -3,17 +3,9 @@
   --nb-cell: 10;
   --z-rotate: 45deg;
   --x-rotate: 60deg;
-
-
-  line-height: 0;
-  position: absolute;
-  top: 70px;
-  /*left: 40pc;*/
-  left: 50%;
-  transform: translateX(-50%) translateY(90px) scale(1.4) rotateX(var(--x-rotate)) rotateZ(var(--z-rotate));
-  margin: auto;
+  transform: scale(1.4) rotateX(var(--x-rotate)) rotateZ(var(--z-rotate));
   width: calc(var(--size-cell) * var(--nb-cell));
-  z-index: 1000;
+  line-height: 0;
 }
 
 .tile {
@@ -24,22 +16,12 @@
   clip-path: polygon(50px 0, 0 25px, 0 32px, 50px 58px, 100px 33px, 100px 25px, 50px 0);
 }
 
-.badge {
-  position: inherit;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background: red;
-  color: white;
-}
-
 .container{
-  flex : 1
-}
+  display: flex;
+  flex : 1;
+  justify-content: center;
+  align-content: center;
 
-h{
-  align-self:center;
 }
 
 

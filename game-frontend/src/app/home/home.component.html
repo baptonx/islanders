@@ -5,7 +5,7 @@
   </div>
   <div class = 'middle_container'>
     <button class = 'arrowLeft' #arrowLeft (click)="clickArrowLeft()">Left</button>
-    <app-map *ngIf="homeService.mapService.map!==undefined"></app-map>
+    <app-map  class = 'map' *ngIf="homeService.mapService.map!==undefined"></app-map>
     <button class = 'arrowRight' #arrowRight (click)="clickArrowRight()">Right</button>
     <app-leaderboard></app-leaderboard>
   </div>
