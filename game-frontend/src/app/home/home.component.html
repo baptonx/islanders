@@ -4,11 +4,11 @@
     <h2 *ngIf="homeService.mapService.map!==undefined">{{this.homeService.mapService.map.name}}</h2>
   </div>
   <div class='middle_container'>
-    <button class='arrow' #arrowLeft (click)="clickArrowLeft()">
+    <button class='arrow' *ngIf="homeService.mapService.map!==undefined" #arrowLeft (click)="clickArrowLeft()">
       <img src="assets/left-arrow.svg"/>
     </button>
     <app-map class='map' *ngIf="homeService.mapService.map!==undefined"></app-map>
-    <button class='arrow' #arrowRight (click)="clickArrowRight()">
+    <button class='arrow' *ngIf="homeService.mapService.map!==undefined" #arrowRight (click)="clickArrowRight()">
       <img src="assets/right-arrow.svg"/>
     </button>
     <app-leaderboard></app-leaderboard>
@@ -18,7 +18,7 @@
       <button (click)="addNewMap()" class ="button_new_map">
         <img src="assets/add.svg" class ="add_svg"/>
         <p>
-          Ajouter une nouvelle carte générée aléatoirement
+          Ajouter
         </p>
       </button>
       <button class ="button_new_map">
