@@ -1,9 +1,11 @@
 <div class='container'>
-  <div class='header_container' (click)="toggleDisplay()">
-    <img
-      src='assets/ranking2.svg'
-    />
-    <p>LeaderBoard</p>
+  <div class="header_container">
+    <button class='button' (click)="toggleDisplay()">
+      <img
+        src='assets/ranking2.svg'
+      />
+      LeaderBoard
+    </button>
   </div>
   <div class="container_scores">
     <ng-container *ngFor="let y of this.leaderboardService.tabScores">
@@ -12,3 +14,4 @@
       </p>
     </ng-container>
   </div>
+</div>

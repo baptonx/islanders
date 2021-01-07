@@ -20,6 +20,7 @@
   flex-direction: column;
   justify-self: left;
   flex: 1;
+  font-family: 'Ek Mukta';
 }
 
 .undoRedoDiv {
@@ -68,11 +69,10 @@
 
 app-leaderboard {
   display: flex;
-  flex: 1;
 }
 
 .img_game_over {
-  width:50%;
+  width: 50%;
   position: absolute;
   top: 50%;
   left: 50%;

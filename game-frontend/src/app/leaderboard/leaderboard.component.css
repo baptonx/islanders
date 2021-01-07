@@ -1,39 +1,34 @@
 .container_tableau_score {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  font-family: 'Ek Mukta';
+}
 
+
+button {
+  border-color: transparent;
+  background: dodgerblue;
 }
 
 .container_scores {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: gray;
-  list-style: none;
-  border-radius: 5px;
-  border-color: black;
-  align-items: center;
-
+  background-color: lightskyblue;
+}
+.score{
+  margin: 10%;
 }
 
 .header_container {
-  background-color: red;
   display: flex;
   flex-direction: row;
-  align-self: center;
-  justify-self: center;
-}
-
-.score {
-
-  display: flex;
-  background: rgb(22, 160, 133);
-  color: white;
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  width: 100%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  background: dodgerblue;
 }
 
 img {
-  width: 50%;
+  width: 40%;
   height: auto;
 }
 
@@ -45,10 +40,19 @@ img {
     transform: scale(1.2);
   }
 }
+@keyframes colorChange {
+  from{
+    background-color: dodgerblue;
+  }
+  to{
+    background-color: lightskyblue;
+  }
 
-img:hover {
-  transform: scale(1.2);
-  animation-name: zoom;
+}
+
+.button:hover {
+  background: lightskyblue;
+  animation-name: colorChange;
   animation-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
 }
