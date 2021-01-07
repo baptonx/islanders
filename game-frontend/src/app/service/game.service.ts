@@ -33,8 +33,7 @@ export class GameService {
 
   public postGame(mapName: string, playerName: string, score: number, commands: Array<Command>): void {
     const uri = `/game/api/v1/replays/${mapName}/${playerName}/${score}`;
-    const body = commands;
-    this.http.post(uri, body, {
+    this.http.post(uri, commands, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
