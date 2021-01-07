@@ -5,12 +5,15 @@
   </div>
   <div class='middle_container'>
     <button class='arrowLeft' #arrowLeft (click)="clickArrowLeft()">
+    <button class='arrow' #arrowLeft (click)="clickArrowLeft()">
       <img src="assets/left-arrow.svg"/>
     </button>
     <app-map class='map' *ngIf="homeService.mapService.map!==undefined"></app-map>
     <button class='arrowRight' #arrowRight (click)="clickArrowRight()">
       <img src="assets/right-arrow.svg"/>
     </button>
+    <button class='arrow' #arrowRight (click)="clickArrowRight()">
+      <img src="assets/right-arrow.svg"/></button>
     <app-leaderboard></app-leaderboard>
   </div>
   <div class="bottom_container">
