@@ -65,7 +65,6 @@ export class MapComponent {
     return 'assets/' + name + '-winter.svg';
   }
 
-
   private cityBlockToTypeTile(typeCityBlock: number): number {
     const nameCityBlock = this.mapService.inventoryService.typeCityBlock[typeCityBlock];
     return this.mapService.inventoryService.typeName.indexOf(nameCityBlock);

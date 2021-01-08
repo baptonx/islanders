@@ -1,4 +1,4 @@
-<div class="inventory" *ngIf="mapService.router.url === '/play' && mapService.winterMode">
+<div class="inventory" *ngIf="mapService.router.url === '/play' && !mapService.winterMode">
   <div *ngFor="let x of [0,1,2,3]"
        class="inventory-button"
        (click)="this.inventoryOnClick(x)">
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div class="inventory" *ngIf="mapService.router.url === '/play' && !mapService.winterMode">
+<div class="inventory" *ngIf="mapService.router.url === '/play' && mapService.winterMode">
   <div *ngFor="let x of [0,1,2,3]"
        class="inventory-button"
        (click)="this.inventoryOnClick(x)">
