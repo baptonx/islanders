@@ -20,7 +20,6 @@
 
 .tile:hover {
   transform: translateX(-10px) translateY(-10px) rotateZ(-45deg) rotateY(-60deg) scale(1.8);
-
 }
 
 .winterTileImg {
