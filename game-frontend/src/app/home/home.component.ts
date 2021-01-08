@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.mapNames = this.homeService.mapNames;
     this.homeService.mapService.infogameService.errorOutput = '';
+    this.homeService.mapService.inventoryService.cityBlockSelected = undefined;
   }
 
 
