@@ -42,6 +42,22 @@
   border-radius: 5px;
 }
 
+.buttonChangeName {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 7px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  transition: 0.2s ease-in-out;
+}
+
+.buttonChangeName:hover {
+  transform: scale(1.1);
+}
+
 .inventory {
   display: flex;
   flex: 1;
@@ -150,6 +166,11 @@ p {
   align-items: flex-end;
   background-color: transparent;
   border: transparent;
+  transition: 0.2s ease-in-out;
+}
+
+.home:hover {
+  transform: scale(1.2);
 }
 
 .homeDiv {
