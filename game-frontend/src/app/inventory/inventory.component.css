@@ -6,6 +6,11 @@
 
 }
 
+.icons {
+  width: 100px;
+  height: auto;
+}
+
 .badge {
   position: inherit;
   top: 10px;
