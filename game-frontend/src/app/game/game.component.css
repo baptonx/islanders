@@ -1,5 +1,6 @@
 .container {
-  flex: 1
+  flex: 1;
+  background: linear-gradient(whitesmoke, #3090c0);
 }
 
 .header_container {
@@ -21,6 +22,7 @@
   justify-self: left;
   flex: 1;
   font-family: 'Ek Mukta';
+  margin-left: 20px;
 }
 
 .undoRedoDiv {
@@ -50,6 +52,7 @@
 
 .header_container {
   display: flex;
+  flex:1;
   align-items: center;
   flex-direction: column;
 }
@@ -114,8 +117,29 @@ app-leaderboard {
 .center_header{
   display: flex;
   flex:1;
+  margin-left: 20px;
 }
 
 h2{
   text-align: center;
+}
+
+.currentName{
+  display: flex;
+  flex:1;
+  flex-direction: row;
+}
+
+.teacher_svg{
+  width:100px;
+}
+
+.score{
+  display: flex;
+  flex:1;
+  flex-direction: column;
+}
+
+p{
+  margin:0;
 }

@@ -2,13 +2,14 @@
   <div class='info'>
     <div class='info_currentgame'>
       <div class='namePlayer'>
-        <h2>{{this.infogameService.nomJoueur}}</h2>
+        <div class = "currentName">
+          <img src="assets/teacher.svg" class = "teacher_svg"/>
+          <h2>{{this.infogameService.nomJoueur}}</h2>
+        </div>
         <input #inputNomJoueur class='inputNomJoueur' type='text'>
         <button #buttonChangeName>Change name</button>
       </div>
       <div class='score'>
-        <div class="ldBar" data-value="50">
-        </div>
         <p>Score : {{this.infogameService.score}}</p>
         <p>Next Score : {{this.infogameService.nextScore}}</p>
       </div>

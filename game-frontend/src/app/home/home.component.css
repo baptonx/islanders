@@ -1,5 +1,6 @@
 .container {
   flex: 1;
+  background: linear-gradient(whitesmoke, #3090c0);
 }
 
 .header_container {
