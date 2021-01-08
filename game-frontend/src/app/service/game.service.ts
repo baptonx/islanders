@@ -40,7 +40,7 @@ export class GameService {
     }).subscribe(
       {
         next: data => {
-          console.log('Post Game :' + JSON.stringify(data));
+          // console.log('Post Game :' + JSON.stringify(data));
           // this.tabMap = data.total;
         },
         error: error => {

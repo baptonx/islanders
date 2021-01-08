@@ -24,11 +24,9 @@ export class MapComponent {
   ngAfterViewInit(): void {
     this.mapService.textScoreArray = new Array<HTMLDivElement>();
     const elemHTML = this.elem.nativeElement.getElementsByClassName('infoTile');
-    console.log(elemHTML.length);
     for (let i = 0; i < elemHTML.length; i++) {
       this.mapService.textScoreArray.push(elemHTML.item(i) as HTMLDivElement);
     }
-    // console.log(this.mapService.textScoreArray);
   }
 
   private getRandomInt(max: number): number {
@@ -119,7 +117,7 @@ export class MapComponent {
   }
 
   public addCityBlock(x: number, y: number): void {
-    console.log(this.mapService.inventoryService.cityBlockSelected);
+    // console.log(this.mapService.inventoryService.cityBlockSelected);
     // Check Move city block before
     if (this.mapService.typeMoveBlock !== undefined && this.mapService.hasMovedBlock === false) {
       const pos = y * 10 + x;
@@ -141,14 +139,14 @@ export class MapComponent {
   }
 
   public computeScore(x: number, y: number): number {
-    console.log('y : ' + y + ' x : ' + x);
+    // console.log('y : ' + y + ' x : ' + x);
     let scoreCityBlock = 0;
     const pos = y * 10 + x;
     const type = this.mapService.map.tabTiles[pos];
     const typeCityBlock = this.typeTileToCityBlock(type);
     const dict = this.mapService.inventoryService.tabDictionariesScore[typeCityBlock];
     const radius = dict.get('radius');
-    console.log('radius : ' + radius);
+    // console.log('radius : ' + radius);
 
 
     for (let yRadius = -radius; yRadius <= radius; yRadius++) {

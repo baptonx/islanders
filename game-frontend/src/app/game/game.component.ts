@@ -52,7 +52,7 @@ export class GameComponent implements OnInit, AfterViewInit {
       this.gameService.undoCollector.commands.forEach((command) => {
         body.push(MapAdapter.commandImplToCommand(command));
       });
-      console.log(body);
+      // console.log(body);
       this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
         this.infogameService.score, body);
     }

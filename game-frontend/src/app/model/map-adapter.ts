@@ -86,7 +86,7 @@ export class MapAdapter {
       pcb.typeCityBlock = pcbi.typeCityBlock;
       pcb.position = pcbi.position;
       pcb.mementoGameOver = pcbi.mementoGameOver;
-      console.log(JSON.stringify(pcb));
+      // console.log(JSON.stringify(pcb));
       return pcb;
     } else if (command instanceof MoveCityBlockImpl) {
       const pcbi: MoveCityBlockImpl = command as MoveCityBlockImpl;
@@ -104,7 +104,7 @@ export class MapAdapter {
       pcb.mementoScore = pcbi.mementoScore;
       pcb.mementoNextScore = pcbi.mementoNextScore;
       pcb.mementoGameOver = pcbi.mementoGameOver;
-      console.log(pcb);
+      // console.log(pcb);
       return pcb;
     } else {
       return null;

@@ -49,7 +49,7 @@ export class MapService {
     }
 
     if (inventoryAvailable === false && this.hasMovedBlock === true) {
-      console.log('game over : inventaire nul');
+      // console.log('game over : inventaire nul');
       this.isGameOver = true;
       return true;
     }
@@ -57,14 +57,14 @@ export class MapService {
     // inventaire disponible ou moveBlock, cherche case vide
     for (let i = 0; i < this.map.tabTiles.length; i++) {
       if (this.map.tabTiles[i] === 0) {
-        console.log('Pas de game over : tile disponible et inventaire disponible ou move block');
+        // console.log('Pas de game over : tile disponible et inventaire disponible ou move block');
         this.isGameOver = false;
         return false;
       }
     }
 
     // inventaire disponible mais pas de case vide
-    console.log('Game over : inventaire disponible ou move block mais pas de tile disponible');
+    // console.log('Game over : inventaire disponible ou move block mais pas de tile disponible');
     this.isGameOver = true;
     return true;
   }
