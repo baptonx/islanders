@@ -9,6 +9,8 @@
           [attr.data-x]=x
           [attr.data-y]=y
           src={{this.getTileSvg(x,y)}}
+          (mouseenter)="this.mouseEnter(x,y)"
+          (mouseleave)="this.mouseLeave(x,y)"
           (click)="this.addCityBlock(x,y)"
           (dblclick)="this.moveBlock(x, y)"
         />

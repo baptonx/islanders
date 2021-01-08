@@ -17,29 +17,6 @@ import {PutCityBlockImpl} from '../model/put-city-block-impl';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent {
-  /*
-  // Service Map
-  public tabTiles: Array<number>;
-  public nomJoueur: string;
-  public score: number;
-  public nextScore: number;
-  public tabScores: Map<string, number> = new Map();
-   */
-
-  /*
-  // Service Inventory
-  public availableCityBlock: Array<number>;
-  private typeName: Array<string>;
-  private typeCityBlock: Array<string>;
-  // 4 dictionaries to calculate the scores
-  private neighbourPointsCircus: Map<string, number> = new Map();
-  private neighbourPointsHouse: Map<string, number> = new Map();
-  private neighbourPointsFountain: Map<string, number> = new Map();
-  private neighbourPointsWindTurbine: Map<string, number> = new Map();
-  private tabDictionariesScore: Array<Map<string, number>> = new Array<Map<string, number>>(4);
-  private cityBlockSelected;
-   */
-
   constructor(public mapService: MapService, public gameService: GameService, public clonerService: ClonerService) {
   }
 
@@ -50,6 +27,20 @@ export class MapComponent {
   public getTileSvg(x: number, y: number): string {
     const type = this.mapService.map.tabTiles[y * 10 + x];
     return this.getPathNameWithName(this.mapService.inventoryService.typeName[type]);
+  }
+
+  public mouseEnter(x: number, y: number): void {
+    const pos = y * 10 + x;
+    if (this.mapService.map.tabTiles[pos] === 0 && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.getCityBlockRemaining(this.mapService.inventoryService.cityBlockSelected) > 0) {
+      this.mapService.map.tabTiles[pos] = this.cityBlockToTypeTileTemporary(this.mapService.inventoryService.cityBlockSelected);
+    }
+  }
+
+  public mouseLeave(x: number, y: number): void {
+    const pos = y * 10 + x;
+    if (this.mapService.map.tabTiles[pos] > 6 && this.mapService.inventoryService.cityBlockSelected !== undefined) {
+      this.mapService.map.tabTiles[pos] = 0;
+    }
   }
 
   public getWinterSvg(x: number, y: number): string {
@@ -70,6 +61,18 @@ export class MapComponent {
     return this.mapService.inventoryService.typeName.indexOf(nameCityBlock);
   }
 
+  private cityBlockToTypeTileTemporary(typeCityBlock: number): number {
+    if (typeCityBlock === 0) {
+      return 7;
+    } else if (typeCityBlock === 1) {
+      return 8;
+    } else if (typeCityBlock === 2) {
+      return 9;
+    } else if (typeCityBlock === 3) {
+      return 10;
+    }
+  }
+
   private typeTileToCityBlock(type: number): number {
     const name = this.mapService.inventoryService.typeName[type];
     return this.mapService.inventoryService.typeCityBlock.indexOf(name);
@@ -84,29 +87,15 @@ export class MapComponent {
         // Creation d'une commande
         this.gameService.undoCollector.commands.push(new MoveCityBlockImpl(this.mapService, x, y, this.clonerService));
         this.gameService.redoCollector.commands = [];
-        /*
-        this.mapService.map.tabTiles[this.mapService.posMoveBlock] = 0;
-        this.mapService.map.tabTiles[pos] = this.mapService.typeMoveBlock;
-        this.computeScore(x, y);
-        this.mapService.hasMovedBlock = true;
-        this.mapService.typeMoveBlock = undefined;
-         */
       }
     } else if (this.mapService.typeMoveBlock === undefined
       && this.mapService.inventoryService.cityBlockSelected !== undefined
       && this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected] > 0) {
       const pos = y * 10 + x;
-      if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
+      if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty' || this.mapService.map.tabTiles[pos] > 6) {
         // Creation d'une commande
         this.gameService.undoCollector.commands.push(new PutCityBlockImpl(this.mapService, x, y, this.clonerService));
         this.gameService.redoCollector.commands = [];
-        // () => new MoveCityBlock(this.mapService, x, y, this.clonerService);
-        /*
-        const t = this.cityBlockToTypeTile(this.mapService.inventoryService.cityBlockSelected);
-        this.mapService.map.tabTiles[pos] = t;
-        this.mapService.inventoryService.availableCityBlock[this.mapService.inventoryService.cityBlockSelected]--;
-        console.log('score du cityBlock : ' + this.computeScore(x, y));
-         */
       }
     }
   }

@@ -63,10 +63,11 @@ export class GameComponent implements OnInit, AfterViewInit {
     buttonBinder()
       .on(this.buttonChangeName.nativeElement)
       .toProduce(i => new AnonCmd(() => {
-        //console.log(this.buttonChangeName.nativeElement.value);
-        this.gameService.undoCollector.commands.push(new CommandRenameImpl(this.infogameService, this.inputNomJoueur.nativeElement.value));
-        this.gameService.redoCollector.commands = [];
-        this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
+        if (this.inputNomJoueur.nativeElement.value !== '') {
+          this.gameService.undoCollector.commands.push(new CommandRenameImpl(this.infogameService, this.inputNomJoueur.nativeElement.value));
+          this.gameService.redoCollector.commands = [];
+          this.infogameService.nomJoueur = this.inputNomJoueur.nativeElement.value;
+        }
       }))
       .bind();
   }
