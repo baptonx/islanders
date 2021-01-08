@@ -3,41 +3,46 @@
     <ng-container *ngFor="let y of [0,1,2,3,4,5,6,7,8,9]">
       <ng-container *ngFor="let x of [0,1,2,3,4,5,6,7,8,9]">
         <!-- CLASSIC MODE -->
-        <img
-          *ngIf="mapService.router.url === '/play' && !mapService.winterMode"
-          class='tile'
-          [attr.data-x]=x
-          [attr.data-y]=y
-          src={{this.getTileSvg(x,y)}}
-          (mouseenter)="this.mouseEnter(x,y)"
-          (mouseleave)="this.mouseLeave(x,y)"
-          (click)="this.addCityBlock(x,y)"
-          (dblclick)="this.moveBlock(x, y)"
-        />
-        <img
-          *ngIf="(mapService.router.url === '/home' || mapService.router.url === '/replay') && !mapService.winterMode"
-          class='tile'
-          [attr.data-x]=x
-          [attr.data-y]=y
-          src={{this.getTileSvg(x,y)}}
-        />
-        <!-- WINTER MODE -->
-        <img
-          *ngIf="mapService.router.url === '/play' && mapService.winterMode"
-          class='winterTile'
-          [attr.data-x]=x
-          [attr.data-y]=y
-          src={{this.getWinterSvg(x,y)}}
-          (click)="this.addCityBlock(x,y)"
-          (dblclick)="this.moveBlock(x, y)"
-        />
-        <img
-          *ngIf="(mapService.router.url === '/home' || mapService.router.url === '/replay') && mapService.winterMode"
-          class='winterTile'
-          [attr.data-x]=x
-          [attr.data-y]=y
-          src={{this.getWinterSvg(x,y)}}
-        />
+        <div class="tile">
+          <img
+            *ngIf="mapService.router.url === '/play' && !mapService.winterMode"
+            class='tileImg'
+            [attr.data-x]=x
+            [attr.data-y]=y
+            src={{this.getTileSvg(x,y)}}
+            (mouseenter)="this.mouseEnter(x,y)"
+            (mouseleave)="this.mouseLeave(x,y)"
+            (click)="this.addCityBlock(x,y)"
+            (dblclick)="this.moveBlock(x, y)"
+          />
+          <img
+            *ngIf="(mapService.router.url === '/home' || mapService.router.url === '/replay') && !mapService.winterMode"
+            class='tileImg'
+            [attr.data-x]=x
+            [attr.data-y]=y
+            src={{this.getTileSvg(x,y)}}
+          />
+          <!-- WINTER MODE -->
+          <img
+            *ngIf="mapService.router.url === '/play' && mapService.winterMode"
+            class='winterTileImg'
+            [attr.data-x]=x
+            [attr.data-y]=y
+            src={{this.getWinterSvg(x,y)}}
+            (mouseenter)="this.mouseEnter(x,y)"
+            (mouseleave)="this.mouseLeave(x,y)"
+            (click)="this.addCityBlock(x,y)"
+            (dblclick)="this.moveBlock(x, y)"
+          />
+          <img
+            *ngIf="(mapService.router.url === '/home' || mapService.router.url === '/replay') && mapService.winterMode"
+            class='winterTileImg'
+            [attr.data-x]=x
+            [attr.data-y]=y
+            src={{this.getWinterSvg(x,y)}}
+          />
+          <div class="infoTile">1</div>
+        </div>
       </ng-container>
     </ng-container>
   </div>
