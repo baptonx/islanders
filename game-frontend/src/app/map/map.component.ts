@@ -42,7 +42,10 @@ export class MapComponent {
 
   public mouseEnter(x: number, y: number): void {
     const pos = y * 10 + x;
-    if (this.mapService.map.tabTiles[pos] === 0 && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.getCityBlockRemaining(this.mapService.inventoryService.cityBlockSelected) > 0) {
+    if (this.mapService.map.tabTiles[pos] === 0
+      && this.mapService.inventoryService.cityBlockSelected !== undefined
+      && this.mapService.inventoryService.getCityBlockRemaining(this.mapService.inventoryService.cityBlockSelected) > 0
+      && this.mapService.typeMoveBlock === undefined) {
       this.mapService.map.tabTiles[pos] = this.cityBlockToTypeTileTemporary(this.mapService.inventoryService.cityBlockSelected);
       this.mapService.textScoreArray[pos].innerText = String(this.mapService.inventoryService.arrayScoreCityBlock[this.mapService.inventoryService.cityBlockSelected]);
 
@@ -120,7 +123,7 @@ export class MapComponent {
     // Check Move city block before
     if (this.mapService.typeMoveBlock !== undefined && this.mapService.hasMovedBlock === false) {
       const pos = y * 10 + x;
-      if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty') {
+      if (this.mapService.inventoryService.typeName[this.mapService.map.tabTiles[pos]] === 'empty' || this.mapService.map.tabTiles[pos] > 6) {
         // Creation d'une commande
         this.gameService.undoCollector.commands.push(new MoveCityBlockImpl(this.mapService, x, y, this.clonerService));
         this.gameService.redoCollector.commands = [];

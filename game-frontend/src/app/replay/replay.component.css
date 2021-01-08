@@ -149,6 +149,11 @@ p {
   align-items: flex-end;
   background-color: transparent;
   border: transparent;
+  transition: 0.2s ease-in-out;
+}
+
+.home:hover {
+  transform: scale(1.2);
 }
 
 .homeDiv {

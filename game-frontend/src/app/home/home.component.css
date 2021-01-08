@@ -179,3 +179,20 @@ h1{
 h2{
   color: #3090c0;
 }
+
+.buttonWinterMode {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 7px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 15px;
+  transition: 0.2s ease-in-out;
+}
+
+.buttonWinterMode:hover {
+  transform: scale(1.1);
+}

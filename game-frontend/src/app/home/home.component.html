@@ -21,7 +21,7 @@
           <option *ngFor="let y of this.homeService.replayNames" [value] = y>{{y}}</option>
         </select>
       </div>
-      <button (click)="this.homeService.mapService.toggleWinterMode()" >Winter Mode</button>
+      <button (click)="this.homeService.mapService.toggleWinterMode()" class="buttonWinterMode">Winter Mode</button>
       <!--<button class ="button_new_map">
         <img src="assets/replay.svg" class ="add_svg"/>
         <p>
