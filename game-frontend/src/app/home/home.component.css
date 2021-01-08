@@ -186,6 +186,7 @@ h2{
   font-size: 12px;
   border-radius: 15px;
   transition: 0.2s ease-in-out;
+  margin-top: 20px;
 }
 
 .buttonWinterMode:hover {
