@@ -31,13 +31,13 @@
 	c-1,0.4-2.6,0.7-5-0.1C66.7,42,83.3,33.6,100,25.2z"/>
 <defs>
 	<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="50.4">
-
+		
 			<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
 	</filter>
 </defs>
 <mask maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="50.4" id="SVGID_1_">
 	<g class="st5">
-
+		
 			<image style="overflow:visible;" width="4176" height="2784" xlink:href="ice.jpg"  transform="matrix(2.806167e-02 0 0 2.806167e-02 -11.1084 -16.8373)">
 		</image>
 	</g>
