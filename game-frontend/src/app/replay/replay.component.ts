@@ -30,13 +30,8 @@ export class ReplayComponent implements OnInit {
     this.infogameService.initializeScore();
   }
 
-  ngAfterViewInit(): void {
-    buttonBinder()
-      .on(this.buttonHome.nativeElement)
-      .toProduce(i => new AnonCmd(() => {
-        this.mapService.router.navigate(['/home']);
-      }))
-      .bind();
+  clickHome(): void {
+    this.mapService.router.navigate(['/home']);
   }
 
   public undoFct(): void {

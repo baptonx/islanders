@@ -22,10 +22,12 @@ export class MoveCityBlockImpl extends Command implements Undoable {
 
   public mementoGameOver: boolean;
 
-  public constructor(private mapService: MapService, public x: number, public y: number, private clonerService: ClonerService) {
+  public constructor(private mapService: MapService, public x: number, public y: number, private clonerService: ClonerService, public doMemExec = true) {
     super();
-    this.createMemento();
-    this.execution();
+    if (doMemExec) {
+      this.createMemento();
+      this.execution();
+    }
   }
 
   // Create the memento for undoing the command

@@ -18,11 +18,11 @@ export class LeaderboardComponent implements OnInit {
 
   toggleDisplay(): void {
     this.hidden = !this.hidden;
-    console.log(this.hidden);
+    //console.log(this.hidden);
   }
 
   isHidden(): boolean {
-    console.log(this.hidden);
+    //console.log(this.hidden);
     return this.hidden;
   }
 

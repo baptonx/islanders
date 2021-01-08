@@ -19,12 +19,12 @@ import {ClonerService} from "../service/cloner.service";
 export class MapAdapter {
 
   public static commandToCommandImpl(command: Command, infoGameService: InfogameService, mapService: MapService, clonerService: ClonerService): Command {
-    if (command instanceof CommandRename) {
-      const cri: CommandRename = command as CommandRename;
-      const cr = new CommandRenameImpl(infoGameService, cri.nouveauNomJoueur, false);
-      cr.mementoNomJoueur = cri.mementoNomJoueur;
-      return cr;
-    } else if (command instanceof PutCityBlock) {
+    if (command.type === 'game.model.CommandRename') {
+      const cr: CommandRename = command as CommandRename;
+      const cri = new CommandRenameImpl(infoGameService, cr.nouveauNomJoueur, false);
+      cri.mementoNomJoueur = cr.mementoNomJoueur;
+      return cri;
+    } else if (command.type === 'game.model.PutCityBlock') {
       const pcb: PutCityBlock = command as PutCityBlock;
       const pcbi = new PutCityBlockImpl(mapService, pcb.x, pcb.y, clonerService, false);
       pcbi.position = pcb.position;
@@ -41,22 +41,21 @@ export class MapAdapter {
       pcbi.mementoNextScore = pcb.mementoNextScore;
 
       pcbi.mementoGameOver = pcb.mementoGameOver;
-      return pcb;
-    } else if (command instanceof MoveCityBlock) {
-      const pcbi: MoveCityBlock = command as MoveCityBlock;
-      const pcb = new MoveCityBlock(pcbi.x, pcbi.y);
-      pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
-      pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
-      pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
-      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
-      pcb.mementoScore = pcbi.mementoScore;
-      pcb.mementoNextScore = pcbi.mementoNextScore;
-      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
-      pcb.posAfter = pcbi.posAfter;
-      pcb.posBefore = pcbi.posBefore;
-      pcb.mementoGameOver = pcbi.mementoGameOver;
-      console.log(pcb);
-      return pcb;
+      return pcbi;
+    } else if (command.type === 'game.model.MoveCityBlock') {
+      const pcb: MoveCityBlock = command as MoveCityBlock;
+      const pcbi = new MoveCityBlockImpl(mapService, pcb.x, pcb.y, clonerService, false);
+      pcbi.mementoAvailableCityBlock = pcb.mementoAvailableCityBlock;
+      pcbi.mementoCityBlockSelected = pcb.mementoCityBlockSelected;
+      pcbi.mementoNomJoueur = pcb.mementoNomJoueur;
+      pcbi.mementoHasMovedBlock = pcb.mementoHasMovedBlock;
+      pcbi.mementoScore = pcb.mementoScore;
+      pcbi.mementoNextScore = pcb.mementoNextScore;
+      pcbi.mementoPosMoveBlock = pcb.mementoPosMoveBlock;
+      pcbi.posAfter = pcb.posAfter;
+      pcbi.posBefore = pcb.posBefore;
+      pcbi.mementoGameOver = pcb.mementoGameOver;
+      return pcbi;
     } else {
       return null;
     }
