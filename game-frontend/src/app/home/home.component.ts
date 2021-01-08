@@ -62,7 +62,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   public clickReplay(nameCurrentPlayerRep: string): void {
-    console.log(nameCurrentPlayerRep);
     if (this.homeService.nameCurrentPlayerReplay !== '') {
       this.homeService.mapService.infogameService.nomJoueur = nameCurrentPlayerRep;
       this.homeService.mapService.router.navigate(['/replay']);
