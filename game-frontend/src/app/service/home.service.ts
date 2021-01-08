@@ -65,7 +65,7 @@ export class HomeService {
               replayNamesTemp.push(c.playerName);
             }
             this.replayNames = replayNamesTemp;
-            //this.nameCurrentPlayerReplay = this.replayNames[0];
+            this.nameCurrentPlayerReplay = undefined;
 
           },
           error: error => {

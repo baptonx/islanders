@@ -69,7 +69,7 @@ img{
   transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
 }
 
-.button_new_map:hover{
+.button_new_map1:hover{
   transform: scale(1.2);
   animation-name: zoom;
   animation-duration: 0.5s;

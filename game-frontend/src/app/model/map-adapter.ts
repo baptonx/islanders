@@ -13,38 +13,37 @@ import {MoveCityBlockImpl} from './move-city-block-impl';
 import {MoveCityBlock} from './move-city-block';
 import {CommandRenameImpl} from "./command-rename-impl";
 import {InfogameService} from "../service/infogame.service";
+import {MapService} from "../service/map.service";
+import {ClonerService} from "../service/cloner.service";
 
 export class MapAdapter {
 
-  public static commandToCommandImpl(command: Command, infoGameService: InfogameService): Command {
+  public static commandToCommandImpl(command: Command, infoGameService: InfogameService, mapService: MapService, clonerService: ClonerService): Command {
     if (command instanceof CommandRename) {
       const cri: CommandRename = command as CommandRename;
       const cr = new CommandRenameImpl(infoGameService, cri.nouveauNomJoueur, false);
       cr.mementoNomJoueur = cri.mementoNomJoueur;
       return cr;
     } else if (command instanceof PutCityBlock) {
-      const pcbi: PutCityBlock = command as PutCityBlock;
-      return command;
-      /*
-      const pcb = new PutCityBlock(pcbi.x, pcbi.y);
-      pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
-      pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
-      pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
-      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
-      pcb.mementoScore = pcbi.mementoScore;
-      pcb.mementoNextScore = pcbi.mementoNextScore;
-      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
-      pcb.typeCityBlock = pcbi.typeCityBlock;
-      pcb.position = pcbi.position;
-      pcb.mementoGameOver = pcbi.mementoGameOver;
-      console.log(JSON.stringify(pcb));
-      return pcb;
+      const pcb: PutCityBlock = command as PutCityBlock;
+      const pcbi = new PutCityBlockImpl(mapService, pcb.x, pcb.y, clonerService, false);
+      pcbi.position = pcb.position;
+      pcbi.typeCityBlock = pcb.typeCityBlock;
+      pcbi.mementoHasMovedBlock = pcb.mementoHasMovedBlock;
+      pcbi.mementoTypeMoveBlock = pcb.mementoTypeMoveBlock;
+      pcbi.mementoPosMoveBlock = pcb.mementoPosMoveBlock;
 
-       */
+      pcbi.mementoAvailableCityBlock = pcb.mementoAvailableCityBlock;
+      pcbi.mementoCityBlockSelected = pcb.mementoCityBlockSelected;
+
+      pcbi.mementoNomJoueur = pcb.mementoNomJoueur;
+      pcbi.mementoScore = pcb.mementoScore;
+      pcbi.mementoNextScore = pcb.mementoNextScore;
+
+      pcbi.mementoGameOver = pcb.mementoGameOver;
+      return pcb;
     } else if (command instanceof MoveCityBlock) {
       const pcbi: MoveCityBlock = command as MoveCityBlock;
-      return command;
-      /*
       const pcb = new MoveCityBlock(pcbi.x, pcbi.y);
       pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
       pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
@@ -58,7 +57,6 @@ export class MapAdapter {
       pcb.mementoGameOver = pcbi.mementoGameOver;
       console.log(pcb);
       return pcb;
-       */
     } else {
       return null;
     }
@@ -78,6 +76,7 @@ export class MapAdapter {
       pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
       pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
       pcb.mementoScore = pcbi.mementoScore;
+      pcb.mementoTypeMoveBlock = pcbi.mementoTypeMoveBlock;
       pcb.mementoNextScore = pcbi.mementoNextScore;
       pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
       pcb.typeCityBlock = pcbi.typeCityBlock;
@@ -88,15 +87,18 @@ export class MapAdapter {
     } else if (command instanceof MoveCityBlockImpl) {
       const pcbi: MoveCityBlockImpl = command as MoveCityBlockImpl;
       const pcb = new MoveCityBlock(pcbi.x, pcbi.y);
+      pcb.posBefore = pcbi.posBefore;
+      pcb.posAfter = pcbi.posAfter;
+
+      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
+      pcb.mementoTypeMoveBlock = pcbi.mementoTypeMoveBlock;
+      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
+
       pcb.mementoAvailableCityBlock = pcbi.mementoAvailableCityBlock;
       pcb.mementoCityBlockSelected = pcbi.mementoCityBlockSelected;
       pcb.mementoNomJoueur = pcbi.mementoNomJoueur;
-      pcb.mementoHasMovedBlock = pcbi.mementoHasMovedBlock;
       pcb.mementoScore = pcbi.mementoScore;
       pcb.mementoNextScore = pcbi.mementoNextScore;
-      pcb.mementoPosMoveBlock = pcbi.mementoPosMoveBlock;
-      pcb.posAfter = pcbi.posAfter;
-      pcb.posBefore = pcbi.posBefore;
       pcb.mementoGameOver = pcbi.mementoGameOver;
       console.log(pcb);
       return pcb;

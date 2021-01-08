@@ -22,10 +22,12 @@ export class PutCityBlockImpl extends Command implements Undoable {
 
   public mementoGameOver: boolean;
 
-  public constructor(public mapService: MapService, public x: number, public y: number, public clonerService: ClonerService) {
+  public constructor(public mapService: MapService, public x: number, public y: number, public clonerService: ClonerService, public doMemExec = true) {
     super();
-    this.createMemento();
-    this.execution();
+    if (doMemExec) {
+      this.createMemento();
+      this.execution();
+    }
   }
 
   // Create the memento for undoing the command

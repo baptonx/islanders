@@ -12,7 +12,7 @@ import {GameService} from '../service/game.service';
 import {CommandRename} from '../model/command-rename';
 import {Command} from '../model/command';
 import {MapAdapter} from '../model/map-adapter';
-import {CommandRenameImpl} from "../model/command-rename-impl";
+import {CommandRenameImpl} from '../model/command-rename-impl';
 
 @Component({
   selector: 'app-game',
