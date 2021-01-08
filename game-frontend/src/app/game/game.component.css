@@ -149,5 +149,10 @@ p {
   align-items: flex-end;
   background-color: transparent;
   border: transparent;
-  background-color: black;
+}
+
+.homeDiv {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
 }
