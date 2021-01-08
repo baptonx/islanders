@@ -17,7 +17,18 @@ import {PutCityBlockImpl} from '../model/put-city-block-impl';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent {
-  constructor(public mapService: MapService, public gameService: GameService, public clonerService: ClonerService) {
+
+  constructor(public mapService: MapService, public gameService: GameService, public clonerService: ClonerService, private elem: ElementRef) {
+  }
+
+  ngAfterViewInit(): void {
+    this.mapService.textScoreArray = new Array<HTMLDivElement>();
+    const elemHTML = this.elem.nativeElement.getElementsByClassName('infoTile');
+    console.log(elemHTML.length);
+    for (let i = 0; i < elemHTML.length; i++) {
+      this.mapService.textScoreArray.push(elemHTML.item(i) as HTMLDivElement);
+    }
+    // console.log(this.mapService.textScoreArray);
   }
 
   private getRandomInt(max: number): number {
@@ -33,6 +44,31 @@ export class MapComponent {
     const pos = y * 10 + x;
     if (this.mapService.map.tabTiles[pos] === 0 && this.mapService.inventoryService.cityBlockSelected !== undefined && this.mapService.inventoryService.getCityBlockRemaining(this.mapService.inventoryService.cityBlockSelected) > 0) {
       this.mapService.map.tabTiles[pos] = this.cityBlockToTypeTileTemporary(this.mapService.inventoryService.cityBlockSelected);
+      this.mapService.textScoreArray[pos].innerText = String(this.mapService.inventoryService.arrayScoreCityBlock[this.mapService.inventoryService.cityBlockSelected]);
+
+
+
+      const dict = this.mapService.inventoryService.tabDictionariesScore[this.mapService.inventoryService.cityBlockSelected];
+      const radius = dict.get('radius');
+
+      for (let yRadius = -radius; yRadius <= radius; yRadius++) {
+        for (let xRadius = -radius; xRadius <= radius; xRadius++) {
+          if (!(xRadius === 0 && yRadius === 0)) {
+            const newY = y + yRadius;
+            const newX = x + xRadius;
+            if (newY >= 0 && newY < 10 && newX >= 0 && newX < 10) {
+              const typeRadius = this.mapService.map.tabTiles[newY * 10 + newX];
+              const scoreRadius = dict.get(this.mapService.inventoryService.typeName[typeRadius]);
+              if (scoreRadius !== undefined) {
+                this.mapService.textScoreArray[newY * 10 + newX].innerText = String(scoreRadius);
+              }
+              else {
+                this.mapService.textScoreArray[newY * 10 + newX].innerText = '0';
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -40,6 +76,7 @@ export class MapComponent {
     const pos = y * 10 + x;
     if (this.mapService.map.tabTiles[pos] > 6 && this.mapService.inventoryService.cityBlockSelected !== undefined) {
       this.mapService.map.tabTiles[pos] = 0;
+      this.mapService.resetTextArrayScore();
     }
   }
 
