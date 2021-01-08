@@ -47,15 +47,16 @@ export class GameComponent implements OnInit, AfterViewInit {
   }
 
   public clickHome(): void {
-    const body = Array<Command>();
-    this.gameService.undoCollector.commands.forEach((command) => {
-      body.push(MapAdapter.commandImplToCommand(command));
-    });
-    console.log(body);
-    this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
-      this.infogameService.score, body);
+    if(this.infogameService.score > 0) {
+      const body = Array<Command>();
+      this.gameService.undoCollector.commands.forEach((command) => {
+        body.push(MapAdapter.commandImplToCommand(command));
+      });
+      console.log(body);
+      this.gameService.postGame(this.mapService.map.name, this.infogameService.nomJoueur,
+        this.infogameService.score, body);
+    }
     this.removeGameOver();
-
     this.mapService.router.navigate(['/home']);
   }
 

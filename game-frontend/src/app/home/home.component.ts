@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   public clickReplay(nameCurrentPlayerRep: string): void {
+    console.log(nameCurrentPlayerRep);
     if (this.homeService.nameCurrentPlayerReplay !== '') {
       this.homeService.mapService.infogameService.nomJoueur = nameCurrentPlayerRep;
       this.homeService.mapService.router.navigate(['/replay']);
@@ -69,6 +70,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.homeService.mapService.infogameService.errorOutput = 'Error : Name of the player replay is null';
       this.homeService.mapService.infogameService.isErrorOutputRed = true;
     }
+  }
+
+  public selectReplayChange(name: string): void {
+    this.homeService.nameCurrentPlayerReplay = name;
   }
 
   public addNewMap(): void {
