@@ -1,13 +1,7 @@
-.container_tableau_score {
-  display: flex;
-  flex-direction: row;
-  font-family: 'Ek Mukta';
-}
-
 .container{
   display: flex;
-  flex:1;
   flex-direction: column;
+  flex:1;
 }
 
 button {
@@ -15,10 +9,13 @@ button {
   background: dodgerblue;
   display: flex;
   flex:1;
+  flex-direction: row;
+  align-items: center;
 }
 
 .container_scores {
   display: flex;
+  flex:1;
   flex-direction: column;
   background-color: lightskyblue;
 }
@@ -30,23 +27,9 @@ button {
   display: flex;
   flex-direction: row;
   flex:1;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
   background: dodgerblue;
 }
 
-img {
-  width: 40%;
-  height: auto;
-}
-
-@keyframes zoom {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.2);
-  }
-}
 @keyframes colorChange {
   from{
     background-color: dodgerblue;
@@ -57,10 +40,7 @@ img {
 
 }
 
-.button:hover {
-  background: lightskyblue;
-  animation-name: colorChange;
-  animation-duration: 0.5s;
-  transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+img{
+  width:70px;
 }
 

@@ -16,12 +16,12 @@
   <div class="bottom_container">
     <div class="left">
       <div class ="container_select_replay">
-        <p> Sélectionner un replay de {{this.homeService.nameCurrentMap}}</p>
+        <p> Select {{this.homeService.nameCurrentMap}} replays</p>
         <select [ngModel]="this.homeService.nameCurrentPlayerReplay" (ngModelChange)="this.clickReplay($event)">
           <option *ngFor="let y of this.homeService.replayNames" [value] = y>{{y}}</option>
         </select>
       </div>
-      <button (click)="this.homeService.mapService.toggleWinterMode()" class="buttonWinterMode">Winter Mode</button>
+      <button (click)="this.homeService.mapService.toggleWinterMode()" class="buttonWinterMode">Switch season</button>
       <!--<button class ="button_new_map">
         <img src="assets/replay.svg" class ="add_svg"/>
         <p>
@@ -39,7 +39,7 @@
     </div>
     <div class = "right">
       <div class ="container_select_carte">
-        <p> Sélectionner une carte</p>
+        <p> Select a map</p>
         <select [ngModel]="this.homeService.nameCurrentMap" (ngModelChange)="this.callToChangeMap($event)">
           <option #mapName *ngFor="let y of this.homeService.mapNames" [value] = y>{{y}}</option>
         </select>

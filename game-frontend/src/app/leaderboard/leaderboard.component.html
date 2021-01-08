@@ -1,19 +1,13 @@
 <div class='container'>
-  <div class="header_container">
     <button class='button' (click)="toggleDisplay()">
-      <img
-        src='assets/ranking2.svg'
-      />
-      <p>
-        LeaderBoard
-      </p>
+      <img src='assets/ranking2.svg'/>
+      <p>LeaderBoard</p>
     </button>
-  </div>
-  <div class="container_scores">
-    <ng-container *ngFor="let y of this.leaderboardService.tabScores">
-      <p class="score" *ngIf="!this.isHidden()">
-        {{y.player}} {{y.score}}
-      </p>
-    </ng-container>
-  </div>
+    <div class="container_scores">
+      <ng-container *ngFor="let y of this.leaderboardService.tabScores">
+        <p class="score" *ngIf="!this.isHidden()">
+          {{y.player}} {{y.score}}
+        </p>
+      </ng-container>
+    </div>
 </div>
