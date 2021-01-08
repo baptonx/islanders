@@ -17,6 +17,7 @@
       <h1>ISLANDER</h1>
       <h2>{{this.mapService.map.name}}</h2>
     </div>
+    <div class = "center_header"></div>
     <app-leaderboard></app-leaderboard>
   </div>
   <div *ngIf="this.mapService.isGameOver" class="gameOver" (click)="clickHome()">
@@ -27,8 +28,12 @@
   </div>
   <div class="bottom_container">
     <div class="undoRedoDiv">
-      <button (click)="undoFct()">undo</button>
-      <button (click)="redoFct()">redo</button>
+      <button (click)="undoFct()" class = "undo">
+        <img src="assets/undo.svg" class = "undo_svg"/>
+      </button>
+      <button (click)="redoFct()" class = "undo">
+        <img src="assets/redo.svg" class = "undo_svg"/>
+      </button>
     </div>
     <app-inventory class="inventory"></app-inventory>
     <button (click)="clickHome()" label="HOME">

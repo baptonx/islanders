@@ -4,10 +4,18 @@
   font-family: 'Ek Mukta';
 }
 
+.container{
+  display: flex;
+  flex:1;
+  flex-direction: column;
+}
 
 button {
   border-color: transparent;
   background: dodgerblue;
+  display: flex;
+  flex:1;
+  align-items: center;
 }
 
 .container_scores {

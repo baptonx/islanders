@@ -8,7 +8,7 @@ import {LeaderboardService} from '../service/leaderboard.service';
 })
 export class LeaderboardComponent implements OnInit {
 
-  public hidden = false;
+  public hidden = true;
 
   constructor(public leaderboardService: LeaderboardService) {
   }

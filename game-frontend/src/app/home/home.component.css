@@ -108,15 +108,18 @@ app-leaderboard {
 }
 
 .left {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
+  justify-items: flex-start;
+  align-items: center;
 }
 
 .right {
-  flex: 1;
+  flex: 2;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .inputNomJoueur {
@@ -142,11 +145,22 @@ app-leaderboard {
   align-items: center;
   background-color: transparent;
   border: transparent;
-  margin-left:50px;
 }
 
 .add_svg {
   width: 50px;
   margin-right: 20px;
+}
+
+.container_select_carte{
+  display: flex;
+  flex:1;
+  flex-direction: column;
+}
+
+.container_select_replay{
+  display: flex;
+  flex:1;
+  flex-direction: column;
 }
 
