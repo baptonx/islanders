@@ -77,6 +77,7 @@ export class PutCityBlockImpl extends Command implements Undoable {
     this.mapService.inventoryService.availableCityBlock[this.mementoCityBlockSelected]--;
     this.computeScore(this.x, this.y);
     this.mapService.updateGameOver();
+    this.mapService.resetTextArrayScore();
   }
 
   getUndoName(): string {
@@ -95,13 +96,13 @@ export class PutCityBlockImpl extends Command implements Undoable {
 
   public computeScore(x: number, y: number): number {
     console.log('y : ' + y + ' x : ' + x);
-    let scoreCityBlock = 0;
     const pos = y * 10 + x;
     const type = this.mapService.map.tabTiles[pos];
     const typeCityBlock = this.typeTileToCityBlock(type);
     const dict = this.mapService.inventoryService.tabDictionariesScore[typeCityBlock];
     const radius = dict.get('radius');
     console.log('radius : ' + radius);
+    let scoreCityBlock = this.mapService.inventoryService.arrayScoreCityBlock[typeCityBlock];
 
 
     for (let yRadius = -radius; yRadius <= radius; yRadius++) {

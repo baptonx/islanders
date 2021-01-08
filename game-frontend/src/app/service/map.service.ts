@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class MapService {
+  public textScoreArray: Array<HTMLDivElement>;
   map: MapImpl;
   hasMovedBlock: boolean;
   typeMoveBlock: number | undefined;
@@ -24,6 +25,12 @@ export class MapService {
     this.typeMoveBlock = undefined;
     this.posMoveBlock = 0;
     this.isGameOver = false;
+  }
+
+  public resetTextArrayScore(): void {
+    for (const e of this.textScoreArray) {
+      e.innerText = '';
+    }
   }
 
   public toggleWinterMode(): void {

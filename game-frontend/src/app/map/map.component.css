@@ -15,6 +15,12 @@
   animation: showTile 3s;
   transform: rotateZ(-45deg) rotateY(-60deg) scale(1.6);
   clip-path: polygon(50px 0, 0 25px, 0 32px, 50px 58px, 100px 33px, 100px 25px, 50px 0);
+  transition: 0.1s ease-in-out;
+}
+
+.tile:hover {
+  transform: translateX(-10px) translateY(-10px) rotateZ(-45deg) rotateY(-60deg) scale(1.8);
+
 }
 
 .winterTileImg {
