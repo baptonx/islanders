@@ -1,9 +1,12 @@
 
-html, body {
+html{
   height:100%;
 }
 
 body {
+  display: flex;
+  flex:1;
+  flex-direction: column;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: linear-gradient(whitesmoke, #3090c0);

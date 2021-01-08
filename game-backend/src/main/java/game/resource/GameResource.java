@@ -135,14 +135,8 @@ public class GameResource {
     @Path("api/v1/replays/{map_name}/{player_name}/{score}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postGame(@PathParam("map_name") final String map_name, @PathParam("player_name") final String player_name, @PathParam("score") final int score, final String commands) throws IOException {
-        System.out.println(commands);
-        System.out.println(player_name);
         final ObjectMapper mapper = new ObjectMapper();
         List<Command> c = new ArrayList<>();
-
-        System.out.println(mapper.readValue(commands, new TypeReference<List<Command>>() {
-        }));
-
         try {
             c = mapper.readValue(commands, new TypeReference<List<Command>>() {
             });
@@ -158,7 +152,6 @@ public class GameResource {
             return Response.status(Response.Status.valueOf(e.getMessage())).build();
         }
         */
-        System.out.println("marche");
         storage.addGame(map_name, new CommandCollector(player_name, c), new Score(player_name, score));
         return Response.status(Response.Status.OK).build();
     }
