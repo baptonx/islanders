@@ -45,15 +45,20 @@ export class MapAdapter {
     } else if (command.type === 'game.model.MoveCityBlock') {
       const pcb: MoveCityBlock = command as MoveCityBlock;
       const pcbi = new MoveCityBlockImpl(mapService, pcb.x, pcb.y, clonerService, false);
-      pcbi.mementoAvailableCityBlock = pcb.mementoAvailableCityBlock;
-      pcbi.mementoCityBlockSelected = pcb.mementoCityBlockSelected;
-      pcbi.mementoNomJoueur = pcb.mementoNomJoueur;
-      pcbi.mementoHasMovedBlock = pcb.mementoHasMovedBlock;
-      pcbi.mementoScore = pcb.mementoScore;
-      pcbi.mementoNextScore = pcb.mementoNextScore;
-      pcbi.mementoPosMoveBlock = pcb.mementoPosMoveBlock;
       pcbi.posAfter = pcb.posAfter;
       pcbi.posBefore = pcb.posBefore;
+
+      pcbi.mementoHasMovedBlock = pcb.mementoHasMovedBlock;
+      pcbi.mementoTypeMoveBlock = pcb.mementoTypeMoveBlock;
+      pcbi.mementoPosMoveBlock = pcb.mementoPosMoveBlock;
+
+      pcbi.mementoAvailableCityBlock = pcb.mementoAvailableCityBlock;
+      pcbi.mementoCityBlockSelected = pcb.mementoCityBlockSelected;
+
+      pcbi.mementoNomJoueur = pcb.mementoNomJoueur;
+      pcbi.mementoScore = pcb.mementoScore;
+      pcbi.mementoNextScore = pcb.mementoNextScore;
+
       pcbi.mementoGameOver = pcb.mementoGameOver;
       return pcbi;
     } else {
