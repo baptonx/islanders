@@ -8,10 +8,12 @@
 	.st0{fill:#BB8D5D;}
 	.st1{fill:#9E7758;}
 	.st2{fill:#8BB54A;}
-	.st3{fill:#AED3D2;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#B9E1FF;}
+	.st5{filter:url(#Adobe_OpacityMaskFilter);}
+	.st6{mask:url(#SVGID_1_);fill:#AED3D2;}
+	.st7{fill:#D7EFFF;}
 </style>
-<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" id="base" inkscape:current-layer="layer1" inkscape:cx="51.657169" inkscape:cy="22.311319" inkscape:document-rotation="0" inkscape:document-units="mm" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="1025" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="28" inkscape:zoom="11.313709" pagecolor="#ffffff" showgrid="false" units="px">
-	</sodipodi:namedview>
 <g id="layer1" transform="translate(-50.567649,-61.93607)" inkscape:groupmode="layer" inkscape:label="Calque 1">
 	<g id="g2920" transform="matrix(0.26454738,0,0,0.26686026,37.545283,-6.9646861)">
 		<g id="g2914" transform="translate(0.76334)">
@@ -21,5 +23,27 @@
 		<path id="path208" class="st2" d="M49.3,352.7l189-94.5l189,94.5l-189,94.5L49.3,352.7z"/>
 	</g>
 </g>
-<polygon class="st3" points="0,25.2 50,0 100,25.2 50,50.4 "/>
+<path class="st3" d="M0,25.2c1,3.9,2.6,5.3,3.8,5.8c2.1,0.9,3.5-0.6,5.7,0.4c2.4,1.1,1.7,3.4,4,4.9c2.9,1.8,5.5-0.9,8.4,1
+	c1.9,1.3,1.2,2.8,3.2,4.1c2.6,1.6,4.4-0.3,7,1.3c2.1,1.3,1.6,3,3.8,4c1.8,0.8,2.3-0.1,4.4,0.6c2.4,0.8,2.5,2.3,4.6,3.1
+	c1,0.4,2.6,0.7,5-0.1C33.4,42,16.7,33.6,0,25.2z"/>
+<path class="st4" d="M100,25.2c-1,3.9-2.6,5.3-3.8,5.8c-2.1,0.9-3.5-0.6-5.7,0.4c-2.4,1.1-1.7,3.4-4,4.9c-2.9,1.8-5.5-0.9-8.4,1
+	c-1.9,1.3-1.2,2.8-3.2,4.1c-2.6,1.6-4.4-0.3-7,1.3c-2.1,1.3-1.6,3-3.8,4c-1.8,0.8-2.3-0.1-4.4,0.6c-2.4,0.8-2.5,2.3-4.6,3.1
+	c-1,0.4-2.6,0.7-5-0.1C66.7,42,83.3,33.6,100,25.2z"/>
+<defs>
+	<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="50.4">
+
+			<feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
+	</filter>
+</defs>
+<mask maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="50.4" id="SVGID_1_">
+	<g class="st5">
+
+			<image style="overflow:visible;" width="4176" height="2784" xlink:href="ice.jpg"  transform="matrix(2.806167e-02 0 0 2.806167e-02 -11.1084 -16.8373)">
+		</image>
+	</g>
+</mask>
+<polygon class="st6" points="0,25.2 50,0 100,25.2 50,50.4 "/>
+<polygon class="st7" points="0,25.2 50,0 100,25.2 50,50.4 "/>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" id="base" inkscape:current-layer="layer1" inkscape:cx="51.657169" inkscape:cy="22.311319" inkscape:document-rotation="0" inkscape:document-units="mm" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="1025" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="28" inkscape:zoom="11.313709" pagecolor="#ffffff" showgrid="false" units="px">
+	</sodipodi:namedview>
 </svg>

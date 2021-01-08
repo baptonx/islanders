@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import faker from 'faker';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class InfogameService {
 
   constructor() {
     this.initializeScore();
-    this.nomJoueur = 'Paul';
+    this.nomJoueur = faker.name.firstName();
   }
 
   public initializeScore(): void {
