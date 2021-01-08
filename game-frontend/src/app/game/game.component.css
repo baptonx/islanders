@@ -42,8 +42,8 @@
 }
 
 .inventory {
-  left: 50%;
-  transform: translate(-50%, 0%);
+  display: flex;
+  flex:1;
 }
 
 .inventory-button:hover {
@@ -142,4 +142,12 @@ h2{
 
 p{
   margin:0;
+}
+
+.home{
+  display: flex;
+  align-items: flex-end;
+  background-color: transparent;
+  border: transparent;
+  background-color: black;
 }
