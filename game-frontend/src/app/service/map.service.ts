@@ -13,6 +13,7 @@ export class MapService {
   typeMoveBlock: number | undefined;
   posMoveBlock: number;
   isGameOver: boolean;
+  winterMode = false;
 
   constructor(public inventoryService: InventoryService, public infogameService: InfogameService, public router: Router) {
     this.initialize();
@@ -25,20 +26,23 @@ export class MapService {
     this.isGameOver = false;
   }
 
+  public toggleWinterMode(): void {
+    this.winterMode = !this.winterMode;
+  }
 
   public updateGameOver(): boolean {
 
     let inventoryAvailable = false;
 
     // Si un element dans inventaire
-    for (let i = 0; i < this.inventoryService.availableCityBlock.length; i++) {
-      if (this.inventoryService.availableCityBlock[i] > 0) {
+    for (const cityBlock of this.inventoryService.availableCityBlock) {
+      if (cityBlock > 0) {
         inventoryAvailable = true;
       }
     }
 
     if (inventoryAvailable === false && this.hasMovedBlock === true) {
-      console.log("game over : inventaire nul");
+      console.log('game over : inventaire nul');
       this.isGameOver = true;
       return true;
     }
@@ -46,14 +50,14 @@ export class MapService {
     // inventaire disponible ou moveBlock, cherche case vide
     for (let i = 0; i < this.map.tabTiles.length; i++) {
       if (this.map.tabTiles[i] === 0) {
-        console.log("Pas de game over : tile disponible et inventaire disponible ou move block");
+        console.log('Pas de game over : tile disponible et inventaire disponible ou move block');
         this.isGameOver = false;
         return false;
       }
     }
 
     // inventaire disponible mais pas de case vide
-    console.log("Game over : inventaire disponible ou move block mais pas de tile disponible");
+    console.log('Game over : inventaire disponible ou move block mais pas de tile disponible');
     this.isGameOver = true;
     return true;
   }

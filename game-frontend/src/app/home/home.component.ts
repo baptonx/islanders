@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.homeService.changeMap(this.homeService.mapNames[this.homeService.indexCurrentMap]);
   }
 
-  public clickStart(): void{
+  public clickStart(): void {
     if (this.homeService.mapService.infogameService.nomJoueur !== '') {
       this.homeService.mapService.router.navigate(['/play']);
     } else {
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.homeService.addMap();
   }
 
-  public callToChangeMap(nameCurrentMap: string): void{
+  public callToChangeMap(nameCurrentMap: string): void {
     this.homeService.changeMap(nameCurrentMap);
   }
 

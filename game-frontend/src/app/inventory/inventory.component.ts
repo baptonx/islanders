@@ -1,19 +1,19 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {InventoryService} from '../service/inventory.service';
-import {MapService} from "../service/map.service";
+import {MapService} from '../service/map.service';
 
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.css']
 })
-export class InventoryComponent{
+export class InventoryComponent {
 
   constructor(private inventoryService: InventoryService, public mapService: MapService) {
   }
 
   public inventoryOnClick(x: number): void {
-    console.log("clique inventaire");
+    console.log('clique inventaire');
     this.inventoryService.cityBlockSelected = x;
     this.mapService.typeMoveBlock = undefined;
   }

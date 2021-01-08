@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {MapService} from "./map.service";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +49,9 @@ export class InventoryService {
 
   public getPathNameWithName(name: string): string {
     return 'assets/' + name + '.svg';
+  }
+  public getWinterPathNameWithName(name: string): string {
+    return 'assets/' + name + '-winter.svg';
   }
 
   public initialize(): void {

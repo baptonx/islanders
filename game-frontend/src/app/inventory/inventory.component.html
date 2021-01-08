@@ -1,20 +1,32 @@
-<div class="inventory" *ngIf="mapService.router.url === '/play'">
-    <div *ngFor="let x of [0,1,2,3]"
-         class="inventory-button"
-         (click)="this.inventoryOnClick(x)">
-      <img
-        src={{this.inventoryService.getPathNameWithName(this.inventoryService.typeCityBlock[x])}}
-
-      />
-      <span class="badge">{{this.inventoryService.availableCityBlock[x]}}</span>
-    </div>
+<div class="inventory" *ngIf="mapService.router.url === '/play' && mapService.winterMode">
+  <div *ngFor="let x of [0,1,2,3]"
+       class="inventory-button"
+       (click)="this.inventoryOnClick(x)">
+    <img
+      src={{this.inventoryService.getPathNameWithName(this.inventoryService.typeCityBlock[x])}}
+    />
+    <span class="badge">{{this.inventoryService.availableCityBlock[x]}}</span>
+  </div>
 </div>
 
 <div class="inventory" *ngIf="mapService.router.url === '/replay'">
   <div *ngFor="let x of [0,1,2,3]" class="inventory-button">
-    <img
-      src={{this.inventoryService.getPathNameWithName(this.inventoryService.typeCityBlock[x])}}
+    <img *ngIf="!mapService.winterMode"
+         src={{this.inventoryService.getPathNameWithName(this.inventoryService.typeCityBlock[x])}}
+    />
+    <img *ngIf="mapService.winterMode" class="winterInventoryButton"
+         src={{this.inventoryService.getWinterPathNameWithName(this.inventoryService.typeCityBlock[x])}}
+    />
+    <span class="badge">{{this.inventoryService.availableCityBlock[x]}}</span>
+  </div>
+</div>
 
+<div class="inventory" *ngIf="mapService.router.url === '/play' && !mapService.winterMode">
+  <div *ngFor="let x of [0,1,2,3]"
+       class="inventory-button"
+       (click)="this.inventoryOnClick(x)">
+    <img
+      src={{this.inventoryService.getWinterPathNameWithName(this.inventoryService.typeCityBlock[x])}}
     />
     <span class="badge">{{this.inventoryService.availableCityBlock[x]}}</span>
   </div>

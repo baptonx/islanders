@@ -52,9 +52,19 @@ export class MapComponent {
     return this.getPathNameWithName(this.mapService.inventoryService.typeName[type]);
   }
 
+  public getWinterSvg(x: number, y: number): string {
+    const type = this.mapService.map.tabTiles[y * 10 + x];
+    return this.getWinterPathNameWithName(this.mapService.inventoryService.typeName[type]);
+  }
+
   public getPathNameWithName(name: string): string {
     return 'assets/' + name + '.svg';
   }
+
+  public getWinterPathNameWithName(name: string): string {
+    return 'assets/' + name + '-winter.svg';
+  }
+
 
   private cityBlockToTypeTile(typeCityBlock: number): number {
     const nameCityBlock = this.mapService.inventoryService.typeCityBlock[typeCityBlock];

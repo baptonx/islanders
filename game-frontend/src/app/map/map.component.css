@@ -8,6 +8,11 @@
   line-height: 0;
 }
 
+#winterMap{
+  width: 25%;
+  height: auto;
+}
+
 .tile {
   user-select: none;
   margin: 0 -21px;
@@ -15,6 +20,15 @@
   transform: rotateZ(-45deg) rotateY(-60deg) scale(1.6);
   clip-path: polygon(50px 0, 0 25px, 0 32px, 50px 58px, 100px 33px, 100px 25px, 50px 0);
 }
+.winterTile {
+  user-select: none;
+  margin: 0 -21px;
+  animation: showTile 3s;
+  transform: rotateZ(-45deg) rotateY(-60deg) scale(1.6);
+  clip-path: polygon(50px 0, 0 25px, 0 32px, 50px 58px, 100px 33px, 100px 25px, 50px 0);
+  width: 17.2%;
+}
+
 
 .container{
   display: flex;

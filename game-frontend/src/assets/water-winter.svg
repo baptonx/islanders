@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg3089" inkscape:version="1.0 (4035a4fb49, 2020-05-01)" sodipodi:docname="water.svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 58"
+	 style="enable-background:new 0 0 100 58;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#BB8D5D;}
+	.st1{fill:#9E7758;}
+	.st2{fill:url(#path550_1_);}
+	.st3{fill:url(#SVGID_1_);}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" id="base" inkscape:current-layer="layer1" inkscape:cx="36.769359" inkscape:cy="43.388969" inkscape:document-rotation="0" inkscape:document-units="mm" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="1025" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="28" inkscape:zoom="8" pagecolor="#ffffff" showgrid="false" units="px">
+	</sodipodi:namedview>
+<g id="layer1" transform="translate(-94.116072,-26.411087)" inkscape:groupmode="layer" inkscape:label="Calque 1">
+	<g id="g2925" transform="matrix(0.26446859,0,0,0.26692382,50.406121,-46.896099)">
+		<path id="path546" class="st0" d="M354.3,463.6V492l-189-94.5v-28.3L354.3,463.6z"/>
+		<path id="path548" class="st1" d="M354.3,492v-28.3l189-94.5v28.3L354.3,492z"/>
+		<linearGradient id="path550_1_" gradientUnits="userSpaceOnUse" x1="165.3277" y1="369.1397" x2="265.2843" y2="369.1397">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#000000"/>
+		</linearGradient>
+		<path id="path550" class="st2" d="M543.3,369.1l-189,94.5l-189-94.5l189-94.5L543.3,369.1z"/>
+	</g>
+</g>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-0.205" y1="25.2251" x2="100.0409" y2="25.2251">
+	<stop  offset="0" style="stop-color:#FFFFFF"/>
+	<stop  offset="1" style="stop-color:#3399CC"/>
+</linearGradient>
+<polygon class="st3" points="0,25.2 50,0 100,25.2 50,50.4 "/>
+</svg>
