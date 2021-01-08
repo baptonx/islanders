@@ -1,72 +1,158 @@
-.container{
-  flex : 1
+.container {
+  flex: 1;
+  background: transparent;
 }
 
-.header_container{
-  display:flex;
-  flex:3;
+.header_container {
+  display: flex;
+  flex: 3;
   align-self: center;
   justify-self: center;
 }
 
 .topDiv {
   display: flex;
-  flex : 1;
+  flex: 1;
   justify-content: center;
 }
 
-.info_currentgame{
-  display : flex;
+.info_currentgame {
+  display: flex;
   flex-direction: column;
   justify-self: left;
-  flex:1;
+  flex: 1;
+  font-family: 'Ek Mukta';
+  margin-left: 20px;
 }
 
-.undoRedoDiv{
-  display:flex;
-  flex:1
+.undoRedoDiv {
+  display: flex;
+  flex: 1
 }
 
-.info{
-  display : flex;
-  flex : 1;
+.info {
+  display: flex;
+  flex: 1;
   flex-direction: row;
 }
 
-.inputNomJoueur{
-  border-width : 1px;
+.inputNomJoueur {
+  border-width: 1px;
   border-radius: 5px;
 }
 
 .inventory {
-  left:50%;
-  transform: translate(-50%, 0%);
+  display: flex;
+  flex: 1;
 }
 
 .inventory-button:hover {
   background-color: black;
 }
 
-.header_container{
+.header_container {
   display: flex;
+  flex: 1;
   align-items: center;
   flex-direction: column;
 }
 
-.map_container{
-  display:flex;
-  flex:1;
+.map_container {
+  display: flex;
+  flex: 1;
   justify-content: center;
 }
 
-.bottom_container{
+.bottom_container {
   display: flex;
   flex-direction: row;
   align-self: center;
   justify-content: center;
 }
 
-app-leaderboard{
+app-leaderboard {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+
+.img_game_over {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.gameOver {
+  position: fixed; /* Sit on top of the page content */
+  display: block; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.undo {
   display: flex;
-  flex:1;
+  align-self: center;
+  justify-content: center;
+  background-color: transparent;
+  border: transparent;
+  margin-left: 50px;
+}
+
+.undo_svg {
+  width: 50px;
+}
+
+.center_header {
+  display: flex;
+  flex: 1;
+  margin-left: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.currentName {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.teacher_svg {
+  width: 100px;
+}
+
+.score {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+p {
+  margin: 0;
+}
+
+.home {
+  display: flex;
+  align-items: flex-end;
+  background-color: transparent;
+  border: transparent;
+}
+
+.homeDiv {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
 }

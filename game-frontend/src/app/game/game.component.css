@@ -1,6 +1,7 @@
 .container {
-  flex: 1;
-  background: transparent;
+  flex:1;
+  display: flex;
+  height:100%;
 }
 
 .header_container {
@@ -65,9 +66,9 @@
 
 .bottom_container {
   display: flex;
+  flex:1;
   flex-direction: row;
-  align-self: center;
-  justify-content: center;
+  justify-self: flex-end;
 }
 
 app-leaderboard {
