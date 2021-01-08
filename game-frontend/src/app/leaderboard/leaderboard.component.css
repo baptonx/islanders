@@ -6,28 +6,23 @@
 
 button {
   border-color: transparent;
-  background: dodgerblue;
+  background: #3090c0;
   display: flex;
   flex:1;
   flex-direction: row;
   align-items: center;
+  border-radius: 10px;
 }
 
 .container_scores {
   display: flex;
   flex:1;
   flex-direction: column;
-  background-color: lightskyblue;
+  background-color : #3090c0;
+  border-radius: 10px;
 }
 .score{
   margin: 10%;
-}
-
-.header_container {
-  display: flex;
-  flex-direction: row;
-  flex:1;
-  background: dodgerblue;
 }
 
 @keyframes colorChange {
@@ -40,6 +35,10 @@ button {
 
 }
 
+p{
+  color:white;
+  font-weight: bold;
+}
 img{
   width:70px;
 }

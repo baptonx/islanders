@@ -122,6 +122,11 @@ app-leaderboard {
 
 h2 {
   text-align: center;
+  color: #1d5d77;
+}
+
+h1{
+  color: #1d5d77;
 }
 
 .currentName {

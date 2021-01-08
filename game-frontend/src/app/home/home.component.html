@@ -3,7 +3,7 @@
     <h1>ISLANDER</h1>
     <h2 *ngIf="homeService.mapService.map!==undefined">{{this.homeService.mapService.map.name}}</h2>
   </div>
-  <div class='middle_container'>
+  <div class='middle_container' *ngIf="homeService.mapService.map!==undefined">
     <button class='arrow' *ngIf="homeService.mapService.map!==undefined" id="arrowLeft" (click)="clickArrowLeft()">
       <img src="assets/left-arrow.svg"/>
     </button>
