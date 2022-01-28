@@ -1,3 +1,12 @@
+# Islanders game
+
+This game is part of a group project made during my Angular web developpement and testing course at INSA Rennes. It consists of a 2D isometric game where the goal is to place buildings and terrain to earn points. 
+
+##Technologies used
+
+The app is divided into a front-end part and a back-end part. It contains :
+- an Angular front-end (user interface)
+- a Jersey Java REST API back-end used with Maven
 
 ## Layout
 
